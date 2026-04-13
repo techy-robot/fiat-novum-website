@@ -1,46 +1,25 @@
-# Astro Starter Kit: Basics
+This is a Next.js project bootstrapped with [`create-plasmic-app`](https://www.npmjs.com/package/create-plasmic-app).
 
-```sh
-npm create astro@latest -- --template basics
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Open your browser to see the result.
 
-## 🚀 Project Structure
+You can start editing your project in Plasmic Studio. The page auto-updates as you edit the project.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Learn More
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+With Plasmic, you can enable non-developers on your team to publish pages and content into your website or app.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+To learn more about Plasmic, take a look at the following resources:
 
-## 🧞 Commands
+- [Plasmic Website](https://www.plasmic.app/)
+- [Plasmic Documentation](https://docs.plasmic.app/learn/)
+- [Plasmic Community Forum](https://forum.plasmic.app/)
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+You can check out [the Plasmic GitHub repository](https://github.com/plasmicapp/plasmic) - your feedback and contributions are welcome!
