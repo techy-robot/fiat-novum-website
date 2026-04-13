@@ -1,0 +1,35 @@
+.ariaTooltip:global(.__wab_instance) {
+  box-sizing: border-box;
+  position: relative;
+  color: #ffffff;
+}
+.slotTargetTrigger {
+  color: var(--token-Pr-CQxrq8NsF);
+  font-family: var(--token-IQ_wlK9jIwE0);
+  font-size: var(--token-Jv9klbmrC1HZ);
+  line-height: var(--token-TZviWh4oB8N5);
+}
+.text__aXcy8 {
+  position: relative;
+}
+.overlayArrow:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.freeBox {
+  display: flex;
+  position: relative;
+  background: var(--token-GVsoIpJlGJFU);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: auto;
+  row-gap: var(--token-zCZ4UkeS8Qlx);
+  border-radius: var(--token-BdshjNcEeSD0);
+  padding: var(--token-HdmhJwAw8PY-);
+}
+.slotTargetContent {
+  color: var(--token-RV5HZOZ-O0QZ);
+  font-family: var(--token-IQ_wlK9jIwE0);
+  font-size: var(--token-Jv9klbmrC1HZ);
+  line-height: var(--token-TZviWh4oB8N5);
+}

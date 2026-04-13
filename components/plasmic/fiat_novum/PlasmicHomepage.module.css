@@ -5,6 +5,8 @@
   height: 100%;
   align-content: flex-start;
   justify-items: center;
+  color: var(--token-GVsoIpJlGJFU);
+  background: var(--token-GVsoIpJlGJFU);
   min-width: 0;
   min-height: 0;
   grid-template-columns:
@@ -18,4 +20,25 @@
 }
 .root > * {
   grid-column: 4;
+}
+.text {
+  position: absolute;
+  width: 239px;
+  height: auto;
+  max-width: 100%;
+  left: 312px;
+  top: 529px;
+  margin-right: 0px;
+  justify-self: center;
+  z-index: 1;
+  color: var(--token-E3oeURNUdlsH);
+}
+.name {
+  width: 1500px;
+  height: auto;
+  max-width: 100%;
+  font-family: "Fira Mono";
+  margin-right: 0px;
+  justify-self: center;
+  color: var(--token-E3oeURNUdlsH);
 }
