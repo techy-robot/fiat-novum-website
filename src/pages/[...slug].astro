@@ -1,0 +1,27 @@
+---
+import { builder } from '@builder.io/sdk';
+import { BuilderComponent } from '@builder.io/react';
+
+// Initialize with the environment variable
+builder.init(import.meta.env.PUBLIC_BUILDER_API_KEY);
+
+const urlPath = Astro.url.pathname || '/';
+
+const content = await builder.get('page', { 
+  userAttributes: { urlPath } 
+}).toPromise();
+
+if (!content) {
+  return Astro.redirect('/404');
+}
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{content?.data?.title || 'My Prototype'}</title>
+  </head>
+  <body>
+    <BuilderComponent client:load model="page" content={content} />
+  </body>
+</html>
