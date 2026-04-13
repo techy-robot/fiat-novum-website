@@ -1,0 +1,81 @@
+{
+  "platform": "nextjs",
+  "code": {
+    "lang": "ts",
+    "scheme": "blackbox",
+    "reactRuntime": "classic"
+  },
+  "style": {
+    "scheme": "css-modules",
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.module.css"
+  },
+  "images": {
+    "scheme": "public-files",
+    "publicDir": "../public",
+    "publicUrlPrefix": "/"
+  },
+  "tokens": {
+    "scheme": "theo",
+    "tokensFilePath": "plasmic-tokens.theo.json"
+  },
+  "srcDir": "components",
+  "defaultPlasmicDir": "./plasmic",
+  "projects": [
+    {
+      "projectId": "77YCnrwhevb2XmBSeMeRKC",
+      "projectApiToken": "vbQyou03NYKoUJYS5XQuqHd1f0lvaFhEPqfaaHmK31dT23rx3SxsFVupkacMBjTpM3WPzbm42ZdACSUug",
+      "projectName": "Fiat Novum",
+      "version": "latest",
+      "cssFilePath": "plasmic/fiat_novum/plasmic.module.css",
+      "components": [
+        {
+          "id": "SRR7d6afVmf-",
+          "name": "Homepage",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicHomepage.tsx",
+          "importSpec": {
+            "modulePath": "../pages/index.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicHomepage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/"
+        }
+      ],
+      "icons": [],
+      "images": [],
+      "indirect": false,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/fiat_novum/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/fiat_novum/plasmic.tsx",
+      "codeComponents": [
+        {
+          "id": "2kmRJ1sW6i4l",
+          "name": "PlasmicHead",
+          "displayName": "hostless-plasmic-head",
+          "componentImportPath": "@plasmicapp/react-web"
+        },
+        {
+          "id": "wFtC_rqldfM2",
+          "name": "Fetcher",
+          "displayName": "plasmic-data-source-fetcher",
+          "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
+        }
+      ],
+      "customFunctions": []
+    }
+  ],
+  "globalVariants": {
+    "variantGroups": []
+  },
+  "wrapPagesWithGlobalContexts": true,
+  "preserveJsImportExtensions": false,
+  "nextjsConfig": {
+    "pagesDir": "../pages"
+  },
+  "cliVersion": "0.1.359",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.359/dist/plasmic.schema.json"
+}
