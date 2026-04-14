@@ -423,7 +423,7 @@
     {
       "name": "Brand/Brand",
       "type": "color",
-      "value": "#2563EB",
+      "value": "#1BEEA1",
       "category": "color",
       "meta": {
         "projectId": "77YCnrwhevb2XmBSeMeRKC",
@@ -433,7 +433,7 @@
     {
       "name": "Brand/Brand-Border",
       "type": "color",
-      "value": "#93C5FD",
+      "value": "#34EBA8",
       "category": "color",
       "meta": {
         "projectId": "77YCnrwhevb2XmBSeMeRKC",
@@ -443,7 +443,7 @@
     {
       "name": "Brand/Brand-Foreground",
       "type": "color",
-      "value": "#EFF6FF",
+      "value": "#FFFFFF",
       "category": "color",
       "meta": {
         "projectId": "77YCnrwhevb2XmBSeMeRKC",
@@ -453,7 +453,7 @@
     {
       "name": "Brand/Brand-Soft",
       "type": "color",
-      "value": "#DBEAFE",
+      "value": "#DCFCE7",
       "category": "color",
       "meta": {
         "projectId": "77YCnrwhevb2XmBSeMeRKC",
@@ -463,7 +463,7 @@
     {
       "name": "Brand/Brand-Soft-Foreground",
       "type": "color",
-      "value": "#1E3A8A",
+      "value": "#1BEEA1",
       "category": "color",
       "meta": {
         "projectId": "77YCnrwhevb2XmBSeMeRKC",
@@ -608,16 +608,6 @@
       "meta": {
         "projectId": "77YCnrwhevb2XmBSeMeRKC",
         "id": "OTNKE8pX7SZA"
-      }
-    },
-    {
-      "name": "Main Font Color",
-      "type": "color",
-      "value": "#00DCF0",
-      "category": "color",
-      "meta": {
-        "projectId": "77YCnrwhevb2XmBSeMeRKC",
-        "id": "E3oeURNUdlsH"
       }
     },
     {
