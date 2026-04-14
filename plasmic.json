@@ -382,12 +382,18 @@
           "moduleFilePath": "plasmic/fiat_novum/icons/PlasmicIcon__TriangleFilled.tsx"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "id": "jV4TI4PzTVSC",
+          "name": "Youtube channel logo v3.png",
+          "filePath": "../public/plasmic/fiat_novum/images/youtubeChannelLogoV3Png.png"
+        }
+      ],
       "indirect": false,
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "styleTokensProviderFilePath": "plasmic/fiat_novum/PlasmicStyleTokensProvider.tsx",
-      "dataTokensFilePath": "",
+      "dataTokensFilePath": "plasmic/fiat_novum/plasmic-data-tokens.ts",
       "projectModuleFilePath": "plasmic/fiat_novum/plasmic.tsx",
       "codeComponents": [
         {
@@ -26915,6 +26921,31 @@
           "name": "ToolbarUnderline",
           "displayName": "hostless-tiptap-toolbar-underline",
           "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerToolbarUnderline"
+        }
+      ],
+      "customFunctions": []
+    },
+    {
+      "projectId": "7nJ7UcFmq9UzB6eXfC5z4a",
+      "projectApiToken": "uZp069FLSLNVA2dpWnqC3BUaj3flvtNBNXt6e1b67rm4Uh6lGHgYJ65FCBXlOFTB5KDW7RmmOxIAzgHYCg",
+      "projectName": "plasmic-nav",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/plasmic_nav/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/plasmic_nav/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/plasmic_nav/plasmic.tsx",
+      "codeComponents": [
+        {
+          "id": "jGx9tiKJoex",
+          "name": "NavigationBar",
+          "displayName": "hostless-plasmic-navigation-bar",
+          "componentImportPath": "@plasmicpkgs/plasmic-nav"
         }
       ],
       "customFunctions": []

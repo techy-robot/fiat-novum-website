@@ -12,6 +12,7 @@
     "@plasmicapp/cli": "^0.1.359",
     "@plasmicapp/loader-nextjs": "^2.0.1",
     "@plasmicapp/react-web": "^1.0.0",
+    "@plasmicpkgs/plasmic-nav": "^0.0.213",
     "@plasmicpkgs/react-aria": "^0.0.175",
     "@plasmicpkgs/tiptap": "^0.0.25",
     "@tiptap/core": "^3.22.3",

@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { NavigationBar } from "@plasmicpkgs/plasmic-nav";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -66,6 +67,9 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: SRR7d6afVmf-/css
+
+import Menu2Icon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Menu2"; // plasmic-import: d1b8xWlyUKWm/icon
+import CircleXIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CircleX"; // plasmic-import: CNRVZ5IIE5Ex/icon
 
 const emptyProxy: any = new Proxy(() => "", {
   get(_, prop) {
@@ -111,8 +115,10 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHomepage__OverridesType = {
   root?: Flex__<"div">;
-  text?: Flex__<"div">;
   name?: Flex__<"h1">;
+  navigationBar?: Flex__<typeof NavigationBar>;
+  img?: Flex__<typeof PlasmicImg__>;
+  text?: Flex__<"div">;
 };
 
 export interface DefaultHomepageProps {}
@@ -188,17 +194,6 @@ function PlasmicHomepage__RenderFunc(props: {
             sty.root
           )}
         >
-          <div
-            data-plasmic-name={"text"}
-            data-plasmic-override={overrides.text}
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text
-            )}
-          >
-            {"Hello! This is a WIP website"}
-          </div>
           <h1
             data-plasmic-name={"name"}
             data-plasmic-override={overrides.name}
@@ -210,8 +205,121 @@ function PlasmicHomepage__RenderFunc(props: {
               sty.name
             )}
           >
-            {"Fiat Novum Engineering"}
+            {"FIAT NOVUM ENGINEERING"}
           </h1>
+          <NavigationBar
+            data-plasmic-name={"navigationBar"}
+            data-plasmic-override={overrides.navigationBar}
+            brand={
+              <PlasmicLink__
+                className={classNames(
+                  projectcss.all,
+                  projectcss.a,
+                  projectcss.a__77YCn,
+                  sty.link__qnEJ
+                )}
+                component={Link}
+                href={"#"}
+                legacyBehavior={false}
+                platform={"nextjs"}
+              >
+                <PlasmicImg__
+                  data-plasmic-name={"img"}
+                  data-plasmic-override={overrides.img}
+                  alt={""}
+                  className={classNames(sty.img)}
+                  displayHeight={"40px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"none"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  src={{
+                    src: "/plasmic/fiat_novum/images/youtubeChannelLogoV3Png.png",
+                    fullWidth: 1080,
+                    fullHeight: 1080,
+                    aspectRatio: undefined
+                  }}
+                />
+              </PlasmicLink__>
+            }
+            className={classNames("__wab_instance", sty.navigationBar)}
+            closeButton={
+              <CircleXIcon
+                className={classNames(projectcss.all, sty.svg__tRqCn)}
+                role={"img"}
+              />
+            }
+            itemsGap={8}
+            menuItems={
+              <React.Fragment>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.a__77YCn,
+                    projectcss.__wab_text,
+                    sty.link__kKpcQ
+                  )}
+                  component={Link}
+                  href={"/"}
+                  legacyBehavior={false}
+                  platform={"nextjs"}
+                >
+                  {"Home"}
+                </PlasmicLink__>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.a__77YCn,
+                    projectcss.__wab_text,
+                    sty.link__ghZx4
+                  )}
+                  component={Link}
+                  href={"/"}
+                  legacyBehavior={false}
+                  platform={"nextjs"}
+                >
+                  {"About"}
+                </PlasmicLink__>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.a__77YCn,
+                    projectcss.__wab_text,
+                    sty.link___1UrAm
+                  )}
+                  component={Link}
+                  href={"/"}
+                  legacyBehavior={false}
+                  platform={"nextjs"}
+                >
+                  {"Contact"}
+                </PlasmicLink__>
+              </React.Fragment>
+            }
+            openButton={
+              <Menu2Icon
+                className={classNames(projectcss.all, sty.svg__g5Est)}
+                role={"img"}
+              />
+            }
+            responsiveBreakpoint={768}
+          />
+
+          <div
+            data-plasmic-name={"text"}
+            data-plasmic-override={overrides.text}
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text
+            )}
+          >
+            {"Hello! This is a WIP website"}
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -219,17 +327,21 @@ function PlasmicHomepage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text", "name"],
-  text: ["text"],
-  name: ["name"]
+  root: ["root", "name", "navigationBar", "img", "text"],
+  name: ["name"],
+  navigationBar: ["navigationBar", "img"],
+  img: ["img"],
+  text: ["text"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  text: "div";
   name: "h1";
+  navigationBar: typeof NavigationBar;
+  img: typeof PlasmicImg__;
+  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -294,8 +406,10 @@ export const PlasmicHomepage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    text: makeNodeComponent("text"),
     _name: makeNodeComponent("name"),
+    navigationBar: makeNodeComponent("navigationBar"),
+    img: makeNodeComponent("img"),
+    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
