@@ -11,11 +11,8 @@ import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2X
 
 import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 
-import plasmic_library_tailwind_3_4_colors_css from "../library_tailwind_3_4_color_tokens/plasmic.module.css"; // plasmic-import: 5ZtnypMovRHeeP3YTdPCYL/projectcss
-import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
-
 const data = {
-  base: `${projectcss.plasmic_tokens} ${plasmic_library_tailwind_3_4_colors_css.plasmic_tokens} ${plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens}`,
+  base: `${projectcss.plasmic_tokens}`,
   varianted: []
 };
 
