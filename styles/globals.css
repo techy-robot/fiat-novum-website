@@ -35,6 +35,127 @@ a {
   text-decoration: none;
 }
 
+/* Free Sans */
+
+/* Regular */
+@font-face {
+  font-family: 'FreeSans';
+  src: url('/fonts/FreeSans.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'FreeSans';
+  src: url('/fonts/FreeSansBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Oblique (Italic) */
+@font-face {
+  font-family: 'FreeSans';
+  src: url('/fonts/FreeSansOblique.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Bold Oblique */
+@font-face {
+  font-family: 'FreeSans';
+  src: url('/fonts/FreeSansBoldOblique.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Free Mono */
+
+@font-face {
+  font-family: 'FreeMono';
+  src: url('/fonts/FreeMono.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FreeMono';
+  src: url('/fonts/FreeMonoBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FreeMono';
+  src: url('/fonts/FreeMonoOblique.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FreeMono';
+  src: url('/fonts/FreeMonoBoldOblique.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Free Serif */
+
+@font-face {
+  font-family: 'FreeSerif';
+  src: url('/fonts/FreeSerif.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FreeSerif';
+  src: url('/fonts/FreeSerifBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FreeSerif';
+  src: url('/fonts/FreeSerifItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FreeSerif';
+  src: url('/fonts/FreeSerifBoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Tars Fonts */
+@font-face {
+  font-family: 'Tars Mono Rounded';
+  src: url('/fonts/TarsMonoRounded.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tars Mono Smooth';
+  src: url('/fonts/TarsMonoSmooth.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

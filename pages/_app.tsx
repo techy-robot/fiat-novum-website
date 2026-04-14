@@ -1,5 +1,6 @@
 import { Analytics } from '@vercel/analytics/next';
 import type { AppProps } from 'next/app';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,3 +12,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
+
