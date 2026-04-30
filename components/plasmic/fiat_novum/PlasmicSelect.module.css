@@ -6,7 +6,7 @@
   row-gap: var(--token-zCZ4UkeS8Qlx);
   min-width: 0;
 }
-.ariaSelect[data-disabled]:global(.__wab_instance) {
+.ariaSelect[data-disabled][data-disabled]:global(.__wab_instance) {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;

@@ -59,7 +59,12 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { NavigationBar } from "@plasmicpkgs/plasmic-nav";
+import CustomNavBar from "../../CustomNavBar"; // plasmic-import: lVLsklxwqNh2/component
+import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
+import { SliderWrapper } from "@plasmicpkgs/react-slick";
+import { sliderHelpers as SliderWrapper_Helpers } from "@plasmicpkgs/react-slick";
+import { CmsQueryRepeater } from "@plasmicpkgs/plasmic-cms";
+import { CmsRowField } from "@plasmicpkgs/plasmic-cms";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -67,9 +72,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: SRR7d6afVmf-/css
-
-import Menu2Icon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Menu2"; // plasmic-import: d1b8xWlyUKWm/icon
-import CircleXIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CircleX"; // plasmic-import: CNRVZ5IIE5Ex/icon
 
 const emptyProxy: any = new Proxy(() => "", {
   get(_, prop) {
@@ -115,10 +117,16 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHomepage__OverridesType = {
   root?: Flex__<"div">;
-  name?: Flex__<"h1">;
-  navigationBar?: Flex__<typeof NavigationBar>;
+  customNavBar?: Flex__<typeof CustomNavBar>;
+  reveal?: Flex__<typeof Reveal>;
+  type?: Flex__<"div">;
+  type2?: Flex__<"div">;
+  type3?: Flex__<"div">;
+  type4?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
-  text?: Flex__<"div">;
+  sliderCarousel?: Flex__<typeof SliderWrapper>;
+  cmsDataFetcher?: Flex__<typeof CmsQueryRepeater>;
+  cmsEntryField?: Flex__<typeof CmsRowField>;
 };
 
 export interface DefaultHomepageProps {}
@@ -162,6 +170,28 @@ function PlasmicHomepage__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "sliderCarousel.currentSlide",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0,
+
+        refName: "sliderCarousel",
+        onMutate: generateOnMutateForSpec("currentSlide", SliderWrapper_Helpers)
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $q: {},
+    $refs
+  });
+
   const pageMetadata = generateDynamicMetadata(
     wrapQueriesWithLoadingProxy({}),
     $ctx as PageCtx
@@ -194,132 +224,293 @@ function PlasmicHomepage__RenderFunc(props: {
             sty.root
           )}
         >
-          <h1
-            data-plasmic-name={"name"}
-            data-plasmic-override={overrides.name}
-            className={classNames(
-              projectcss.all,
-              projectcss.h1,
-              projectcss.h1__77YCn,
-              projectcss.__wab_text,
-              sty.name
-            )}
-          >
-            {"FIAT NOVUM ENGINEERING"}
-          </h1>
-          <NavigationBar
-            data-plasmic-name={"navigationBar"}
-            data-plasmic-override={overrides.navigationBar}
-            brand={
-              <PlasmicLink__
-                className={classNames(
-                  projectcss.all,
-                  projectcss.a,
-                  projectcss.a__77YCn,
-                  sty.link__qnEJ
-                )}
-                component={Link}
-                href={"#"}
-                legacyBehavior={false}
-                platform={"nextjs"}
+          <CustomNavBar
+            data-plasmic-name={"customNavBar"}
+            data-plasmic-override={overrides.customNavBar}
+            className={classNames("__wab_instance", sty.customNavBar)}
+          />
+
+          <section className={classNames(projectcss.all, sty.section__bmLR)}>
+            <h1
+              className={classNames(
+                projectcss.all,
+                projectcss.h1,
+                projectcss.h1__77YCn,
+                projectcss.__wab_text,
+                sty.h1__qsOcm
+              )}
+            >
+              {"Magic"}
+            </h1>
+            <div className={classNames(projectcss.all, sty.freeBox__eopKl)} />
+
+            <section
+              className={classNames(projectcss.all, sty.section___7ZwnX)}
+            >
+              <div className={classNames(projectcss.all, sty.freeBox__pXwg9)} />
+
+              <Reveal
+                data-plasmic-name={"reveal"}
+                data-plasmic-override={overrides.reveal}
+                className={classNames("__wab_instance", sty.reveal)}
+                delay={100}
+                triggerOnce={true}
               >
+                <div
+                  data-plasmic-name={"type"}
+                  data-plasmic-override={overrides.type}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.type
+                  )}
+                >
+                  {"Should"}
+                </div>
+                <div
+                  data-plasmic-name={"type2"}
+                  data-plasmic-override={overrides.type2}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.type2
+                  )}
+                >
+                  {"Not"}
+                </div>
+                <div
+                  data-plasmic-name={"type3"}
+                  data-plasmic-override={overrides.type3}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.type3
+                  )}
+                >
+                  {"Be"}
+                </div>
+                <div
+                  data-plasmic-name={"type4"}
+                  data-plasmic-override={overrides.type4}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.type4
+                  )}
+                >
+                  {"Impossible"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ttbXz
+                  )}
+                >
+                  <React.Fragment>
+                    <span
+                      className={
+                        "plasmic_default__all plasmic_default__span plasmic_default__span__77YCn"
+                      }
+                      style={{ fontStyle: "italic" }}
+                    >
+                      {
+                        '"Any sufficiently advanced technology is indistinguishable from magic"'
+                      }
+                    </span>
+                  </React.Fragment>
+                </div>
+              </Reveal>
+              <div className={classNames(projectcss.all, sty.freeBox__u1Rol)} />
+            </section>
+          </section>
+          <section className={classNames(projectcss.all, sty.section__obgUa)}>
+            <h1
+              className={classNames(
+                projectcss.all,
+                projectcss.h1,
+                projectcss.h1__77YCn,
+                projectcss.__wab_text,
+                sty.h1__cTcWp
+              )}
+            >
+              {"About me"}
+            </h1>
+            <div className={classNames(projectcss.all, sty.freeBox__xZyei)}>
+              <div className={classNames(projectcss.all, sty.freeBox__davsf)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__fcdo0
+                  )}
+                >
+                  {
+                    "I am a design engineer combining my intricate knowledge of mechanical, electrical, and computer engineering into products that focus on people and making the solution magical, not technical."
+                  }
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__apW6B)}>
                 <PlasmicImg__
                   data-plasmic-name={"img"}
                   data-plasmic-override={overrides.img}
                   alt={""}
                   className={classNames(sty.img)}
-                  displayHeight={"40px"}
+                  displayHeight={"auto"}
                   displayMaxHeight={"none"}
                   displayMaxWidth={"none"}
                   displayMinHeight={"0"}
                   displayMinWidth={"0"}
-                  displayWidth={"auto"}
+                  displayWidth={"50%"}
+                  loading={"lazy"}
                   src={{
-                    src: "/plasmic/fiat_novum/images/youtubeChannelLogoV3Png.png",
-                    fullWidth: 1080,
-                    fullHeight: 1080,
+                    src: "/plasmic/fiat_novum/images/userImageLinkedInJpg.jpg",
+                    fullWidth: 1307,
+                    fullHeight: 1743,
                     aspectRatio: undefined
                   }}
                 />
-              </PlasmicLink__>
-            }
-            className={classNames("__wab_instance", sty.navigationBar)}
-            closeButton={
-              <CircleXIcon
-                className={classNames(projectcss.all, sty.svg__tRqCn)}
-                role={"img"}
-              />
-            }
-            itemsGap={8}
-            menuItems={
-              <React.Fragment>
-                <PlasmicLink__
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.a,
-                    projectcss.a__77YCn,
-                    projectcss.__wab_text,
-                    sty.link__kKpcQ
-                  )}
-                  component={Link}
-                  href={"/"}
-                  legacyBehavior={false}
-                  platform={"nextjs"}
-                >
-                  {"Home"}
-                </PlasmicLink__>
-                <PlasmicLink__
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.a,
-                    projectcss.a__77YCn,
-                    projectcss.__wab_text,
-                    sty.link__ghZx4
-                  )}
-                  component={Link}
-                  href={"/"}
-                  legacyBehavior={false}
-                  platform={"nextjs"}
-                >
-                  {"About"}
-                </PlasmicLink__>
-                <PlasmicLink__
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.a,
-                    projectcss.a__77YCn,
-                    projectcss.__wab_text,
-                    sty.link___1UrAm
-                  )}
-                  component={Link}
-                  href={"/"}
-                  legacyBehavior={false}
-                  platform={"nextjs"}
-                >
-                  {"Contact"}
-                </PlasmicLink__>
-              </React.Fragment>
-            }
-            openButton={
-              <Menu2Icon
-                className={classNames(projectcss.all, sty.svg__g5Est)}
-                role={"img"}
-              />
-            }
-            responsiveBreakpoint={768}
-          />
+              </div>
+            </div>
+          </section>
+          <section className={classNames(projectcss.all, sty.section__fhLkD)}>
+            <div className={classNames(projectcss.all, sty.freeBox__vzaZi)} />
 
-          <div
-            data-plasmic-name={"text"}
-            data-plasmic-override={overrides.text}
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text
-            )}
-          >
-            {"Hello! This is a WIP website"}
-          </div>
+            <h1
+              className={classNames(
+                projectcss.all,
+                projectcss.h1,
+                projectcss.h1__77YCn,
+                projectcss.__wab_text,
+                sty.h1__nC7W
+              )}
+            >
+              {"Projects"}
+            </h1>
+            {(() => {
+              const child$Props = {
+                beforeChange: async (...eventArgs: any) => {
+                  generateStateOnChangePropForCodeComponents(
+                    $state,
+                    "currentSlide",
+                    ["sliderCarousel", "currentSlide"],
+                    SliderWrapper_Helpers
+                  ).apply(null, eventArgs);
+                },
+                className: classNames("__wab_instance", sty.sliderCarousel),
+                initialSlide: generateStateValueProp($state, [
+                  "sliderCarousel",
+                  "currentSlide"
+                ]),
+                ref: ref => {
+                  $refs["sliderCarousel"] = ref;
+                },
+                sliderScopeClassName: sty["sliderCarousel__slider"]
+              };
+              initializeCodeComponentStates(
+                $state,
+                [
+                  {
+                    name: "currentSlide",
+                    plasmicStateName: "sliderCarousel.currentSlide"
+                  }
+                ],
+                [],
+                SliderWrapper_Helpers ?? {},
+                child$Props
+              );
+
+              return (
+                <SliderWrapper
+                  data-plasmic-name={"sliderCarousel"}
+                  data-plasmic-override={overrides.sliderCarousel}
+                  {...child$Props}
+                >
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    [2, 3, 4]
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
+                      <CmsQueryRepeater
+                        data-plasmic-name={"cmsDataFetcher"}
+                        data-plasmic-override={overrides.cmsDataFetcher}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.cmsDataFetcher
+                        )}
+                        desc={false}
+                        emptyMessage={
+                          <DataCtxReader__>
+                            {$ctx => (
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__uewjb
+                                )}
+                              >
+                                {"No matching published entries found."}
+                              </div>
+                            )}
+                          </DataCtxReader__>
+                        }
+                        forceEmptyState={false}
+                        forceLoadingState={false}
+                        key={currentIndex}
+                        limit={0}
+                        loadingMessage={
+                          <DataCtxReader__>
+                            {$ctx => (
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__twRyb
+                                )}
+                              >
+                                {"Loading..."}
+                              </div>
+                            )}
+                          </DataCtxReader__>
+                        }
+                        noAutoRepeat={false}
+                        noLayout={false}
+                        useDraft={false}
+                      >
+                        <DataCtxReader__>
+                          {$ctx => (
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox___0MleA
+                              )}
+                            >
+                              <CmsRowField
+                                data-plasmic-name={"cmsEntryField"}
+                                data-plasmic-override={overrides.cmsEntryField}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.cmsEntryField
+                                )}
+                                themeResetClassName={classNames(
+                                  projectcss.root_reset,
+                                  projectcss.root_reset_tags,
+                                  projectcss.plasmic_default_styles,
+                                  projectcss.plasmic_mixins,
+                                  styleTokensClassNames
+                                )}
+                              />
+                            </div>
+                          )}
+                        </DataCtxReader__>
+                      </CmsQueryRepeater>
+                    );
+                  })}
+                </SliderWrapper>
+              );
+            })()}
+          </section>
         </div>
       </div>
     </React.Fragment>
@@ -327,21 +518,45 @@ function PlasmicHomepage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "name", "navigationBar", "img", "text"],
-  name: ["name"],
-  navigationBar: ["navigationBar", "img"],
+  root: [
+    "root",
+    "customNavBar",
+    "reveal",
+    "type",
+    "type2",
+    "type3",
+    "type4",
+    "img",
+    "sliderCarousel",
+    "cmsDataFetcher",
+    "cmsEntryField"
+  ],
+  customNavBar: ["customNavBar"],
+  reveal: ["reveal", "type", "type2", "type3", "type4"],
+  type: ["type"],
+  type2: ["type2"],
+  type3: ["type3"],
+  type4: ["type4"],
   img: ["img"],
-  text: ["text"]
+  sliderCarousel: ["sliderCarousel", "cmsDataFetcher", "cmsEntryField"],
+  cmsDataFetcher: ["cmsDataFetcher", "cmsEntryField"],
+  cmsEntryField: ["cmsEntryField"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  name: "h1";
-  navigationBar: typeof NavigationBar;
+  customNavBar: typeof CustomNavBar;
+  reveal: typeof Reveal;
+  type: "div";
+  type2: "div";
+  type3: "div";
+  type4: "div";
   img: typeof PlasmicImg__;
-  text: "div";
+  sliderCarousel: typeof SliderWrapper;
+  cmsDataFetcher: typeof CmsQueryRepeater;
+  cmsEntryField: typeof CmsRowField;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -406,10 +621,16 @@ export const PlasmicHomepage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    _name: makeNodeComponent("name"),
-    navigationBar: makeNodeComponent("navigationBar"),
+    customNavBar: makeNodeComponent("customNavBar"),
+    reveal: makeNodeComponent("reveal"),
+    type: makeNodeComponent("type"),
+    type2: makeNodeComponent("type2"),
+    type3: makeNodeComponent("type3"),
+    type4: makeNodeComponent("type4"),
     img: makeNodeComponent("img"),
-    text: makeNodeComponent("text"),
+    sliderCarousel: makeNodeComponent("sliderCarousel"),
+    cmsDataFetcher: makeNodeComponent("cmsDataFetcher"),
+    cmsEntryField: makeNodeComponent("cmsEntryField"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

@@ -353,6 +353,47 @@
           "cssFilePath": "plasmic/fiat_novum/PlasmicTooltip.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "O8gb5UhX-kaS",
+          "name": "Blog",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicBlog.tsx",
+          "importSpec": {
+            "modulePath": "../pages/blog.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicBlog.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/blog"
+        },
+        {
+          "id": "lVLsklxwqNh2",
+          "name": "CustomNavBar",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicCustomNavBar.tsx",
+          "importSpec": {
+            "modulePath": "CustomNavBar.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicCustomNavBar.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "cyfNDKG12tWl",
+          "name": "BlogPost",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicBlogPost.tsx",
+          "importSpec": {
+            "modulePath": "../pages/blog/[title]/[id].tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicBlogPost.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/blog/[title]/[id]"
         }
       ],
       "icons": [
@@ -380,6 +421,31 @@
           "id": "VyE618kHQXkS",
           "name": "TriangleFilledIcon",
           "moduleFilePath": "plasmic/fiat_novum/icons/PlasmicIcon__TriangleFilled.tsx"
+        },
+        {
+          "id": "OwjQbXXRjFOa",
+          "name": "Icon21Icon",
+          "moduleFilePath": "plasmic/fiat_novum/icons/PlasmicIcon__Icon21.tsx"
+        },
+        {
+          "id": "ACIkszN_DiLd",
+          "name": "Icon8Icon",
+          "moduleFilePath": "plasmic/fiat_novum/icons/PlasmicIcon__Icon8.tsx"
+        },
+        {
+          "id": "YyoBVeVNS11T",
+          "name": "Icon18Icon",
+          "moduleFilePath": "plasmic/fiat_novum/icons/PlasmicIcon__Icon18.tsx"
+        },
+        {
+          "id": "7OTWrRvvg5CS",
+          "name": "Icon22Icon",
+          "moduleFilePath": "plasmic/fiat_novum/icons/PlasmicIcon__Icon22.tsx"
+        },
+        {
+          "id": "NJ6b4C-12Q6h",
+          "name": "Icon23Icon",
+          "moduleFilePath": "plasmic/fiat_novum/icons/PlasmicIcon__Icon23.tsx"
         }
       ],
       "images": [
@@ -387,10 +453,15 @@
           "id": "jV4TI4PzTVSC",
           "name": "Youtube channel logo v3.png",
           "filePath": "../public/plasmic/fiat_novum/images/youtubeChannelLogoV3Png.png"
+        },
+        {
+          "id": "WVM_NKv0J7_C",
+          "name": "User-image LinkedIn.jpg",
+          "filePath": "../public/plasmic/fiat_novum/images/userImageLinkedInJpg.jpg"
         }
       ],
       "indirect": false,
-      "globalContextsFilePath": "",
+      "globalContextsFilePath": "plasmic/fiat_novum/PlasmicGlobalContextsProvider.tsx",
       "splitsProviderFilePath": "",
       "styleTokensProviderFilePath": "plasmic/fiat_novum/PlasmicStyleTokensProvider.tsx",
       "dataTokensFilePath": "plasmic/fiat_novum/plasmic-data-tokens.ts",
@@ -26755,40 +26826,6 @@
       "customFunctions": []
     },
     {
-      "version": ">0.0.0",
-      "components": [],
-      "icons": [],
-      "images": [],
-      "indirect": true,
-      "globalContextsFilePath": "",
-      "splitsProviderFilePath": "",
-      "dataTokensFilePath": "",
-      "codeComponents": [
-        {
-        {
-        },
-        {
-        },
-        {
-        {
-        },
-        {
-        },
-        {
-        {
-        },
-        {
-        },
-        {
-        },
-        {
-        {
-        {
-        }
-      ],
-      "customFunctions": []
-    },
-    {
       "projectId": "7nJ7UcFmq9UzB6eXfC5z4a",
       "projectApiToken": "uZp069FLSLNVA2dpWnqC3BUaj3flvtNBNXt6e1b67rm4Uh6lGHgYJ65FCBXlOFTB5KDW7RmmOxIAzgHYCg",
       "projectName": "plasmic-nav",
@@ -26809,6 +26846,179 @@
           "name": "NavigationBar",
           "displayName": "hostless-plasmic-navigation-bar",
           "componentImportPath": "@plasmicpkgs/plasmic-nav"
+        }
+      ],
+      "customFunctions": []
+    },
+    {
+      "projectId": "hPz6Q3nQJn9Q8DTBgANGwo",
+      "projectApiToken": "LjSpKE3KGAP0BTj4Pw8tdHYXzQ9mZeNg0L7YRJ25qLJhCZwbS2n1ybcTImjPg1BuEA0QKeRAjEW1DLKh0VQ",
+      "projectName": "cms",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/cms/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/cms/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/cms/plasmic.tsx",
+      "codeComponents": [],
+      "customFunctions": [
+        {
+          "defaultExport": false,
+          "id": "plasmicCms.fetchTables",
+          "importPath": "@plasmicpkgs/cms",
+          "name": "fetchTables",
+          "namespace": "plasmicCms"
+        },
+        {
+          "defaultExport": false,
+          "id": "plasmicCms.fetchContent",
+          "importPath": "@plasmicpkgs/cms",
+          "name": "fetchContent",
+          "namespace": "plasmicCms"
+        },
+        {
+          "defaultExport": false,
+          "id": "plasmicCms.fetchCount",
+          "importPath": "@plasmicpkgs/cms",
+          "name": "fetchCount",
+          "namespace": "plasmicCms"
+        }
+      ]
+    },
+    {
+      "projectId": "r3ASNrnyvLLLAtDvzUioQ",
+      "projectApiToken": "eSFGpQaYCtO9sRbPuQ2Ll9dmLOg8I4oKhx6e1PuCrsfmUIVbFbSXcy32UrPTwF9zX2HVXA0xaIKJNhCMHvA",
+      "projectName": "react-slick",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/react_slick/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/react_slick/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/react_slick/plasmic.tsx",
+      "codeComponents": [
+        {
+          "id": "HOQUyOpClJ",
+          "name": "SliderWrapper",
+          "displayName": "hostless-slider",
+          "componentImportPath": "@plasmicpkgs/react-slick",
+          "helper": {
+            "name": "sliderHelpers",
+            "importPath": "@plasmicpkgs/react-slick"
+          }
+        }
+      ],
+      "customFunctions": []
+    },
+    {
+      "projectId": "58GpZjZCWTaJ8AUhpCwt2K",
+      "projectApiToken": "DIkcfhBwjMCJSjcxfBkMuy4NImyytq5EWylxVcpS9t9EpdhnPQuBgBGxmk00AB1itMFa1KXTxOKnrjN2PN9nlA",
+      "projectName": "react-awesome-reveal",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/react_awesome_reveal/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/react_awesome_reveal/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/react_awesome_reveal/plasmic.tsx",
+      "codeComponents": [
+        {
+          "id": "R6s1FdhksG",
+          "name": "Reveal",
+          "displayName": "hostless-reveal",
+          "componentImportPath": "@plasmicpkgs/react-awesome-reveal"
+        }
+      ],
+      "customFunctions": []
+    },
+    {
+      "projectId": "mqxdhm5p6WHAt7hW1mdcCX",
+      "projectApiToken": "UksWJg8OaU7Et0wrGHCnNaKVdXs3QaJA2LrcWX3oELzI4W0RognhFJL3XL0Xuq4LIYLIftyRKwslnLp67oHuw",
+      "projectName": "jquery",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/jquery/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/jquery/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/jquery/plasmic.tsx",
+      "codeComponents": [],
+      "customFunctions": []
+    },
+    {
+      "projectId": "hjKYmYi6HMwK6TRyk7ew5R",
+      "projectApiToken": "L5kqyh9xqKCqpdc8gqCglVcLZTxdkkP1Dt9pLUlWpyKVItIbbXr5272ePgMpZZiezhSe0AIOuQB353jQnw",
+      "projectName": "plasmic-cms",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/plasmic_cms/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "plasmic/plasmic_cms/PlasmicGlobalContextsProvider.tsx",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/plasmic_cms/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/plasmic_cms/plasmic.tsx",
+      "codeComponents": [
+        {
+          "id": "w6HdOz-Pcn",
+          "name": "CmsRowField",
+          "displayName": "hostless-plasmic-cms-row-field",
+          "componentImportPath": "@plasmicpkgs/plasmic-cms"
+        },
+        {
+          "id": "Ds6UdKRHmq",
+          "name": "CmsRowLink",
+          "displayName": "hostless-plasmic-cms-row-link",
+          "componentImportPath": "@plasmicpkgs/plasmic-cms"
+        },
+        {
+          "id": "dj_Vc2QmFA",
+          "name": "CmsRowImage",
+          "displayName": "hostless-plasmic-cms-row-image",
+          "componentImportPath": "@plasmicpkgs/plasmic-cms"
+        },
+        {
+          "id": "r3UO4W-xcR",
+          "name": "CmsRowFieldValue",
+          "displayName": "hostless-plasmic-cms-row-value",
+          "componentImportPath": "@plasmicpkgs/plasmic-cms"
+        },
+        {
+          "id": "OREVbGCcgN",
+          "name": "CmsCredentialsProvider",
+          "displayName": "hostless-plasmic-cms-credentials-provider",
+          "componentImportPath": "@plasmicpkgs/plasmic-cms"
+        },
+        {
+          "id": "8N9-WfZSaq",
+          "name": "CmsQueryRepeater",
+          "displayName": "hostless-plasmic-cms-query-repeater",
+          "componentImportPath": "@plasmicpkgs/plasmic-cms"
+        },
+        {
+          "id": "8uEaibqi6348",
+          "name": "CmsCount",
+          "displayName": "hostless-plasmic-cms-count",
+          "componentImportPath": "@plasmicpkgs/plasmic-cms"
         }
       ],
       "customFunctions": []

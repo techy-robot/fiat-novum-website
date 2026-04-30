@@ -12,12 +12,12 @@
   row-gap: var(--token-zCZ4UkeS8Qlx);
   min-width: 0;
 }
-.ariaSwitch[data-disabled]:global(.__wab_instance) {
+.ariaSwitch[data-disabled][data-disabled]:global(.__wab_instance) {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.5;
 }
-.ariaSwitch[data-readonly]:global(.__wab_instance) {
+.ariaSwitch[data-readonly][data-readonly]:global(.__wab_instance) {
   pointer-events: none;
   cursor: default;
 }
