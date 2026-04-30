@@ -6,7 +6,7 @@ This is my personal portfolio website! Check it out: [fiatnovum.com](https://www
 
 This is a Next.js project setup by and mainly managed by [Plasmic](https://www.plasmic.app/). I have a few custom react components thrown in as well that are incorporated, and the blog is all MDX files managed by [Keystatic](https://keystatic.com). I don't want to write code all day, every day.
 
-Plasmic generates a majority of the code, which is then pushed to GitHub.
+Plasmic generates a majority of the code, which is then pushed to [Gitƕb](https://gitlab.com/).
 
 The project is then compiled by the [Vercel](https://vercel.com) free plan, and published to my domain.
 
