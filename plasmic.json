@@ -412,68 +412,6 @@
       "customFunctions": []
     },
     {
-      "projectId": "4vjRXvnb4XuY6J15w9oRcQ",
-      "projectApiToken": "N7iwq88Ne0zA3fbV7SuvHEDOgUhg8BZR7b1eVwTwfqpdishttjvbO2iO0cOSrf1NuoLI4lzJ6Da8bhPqrITA",
-      "projectName": "[Library] Tailwind 3.4 Number Tokens",
-      "version": ">0.0.0",
-      "cssFilePath": "plasmic/library_tailwind_3_4_number_tokens/plasmic.module.css",
-      "components": [],
-      "icons": [],
-      "images": [],
-      "indirect": true,
-      "globalContextsFilePath": "",
-      "splitsProviderFilePath": "",
-      "styleTokensProviderFilePath": "plasmic/library_tailwind_3_4_number_tokens/PlasmicStyleTokensProvider.tsx",
-      "dataTokensFilePath": "",
-      "projectModuleFilePath": "plasmic/library_tailwind_3_4_number_tokens/plasmic.tsx",
-      "codeComponents": [
-        {
-          "id": "YdUVCUmnqpDT",
-          "name": "PlasmicHead",
-          "displayName": "hostless-plasmic-head",
-          "componentImportPath": "@plasmicapp/react-web"
-        },
-        {
-          "id": "zbDhFqKdVGov",
-          "name": "Fetcher",
-          "displayName": "plasmic-data-source-fetcher",
-          "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
-        }
-      ],
-      "customFunctions": []
-    },
-    {
-      "projectId": "5ZtnypMovRHeeP3YTdPCYL",
-      "projectApiToken": "0x2oaZDyY9ZbK8M5uTKBxMTlvHIFYBagQtihem6BKwmMA3EUYcE3n6qjn4BLbUTx7vulkDlmoEDpHkqA",
-      "projectName": "[Library] Tailwind 3.4 Color Tokens",
-      "version": ">0.0.0",
-      "cssFilePath": "plasmic/library_tailwind_3_4_color_tokens/plasmic.module.css",
-      "components": [],
-      "icons": [],
-      "images": [],
-      "indirect": true,
-      "globalContextsFilePath": "",
-      "splitsProviderFilePath": "",
-      "styleTokensProviderFilePath": "plasmic/library_tailwind_3_4_color_tokens/PlasmicStyleTokensProvider.tsx",
-      "dataTokensFilePath": "",
-      "projectModuleFilePath": "plasmic/library_tailwind_3_4_color_tokens/plasmic.tsx",
-      "codeComponents": [
-        {
-          "id": "vo5pW2Cq7_Im",
-          "name": "PlasmicHead",
-          "displayName": "hostless-plasmic-head",
-          "componentImportPath": "@plasmicapp/react-web"
-        },
-        {
-          "id": "5Yx7dsOC4vrj",
-          "name": "Fetcher",
-          "displayName": "plasmic-data-source-fetcher",
-          "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
-        }
-      ],
-      "customFunctions": []
-    },
-    {
       "projectId": "d2Pfbr6bN5UwJ4ss7Fh3HB",
       "projectApiToken": "SPBdkt73OFtq1kHnZibm53X9j5ueDaUPFKq7JYjwg8o9geyjqL4z1xm8AzpOQVJqn5GKWhUDLH4bEwYo4DOqg",
       "projectName": "[Library] Tabler 3.2 Icons",
@@ -26817,110 +26755,35 @@
       "customFunctions": []
     },
     {
-      "projectId": "q8iq2J191QypeBqVSHzb6M",
-      "projectApiToken": "IZie2ZvFtL4oV9n5Mc14Cq86AS7zpZC0vbA5CGeU9h6Mi9YrnVTuGLd6nTz6JZTgkAb49v1rwr3xHYaY0aQ",
-      "projectName": "tiptap",
       "version": ">0.0.0",
-      "cssFilePath": "plasmic/tiptap/plasmic.module.css",
       "components": [],
       "icons": [],
       "images": [],
       "indirect": true,
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
-      "styleTokensProviderFilePath": "plasmic/tiptap/PlasmicStyleTokensProvider.tsx",
       "dataTokensFilePath": "",
-      "projectModuleFilePath": "plasmic/tiptap/plasmic.tsx",
       "codeComponents": [
         {
-          "id": "WhqnWjQgXjAx",
-          "name": "Bold",
-          "displayName": "hostless-tiptap-extension-bold",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerBold"
+        {
         },
         {
-          "id": "EHC0R-wWOI0Z",
-          "name": "Code",
-          "displayName": "hostless-tiptap-extension-code",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerCode"
         },
         {
-          "id": "Y895zND_YNth",
-          "name": "Italic",
-          "displayName": "hostless-tiptap-extension-italic",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerItalic"
+        {
         },
         {
-          "id": "J8XPnq41IRbF",
-          "name": "Link",
-          "displayName": "hostless-tiptap-extension-link",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerLink"
         },
         {
-          "id": "VHaYjWq_ZYUZ",
-          "name": "Mention",
-          "displayName": "hostless-tiptap-extension-mention",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerMention"
+        {
         },
         {
-          "id": "NobWeKqsgk5L",
-          "name": "Strike",
-          "displayName": "hostless-tiptap-extension-strike",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerStrike"
         },
         {
-          "id": "xTprkxspH4MZ",
-          "name": "TiptapWrapper",
-          "displayName": "hostless-tiptap",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerTiptap"
         },
         {
-          "id": "CcQonxRGl6eE",
-          "name": "Underline",
-          "displayName": "hostless-tiptap-extension-underline",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerUnderline"
-        },
         {
-          "id": "VsRY3FpbhGS5",
-          "name": "ToolbarBold",
-          "displayName": "hostless-tiptap-toolbar-bold",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerToolbarBold"
-        },
         {
-          "id": "wtaTJrVCgUNe",
-          "name": "ToolbarCode",
-          "displayName": "hostless-tiptap-toolbar-code",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerToolbarCode"
-        },
-        {
-          "id": "NyB3qBzCfU3j",
-          "name": "ToolbarItalic",
-          "displayName": "hostless-tiptap-toolbar-italic",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerToolbarItalic"
-        },
-        {
-          "id": "-WlHZ-FR5Q-f",
-          "name": "ToolbarLink",
-          "displayName": "hostless-tiptap-toolbar-link",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerToolbarLink"
-        },
-        {
-          "id": "kMpnDu2MpaMS",
-          "name": "ToolbarMention",
-          "displayName": "hostless-tiptap-toolbar-mention",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerToolbarMention"
-        },
-        {
-          "id": "zNLtmNzK8sgS",
-          "name": "ToolbarStrike",
-          "displayName": "hostless-tiptap-toolbar-strike",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerToolbarStrike"
-        },
-        {
-          "id": "5OrGvEJP9ty6",
-          "name": "ToolbarUnderline",
-          "displayName": "hostless-tiptap-toolbar-underline",
-          "componentImportPath": "@plasmicpkgs/tiptap/skinny/registerToolbarUnderline"
         }
       ],
       "customFunctions": []
@@ -26954,18 +26817,6 @@
   "globalVariants": {
     "variantGroups": [
       {
-        "id": "sunYRowGFPxL",
-        "name": "Screen",
-        "projectId": "4vjRXvnb4XuY6J15w9oRcQ",
-        "contextFilePath": "plasmic/library_tailwind_3_4_number_tokens/PlasmicGlobalVariant__Screen.tsx"
-      },
-      {
-        "id": "CQH1yWTrsJfR",
-        "name": "Screen",
-        "projectId": "5ZtnypMovRHeeP3YTdPCYL",
-        "contextFilePath": "plasmic/library_tailwind_3_4_color_tokens/PlasmicGlobalVariant__Screen.tsx"
-      },
-      {
         "id": "Rf3u7x-B0S_o",
         "name": "Screen",
         "projectId": "d2Pfbr6bN5UwJ4ss7Fh3HB",
@@ -26978,6 +26829,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.359",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.359/dist/plasmic.schema.json"
+  "cliVersion": "0.1.360",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.360/dist/plasmic.schema.json"
 }
