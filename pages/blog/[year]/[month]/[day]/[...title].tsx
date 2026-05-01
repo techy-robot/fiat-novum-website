@@ -25,7 +25,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: 'blocking' };
 };
 
-export const getStaticProps: GetStaticProps<BlogPostProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<BlogPostLayoutProps> = async ({ params }) => {
   const { year, month, day, title } = params as { year: string; month: string; day: string; title: string[] };
   const requestedSlug = title[0];
   const targetDate = `${year}-${month}-${day}`;
@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async ({ params }) 
   };
 };
 
-export default function BlogPost({ frontmatter, mdxSource }: BlogPostProps) {
+export default function BlogPost({ frontmatter, mdxSource }: BlogPostLayoutProps) {
   return (
     <BlogPostLayout 
       title={frontmatter.title}
