@@ -143,14 +143,14 @@ a {
 
 /* Tars Fonts */
 @font-face {
-  font-family: 'Tars Mono Rounded';
+  font-family: 'tars-mono-rounded';
   src: url('/fonts/TarsMonoRounded.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Tars Mono Smooth';
+  font-family: 'tars-mono-smooth';
   src: url('/fonts/TarsMonoSmooth.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;

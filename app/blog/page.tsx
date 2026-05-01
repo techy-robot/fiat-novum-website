@@ -1,26 +1,28 @@
+// app/blog/page.tsx
+import { Metadata } from 'next';
 import Link from 'next/link';
-import { GetStaticProps } from 'next';
-import BlogIndexLayout from '../../components/BlogIndexLayout';
-import BlogCard from '../../components/BlogCard';
 import { createReader } from '@keystatic/core/reader';
-import keystaticConfig from '../../keystatic.config';
+// Update this path to match your project root
+import keystaticConfig from '@/keystatic.config'; 
+import BlogIndexLayout from '@/components/BlogIndexLayout'; // Import your Client Wrapper
+import BlogCard from '@/components/BlogCard'; // Import your Client Wrapper
+
+export const metadata: Metadata = {
+  title: "Blog | Fiat Novum",
+  description: "Read the latest thoughts and updates.",
+};
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
-// Keep your slugify helper
 const slugify = (text: string) => 
   text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 
-export const getStaticProps: GetStaticProps = async () => {
-  // 1. Fetch all posts directly from the Keystatic config collection
-  // (Assuming your collection is named 'posts' in keystatic.config.ts)
+export default async function BlogIndexPage() {
+  // Fetch data directly inside the Server Component
   const rawPosts = await reader.collections.posts.all();
 
   const posts = rawPosts.map((post) => {
-    // 'post.slug' is automatically the directory name
-    // 'post.entry' contains your frontmatter fields
     const { title, publishDate } = post.entry;
-    
     const [year, month, day] = (publishDate || "2026-01-01").split('-');
     const safeSlug = slugify(title || post.slug);
     
@@ -33,17 +35,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  return { props: { posts } };
-};
-
-// Define the shape of the data we are passing to Plasmic
-interface PostSummary {
-  title: string;
-  date: string;
-  url: string;
-}
-
-export default function BlogIndex({ posts }: { posts: PostSummary[] }) {
   return (
     <BlogIndexLayout 
       postListSlot={
