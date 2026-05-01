@@ -8,7 +8,7 @@ import { Plasmic_404 } from "../components/plasmic/fiat_novum/Plasmic_404";
 import { useRouter } from "next/router";
 import { PlasmicQueryDataProvider } from "@plasmicapp/react-web/lib/query";
 
-function _404() {
+function NotFound() {
   // Use Plasmic_404 to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
@@ -41,4 +41,4 @@ function _404() {
   );
 }
 
-export default _404;
+export default NotFound;
