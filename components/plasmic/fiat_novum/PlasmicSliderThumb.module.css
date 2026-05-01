@@ -9,10 +9,10 @@
   border-radius: 99px;
   border: 1px solid var(--token-W1ScpvjFaWi_);
 }
-.root[data-hovered]:global(.__wab_instance) {
+.root[data-hovered][data-hovered]:global(.__wab_instance) {
   border-width: 2px;
 }
-.root[data-focus-visible]:global(.__wab_instance) {
+.root[data-focus-visible][data-focus-visible]:global(.__wab_instance) {
   outline-width: 2px;
   outline-style: solid;
   outline-color: var(--token-W1ScpvjFaWi_);

@@ -14,7 +14,7 @@
   column-gap: var(--token-BdshjNcEeSD0);
   min-width: 0;
 }
-.ariaRadio[data-disabled]:global(.__wab_instance) {
+.ariaRadio[data-disabled][data-disabled]:global(.__wab_instance) {
   cursor: not-allowed;
   opacity: 0.5;
   pointer-events: none;

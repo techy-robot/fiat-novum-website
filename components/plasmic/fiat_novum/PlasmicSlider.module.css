@@ -11,7 +11,7 @@
   width: 100%;
   row-gap: var(--token-HdmhJwAw8PY-);
 }
-.ariaSlider[data-disabled]:global(.__wab_instance) {
+.ariaSlider[data-disabled][data-disabled]:global(.__wab_instance) {
   opacity: 0.5;
 }
 .freeBox__aAXl {

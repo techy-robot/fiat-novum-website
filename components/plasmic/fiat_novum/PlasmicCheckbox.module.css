@@ -14,12 +14,12 @@
   column-gap: var(--token-BdshjNcEeSD0);
   min-width: 0;
 }
-.ariaCheckbox[data-disabled]:global(.__wab_instance) {
+.ariaCheckbox[data-disabled][data-disabled]:global(.__wab_instance) {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }
-.ariaCheckbox[data-readonly]:global(.__wab_instance) {
+.ariaCheckbox[data-readonly][data-readonly]:global(.__wab_instance) {
   cursor: default;
   pointer-events: none;
 }

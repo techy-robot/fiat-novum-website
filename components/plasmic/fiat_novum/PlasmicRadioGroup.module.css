@@ -5,7 +5,7 @@
   row-gap: var(--token-zCZ4UkeS8Qlx);
   min-width: 0;
 }
-.ariaRadioGroup[data-disabled]:global(.__wab_instance) {
+.ariaRadioGroup[data-disabled][data-disabled]:global(.__wab_instance) {
   opacity: 0.5;
 }
 .freeBox__fr6D0 {

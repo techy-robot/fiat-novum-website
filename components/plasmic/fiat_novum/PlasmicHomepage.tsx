@@ -59,7 +59,8 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { NavigationBar } from "@plasmicpkgs/plasmic-nav";
+import CustomHeader from "../../CustomHeader"; // plasmic-import: lVLsklxwqNh2/component
+import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -67,9 +68,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: SRR7d6afVmf-/css
-
-import Menu2Icon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Menu2"; // plasmic-import: d1b8xWlyUKWm/icon
-import CircleXIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CircleX"; // plasmic-import: CNRVZ5IIE5Ex/icon
 
 const emptyProxy: any = new Proxy(() => "", {
   get(_, prop) {
@@ -115,10 +113,14 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHomepage__OverridesType = {
   root?: Flex__<"div">;
-  name?: Flex__<"h1">;
-  navigationBar?: Flex__<typeof NavigationBar>;
+  customHeader?: Flex__<typeof CustomHeader>;
+  reveal?: Flex__<typeof Reveal>;
+  type?: Flex__<"div">;
+  type2?: Flex__<"div">;
+  type3?: Flex__<"div">;
+  type4?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
-  text?: Flex__<"div">;
+  thisWebsite?: Flex__<"div">;
 };
 
 export interface DefaultHomepageProps {}
@@ -194,132 +196,251 @@ function PlasmicHomepage__RenderFunc(props: {
             sty.root
           )}
         >
-          <h1
-            data-plasmic-name={"name"}
-            data-plasmic-override={overrides.name}
-            className={classNames(
-              projectcss.all,
-              projectcss.h1,
-              projectcss.h1__77YCn,
-              projectcss.__wab_text,
-              sty.name
-            )}
-          >
-            {"FIAT NOVUM ENGINEERING"}
-          </h1>
-          <NavigationBar
-            data-plasmic-name={"navigationBar"}
-            data-plasmic-override={overrides.navigationBar}
-            brand={
-              <PlasmicLink__
-                className={classNames(
-                  projectcss.all,
-                  projectcss.a,
-                  projectcss.a__77YCn,
-                  sty.link__qnEJ
-                )}
-                component={Link}
-                href={"#"}
-                legacyBehavior={false}
-                platform={"nextjs"}
+          <CustomHeader
+            data-plasmic-name={"customHeader"}
+            data-plasmic-override={overrides.customHeader}
+            className={classNames("__wab_instance", sty.customHeader)}
+          />
+
+          <section className={classNames(projectcss.all, sty.section__bmLR)}>
+            <h1
+              className={classNames(
+                projectcss.all,
+                projectcss.h1,
+                projectcss.h1__77YCn,
+                projectcss.__wab_text,
+                sty.h1__qsOcm
+              )}
+            >
+              {"Magic"}
+            </h1>
+            <div className={classNames(projectcss.all, sty.freeBox__eopKl)} />
+
+            <section
+              className={classNames(projectcss.all, sty.section___7ZwnX)}
+            >
+              <div className={classNames(projectcss.all, sty.freeBox__pXwg9)} />
+
+              <Reveal
+                data-plasmic-name={"reveal"}
+                data-plasmic-override={overrides.reveal}
+                className={classNames("__wab_instance", sty.reveal)}
+                delay={100}
+                triggerOnce={true}
               >
+                <div
+                  data-plasmic-name={"type"}
+                  data-plasmic-override={overrides.type}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.type
+                  )}
+                >
+                  {"Should"}
+                </div>
+                <div
+                  data-plasmic-name={"type2"}
+                  data-plasmic-override={overrides.type2}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.type2
+                  )}
+                >
+                  {"Not"}
+                </div>
+                <div
+                  data-plasmic-name={"type3"}
+                  data-plasmic-override={overrides.type3}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.type3
+                  )}
+                >
+                  {"Be"}
+                </div>
+                <div
+                  data-plasmic-name={"type4"}
+                  data-plasmic-override={overrides.type4}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.type4
+                  )}
+                >
+                  {"Impossible"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ttbXz
+                  )}
+                >
+                  <React.Fragment>
+                    <span
+                      className={
+                        "plasmic_default__all plasmic_default__span plasmic_default__span__77YCn"
+                      }
+                      style={{ fontStyle: "italic" }}
+                    >
+                      {
+                        '"Any sufficiently advanced technology is indistinguishable from magic"'
+                      }
+                    </span>
+                  </React.Fragment>
+                </div>
+              </Reveal>
+              <div className={classNames(projectcss.all, sty.freeBox__u1Rol)} />
+            </section>
+          </section>
+          <section className={classNames(projectcss.all, sty.section__obgUa)}>
+            <h1
+              className={classNames(
+                projectcss.all,
+                projectcss.h1,
+                projectcss.h1__77YCn,
+                projectcss.__wab_text,
+                sty.h1__cTcWp
+              )}
+              id={"about"}
+            >
+              {"About me"}
+            </h1>
+            <div className={classNames(projectcss.all, sty.freeBox__xZyei)}>
+              <div className={classNames(projectcss.all, sty.freeBox__davsf)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__fcdo0
+                  )}
+                >
+                  {
+                    "I am a design engineer combining my intricate knowledge of mechanical, electrical, and computer engineering into products that focus on people and making the solution magical, not technical."
+                  }
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__apW6B)}>
                 <PlasmicImg__
                   data-plasmic-name={"img"}
                   data-plasmic-override={overrides.img}
                   alt={""}
                   className={classNames(sty.img)}
-                  displayHeight={"40px"}
+                  displayHeight={"auto"}
                   displayMaxHeight={"none"}
                   displayMaxWidth={"none"}
                   displayMinHeight={"0"}
                   displayMinWidth={"0"}
-                  displayWidth={"auto"}
+                  displayWidth={"50%"}
+                  loading={"lazy"}
                   src={{
-                    src: "/plasmic/fiat_novum/images/youtubeChannelLogoV3Png.png",
-                    fullWidth: 1080,
-                    fullHeight: 1080,
+                    src: "/plasmic/fiat_novum/images/userImageLinkedInJpg.jpg",
+                    fullWidth: 1307,
+                    fullHeight: 1743,
                     aspectRatio: undefined
                   }}
                 />
-              </PlasmicLink__>
-            }
-            className={classNames("__wab_instance", sty.navigationBar)}
-            closeButton={
-              <CircleXIcon
-                className={classNames(projectcss.all, sty.svg__tRqCn)}
-                role={"img"}
-              />
-            }
-            itemsGap={8}
-            menuItems={
-              <React.Fragment>
-                <PlasmicLink__
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.a,
-                    projectcss.a__77YCn,
-                    projectcss.__wab_text,
-                    sty.link__kKpcQ
-                  )}
-                  component={Link}
-                  href={"/"}
-                  legacyBehavior={false}
-                  platform={"nextjs"}
-                >
-                  {"Home"}
-                </PlasmicLink__>
-                <PlasmicLink__
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.a,
-                    projectcss.a__77YCn,
-                    projectcss.__wab_text,
-                    sty.link__ghZx4
-                  )}
-                  component={Link}
-                  href={"/"}
-                  legacyBehavior={false}
-                  platform={"nextjs"}
-                >
-                  {"About"}
-                </PlasmicLink__>
-                <PlasmicLink__
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.a,
-                    projectcss.a__77YCn,
-                    projectcss.__wab_text,
-                    sty.link___1UrAm
-                  )}
-                  component={Link}
-                  href={"/"}
-                  legacyBehavior={false}
-                  platform={"nextjs"}
-                >
-                  {"Contact"}
-                </PlasmicLink__>
-              </React.Fragment>
-            }
-            openButton={
-              <Menu2Icon
-                className={classNames(projectcss.all, sty.svg__g5Est)}
-                role={"img"}
-              />
-            }
-            responsiveBreakpoint={768}
-          />
+              </div>
+            </div>
+          </section>
+          <section className={classNames(projectcss.all, sty.section__fhLkD)}>
+            <div className={classNames(projectcss.all, sty.freeBox__vzaZi)} />
 
-          <div
-            data-plasmic-name={"text"}
-            data-plasmic-override={overrides.text}
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text
-            )}
-          >
-            {"Hello! This is a WIP website"}
-          </div>
+            <h1
+              className={classNames(
+                projectcss.all,
+                projectcss.h1,
+                projectcss.h1__77YCn,
+                projectcss.__wab_text,
+                sty.h1__nC7W
+              )}
+              id={"projects"}
+            >
+              {"Projects"}
+            </h1>
+            <div
+              data-plasmic-name={"thisWebsite"}
+              data-plasmic-override={overrides.thisWebsite}
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.thisWebsite
+              )}
+            >
+              {"This website :). Stay tuned or check out my youtube channel"}
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__q9MBb)} />
+          </section>
+          <section className={classNames(projectcss.all, sty.section__utLj)}>
+            <h1
+              className={classNames(
+                projectcss.all,
+                projectcss.h1,
+                projectcss.h1__77YCn,
+                projectcss.__wab_text,
+                sty.h1__gCsO
+              )}
+              id={"contact"}
+            >
+              {"Contact"}
+            </h1>
+            <div className={classNames(projectcss.all, sty.freeBox__jtTb)}>
+              <div className={classNames(projectcss.all, sty.freeBox__bIgf)}>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.a__77YCn,
+                    projectcss.__wab_text,
+                    sty.link__lHhq
+                  )}
+                  component={Link}
+                  href={"mailto:asher@fiatnovum.com"}
+                  legacyBehavior={false}
+                  platform={"nextjs"}
+                >
+                  {"asher@fiatnovum.com"}
+                </PlasmicLink__>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox___6Tem)}>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.a__77YCn,
+                    projectcss.__wab_text,
+                    sty.link__cnSr1
+                  )}
+                  component={Link}
+                  href={"https://www.linkedin.com/in/asher-j-edwards1/"}
+                  legacyBehavior={false}
+                  platform={"nextjs"}
+                >
+                  {"https://www.linkedin.com/in/asher-j-edwards1/"}
+                </PlasmicLink__>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__b2X27)}>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.a__77YCn,
+                    projectcss.__wab_text,
+                    sty.link___6OPty
+                  )}
+                  component={Link}
+                  href={"https://www.youtube.com/@FiatNovumEngineering"}
+                  legacyBehavior={false}
+                  platform={"nextjs"}
+                >
+                  {"https://www.youtube.com/@FiatNovumEngineering"}
+                </PlasmicLink__>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </React.Fragment>
@@ -327,21 +448,39 @@ function PlasmicHomepage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "name", "navigationBar", "img", "text"],
-  name: ["name"],
-  navigationBar: ["navigationBar", "img"],
+  root: [
+    "root",
+    "customHeader",
+    "reveal",
+    "type",
+    "type2",
+    "type3",
+    "type4",
+    "img",
+    "thisWebsite"
+  ],
+  customHeader: ["customHeader"],
+  reveal: ["reveal", "type", "type2", "type3", "type4"],
+  type: ["type"],
+  type2: ["type2"],
+  type3: ["type3"],
+  type4: ["type4"],
   img: ["img"],
-  text: ["text"]
+  thisWebsite: ["thisWebsite"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  name: "h1";
-  navigationBar: typeof NavigationBar;
+  customHeader: typeof CustomHeader;
+  reveal: typeof Reveal;
+  type: "div";
+  type2: "div";
+  type3: "div";
+  type4: "div";
   img: typeof PlasmicImg__;
-  text: "div";
+  thisWebsite: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -406,10 +545,14 @@ export const PlasmicHomepage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    _name: makeNodeComponent("name"),
-    navigationBar: makeNodeComponent("navigationBar"),
+    customHeader: makeNodeComponent("customHeader"),
+    reveal: makeNodeComponent("reveal"),
+    type: makeNodeComponent("type"),
+    type2: makeNodeComponent("type2"),
+    type3: makeNodeComponent("type3"),
+    type4: makeNodeComponent("type4"),
     img: makeNodeComponent("img"),
-    text: makeNodeComponent("text"),
+    thisWebsite: makeNodeComponent("thisWebsite"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

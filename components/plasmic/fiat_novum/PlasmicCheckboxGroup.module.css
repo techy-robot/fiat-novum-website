@@ -7,12 +7,12 @@
   row-gap: var(--token-zCZ4UkeS8Qlx);
   min-width: 0;
 }
-.ariaCheckboxGroup[data-disabled]:global(.__wab_instance) {
+.ariaCheckboxGroup[data-disabled][data-disabled]:global(.__wab_instance) {
   opacity: 0.5;
   pointer-events: none;
   cursor: not-allowed;
 }
-.ariaCheckboxGroup[data-readonly]:global(.__wab_instance) {
+.ariaCheckboxGroup[data-readonly][data-readonly]:global(.__wab_instance) {
   pointer-events: none;
   cursor: default;
 }
