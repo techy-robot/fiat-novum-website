@@ -8,7 +8,7 @@ export default config({
     kind: process.env.NODE_ENV === 'production' ? 'github' : 'local',
     repo: {
       owner: 'techy-robot',
-      name: 'fiatnovum-website',
+      name: 'fiat-novum-website',
     },
   },
   /*storage: {
