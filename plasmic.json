@@ -465,12 +465,11 @@
           "projectId": "77YCnrwhevb2XmBSeMeRKC",
           "renderModuleFilePath": "plasmic/fiat_novum/Plasmic_404.tsx",
           "importSpec": {
-            "modulePath": "../pages/404.tsx"
+            "modulePath": "_404.tsx"
           },
           "cssFilePath": "plasmic/fiat_novum/Plasmic_404.module.css",
           "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/404"
+          "componentType": "component"
         }
       ],
       "icons": [
