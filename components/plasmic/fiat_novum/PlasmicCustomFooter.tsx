@@ -79,6 +79,7 @@ type ArgPropType = keyof PlasmicCustomFooter__ArgsType;
 export const PlasmicCustomFooter__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicCustomFooter__OverridesType = {
+  root?: Flex__<"div">;
   copyright2026AsherEdwards?: Flex__<"div">;
 };
 
@@ -129,32 +130,43 @@ function PlasmicCustomFooter__RenderFunc(props: {
 
   return (
     <div
-      data-plasmic-name={"copyright2026AsherEdwards"}
-      data-plasmic-override={overrides.copyright2026AsherEdwards}
+      data-plasmic-name={"root"}
+      data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
         projectcss.all,
-        projectcss.__wab_text,
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.copyright2026AsherEdwards
+        sty.root
       )}
     >
-      {"Copyright 2026 Asher Edwards"}
+      <div
+        data-plasmic-name={"copyright2026AsherEdwards"}
+        data-plasmic-override={overrides.copyright2026AsherEdwards}
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.copyright2026AsherEdwards
+        )}
+      >
+        {"Copyright 2026 Asher Edwards"}
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
+  root: ["root", "copyright2026AsherEdwards"],
   copyright2026AsherEdwards: ["copyright2026AsherEdwards"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
+  root: "div";
   copyright2026AsherEdwards: "div";
 };
 
@@ -207,7 +219,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       forNode: nodeName
     });
   };
-  if (nodeName === "copyright2026AsherEdwards") {
+  if (nodeName === "root") {
     func.displayName = "PlasmicCustomFooter";
   } else {
     func.displayName = `PlasmicCustomFooter.${nodeName}`;
@@ -217,9 +229,10 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
 
 export const PlasmicCustomFooter = Object.assign(
   // Top-level PlasmicCustomFooter renders the root element
-  makeNodeComponent("copyright2026AsherEdwards"),
+  makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    copyright2026AsherEdwards: makeNodeComponent("copyright2026AsherEdwards"),
 
     // Metadata about props expected for PlasmicCustomFooter
     internalVariantProps: PlasmicCustomFooter__VariantProps,

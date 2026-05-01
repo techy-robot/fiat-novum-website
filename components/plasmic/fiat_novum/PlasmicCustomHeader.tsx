@@ -227,7 +227,7 @@ function PlasmicCustomHeader__RenderFunc(props: {
               sty.link__x1Fun
             )}
             component={Link}
-            href={"/projects"}
+            href={"/#projects"}
             legacyBehavior={false}
             platform={"nextjs"}
           >
@@ -242,7 +242,7 @@ function PlasmicCustomHeader__RenderFunc(props: {
               sty.link__hsojC
             )}
             component={Link}
-            href={"/about"}
+            href={"/#about"}
             legacyBehavior={false}
             platform={"nextjs"}
           >
@@ -257,7 +257,7 @@ function PlasmicCustomHeader__RenderFunc(props: {
               sty.link__t05Ll
             )}
             component={Link}
-            href={"/contact"}
+            href={"/#contact"}
             legacyBehavior={false}
             platform={"nextjs"}
           >

@@ -457,6 +457,20 @@
           "cssFilePath": "plasmic/fiat_novum/PlasmicBlogIndexLayout.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "f7_eeq1__cMs",
+          "name": "_404",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/Plasmic_404.tsx",
+          "importSpec": {
+            "modulePath": "../pages/404.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/Plasmic_404.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/404"
         }
       ],
       "icons": [
@@ -27094,6 +27108,12 @@
         "name": "Screen",
         "projectId": "d2Pfbr6bN5UwJ4ss7Fh3HB",
         "contextFilePath": "plasmic/library_tabler_3_2_icons/PlasmicGlobalVariant__Screen.tsx"
+      },
+      {
+        "id": "YjiIAKDgcfVE",
+        "name": "Screen",
+        "projectId": "77YCnrwhevb2XmBSeMeRKC",
+        "contextFilePath": "plasmic/fiat_novum/PlasmicGlobalVariant__Screen.tsx"
       }
     ]
   },

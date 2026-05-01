@@ -1,8 +1,19 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
 .copyright2026AsherEdwards {
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: 100%;
   text-align: center;
-  position: relative;
   min-width: 0;
+  min-height: 0;
 }

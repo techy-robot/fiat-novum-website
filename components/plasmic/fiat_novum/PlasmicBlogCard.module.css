@@ -16,7 +16,7 @@
   width: 100%;
   padding-left: 0;
   padding-right: 0;
-  background: #adadad;
+  background: var(--token-GVsoIpJlGJFU);
   min-width: 0;
   grid-template-columns:
     var(--plsmc-viewport-gap) 1fr minmax(0, var(--plsmc-wide-chunk))
@@ -26,6 +26,7 @@
     )
     minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
   border-radius: 10px;
+  border: 5px solid var(--token-W1ScpvjFaWi_);
 }
 .section > * {
   grid-column: 4;

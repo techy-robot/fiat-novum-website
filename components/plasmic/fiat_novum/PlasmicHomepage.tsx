@@ -61,10 +61,6 @@ import {
 
 import CustomHeader from "../../CustomHeader"; // plasmic-import: lVLsklxwqNh2/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
-import { SliderWrapper } from "@plasmicpkgs/react-slick";
-import { sliderHelpers as SliderWrapper_Helpers } from "@plasmicpkgs/react-slick";
-import { CmsQueryRepeater } from "@plasmicpkgs/plasmic-cms";
-import { CmsRowField } from "@plasmicpkgs/plasmic-cms";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -124,9 +120,7 @@ export type PlasmicHomepage__OverridesType = {
   type3?: Flex__<"div">;
   type4?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
-  sliderCarousel?: Flex__<typeof SliderWrapper>;
-  cmsDataFetcher?: Flex__<typeof CmsQueryRepeater>;
-  cmsEntryField?: Flex__<typeof CmsRowField>;
+  thisWebsite?: Flex__<"div">;
 };
 
 export interface DefaultHomepageProps {}
@@ -169,28 +163,6 @@ function PlasmicHomepage__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
-    () => [
-      {
-        path: "sliderCarousel.currentSlide",
-        type: "private",
-        variableType: "number",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0,
-
-        refName: "sliderCarousel",
-        onMutate: generateOnMutateForSpec("currentSlide", SliderWrapper_Helpers)
-      }
-    ],
-    [$props, $ctx, $refs]
-  );
-  const $state = useDollarState(stateSpecs, {
-    $props,
-    $ctx,
-    $queries: {},
-    $q: {},
-    $refs
-  });
 
   const pageMetadata = generateDynamicMetadata(
     wrapQueriesWithLoadingProxy({}),
@@ -333,6 +305,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 projectcss.__wab_text,
                 sty.h1__cTcWp
               )}
+              id={"about"}
             >
               {"About me"}
             </h1>
@@ -384,132 +357,89 @@ function PlasmicHomepage__RenderFunc(props: {
                 projectcss.__wab_text,
                 sty.h1__nC7W
               )}
+              id={"projects"}
             >
               {"Projects"}
             </h1>
-            {(() => {
-              const child$Props = {
-                beforeChange: async (...eventArgs: any) => {
-                  generateStateOnChangePropForCodeComponents(
-                    $state,
-                    "currentSlide",
-                    ["sliderCarousel", "currentSlide"],
-                    SliderWrapper_Helpers
-                  ).apply(null, eventArgs);
-                },
-                className: classNames("__wab_instance", sty.sliderCarousel),
-                initialSlide: generateStateValueProp($state, [
-                  "sliderCarousel",
-                  "currentSlide"
-                ]),
-                ref: ref => {
-                  $refs["sliderCarousel"] = ref;
-                },
-                sliderScopeClassName: sty["sliderCarousel__slider"]
-              };
-              initializeCodeComponentStates(
-                $state,
-                [
-                  {
-                    name: "currentSlide",
-                    plasmicStateName: "sliderCarousel.currentSlide"
-                  }
-                ],
-                [],
-                SliderWrapper_Helpers ?? {},
-                child$Props
-              );
-
-              return (
-                <SliderWrapper
-                  data-plasmic-name={"sliderCarousel"}
-                  data-plasmic-override={overrides.sliderCarousel}
-                  {...child$Props}
+            <div
+              data-plasmic-name={"thisWebsite"}
+              data-plasmic-override={overrides.thisWebsite}
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.thisWebsite
+              )}
+            >
+              {"This website :). Stay tuned or check out my youtube channel"}
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__q9MBb)} />
+          </section>
+          <section className={classNames(projectcss.all, sty.section__utLj)}>
+            <h1
+              className={classNames(
+                projectcss.all,
+                projectcss.h1,
+                projectcss.h1__77YCn,
+                projectcss.__wab_text,
+                sty.h1__gCsO
+              )}
+              id={"contact"}
+            >
+              {"Contact"}
+            </h1>
+            <div className={classNames(projectcss.all, sty.freeBox__jtTb)}>
+              <div className={classNames(projectcss.all, sty.freeBox__bIgf)}>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.a__77YCn,
+                    projectcss.__wab_text,
+                    sty.link__lHhq
+                  )}
+                  component={Link}
+                  href={"mailto:asher@fiatnovum.com"}
+                  legacyBehavior={false}
+                  platform={"nextjs"}
                 >
-                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                    [2, 3, 4]
-                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                    const currentItem = __plasmic_item_0;
-                    const currentIndex = __plasmic_idx_0;
-                    return (
-                      <CmsQueryRepeater
-                        data-plasmic-name={"cmsDataFetcher"}
-                        data-plasmic-override={overrides.cmsDataFetcher}
-                        className={classNames(
-                          "__wab_instance",
-                          sty.cmsDataFetcher
-                        )}
-                        desc={false}
-                        emptyMessage={
-                          <DataCtxReader__>
-                            {$ctx => (
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__uewjb
-                                )}
-                              >
-                                {"No matching published entries found."}
-                              </div>
-                            )}
-                          </DataCtxReader__>
-                        }
-                        forceEmptyState={false}
-                        forceLoadingState={false}
-                        key={currentIndex}
-                        limit={0}
-                        loadingMessage={
-                          <DataCtxReader__>
-                            {$ctx => (
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__twRyb
-                                )}
-                              >
-                                {"Loading..."}
-                              </div>
-                            )}
-                          </DataCtxReader__>
-                        }
-                        noAutoRepeat={false}
-                        noLayout={false}
-                        useDraft={false}
-                      >
-                        <DataCtxReader__>
-                          {$ctx => (
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox___0MleA
-                              )}
-                            >
-                              <CmsRowField
-                                data-plasmic-name={"cmsEntryField"}
-                                data-plasmic-override={overrides.cmsEntryField}
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.cmsEntryField
-                                )}
-                                themeResetClassName={classNames(
-                                  projectcss.root_reset,
-                                  projectcss.root_reset_tags,
-                                  projectcss.plasmic_default_styles,
-                                  projectcss.plasmic_mixins,
-                                  styleTokensClassNames
-                                )}
-                              />
-                            </div>
-                          )}
-                        </DataCtxReader__>
-                      </CmsQueryRepeater>
-                    );
-                  })}
-                </SliderWrapper>
-              );
-            })()}
+                  {"asher@fiatnovum.com"}
+                </PlasmicLink__>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox___6Tem)}>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.a__77YCn,
+                    projectcss.__wab_text,
+                    sty.link__cnSr1
+                  )}
+                  component={Link}
+                  href={"https://www.linkedin.com/in/asher-j-edwards1/"}
+                  legacyBehavior={false}
+                  platform={"nextjs"}
+                >
+                  {"https://www.linkedin.com/in/asher-j-edwards1/"}
+                </PlasmicLink__>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__b2X27)}>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.a__77YCn,
+                    projectcss.__wab_text,
+                    sty.link___6OPty
+                  )}
+                  component={Link}
+                  href={"https://www.youtube.com/@FiatNovumEngineering"}
+                  legacyBehavior={false}
+                  platform={"nextjs"}
+                >
+                  {"https://www.youtube.com/@FiatNovumEngineering"}
+                </PlasmicLink__>
+              </div>
+            </div>
           </section>
         </div>
       </div>
@@ -527,9 +457,7 @@ const PlasmicDescendants = {
     "type3",
     "type4",
     "img",
-    "sliderCarousel",
-    "cmsDataFetcher",
-    "cmsEntryField"
+    "thisWebsite"
   ],
   customHeader: ["customHeader"],
   reveal: ["reveal", "type", "type2", "type3", "type4"],
@@ -538,9 +466,7 @@ const PlasmicDescendants = {
   type3: ["type3"],
   type4: ["type4"],
   img: ["img"],
-  sliderCarousel: ["sliderCarousel", "cmsDataFetcher", "cmsEntryField"],
-  cmsDataFetcher: ["cmsDataFetcher", "cmsEntryField"],
-  cmsEntryField: ["cmsEntryField"]
+  thisWebsite: ["thisWebsite"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -554,9 +480,7 @@ type NodeDefaultElementType = {
   type3: "div";
   type4: "div";
   img: typeof PlasmicImg__;
-  sliderCarousel: typeof SliderWrapper;
-  cmsDataFetcher: typeof CmsQueryRepeater;
-  cmsEntryField: typeof CmsRowField;
+  thisWebsite: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -628,9 +552,7 @@ export const PlasmicHomepage = Object.assign(
     type3: makeNodeComponent("type3"),
     type4: makeNodeComponent("type4"),
     img: makeNodeComponent("img"),
-    sliderCarousel: makeNodeComponent("sliderCarousel"),
-    cmsDataFetcher: makeNodeComponent("cmsDataFetcher"),
-    cmsEntryField: makeNodeComponent("cmsEntryField"),
+    thisWebsite: makeNodeComponent("thisWebsite"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
