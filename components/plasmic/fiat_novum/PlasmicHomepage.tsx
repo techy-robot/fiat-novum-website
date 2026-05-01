@@ -59,7 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import CustomNavBar from "../../CustomNavBar"; // plasmic-import: lVLsklxwqNh2/component
+import CustomHeader from "../../CustomHeader"; // plasmic-import: lVLsklxwqNh2/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import { SliderWrapper } from "@plasmicpkgs/react-slick";
 import { sliderHelpers as SliderWrapper_Helpers } from "@plasmicpkgs/react-slick";
@@ -117,7 +117,7 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHomepage__OverridesType = {
   root?: Flex__<"div">;
-  customNavBar?: Flex__<typeof CustomNavBar>;
+  customHeader?: Flex__<typeof CustomHeader>;
   reveal?: Flex__<typeof Reveal>;
   type?: Flex__<"div">;
   type2?: Flex__<"div">;
@@ -224,10 +224,10 @@ function PlasmicHomepage__RenderFunc(props: {
             sty.root
           )}
         >
-          <CustomNavBar
-            data-plasmic-name={"customNavBar"}
-            data-plasmic-override={overrides.customNavBar}
-            className={classNames("__wab_instance", sty.customNavBar)}
+          <CustomHeader
+            data-plasmic-name={"customHeader"}
+            data-plasmic-override={overrides.customHeader}
+            className={classNames("__wab_instance", sty.customHeader)}
           />
 
           <section className={classNames(projectcss.all, sty.section__bmLR)}>
@@ -520,7 +520,7 @@ function PlasmicHomepage__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "customNavBar",
+    "customHeader",
     "reveal",
     "type",
     "type2",
@@ -531,7 +531,7 @@ const PlasmicDescendants = {
     "cmsDataFetcher",
     "cmsEntryField"
   ],
-  customNavBar: ["customNavBar"],
+  customHeader: ["customHeader"],
   reveal: ["reveal", "type", "type2", "type3", "type4"],
   type: ["type"],
   type2: ["type2"],
@@ -547,7 +547,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  customNavBar: typeof CustomNavBar;
+  customHeader: typeof CustomHeader;
   reveal: typeof Reveal;
   type: "div";
   type2: "div";
@@ -621,7 +621,7 @@ export const PlasmicHomepage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    customNavBar: makeNodeComponent("customNavBar"),
+    customHeader: makeNodeComponent("customHeader"),
     reveal: makeNodeComponent("reveal"),
     type: makeNodeComponent("type"),
     type2: makeNodeComponent("type2"),

@@ -20,7 +20,7 @@
 .root > * {
   grid-column: 4;
 }
-.customNavBar:global(.__wab_instance):global(.__wab_instance) {
+.customHeader:global(.__wab_instance):global(.__wab_instance) {
   margin-bottom: 20px;
 }
 .section__bmLR {

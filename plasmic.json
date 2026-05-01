@@ -342,20 +342,6 @@
           "componentType": "component"
         },
         {
-          "id": "O8gb5UhX-kaS",
-          "name": "Blog",
-          "type": "managed",
-          "projectId": "77YCnrwhevb2XmBSeMeRKC",
-          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicBlog.tsx",
-          "importSpec": {
-            "modulePath": "../pages/blog.tsx"
-          },
-          "cssFilePath": "plasmic/fiat_novum/PlasmicBlog.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/blog"
-        },
-        {
           "id": "lVLsklxwqNh2",
           "name": "CustomHeader",
           "type": "managed",

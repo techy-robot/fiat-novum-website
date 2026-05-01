@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  min-width: 0;
+}
+.slotTargetChildren {
+  font-size: 16px;
+  text-align: left;
+  color: var(--token-1d2P_8DqUq4R);
+}

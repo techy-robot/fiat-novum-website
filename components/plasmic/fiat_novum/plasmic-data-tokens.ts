@@ -13,3 +13,5 @@ export const field: any = (() => {
     return undefined;
   }
 })();
+
+export const title = "";
