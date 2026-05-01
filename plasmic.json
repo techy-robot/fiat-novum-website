@@ -290,19 +290,6 @@
           "componentType": "component"
         },
         {
-          "id": "xj7pKly89WZB",
-          "name": "Modal",
-          "type": "managed",
-          "projectId": "77YCnrwhevb2XmBSeMeRKC",
-          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicModal.tsx",
-          "importSpec": {
-            "modulePath": "Modal.tsx"
-          },
-          "cssFilePath": "plasmic/fiat_novum/PlasmicModal.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "rVclYcyj4wyh",
           "name": "OverlayArrow",
           "type": "managed",
@@ -370,30 +357,120 @@
         },
         {
           "id": "lVLsklxwqNh2",
-          "name": "CustomNavBar",
+          "name": "CustomHeader",
           "type": "managed",
           "projectId": "77YCnrwhevb2XmBSeMeRKC",
-          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicCustomNavBar.tsx",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicCustomHeader.tsx",
           "importSpec": {
-            "modulePath": "CustomNavBar.tsx"
+            "modulePath": "CustomHeader.tsx"
           },
-          "cssFilePath": "plasmic/fiat_novum/PlasmicCustomNavBar.module.css",
+          "cssFilePath": "plasmic/fiat_novum/PlasmicCustomHeader.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         },
         {
-          "id": "cyfNDKG12tWl",
-          "name": "BlogPost",
+          "id": "TS8wfnEFQi2m",
+          "name": "BlogPostLayout",
           "type": "managed",
           "projectId": "77YCnrwhevb2XmBSeMeRKC",
-          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicBlogPost.tsx",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicBlogPostLayout.tsx",
           "importSpec": {
-            "modulePath": "../pages/blog/[title]/[id].tsx"
+            "modulePath": "BlogPostLayout.tsx"
           },
-          "cssFilePath": "plasmic/fiat_novum/PlasmicBlogPost.module.css",
+          "cssFilePath": "plasmic/fiat_novum/PlasmicBlogPostLayout.module.css",
           "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/blog/[title]/[id]"
+          "componentType": "component"
+        },
+        {
+          "id": "dDACK3Z9VKbB",
+          "name": "CustomFooter",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicCustomFooter.tsx",
+          "importSpec": {
+            "modulePath": "CustomFooter.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicCustomFooter.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "Vfh1EQHlhuEj",
+          "name": "MarkdownH1",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicMarkdownH1.tsx",
+          "importSpec": {
+            "modulePath": "MarkdownH1.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicMarkdownH1.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "i1CANLXiHjVk",
+          "name": "MarkdownP",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicMarkdownP.tsx",
+          "importSpec": {
+            "modulePath": "MarkdownP.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicMarkdownP.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "ExDwKpsU8Tuj",
+          "name": "MarkdownQuote",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicMarkdownQuote.tsx",
+          "importSpec": {
+            "modulePath": "MarkdownQuote.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicMarkdownQuote.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "t_E1iMCrkhFT",
+          "name": "MarkdownA",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicMarkdownA.tsx",
+          "importSpec": {
+            "modulePath": "MarkdownA.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicMarkdownA.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "D5uhGTTE6uuN",
+          "name": "BlogCard",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicBlogCard.tsx",
+          "importSpec": {
+            "modulePath": "BlogCard.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicBlogCard.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "j2X0h4ewIXVl",
+          "name": "BlogIndexLayout",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicBlogIndexLayout.tsx",
+          "importSpec": {
+            "modulePath": "BlogIndexLayout.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicBlogIndexLayout.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -27039,6 +27116,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.360",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.360/dist/plasmic.schema.json"
+  "cliVersion": "0.1.361",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.361/dist/plasmic.schema.json"
 }
