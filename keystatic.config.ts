@@ -3,17 +3,17 @@ import { config, fields, collection } from '@keystatic/core';
 
 export default config({
 
-/*  storage: {
+  storage: {
     // Uses local files on machine, but connects to GitHub in production
     kind: process.env.NODE_ENV === 'production' ? 'github' : 'local',
     repo: {
       owner: 'techy-robot',
-      name: 'fiatnovum-website',
+      name: 'fiat-novum-website',
     },
-  },*/
-  storage: {
-    kind: 'local', 
   },
+  /*storage: {
+    kind: 'local', 
+  },*/
 
   collections: {
     posts: collection({

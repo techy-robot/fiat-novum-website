@@ -69,37 +69,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./Plasmic_404.module.css"; // plasmic-import: f7_eeq1__cMs/css
 
-const emptyProxy: any = new Proxy(() => "", {
-  get(_, prop) {
-    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
-  }
-});
-
-function wrapQueriesWithLoadingProxy($q: any): any {
-  return new Proxy($q, {
-    get(target, queryName) {
-      const query = target[queryName];
-      return !query || query.isLoading || !query.data ? emptyProxy : query;
-    }
-  });
-}
-
-export type PageCtx = {
-  pageRoute: string;
-  pagePath: string;
-  params: Record<string, string | string[] | undefined>;
-  query: Record<string, string | string[] | undefined>;
-};
-
-export function generateDynamicMetadata($q: any, $ctx: PageCtx) {
-  return {
-    openGraph: {},
-    twitter: {
-      card: "summary" as const
-    }
-  };
-}
-
 createPlasmicElementProxy;
 
 export type Plasmic_404__VariantMembers = {};
@@ -113,14 +82,15 @@ export const Plasmic_404__ArgProps = new Array<ArgPropType>();
 
 export type Plasmic_404__OverridesType = {
   root?: Flex__<"div">;
-  freeBox?: Flex__<"div">;
   customHeader?: Flex__<typeof CustomHeader>;
   text?: Flex__<"div">;
   back?: Flex__<"a"> & Partial<LinkProps>;
   customFooter?: Flex__<typeof CustomFooter>;
 };
 
-export interface Default_404Props {}
+export interface Default_404Props {
+  className?: string;
+}
 
 const $$ = {};
 
@@ -161,94 +131,66 @@ function Plasmic_404__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const pageMetadata = generateDynamicMetadata(
-    wrapQueriesWithLoadingProxy({}),
-    $ctx as PageCtx
-  );
-
   const styleTokensClassNames = _useStyleTokens();
 
   return (
-    <React.Fragment>
-      <Head></Head>
+    <div
+      data-plasmic-name={"root"}
+      data-plasmic-override={overrides.root}
+      data-plasmic-root={true}
+      data-plasmic-for-node={forNode}
+      className={classNames(
+        projectcss.all,
+        projectcss.root_reset,
+        projectcss.plasmic_default_styles,
+        projectcss.plasmic_mixins,
+        styleTokensClassNames,
+        sty.root
+      )}
+    >
+      <CustomHeader
+        data-plasmic-name={"customHeader"}
+        data-plasmic-override={overrides.customHeader}
+        className={classNames("__wab_instance", sty.customHeader)}
+      />
 
-      <style>{`
-        body {
-          margin: 0;
+      <div
+        data-plasmic-name={"text"}
+        data-plasmic-override={overrides.text}
+        className={classNames(projectcss.all, projectcss.__wab_text, sty.text)}
+      >
+        {
+          "404\nUh oh, looks like you ran into some wild unicyclers!\nWe couldn't find what you were looking for"
         }
-      `}</style>
-
-      <div className={projectcss.plasmic_page_wrapper}>
-        <div
-          data-plasmic-name={"root"}
-          data-plasmic-override={overrides.root}
-          data-plasmic-root={true}
-          data-plasmic-for-node={forNode}
-          className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
-            styleTokensClassNames,
-            sty.root
-          )}
-        >
-          <div
-            data-plasmic-name={"freeBox"}
-            data-plasmic-override={overrides.freeBox}
-            className={classNames(projectcss.all, sty.freeBox)}
-          >
-            <CustomHeader
-              data-plasmic-name={"customHeader"}
-              data-plasmic-override={overrides.customHeader}
-              className={classNames("__wab_instance", sty.customHeader)}
-            />
-
-            <div
-              data-plasmic-name={"text"}
-              data-plasmic-override={overrides.text}
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text
-              )}
-            >
-              {
-                "404\nUh oh, looks like you ran into some wild unicyclers!\nWe couldn't find what you were looking for"
-              }
-            </div>
-            <PlasmicLink__
-              data-plasmic-name={"back"}
-              data-plasmic-override={overrides.back}
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                projectcss.a__77YCn,
-                projectcss.__wab_text,
-                sty.back
-              )}
-              component={Link}
-              href={`/`}
-              legacyBehavior={false}
-              platform={"nextjs"}
-            >
-              {"\u21a9Back"}
-            </PlasmicLink__>
-            <CustomFooter
-              data-plasmic-name={"customFooter"}
-              data-plasmic-override={overrides.customFooter}
-              className={classNames("__wab_instance", sty.customFooter)}
-            />
-          </div>
-        </div>
       </div>
-    </React.Fragment>
+      <PlasmicLink__
+        data-plasmic-name={"back"}
+        data-plasmic-override={overrides.back}
+        className={classNames(
+          projectcss.all,
+          projectcss.a,
+          projectcss.a__77YCn,
+          projectcss.__wab_text,
+          sty.back
+        )}
+        component={Link}
+        href={`/`}
+        legacyBehavior={false}
+        platform={"nextjs"}
+      >
+        {"\u21a9Back"}
+      </PlasmicLink__>
+      <CustomFooter
+        data-plasmic-name={"customFooter"}
+        data-plasmic-override={overrides.customFooter}
+        className={classNames("__wab_instance", sty.customFooter)}
+      />
+    </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "customHeader", "text", "back", "customFooter"],
-  freeBox: ["freeBox", "customHeader", "text", "back", "customFooter"],
+  root: ["root", "customHeader", "text", "back", "customFooter"],
   customHeader: ["customHeader"],
   text: ["text"],
   back: ["back"],
@@ -259,7 +201,6 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  freeBox: "div";
   customHeader: typeof CustomHeader;
   text: "div";
   back: "a";
@@ -328,7 +269,6 @@ export const Plasmic_404 = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    freeBox: makeNodeComponent("freeBox"),
     customHeader: makeNodeComponent("customHeader"),
     text: makeNodeComponent("text"),
     back: makeNodeComponent("back"),
@@ -336,14 +276,7 @@ export const Plasmic_404 = Object.assign(
 
     // Metadata about props expected for Plasmic_404
     internalVariantProps: Plasmic_404__VariantProps,
-    internalArgProps: Plasmic_404__ArgProps,
-
-    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
-      pageRoute: "/404",
-      pagePath: "/404",
-      params: {},
-      query: {}
-    })
+    internalArgProps: Plasmic_404__ArgProps
   }
 );
 
