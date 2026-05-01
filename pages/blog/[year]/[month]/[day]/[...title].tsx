@@ -25,6 +25,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: 'blocking' };
 };
 
+// Define the interface
+interface BlogPostLayoutProps {
+  frontmatter: {
+    title: string;
+    publishDate: string;
+  };
+  mdxSource: MDXRemoteSerializeResult;
+}
+
 export const getStaticProps: GetStaticProps<BlogPostLayoutProps> = async ({ params }) => {
   const { year, month, day, title } = params as { year: string; month: string; day: string; title: string[] };
   const requestedSlug = title[0];
