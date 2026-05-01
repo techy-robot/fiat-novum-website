@@ -30,33 +30,38 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async ({ params }) 
   const requestedSlug = title[0];
   const targetDate = `${year}-${month}-${day}`;
 
-  // 1. Fetch the specific post by its slug
-  const post = await reader.collections.posts.read(requestedSlug);
+  // 1. Fetch ALL posts so we can search by Date instead of Slug
+  const allPosts = await reader.collections.posts.all();
 
-  // 404 if it doesn't exist
-  if (!post) return { notFound: true };
+  // 2. Find the post that matches the target date (This makes the Date your UID)
+  const post = allPosts.find((p) => p.entry.publishDate === targetDate);
 
-  // 2. SEO Date Check
-  if (post.publishDate !== targetDate) {
-    const [correctYear, correctMonth, correctDay] = post.publishDate.split('-');
+  // 404 if no post exists for this specific date
+  if (!post) {
+    return { notFound: true };
+  }
+
+  // 3. Fluid Slug Handling: Does the URL slug match the actual Keystatic slug?
+  // If they visit /2026/04/29/old-title, redirect them to the correct one!
+  if (requestedSlug !== post.slug) {
     return {
       redirect: {
-        destination: `/blog/${correctYear}/${correctMonth}/${correctDay}/${requestedSlug}`,
-        permanent: true,
+        destination: `/blog/${year}/${month}/${day}/${post.slug}`,
+        permanent: true, // 301 Redirect tells search engines to update the link
       },
     };
   }
 
-  // 3. Extract the raw MDX content
-  // Depending on your config, Keystatic returns MDX as an async function you must call
-  const mdxContentStr = await post.content(); 
+  // 4. If the URL is perfect, extract the raw MDX content
+  // Note: When using .all(), the data is nested inside the .entry object
+  const mdxContentStr = await post.entry.content(); 
   const mdxSource = await serialize(mdxContentStr);
 
   return {
     props: {
       frontmatter: {
-        title: post.title,
-        publishDate: post.publishDate,
+        title: post.entry.title,
+        publishDate: post.entry.publishDate,
       },
       mdxSource,
     },
