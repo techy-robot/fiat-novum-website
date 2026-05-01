@@ -36,7 +36,14 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { posts } };
 };
 
-export default function BlogIndex({ posts }: { posts: any[] }) {
+// Define the shape of the data we are passing to Plasmic
+interface PostSummary {
+  title: string;
+  date: string;
+  url: string;
+}
+
+export default function BlogIndex({ posts }: { posts: PostSummary[] }) {
   return (
     <BlogIndexLayout 
       postListSlot={
