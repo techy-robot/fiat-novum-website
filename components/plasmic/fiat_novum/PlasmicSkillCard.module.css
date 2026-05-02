@@ -1,0 +1,49 @@
+.root {
+  animation: none;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  position: relative;
+  transition-property: all;
+  transition-duration: 0.25s;
+  justify-self: flex-start;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 0.25s;
+  border-radius: 10px;
+  border: 3px solid var(--token-W1ScpvjFaWi_);
+}
+.root:hover:hover {
+  animation: none;
+  color: var(--token-W1ScpvjFaWi_);
+  box-shadow: 0px 4px 16px 0px var(--token-W1ScpvjFaWi_);
+}
+.freeBox {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.img {
+  object-fit: cover;
+  max-width: 100%;
+}
+.img > picture > img {
+  object-fit: cover;
+}
+.skill {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}

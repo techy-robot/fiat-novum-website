@@ -61,6 +61,7 @@ import {
 
 import CustomHeader from "../../CustomHeader"; // plasmic-import: lVLsklxwqNh2/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
+import SkillCard from "../../SkillCard"; // plasmic-import: _FSqgEpedOrt/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -120,6 +121,7 @@ export type PlasmicHomepage__OverridesType = {
   type3?: Flex__<"div">;
   type4?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
+  skillTrack?: Flex__<"div">;
   thisWebsite?: Flex__<"div">;
 };
 
@@ -211,6 +213,26 @@ function PlasmicHomepage__RenderFunc(props: {
                 projectcss.__wab_text,
                 sty.h1__qsOcm
               )}
+              onScroll={async event => {
+                const $steps = {};
+
+                $steps["runInteractionProp"] = true
+                  ? (() => {
+                      const actionArgs = {};
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runInteractionProp"] != null &&
+                  typeof $steps["runInteractionProp"] === "object" &&
+                  typeof $steps["runInteractionProp"].then === "function"
+                ) {
+                  $steps["runInteractionProp"] =
+                    await $steps["runInteractionProp"];
+                }
+              }}
             >
               {"Magic"}
             </h1>
@@ -224,6 +246,7 @@ function PlasmicHomepage__RenderFunc(props: {
               <Reveal
                 data-plasmic-name={"reveal"}
                 data-plasmic-override={overrides.reveal}
+                cascade={true}
                 className={classNames("__wab_instance", sty.reveal)}
                 delay={100}
                 triggerOnce={true}
@@ -294,56 +317,88 @@ function PlasmicHomepage__RenderFunc(props: {
                 </div>
               </Reveal>
               <div className={classNames(projectcss.all, sty.freeBox__u1Rol)} />
-            </section>
-          </section>
-          <section className={classNames(projectcss.all, sty.section__obgUa)}>
-            <h1
-              className={classNames(
-                projectcss.all,
-                projectcss.h1,
-                projectcss.h1__77YCn,
-                projectcss.__wab_text,
-                sty.h1__cTcWp
-              )}
-              id={"about"}
-            >
-              {"About me"}
-            </h1>
-            <div className={classNames(projectcss.all, sty.freeBox__xZyei)}>
-              <div className={classNames(projectcss.all, sty.freeBox__davsf)}>
-                <div
+
+              <div className={classNames(projectcss.all, sty.freeBox__dvF3Y)}>
+                <h1
                   className={classNames(
                     projectcss.all,
+                    projectcss.h1,
+                    projectcss.h1__77YCn,
                     projectcss.__wab_text,
-                    sty.text__fcdo0
+                    sty.h1__cTcWp
                   )}
+                  id={"about"}
                 >
-                  {
-                    "I am a design engineer combining my intricate knowledge of mechanical, electrical, and computer engineering into products that focus on people and making the solution magical, not technical."
-                  }
+                  {"About me"}
+                </h1>
+                <div className={classNames(projectcss.all, sty.freeBox__xZyei)}>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__davsf)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__fcdo0
+                      )}
+                    >
+                      {
+                        "I am a design engineer combining my intricate knowledge of mechanical, electrical, and computer engineering into products that focus on people and making the solution magical, not technical."
+                      }
+                    </div>
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__apW6B)}
+                  >
+                    <PlasmicImg__
+                      data-plasmic-name={"img"}
+                      data-plasmic-override={overrides.img}
+                      alt={""}
+                      className={classNames(sty.img)}
+                      displayHeight={"auto"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"none"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"50%"}
+                      loading={"lazy"}
+                      src={{
+                        src: "/plasmic/fiat_novum/images/userImageLinkedInJpg.jpg",
+                        fullWidth: 1307,
+                        fullHeight: 1743,
+                        aspectRatio: undefined
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__apW6B)}>
-                <PlasmicImg__
-                  data-plasmic-name={"img"}
-                  data-plasmic-override={overrides.img}
-                  alt={""}
-                  className={classNames(sty.img)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"none"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"50%"}
-                  loading={"lazy"}
-                  src={{
-                    src: "/plasmic/fiat_novum/images/userImageLinkedInJpg.jpg",
-                    fullWidth: 1307,
-                    fullHeight: 1743,
-                    aspectRatio: undefined
-                  }}
-                />
-              </div>
+            </section>
+          </section>
+          <section
+            className={classNames(
+              projectcss.all,
+              sty.section__c0Fox,
+              "marquee-container"
+            )}
+          >
+            <div
+              data-plasmic-name={"skillTrack"}
+              data-plasmic-override={overrides.skillTrack}
+              className={classNames(
+                projectcss.all,
+                sty.skillTrack,
+                "skill-track-animation"
+              )}
+            >
+              <SkillCard
+                className={classNames("__wab_instance", sty.skillCard__mX1Sy)}
+                text={"CAD"}
+              />
+
+              <SkillCard
+                className={classNames("__wab_instance", sty.skillCard__zgVeM)}
+                text={"CAD"}
+              />
             </div>
           </section>
           <section className={classNames(projectcss.all, sty.section__fhLkD)}>
@@ -457,6 +512,7 @@ const PlasmicDescendants = {
     "type3",
     "type4",
     "img",
+    "skillTrack",
     "thisWebsite"
   ],
   customHeader: ["customHeader"],
@@ -466,6 +522,7 @@ const PlasmicDescendants = {
   type3: ["type3"],
   type4: ["type4"],
   img: ["img"],
+  skillTrack: ["skillTrack"],
   thisWebsite: ["thisWebsite"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -480,6 +537,7 @@ type NodeDefaultElementType = {
   type3: "div";
   type4: "div";
   img: typeof PlasmicImg__;
+  skillTrack: "div";
   thisWebsite: "div";
 };
 
@@ -552,6 +610,7 @@ export const PlasmicHomepage = Object.assign(
     type3: makeNodeComponent("type3"),
     type4: makeNodeComponent("type4"),
     img: makeNodeComponent("img"),
+    skillTrack: makeNodeComponent("skillTrack"),
     thisWebsite: makeNodeComponent("thisWebsite"),
 
     // Metadata about props expected for PlasmicHomepage

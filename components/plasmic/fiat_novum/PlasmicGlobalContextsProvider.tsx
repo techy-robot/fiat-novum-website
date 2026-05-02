@@ -9,18 +9,22 @@ import * as React from "react";
 
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { CmsCredentialsProvider } from "@plasmicpkgs/plasmic-cms";
+import { EmbedCss } from "@plasmicpkgs/plasmic-embed-css";
 
 export interface GlobalContextsProviderProps {
   children?: React.ReactElement;
   cmsCredentialsProviderProps?: Partial<
     Omit<React.ComponentProps<typeof CmsCredentialsProvider>, "children">
   >;
+  embedCssProps?: Partial<
+    Omit<React.ComponentProps<typeof EmbedCss>, "children">
+  >;
 }
 
 export default function GlobalContextsProvider(
   props: GlobalContextsProviderProps
 ) {
-  const { children, cmsCredentialsProviderProps } = props;
+  const { children, cmsCredentialsProviderProps, embedCssProps } = props;
 
   return (
     <CmsCredentialsProvider
@@ -48,7 +52,16 @@ export default function GlobalContextsProvider(
           : undefined
       }
     >
-      {children}
+      <EmbedCss
+        {...embedCssProps}
+        css={
+          embedCssProps && "css" in embedCssProps
+            ? embedCssProps.css!
+            : '/* 1. The Outer Frame */\n.marquee-container {\n  overflow: hidden;\n  width: 100%;\n  display: flex;\n}\n\n/* 2. The Moving Track */\n.skill-track-animation {\n  display: flex;\n  flex-direction: row;\n  width: max-content; /* CRITICAL: Allows the row to be wider than the screen */\n  flex-wrap: nowrap;\n  animation: scroll-marquee 5s linear infinite !important;\n}\n\n/* 3. The Animation Logic */\n@keyframes scroll-marquee {\n  0% {\n    transform: translateX(0);\n  }\n  100% {\n    /* Moves by half because you duplicated the items to create the loop */\n    transform: translateX(-50%);\n  }\n}\n\n/* 4. Pause on Hover (Optional but "Magical") */\n.marquee-container:hover .skill-track-animation {\n  animation-play-state: paused !important;\n}'
+        }
+      >
+        {children}
+      </EmbedCss>
     </CmsCredentialsProvider>
   );
 }
