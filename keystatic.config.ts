@@ -36,7 +36,7 @@ export default config({
       label: 'Projects',
       // This determines the filename (e.g., "my-awesome-post.mdx")
       slugField: 'title', 
-      path: 'content/blog/*',
+      path: 'content/projects/*',
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
         // The date field is crucial for your URL scheme

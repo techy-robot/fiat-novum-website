@@ -6,6 +6,9 @@ const nextConfig = {
     '@react-stately/combobox'
   ],
   reactStrictMode: true,
+  experimental: {
+    optimizePackageImports: ['@tabler/icons-react'],
+  },
 };
 
 export default nextConfig;

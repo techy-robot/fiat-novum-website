@@ -61,7 +61,6 @@ import {
 
 import CustomHeader from "../../CustomHeader"; // plasmic-import: lVLsklxwqNh2/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
-import SkillCard from "../../SkillCard"; // plasmic-import: _FSqgEpedOrt/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -108,9 +107,11 @@ export type PlasmicHomepage__VariantsArgs = {};
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
 export const PlasmicHomepage__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicHomepage__ArgsType = {};
+export type PlasmicHomepage__ArgsType = { skillTrackSlot?: React.ReactNode };
 type ArgPropType = keyof PlasmicHomepage__ArgsType;
-export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
+export const PlasmicHomepage__ArgProps = new Array<ArgPropType>(
+  "skillTrackSlot"
+);
 
 export type PlasmicHomepage__OverridesType = {
   root?: Flex__<"div">;
@@ -390,15 +391,10 @@ function PlasmicHomepage__RenderFunc(props: {
                 "skill-track-animation"
               )}
             >
-              <SkillCard
-                className={classNames("__wab_instance", sty.skillCard__mX1Sy)}
-                text={"CAD"}
-              />
-
-              <SkillCard
-                className={classNames("__wab_instance", sty.skillCard__zgVeM)}
-                text={"CAD"}
-              />
+              {renderPlasmicSlot({
+                defaultContents: null,
+                value: args.skillTrackSlot
+              })}
             </div>
           </section>
           <section className={classNames(projectcss.all, sty.section__fhLkD)}>

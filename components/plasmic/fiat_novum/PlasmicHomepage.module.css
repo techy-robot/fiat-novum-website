@@ -277,12 +277,6 @@
   justify-self: flex-start;
   padding: 8px;
 }
-.skillCard__mX1Sy:global(.__wab_instance) {
-  position: relative;
-}
-.skillCard__zgVeM:global(.__wab_instance) {
-  position: relative;
-}
 .section__fhLkD {
   display: grid;
   position: relative;

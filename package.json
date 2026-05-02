@@ -23,6 +23,7 @@
     "@plasmicpkgs/react-awesome-reveal": "^3.8.247",
     "@plasmicpkgs/react-slick": "^0.0.266",
     "@plasmicpkgs/rive": "^0.0.31",
+    "@tabler/icons-react": "^3.41.1",
     "@tiptap/core": "^3.22.3",
     "@tiptap/extension-bold": "^3.22.3",
     "@tiptap/extension-code": "^3.22.3",

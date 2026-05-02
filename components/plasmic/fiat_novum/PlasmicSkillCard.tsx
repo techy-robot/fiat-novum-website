@@ -78,18 +78,18 @@ export type PlasmicSkillCard__ArgsType = {
   text?: string;
   icon?: React.ComponentProps<typeof PlasmicImg__>["src"];
   link?: string;
+  iconSlot?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicSkillCard__ArgsType;
 export const PlasmicSkillCard__ArgProps = new Array<ArgPropType>(
   "text",
   "icon",
-  "link"
+  "link",
+  "iconSlot"
 );
 
 export type PlasmicSkillCard__OverridesType = {
   root?: Flex__<"a"> & Partial<LinkProps>;
-  freeBox?: Flex__<"div">;
-  img?: Flex__<typeof PlasmicImg__>;
   skill?: Flex__<"div">;
 };
 
@@ -97,6 +97,7 @@ export interface DefaultSkillCardProps {
   text?: string;
   icon?: React.ComponentProps<typeof PlasmicImg__>["src"];
   link?: string;
+  iconSlot?: React.ReactNode;
   className?: string;
 }
 
@@ -165,40 +166,13 @@ function PlasmicSkillCard__RenderFunc(props: {
       legacyBehavior={false}
       platform={"nextjs"}
     >
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
-      >
-        <PlasmicImg__
-          data-plasmic-name={"img"}
-          data-plasmic-override={overrides.img}
-          alt={""}
-          className={classNames(sty.img)}
-          displayHeight={"auto"}
-          displayMaxHeight={"none"}
-          displayMaxWidth={"100%"}
-          displayMinHeight={"0"}
-          displayMinWidth={"0"}
-          displayWidth={"auto"}
-          height={"16px"}
-          loading={"lazy"}
-          src={(() => {
-            try {
-              return $props.icon;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()}
-          width={"16px"}
-        />
-
+      <div className={classNames(projectcss.all, sty.freeBox__paEl2)}>
+        <div className={classNames(projectcss.all, sty.freeBox___63Dcj)}>
+          {renderPlasmicSlot({
+            defaultContents: null,
+            value: args.iconSlot
+          })}
+        </div>
         <div
           data-plasmic-name={"skill"}
           data-plasmic-override={overrides.skill}
@@ -230,9 +204,7 @@ function PlasmicSkillCard__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "img", "skill"],
-  freeBox: ["freeBox", "img", "skill"],
-  img: ["img"],
+  root: ["root", "skill"],
   skill: ["skill"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -240,8 +212,6 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "a";
-  freeBox: "div";
-  img: typeof PlasmicImg__;
   skill: "div";
 };
 
@@ -307,8 +277,6 @@ export const PlasmicSkillCard = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    freeBox: makeNodeComponent("freeBox"),
-    img: makeNodeComponent("img"),
     skill: makeNodeComponent("skill"),
 
     // Metadata about props expected for PlasmicSkillCard

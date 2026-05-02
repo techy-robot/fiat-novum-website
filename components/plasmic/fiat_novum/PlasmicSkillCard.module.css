@@ -21,7 +21,7 @@
   color: var(--token-W1ScpvjFaWi_);
   box-shadow: 0px 4px 16px 0px var(--token-W1ScpvjFaWi_);
 }
-.freeBox {
+.freeBox__paEl2 {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -33,12 +33,19 @@
   min-width: 0;
   padding: 8px;
 }
-.img {
-  object-fit: cover;
+.freeBox___63Dcj {
+  animation: none;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
   max-width: 100%;
-}
-.img > picture > img {
-  object-fit: cover;
+  align-self: center;
+  flex-shrink: 0;
+  padding: 0px;
 }
 .skill {
   position: relative;
