@@ -89,7 +89,6 @@ export const PlasmicBlogPostLayout__ArgProps = new Array<ArgPropType>(
 export type PlasmicBlogPostLayout__OverridesType = {
   root?: Flex__<"div">;
   customHeader?: Flex__<typeof CustomHeader>;
-  freeBox?: Flex__<"div">;
   text?: Flex__<"div">;
   customFooter?: Flex__<typeof CustomFooter>;
 };
@@ -164,11 +163,7 @@ function PlasmicBlogPostLayout__RenderFunc(props: {
         className={classNames("__wab_instance", sty.customHeader)}
       />
 
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__luIhi)}>
         <div
           data-plasmic-name={"text"}
           data-plasmic-override={overrides.text}
@@ -185,6 +180,8 @@ function PlasmicBlogPostLayout__RenderFunc(props: {
           value: args.contentSlot
         })}
       </div>
+      <div className={classNames(projectcss.all, sty.freeBox__udkDh)} />
+
       <CustomFooter
         data-plasmic-name={"customFooter"}
         data-plasmic-override={overrides.customFooter}
@@ -195,9 +192,8 @@ function PlasmicBlogPostLayout__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "customHeader", "freeBox", "text", "customFooter"],
+  root: ["root", "customHeader", "text", "customFooter"],
   customHeader: ["customHeader"],
-  freeBox: ["freeBox", "text"],
   text: ["text"],
   customFooter: ["customFooter"]
 } as const;
@@ -207,7 +203,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   customHeader: typeof CustomHeader;
-  freeBox: "div";
   text: "div";
   customFooter: typeof CustomFooter;
 };
@@ -275,7 +270,6 @@ export const PlasmicBlogPostLayout = Object.assign(
   {
     // Helper components rendering sub-elements
     customHeader: makeNodeComponent("customHeader"),
-    freeBox: makeNodeComponent("freeBox"),
     text: makeNodeComponent("text"),
     customFooter: makeNodeComponent("customFooter"),
 

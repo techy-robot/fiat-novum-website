@@ -61,6 +61,7 @@ import {
 
 import CustomHeader from "../../CustomHeader"; // plasmic-import: lVLsklxwqNh2/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
+import CustomFooter from "../../CustomFooter"; // plasmic-import: dDACK3Z9VKbB/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -127,6 +128,7 @@ export type PlasmicHomepage__OverridesType = {
   type4?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
   moreProjects?: Flex__<"a"> & Partial<LinkProps>;
+  customFooter?: Flex__<typeof CustomFooter>;
 };
 
 export interface DefaultHomepageProps {}
@@ -523,6 +525,13 @@ function PlasmicHomepage__RenderFunc(props: {
               </div>
             </div>
           </section>
+          <div className={classNames(projectcss.all, sty.freeBox___3EbkI)}>
+            <CustomFooter
+              data-plasmic-name={"customFooter"}
+              data-plasmic-override={overrides.customFooter}
+              className={classNames("__wab_instance", sty.customFooter)}
+            />
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -539,7 +548,8 @@ const PlasmicDescendants = {
     "type3",
     "type4",
     "img",
-    "moreProjects"
+    "moreProjects",
+    "customFooter"
   ],
   customHeader: ["customHeader"],
   reveal: ["reveal", "type", "type2", "type3", "type4"],
@@ -548,7 +558,8 @@ const PlasmicDescendants = {
   type3: ["type3"],
   type4: ["type4"],
   img: ["img"],
-  moreProjects: ["moreProjects"]
+  moreProjects: ["moreProjects"],
+  customFooter: ["customFooter"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -563,6 +574,7 @@ type NodeDefaultElementType = {
   type4: "div";
   img: typeof PlasmicImg__;
   moreProjects: "a";
+  customFooter: typeof CustomFooter;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -635,6 +647,7 @@ export const PlasmicHomepage = Object.assign(
     type4: makeNodeComponent("type4"),
     img: makeNodeComponent("img"),
     moreProjects: makeNodeComponent("moreProjects"),
+    customFooter: makeNodeComponent("customFooter"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

@@ -314,6 +314,13 @@
   --mixin-PnxogivZnC3u_white-space: pre-wrap;
 }
 
+.plasmic_mixins {
+  --mixin-v1mOcTgSZtE6_white-space: pre-wrap;
+  --plasmic-mixin-link-hover-style_white-space: var(
+    --mixin-v1mOcTgSZtE6_white-space
+  );
+}
+
 :where(.all) {
   display: block;
   white-space: inherit;

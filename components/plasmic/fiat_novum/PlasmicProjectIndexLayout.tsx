@@ -88,7 +88,6 @@ export const PlasmicProjectIndexLayout__ArgProps = new Array<ArgPropType>(
 export type PlasmicProjectIndexLayout__OverridesType = {
   root?: Flex__<"div">;
   customHeader?: Flex__<typeof CustomHeader>;
-  freeBox?: Flex__<"div">;
   customFooter?: Flex__<typeof CustomFooter>;
 };
 
@@ -159,11 +158,7 @@ function PlasmicProjectIndexLayout__RenderFunc(props: {
         className={classNames("__wab_instance", sty.customHeader)}
       />
 
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__heaIv)}>
         {renderPlasmicSlot({
           defaultContents: (
             <React.Fragment>
@@ -175,6 +170,8 @@ function PlasmicProjectIndexLayout__RenderFunc(props: {
           value: args.projectListSlot
         })}
       </div>
+      <div className={classNames(projectcss.all, sty.freeBox__vLt1W)} />
+
       <CustomFooter
         data-plasmic-name={"customFooter"}
         data-plasmic-override={overrides.customFooter}
@@ -185,9 +182,8 @@ function PlasmicProjectIndexLayout__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "customHeader", "freeBox", "customFooter"],
+  root: ["root", "customHeader", "customFooter"],
   customHeader: ["customHeader"],
-  freeBox: ["freeBox"],
   customFooter: ["customFooter"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -196,7 +192,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   customHeader: typeof CustomHeader;
-  freeBox: "div";
   customFooter: typeof CustomFooter;
 };
 
@@ -263,7 +258,6 @@ export const PlasmicProjectIndexLayout = Object.assign(
   {
     // Helper components rendering sub-elements
     customHeader: makeNodeComponent("customHeader"),
-    freeBox: makeNodeComponent("freeBox"),
     customFooter: makeNodeComponent("customFooter"),
 
     // Metadata about props expected for PlasmicProjectIndexLayout

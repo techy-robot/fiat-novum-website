@@ -94,7 +94,6 @@ export const PlasmicProjectPostLayout__ArgProps = new Array<ArgPropType>(
 export type PlasmicProjectPostLayout__OverridesType = {
   root?: Flex__<"div">;
   customHeader?: Flex__<typeof CustomHeader>;
-  freeBox?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
   text?: Flex__<"div">;
   customFooter?: Flex__<typeof CustomFooter>;
@@ -172,11 +171,7 @@ function PlasmicProjectPostLayout__RenderFunc(props: {
         className={classNames("__wab_instance", sty.customHeader)}
       />
 
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__chXqb)}>
         <PlasmicImg__
           data-plasmic-name={"img"}
           data-plasmic-override={overrides.img}
@@ -207,6 +202,8 @@ function PlasmicProjectPostLayout__RenderFunc(props: {
           value: args.contentSlot
         })}
       </div>
+      <div className={classNames(projectcss.all, sty.freeBox__kf4Vk)} />
+
       <CustomFooter
         data-plasmic-name={"customFooter"}
         data-plasmic-override={overrides.customFooter}
@@ -217,9 +214,8 @@ function PlasmicProjectPostLayout__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "customHeader", "freeBox", "img", "text", "customFooter"],
+  root: ["root", "customHeader", "img", "text", "customFooter"],
   customHeader: ["customHeader"],
-  freeBox: ["freeBox", "img", "text"],
   img: ["img"],
   text: ["text"],
   customFooter: ["customFooter"]
@@ -230,7 +226,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   customHeader: typeof CustomHeader;
-  freeBox: "div";
   img: typeof PlasmicImg__;
   text: "div";
   customFooter: typeof CustomFooter;
@@ -299,7 +294,6 @@ export const PlasmicProjectPostLayout = Object.assign(
   {
     // Helper components rendering sub-elements
     customHeader: makeNodeComponent("customHeader"),
-    freeBox: makeNodeComponent("freeBox"),
     img: makeNodeComponent("img"),
     text: makeNodeComponent("text"),
     customFooter: makeNodeComponent("customFooter"),

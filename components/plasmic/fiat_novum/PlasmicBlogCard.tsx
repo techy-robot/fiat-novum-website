@@ -74,21 +74,26 @@ export type PlasmicBlogCard__VariantsArgs = {};
 type VariantPropType = keyof PlasmicBlogCard__VariantsArgs;
 export const PlasmicBlogCard__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicBlogCard__ArgsType = { title?: string; date?: any };
+export type PlasmicBlogCard__ArgsType = {
+  title?: string;
+  date?: any;
+  summary?: string;
+};
 type ArgPropType = keyof PlasmicBlogCard__ArgsType;
 export const PlasmicBlogCard__ArgProps = new Array<ArgPropType>(
   "title",
-  "date"
+  "date",
+  "summary"
 );
 
 export type PlasmicBlogCard__OverridesType = {
   root?: Flex__<"div">;
-  section?: Flex__<"section">;
 };
 
 export interface DefaultBlogCardProps {
   title?: string;
   date?: any;
+  summary?: string;
   className?: string;
 }
 
@@ -114,7 +119,8 @@ function PlasmicBlogCard__RenderFunc(props: {
       Object.assign(
         {
           title: "Title",
-          date: "2026-05-01T05:39:27.675Z"
+          date: "2026-05-01T05:39:27.675Z",
+          summary: "summary"
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -151,44 +157,45 @@ function PlasmicBlogCard__RenderFunc(props: {
         sty.root
       )}
     >
-      <section
-        data-plasmic-name={"section"}
-        data-plasmic-override={overrides.section}
-        className={classNames(projectcss.all, sty.section)}
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__fUmTr
+        )}
       >
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__fUmTr
-          )}
-        >
-          <React.Fragment>{$props.title}</React.Fragment>
-        </div>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__vPsA4
-          )}
-        >
-          <React.Fragment>{$props.date}</React.Fragment>
-        </div>
-      </section>
+        <React.Fragment>{$props.title}</React.Fragment>
+      </div>
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__vPsA4
+        )}
+      >
+        <React.Fragment>{$props.date}</React.Fragment>
+      </div>
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__xKznQ
+        )}
+      >
+        <React.Fragment>{$props.summary}</React.Fragment>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "section"],
-  section: ["section"]
+  root: ["root"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  section: "section";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -253,7 +260,6 @@ export const PlasmicBlogCard = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    section: makeNodeComponent("section"),
 
     // Metadata about props expected for PlasmicBlogCard
     internalVariantProps: PlasmicBlogCard__VariantProps,
