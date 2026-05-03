@@ -122,7 +122,6 @@ export type PlasmicHomepage__OverridesType = {
   type3?: Flex__<"div">;
   type4?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
-  skillTrack?: Flex__<"div">;
   thisWebsite?: Flex__<"div">;
 };
 
@@ -382,20 +381,10 @@ function PlasmicHomepage__RenderFunc(props: {
               "marquee-container"
             )}
           >
-            <div
-              data-plasmic-name={"skillTrack"}
-              data-plasmic-override={overrides.skillTrack}
-              className={classNames(
-                projectcss.all,
-                sty.skillTrack,
-                "skill-track-animation"
-              )}
-            >
-              {renderPlasmicSlot({
-                defaultContents: null,
-                value: args.skillTrackSlot
-              })}
-            </div>
+            {renderPlasmicSlot({
+              defaultContents: null,
+              value: args.skillTrackSlot
+            })}
           </section>
           <section className={classNames(projectcss.all, sty.section__fhLkD)}>
             <div className={classNames(projectcss.all, sty.freeBox__vzaZi)} />
@@ -508,7 +497,6 @@ const PlasmicDescendants = {
     "type3",
     "type4",
     "img",
-    "skillTrack",
     "thisWebsite"
   ],
   customHeader: ["customHeader"],
@@ -518,7 +506,6 @@ const PlasmicDescendants = {
   type3: ["type3"],
   type4: ["type4"],
   img: ["img"],
-  skillTrack: ["skillTrack"],
   thisWebsite: ["thisWebsite"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -533,7 +520,6 @@ type NodeDefaultElementType = {
   type3: "div";
   type4: "div";
   img: typeof PlasmicImg__;
-  skillTrack: "div";
   thisWebsite: "div";
 };
 
@@ -606,7 +592,6 @@ export const PlasmicHomepage = Object.assign(
     type3: makeNodeComponent("type3"),
     type4: makeNodeComponent("type4"),
     img: makeNodeComponent("img"),
-    skillTrack: makeNodeComponent("skillTrack"),
     thisWebsite: makeNodeComponent("thisWebsite"),
 
     // Metadata about props expected for PlasmicHomepage

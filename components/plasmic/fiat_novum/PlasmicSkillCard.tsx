@@ -89,7 +89,10 @@ export const PlasmicSkillCard__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicSkillCard__OverridesType = {
-  root?: Flex__<"a"> & Partial<LinkProps>;
+  outerMargin?: Flex__<"div">;
+  link?: Flex__<"a"> & Partial<LinkProps>;
+  freeBox?: Flex__<"div">;
+  iconContainer?: Flex__<"div">;
   skill?: Flex__<"div">;
 };
 
@@ -146,72 +149,95 @@ function PlasmicSkillCard__RenderFunc(props: {
   const styleTokensClassNames = _useStyleTokens();
 
   return (
-    <PlasmicLink__
-      data-plasmic-name={"root"}
-      data-plasmic-override={overrides.root}
+    <div
+      data-plasmic-name={"outerMargin"}
+      data-plasmic-override={overrides.outerMargin}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
         projectcss.all,
-        projectcss.a,
-        projectcss.a__77YCn,
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.root
+        sty.outerMargin
       )}
-      component={Link}
-      href={$props.link}
-      legacyBehavior={false}
-      platform={"nextjs"}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__paEl2)}>
-        <div className={classNames(projectcss.all, sty.freeBox___63Dcj)}>
-          {renderPlasmicSlot({
-            defaultContents: null,
-            value: args.iconSlot
-          })}
-        </div>
+      <PlasmicLink__
+        data-plasmic-name={"link"}
+        data-plasmic-override={overrides.link}
+        className={classNames(
+          projectcss.all,
+          projectcss.a,
+          projectcss.a__77YCn,
+          sty.link
+        )}
+        component={Link}
+        href={$props.link}
+        legacyBehavior={false}
+        platform={"nextjs"}
+      >
         <div
-          data-plasmic-name={"skill"}
-          data-plasmic-override={overrides.skill}
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.skill
-          )}
+          data-plasmic-name={"freeBox"}
+          data-plasmic-override={overrides.freeBox}
+          className={classNames(projectcss.all, sty.freeBox)}
         >
-          <React.Fragment>
-            {(() => {
-              try {
-                return $props.text;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "skill";
+          <div
+            data-plasmic-name={"iconContainer"}
+            data-plasmic-override={overrides.iconContainer}
+            className={classNames(projectcss.all, sty.iconContainer)}
+          >
+            {renderPlasmicSlot({
+              defaultContents: null,
+              value: args.iconSlot
+            })}
+          </div>
+          <div
+            data-plasmic-name={"skill"}
+            data-plasmic-override={overrides.skill}
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.skill
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.text;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "skill";
+                  }
+                  throw e;
                 }
-                throw e;
-              }
-            })()}
-          </React.Fragment>
+              })()}
+            </React.Fragment>
+          </div>
         </div>
-      </div>
-    </PlasmicLink__>
+      </PlasmicLink__>
+    </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "skill"],
+  outerMargin: ["outerMargin", "link", "freeBox", "iconContainer", "skill"],
+  link: ["link", "freeBox", "iconContainer", "skill"],
+  freeBox: ["freeBox", "iconContainer", "skill"],
+  iconContainer: ["iconContainer"],
   skill: ["skill"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
-  root: "a";
+  outerMargin: "div";
+  link: "a";
+  freeBox: "div";
+  iconContainer: "div";
   skill: "div";
 };
 
@@ -264,7 +290,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       forNode: nodeName
     });
   };
-  if (nodeName === "root") {
+  if (nodeName === "outerMargin") {
     func.displayName = "PlasmicSkillCard";
   } else {
     func.displayName = `PlasmicSkillCard.${nodeName}`;
@@ -274,9 +300,12 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
 
 export const PlasmicSkillCard = Object.assign(
   // Top-level PlasmicSkillCard renders the root element
-  makeNodeComponent("root"),
+  makeNodeComponent("outerMargin"),
   {
     // Helper components rendering sub-elements
+    link: makeNodeComponent("link"),
+    freeBox: makeNodeComponent("freeBox"),
+    iconContainer: makeNodeComponent("iconContainer"),
     skill: makeNodeComponent("skill"),
 
     // Metadata about props expected for PlasmicSkillCard

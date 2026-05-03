@@ -244,14 +244,12 @@
 .section__c0Fox {
   display: grid;
   position: relative;
-  align-content: flex-start;
-  justify-items: center;
-  width: 100%;
+  align-content: center;
+  justify-items: flex-start;
+  width: 100vw;
   padding-left: 0;
   padding-right: 0;
   overflow: hidden;
-  grid-column-start: 1 !important;
-  grid-column-end: -1 !important;
   grid-template-columns:
     var(--plsmc-viewport-gap) 1fr minmax(0, var(--plsmc-wide-chunk))
     min(
@@ -262,20 +260,6 @@
 }
 .section__c0Fox > * {
   grid-column: 4;
-}
-.skillTrack {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  align-items: stretch;
-  justify-content: flex-start;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  overflow: hidden;
-  column-gap: 10px;
-  justify-self: flex-start;
-  padding: 8px;
 }
 .section__fhLkD {
   display: grid;
