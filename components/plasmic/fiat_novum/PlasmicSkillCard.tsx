@@ -76,14 +76,12 @@ export const PlasmicSkillCard__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicSkillCard__ArgsType = {
   text?: string;
-  icon?: React.ComponentProps<typeof PlasmicImg__>["src"];
   link?: string;
   iconSlot?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicSkillCard__ArgsType;
 export const PlasmicSkillCard__ArgProps = new Array<ArgPropType>(
   "text",
-  "icon",
   "link",
   "iconSlot"
 );
@@ -98,7 +96,6 @@ export type PlasmicSkillCard__OverridesType = {
 
 export interface DefaultSkillCardProps {
   text?: string;
-  icon?: React.ComponentProps<typeof PlasmicImg__>["src"];
   link?: string;
   iconSlot?: React.ReactNode;
   className?: string;
