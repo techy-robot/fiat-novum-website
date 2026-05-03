@@ -91,6 +91,8 @@ export const PlasmicProjectCard__ArgProps = new Array<ArgPropType>(
 export type PlasmicProjectCard__OverridesType = {
   root?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
+  h1?: Flex__<"h1">;
+  text?: Flex__<"div">;
 };
 
 export interface DefaultProjectCardProps {
@@ -189,21 +191,23 @@ function PlasmicProjectCard__RenderFunc(props: {
         width={""}
       />
 
-      <div
+      <h1
+        data-plasmic-name={"h1"}
+        data-plasmic-override={overrides.h1}
         className={classNames(
           projectcss.all,
+          projectcss.h1,
+          projectcss.h1__77YCn,
           projectcss.__wab_text,
-          sty.text__kSjSb
+          sty.h1
         )}
       >
         <React.Fragment>{$props.title}</React.Fragment>
-      </div>
+      </h1>
       <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__qaVl6
-        )}
+        data-plasmic-name={"text"}
+        data-plasmic-override={overrides.text}
+        className={classNames(projectcss.all, projectcss.__wab_text, sty.text)}
       >
         <React.Fragment>{$props.summary}</React.Fragment>
       </div>
@@ -212,8 +216,10 @@ function PlasmicProjectCard__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img"],
-  img: ["img"]
+  root: ["root", "img", "h1", "text"],
+  img: ["img"],
+  h1: ["h1"],
+  text: ["text"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -221,6 +227,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   img: typeof PlasmicImg__;
+  h1: "h1";
+  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -286,6 +294,8 @@ export const PlasmicProjectCard = Object.assign(
   {
     // Helper components rendering sub-elements
     img: makeNodeComponent("img"),
+    h1: makeNodeComponent("h1"),
+    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicProjectCard
     internalVariantProps: PlasmicProjectCard__VariantProps,

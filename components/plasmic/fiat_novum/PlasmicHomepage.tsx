@@ -335,7 +335,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   )}
                   id={"about"}
                 >
-                  {"About me"}
+                  {"About Me"}
                 </h1>
                 <div className={classNames(projectcss.all, sty.freeBox__xZyei)}>
                   <div

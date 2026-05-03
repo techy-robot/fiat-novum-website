@@ -15,8 +15,8 @@
   -webkit-transition-property: all;
   -webkit-transition-timing-function: ease-in-out;
   -webkit-transition-duration: 0.3s;
-  border-radius: 10px;
-  padding: 8px;
+  border-radius: 15px;
+  padding: 0px;
   border: 5px solid var(--token-W1ScpvjFaWi_);
 }
 .root:hover:hover {
@@ -35,16 +35,17 @@
   object-fit: cover;
   object-position: 50% top;
 }
-.text__kSjSb {
+.h1 {
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
   font-size: 2rem;
   text-align: center;
+  text-transform: uppercase;
   min-width: 0;
 }
-.text__qaVl6 {
+.text {
   position: relative;
   width: 100%;
   height: auto;

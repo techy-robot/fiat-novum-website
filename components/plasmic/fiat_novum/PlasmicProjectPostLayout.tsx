@@ -95,7 +95,7 @@ export type PlasmicProjectPostLayout__OverridesType = {
   root?: Flex__<"div">;
   customHeader?: Flex__<typeof CustomHeader>;
   img?: Flex__<typeof PlasmicImg__>;
-  text?: Flex__<"div">;
+  h1?: Flex__<"h1">;
   customFooter?: Flex__<typeof CustomFooter>;
 };
 
@@ -184,19 +184,34 @@ function PlasmicProjectPostLayout__RenderFunc(props: {
           displayMinWidth={"0"}
           displayWidth={"50%"}
           loading={"lazy"}
+          src={(() => {
+            try {
+              return $props.coverImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
 
-        <div
-          data-plasmic-name={"text"}
-          data-plasmic-override={overrides.text}
+        <h1
+          data-plasmic-name={"h1"}
+          data-plasmic-override={overrides.h1}
           className={classNames(
             projectcss.all,
+            projectcss.h1,
+            projectcss.h1__77YCn,
             projectcss.__wab_text,
-            sty.text
+            sty.h1
           )}
         >
           <React.Fragment>{$props.title}</React.Fragment>
-        </div>
+        </h1>
         {renderPlasmicSlot({
           defaultContents: null,
           value: args.contentSlot
@@ -214,10 +229,10 @@ function PlasmicProjectPostLayout__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "customHeader", "img", "text", "customFooter"],
+  root: ["root", "customHeader", "img", "h1", "customFooter"],
   customHeader: ["customHeader"],
   img: ["img"],
-  text: ["text"],
+  h1: ["h1"],
   customFooter: ["customFooter"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -227,7 +242,7 @@ type NodeDefaultElementType = {
   root: "div";
   customHeader: typeof CustomHeader;
   img: typeof PlasmicImg__;
-  text: "div";
+  h1: "h1";
   customFooter: typeof CustomFooter;
 };
 
@@ -295,7 +310,7 @@ export const PlasmicProjectPostLayout = Object.assign(
     // Helper components rendering sub-elements
     customHeader: makeNodeComponent("customHeader"),
     img: makeNodeComponent("img"),
-    text: makeNodeComponent("text"),
+    h1: makeNodeComponent("h1"),
     customFooter: makeNodeComponent("customFooter"),
 
     // Metadata about props expected for PlasmicProjectPostLayout

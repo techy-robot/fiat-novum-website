@@ -79,23 +79,30 @@ export const PlasmicBlogPostLayout__VariantProps = new Array<VariantPropType>();
 export type PlasmicBlogPostLayout__ArgsType = {
   contentSlot?: React.ReactNode;
   title?: string;
+  date?: any;
+  coverImage?: React.ComponentProps<typeof PlasmicImg__>["src"];
 };
 type ArgPropType = keyof PlasmicBlogPostLayout__ArgsType;
 export const PlasmicBlogPostLayout__ArgProps = new Array<ArgPropType>(
   "contentSlot",
-  "title"
+  "title",
+  "date",
+  "coverImage"
 );
 
 export type PlasmicBlogPostLayout__OverridesType = {
   root?: Flex__<"div">;
   customHeader?: Flex__<typeof CustomHeader>;
-  text?: Flex__<"div">;
+  img?: Flex__<typeof PlasmicImg__>;
+  h1?: Flex__<"h1">;
   customFooter?: Flex__<typeof CustomFooter>;
 };
 
 export interface DefaultBlogPostLayoutProps {
   contentSlot?: React.ReactNode;
   title?: string;
+  date?: any;
+  coverImage?: React.ComponentProps<typeof PlasmicImg__>["src"];
   className?: string;
 }
 
@@ -164,17 +171,47 @@ function PlasmicBlogPostLayout__RenderFunc(props: {
       />
 
       <div className={classNames(projectcss.all, sty.freeBox__luIhi)}>
-        <div
-          data-plasmic-name={"text"}
-          data-plasmic-override={overrides.text}
+        <PlasmicImg__
+          data-plasmic-name={"img"}
+          data-plasmic-override={overrides.img}
+          alt={""}
+          className={classNames(sty.img)}
+          displayHeight={"auto"}
+          displayMaxHeight={"none"}
+          displayMaxWidth={"100%"}
+          displayMinHeight={"0"}
+          displayMinWidth={"0"}
+          displayWidth={"50%"}
+          loading={"lazy"}
+          src={(() => {
+            try {
+              return $props.coverImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+        />
+
+        <h1
+          data-plasmic-name={"h1"}
+          data-plasmic-override={overrides.h1}
           className={classNames(
             projectcss.all,
+            projectcss.h1,
+            projectcss.h1__77YCn,
             projectcss.__wab_text,
-            sty.text
+            sty.h1,
+            ""
           )}
         >
           <React.Fragment>{$props.title}</React.Fragment>
-        </div>
+        </h1>
         {renderPlasmicSlot({
           defaultContents: null,
           value: args.contentSlot
@@ -192,9 +229,10 @@ function PlasmicBlogPostLayout__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "customHeader", "text", "customFooter"],
+  root: ["root", "customHeader", "img", "h1", "customFooter"],
   customHeader: ["customHeader"],
-  text: ["text"],
+  img: ["img"],
+  h1: ["h1"],
   customFooter: ["customFooter"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -203,7 +241,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   customHeader: typeof CustomHeader;
-  text: "div";
+  img: typeof PlasmicImg__;
+  h1: "h1";
   customFooter: typeof CustomFooter;
 };
 
@@ -270,7 +309,8 @@ export const PlasmicBlogPostLayout = Object.assign(
   {
     // Helper components rendering sub-elements
     customHeader: makeNodeComponent("customHeader"),
-    text: makeNodeComponent("text"),
+    img: makeNodeComponent("img"),
+    h1: makeNodeComponent("h1"),
     customFooter: makeNodeComponent("customFooter"),
 
     // Metadata about props expected for PlasmicBlogPostLayout

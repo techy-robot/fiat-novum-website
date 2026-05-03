@@ -71,6 +71,8 @@ export default async function BlogPostPage({ params }: RouteParams) {
         // MDXRemote/rsc takes the raw string directly!
         <MDXRemote source={mdxContentStr} />
       } 
+      date={post.entry.publishDate}
+      coverImage={post.entry.cover ?? undefined}
     />
   );
 }

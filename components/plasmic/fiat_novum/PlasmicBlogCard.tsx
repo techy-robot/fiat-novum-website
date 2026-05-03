@@ -78,22 +78,27 @@ export type PlasmicBlogCard__ArgsType = {
   title?: string;
   date?: any;
   summary?: string;
+  coverImage?: React.ComponentProps<typeof PlasmicImg__>["src"];
 };
 type ArgPropType = keyof PlasmicBlogCard__ArgsType;
 export const PlasmicBlogCard__ArgProps = new Array<ArgPropType>(
   "title",
   "date",
-  "summary"
+  "summary",
+  "coverImage"
 );
 
 export type PlasmicBlogCard__OverridesType = {
   root?: Flex__<"div">;
+  img?: Flex__<typeof PlasmicImg__>;
+  h1?: Flex__<"h1">;
 };
 
 export interface DefaultBlogCardProps {
   title?: string;
   date?: any;
   summary?: string;
+  coverImage?: React.ComponentProps<typeof PlasmicImg__>["src"];
   className?: string;
 }
 
@@ -157,15 +162,47 @@ function PlasmicBlogCard__RenderFunc(props: {
         sty.root
       )}
     >
-      <div
+      <PlasmicImg__
+        data-plasmic-name={"img"}
+        data-plasmic-override={overrides.img}
+        alt={""}
+        className={classNames(sty.img)}
+        displayHeight={"auto"}
+        displayMaxHeight={"none"}
+        displayMaxWidth={"none"}
+        displayMinHeight={"0"}
+        displayMinWidth={"0"}
+        displayWidth={"100%"}
+        loading={"lazy"}
+        src={(() => {
+          try {
+            return $props.coverImage;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        width={""}
+      />
+
+      <h1
+        data-plasmic-name={"h1"}
+        data-plasmic-override={overrides.h1}
         className={classNames(
           projectcss.all,
+          projectcss.h1,
+          projectcss.h1__77YCn,
           projectcss.__wab_text,
-          sty.text__fUmTr
+          sty.h1
         )}
       >
         <React.Fragment>{$props.title}</React.Fragment>
-      </div>
+      </h1>
       <div
         className={classNames(
           projectcss.all,
@@ -189,13 +226,17 @@ function PlasmicBlogCard__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root"]
+  root: ["root", "img", "h1"],
+  img: ["img"],
+  h1: ["h1"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  img: typeof PlasmicImg__;
+  h1: "h1";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -260,6 +301,8 @@ export const PlasmicBlogCard = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    img: makeNodeComponent("img"),
+    h1: makeNodeComponent("h1"),
 
     // Metadata about props expected for PlasmicBlogCard
     internalVariantProps: PlasmicBlogCard__VariantProps,
