@@ -7,8 +7,8 @@
   justify-content: flex-start;
   align-items: center;
   background: var(--token-GVsoIpJlGJFU);
+  min-height: 100vh;
   min-width: 0;
-  min-height: 0;
 }
 .customHeader:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
@@ -21,8 +21,10 @@
   height: auto;
   max-width: 100%;
   color: var(--token-W1ScpvjFaWi_);
+  grid-row-gap: 10%;
+  grid-column-gap: 10%;
   min-width: 0;
-  padding: 8px;
+  padding: 1%;
 }
 .freeBox__bdciq {
   animation: none;
@@ -52,4 +54,11 @@
 }
 .customFooter:global(.__wab_instance) {
   max-width: 100%;
+  align-self: baseline;
+  left: 0;
+  top: auto;
+  z-index: 1;
+  position: fixed;
+  right: 0;
+  bottom: 0;
 }
