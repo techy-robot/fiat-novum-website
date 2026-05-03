@@ -1,0 +1,73 @@
+(Note: This article was written in 2020, long before I had a website to post it on!)
+
+# Intro
+
+So I know there are a lot of writings and books on electronics and stuff explaining the basic components(resistors, capacitors, etc...), but they’re all hard to understand. This post will give a basic explanation on the components and how to use them in the real world. I will also show you how to calculate what type of part you need. Do I need a 330Ω resistor or 470Ω resistor? One farad capacitor? Whats that? I will explain it all in this post and try to make as much sense as possible. It may not be the shortest explanation out there but at least I’ll try.
+
+# Resistors
+
+Okay so first thing I will bear unto you is how a resistor works. A resistor is a component that will resist current. Current(abbreviated *I*, which does not make much sense) is how much electrons are flowing through. When a good conductor is mixed with a not so good conductor it results in a resistor which limits the amount of current. Resistance is measured in ohms which has the Greek symbol omega(Ω). One ohm is the amount of resistance required to allow one Amp to flow with one volt. In other words, a battery with one volt connected to a one ohm resistor, one amp would flow. One ohm is actually a small amount. Usually its used as hundreds or even thousands, or millions!
+
+## Ohm’s law
+
+So how does resistance go together with Ohms law? Well, turns out, Ohms law describes the relationship between voltage, current, and resistance. So if you don’t know the voltage of a circuit, but you know the current & resistance, you can calculate the voltage: *V = I x R.* Or if you need to know the current: *I = V/R*. Now for calculating the resistance, you may have figured out, is: *R = V/I*. Here’s an example: Lets say you have an LED. An LED can let at max 20 mA through. And your supply battery can supply 3V. So the formula would be: 3V / 0. 02A = 120 Ω. Simple enough. Note: an LED also has a voltage limit. If you go above that with the supply voltage, you will need to subtract the LED voltage from the main voltage before putting into the formula. Warning! Do not hook an LED directly to a power supply. It will give a brilliant flash of light and then will be ruined forever.
+
+## Power rating
+
+Resistors are great for limiting current, but at some point they can only handle so much. The *power rating* of a resistor is how much a resistor can handle before it gets too hot. Most resistors can handle 1/8 Watt or ¼ of a watt before they burn up. You can usually judge the power rating by its size, but it will probably be listed in the datasheet. You can calculate the power rating you need by using Ohms law. For example, you have a 100Ω resistor and you have 3V across it. You calculate that (3V / 100Ω) equals 0.03 A or 30mA. Then you plug that into the power formula(Watts is Current x Voltage) and get 0.09 W, much less than the 1/8 Watt resistor’s limit. Remember its better to get a slightly bigger power rating than necessary.
+
+## Combining resistors
+
+You can easily combine resistors in series to make an exact amount. Lets say you have a 2000Ω resistor and a 100Ω resistor. You can chain them together to produce a 2100Ω resistor. Resistors can keep being added to the chain all the way to infinity(well, until it reaches 0% conductance). But there is another way to combine resistors. You can combine in parallel, meaning side-by-side. This math is a bit tricky so bear with me(Or just call the past method good enough). When resistors are side-by-side, current is allowed to flow through all of them.
+
+
+
+So the first method first. If the resistors are the same value you can simply take the value of one resistor and divide it by the number of resistors in parallel. Now if they’re different values the current flows unevenly and is there for is harder to calculate. It starts too look like a crazy science formula. Rtotal = 1/ (1/R1) + (1/R2) … You can keep adding resistors to the formula. This method is great for getting more precise resistor values but unfortunately its hard to back trace the formula as there may be many combinations. What I mean to say is that you have a specific resistor value and its hard to find what resistors would add up to that value. (If I had figured it out, I would have shared it here.) Here is something I noticed though. It looks as if the formula is some sort of complex averaging problem. Oh! I just found a great tool to calculate the resistors you need, parallel & series: [www.electronicscalculator.co.uk/apps/01Resistor/01W/resistors.html](http://www.electronicscalculator.co.uk/apps/01Resistor/01W/resistors.html) You can mix series and parallel resistor sub-circuits to make what is know as a resistor network.
+
+## Dividing voltage
+
+One interesting thing about resistors is not only do they limit current, they can also divide voltage. Now they can’t do both at the same time of coarse as that would be a problem. The circuit is the same as resistors in a series. You can tap into the voltage between two resistors. Now you may think that you can eliminate the second resistor since but actually it contributes to the ability to divide voltage. If you tap into the voltage at the end, it would be the same as the input! So in some respects, the circuit can limit both current and voltage. Now a voltage divider is useful but really a voltage *regulator* IC is the best way to go if you just want to step down DC voltage. Here is a formula to figure out the voltage at the center of two resistors: Vout = Vin x R2 / R1 + R2 . So lets say there is a 9V battery and you need 6 volts. Plug that in Vout = 9V x 2,000Ω / 1,000Ω + 2,000Ω = 18,000 / 3,000 and that is 6V. Perfect! Now again I would just use a voltage regulator chip instead. They’re good at balancing the voltage, they drop the voltage down and they are supper cheap. So ya, I would say there worth my 60 cents. Notice if you have 3 1,000Ω resistors that it would drop voltage down a 3rd each time?
+
+
+
+A potentiometer is a resistor that’s value can be changed by the user. I will not go into too much detail as this is not our main focus. A potentiometer has three terminals. When you turn the nob, the wiper moves closer(or farther) from the edge contacts. The rim is made of a resistant material and so when you position the nob at a certain part the resistance changes as it gets closer to the edge.
+
+# Capacitors
+
+A capacitor is a device capable of storing energy like a battery except it does not have a voltage limit. It charges until it reaches the same voltage as the supply voltage. And they usually aren’t polarized. Think of a capacitor as a sandwich that has two layers that are the same voltage when empty. When a current is applied one side becomes positive and one negative. A capacitor can be used to smooth voltage as they resist changes in the voltage. Actually a voltage regulator has a few capacitors in side of it to do just that. One way a capacitor is similar to a battery is that it will stay charged when it is disconnected from a power source. But unlike a battery the charge period and discharge period happens quite fast. A capacitor does not discharge evenly though. This leads us to our next section.
+
+## RC time constant
+
+Each time increment it charges it only picks up by 63.2% of its full charge. Its like a person eating a huge meal. He eats fast and then slows down a bit, and slows down some more. This effect introduces what we will be talking about next; RC time constant. RC stands for resistor capacitor which will make sense in a moment. A resistor is often hooked up to a capacitor to slow down its charge rate. For me, instead of writing resistor capacitor, as this is may not be proper English, I usually write it as resistor & capacitor network. But I will simple refer to it as RC. The RC time constant is the calculation of how long a capacitor would take to charge through a resistor. Technically specking, a capacitor never fully charges because each time amount it increases only 63.2% of its full capacity. But for most things you can say its fully charged at 99.3%. The time it takes to charge a capacitor is expressed in this formula: Time(seconds) = R(ohms) x C(farad). You must convert a µF to a Farad by multipling it by a million. Before I forget, let me tell you how to measure capacitance.
+
+## Measuring Capacitance
+
+Capacitance is measured using Farads. One farad equils one ampere per second of current. Now a Farad is a very big amount of capacitance so we usually use µF(micro farad) or pF(pico farad). In fact most lighting bolts are 5 farads! One pF = 1/1,000,000 µF and that also goes for a µF (µF = 1/1,000,000 farad).
+
+## Combining Capacitors
+
+As with resistors you can combine resistors. One thing about capacitors is that the formulas for combining capacitors is the exact opposite for combining resistors. If you combine capacitors in parallel, its the same formula for combining resistors in series! And the other way around. To help you remember, I will re-show the formulas. For adding capacitors in parallel, you just add the values. To combine in series, Ctotal = 1/ (1/C1) + (1/C2) …
+
+## The many uses of Capacitors
+
+There are many uses of capacitors so I’ve decided to list them all here.
+
+
+
+Storing energy: This may be the most obvoues but it is still a use. For example the old-style camera flash that your brother accidently aimed at you is a very good example of storing energy. The flash has to be very bright but a battery might not have enough charge to quickly flash a light. So a capacitor is used. Another example is when the house power goes out. Some electronic clocks have a capacitor in them so that they remain powered even when there is no power.
+
+
+
+Timing circuits: Often a capacitor is used in a timing circuit as it provides a steady charge and discharge rate. A resistor is also needed to limit the time it takes for a capacitor to charge. For example, the most popular timing chip, the 555 timer, relies on a capacitor to time the circuit.
+
+
+
+Stabalizing DC current: Often DC current needs to be regulated as it may not be a “clean” power source. As a capacitor resists changes in current, it would be perfict to add that to the power line. This is even more important in sensitive circuits. Also your circuit may take AC power in and the AC-to-DC converter does not produce a steady current(unless it is a pre-made converter.)
+
+
+
+So that is enough about capacitors, now will move onto the foundation off microchips and itegrated circuits…
+
+# Transistors
+
+(wip) The End
