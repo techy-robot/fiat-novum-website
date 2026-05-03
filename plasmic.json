@@ -29,20 +29,6 @@
       "cssFilePath": "plasmic/fiat_novum/plasmic.module.css",
       "components": [
         {
-          "id": "SRR7d6afVmf-",
-          "name": "Homepage",
-          "type": "managed",
-          "projectId": "77YCnrwhevb2XmBSeMeRKC",
-          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicHomepage.tsx",
-          "importSpec": {
-            "modulePath": "../pages/index.tsx"
-          },
-          "cssFilePath": "plasmic/fiat_novum/PlasmicHomepage.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/"
-        },
-        {
           "id": "bCv3rmLWmiVO",
           "name": "Button",
           "type": "managed",
@@ -468,6 +454,72 @@
             "modulePath": "_404.tsx"
           },
           "cssFilePath": "plasmic/fiat_novum/Plasmic_404.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "SRR7d6afVmf-",
+          "name": "Homepage",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicHomepage.tsx",
+          "importSpec": {
+            "modulePath": "plasmic/useless-generated-pages/index.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicHomepage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/"
+        },
+        {
+          "id": "i4Mn9_jiO7iS",
+          "name": "ProjectIndexLayout",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicProjectIndexLayout.tsx",
+          "importSpec": {
+            "modulePath": "ProjectIndexLayout.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicProjectIndexLayout.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "dHJ67ZIIqVWh",
+          "name": "ProjectCard",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicProjectCard.tsx",
+          "importSpec": {
+            "modulePath": "ProjectCard.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicProjectCard.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "Mj-04DmSzVe7",
+          "name": "ProjectPostLayout",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicProjectPostLayout.tsx",
+          "importSpec": {
+            "modulePath": "ProjectPostLayout.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicProjectPostLayout.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "_FSqgEpedOrt",
+          "name": "SkillCard",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicSkillCard.tsx",
+          "importSpec": {
+            "modulePath": "SkillCard.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicSkillCard.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -27098,6 +27150,56 @@
         }
       ],
       "customFunctions": []
+    },
+    {
+      "projectId": "8PtdGodUbexNYgkuyBUcWu",
+      "projectApiToken": "34o5R5KswluuZ4sD83F88oQrcLWsNNeUpCptQ8Okf4hYqgjnHnX2idGAlhtB7WWQQelNAInf5XFazR1cGw",
+      "projectName": "plasmic-embed-css",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/plasmic_embed_css/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "plasmic/plasmic_embed_css/PlasmicGlobalContextsProvider.tsx",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/plasmic_embed_css/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/plasmic_embed_css/plasmic.tsx",
+      "codeComponents": [
+        {
+          "id": "qF0uJxFztB",
+          "name": "EmbedCss",
+          "displayName": "global-embed-css",
+          "componentImportPath": "@plasmicpkgs/plasmic-embed-css"
+        }
+      ],
+      "customFunctions": []
+    },
+    {
+      "projectId": "5v1p2i7GvsoMJk4KqrA6F3",
+      "projectApiToken": "3tpUfxQvphO2cHJi05AuO753aYZNx8rBT7az6UNI7jXbmOJk2XXkoH4WvRjeGXTNuoqaBAC6S3boxyriSGZRA",
+      "projectName": "rive",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/rive/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/rive/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/rive/plasmic.tsx",
+      "codeComponents": [
+        {
+          "id": "GP6Z9NbsKBEd",
+          "name": "RivePlayer",
+          "displayName": "rive",
+          "componentImportPath": "@plasmicpkgs/rive"
+        }
+      ],
+      "customFunctions": []
     }
   ],
   "globalVariants": {
@@ -27119,7 +27221,8 @@
   "wrapPagesWithGlobalContexts": true,
   "preserveJsImportExtensions": false,
   "nextjsConfig": {
-    "pagesDir": "../pages"
+    "appDir": "../app",
+    "pagesDir": "plasmic/useless-generated-pages"
   },
   "cliVersion": "0.1.361",
   "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.361/dist/plasmic.schema.json"

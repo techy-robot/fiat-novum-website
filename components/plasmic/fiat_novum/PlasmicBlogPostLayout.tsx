@@ -71,39 +71,38 @@ import sty from "./PlasmicBlogPostLayout.module.css"; // plasmic-import: TS8wfnE
 
 createPlasmicElementProxy;
 
-export type PlasmicBlogPostLayout__VariantMembers = {
-  themeContext: "standard" | "engineering";
-};
-export type PlasmicBlogPostLayout__VariantsArgs = {
-  themeContext?: SingleChoiceArg<"standard" | "engineering">;
-};
+export type PlasmicBlogPostLayout__VariantMembers = {};
+export type PlasmicBlogPostLayout__VariantsArgs = {};
 type VariantPropType = keyof PlasmicBlogPostLayout__VariantsArgs;
-export const PlasmicBlogPostLayout__VariantProps = new Array<VariantPropType>(
-  "themeContext"
-);
+export const PlasmicBlogPostLayout__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicBlogPostLayout__ArgsType = {
   contentSlot?: React.ReactNode;
   title?: string;
+  date?: any;
+  coverImage?: React.ComponentProps<typeof PlasmicImg__>["src"];
 };
 type ArgPropType = keyof PlasmicBlogPostLayout__ArgsType;
 export const PlasmicBlogPostLayout__ArgProps = new Array<ArgPropType>(
   "contentSlot",
-  "title"
+  "title",
+  "date",
+  "coverImage"
 );
 
 export type PlasmicBlogPostLayout__OverridesType = {
   root?: Flex__<"div">;
   customHeader?: Flex__<typeof CustomHeader>;
-  freeBox?: Flex__<"div">;
-  text?: Flex__<"div">;
+  img?: Flex__<typeof PlasmicImg__>;
+  h1?: Flex__<"h1">;
   customFooter?: Flex__<typeof CustomFooter>;
 };
 
 export interface DefaultBlogPostLayoutProps {
   contentSlot?: React.ReactNode;
   title?: string;
-  themeContext?: SingleChoiceArg<"standard" | "engineering">;
+  date?: any;
+  coverImage?: React.ComponentProps<typeof PlasmicImg__>["src"];
   className?: string;
 }
 
@@ -148,26 +147,6 @@ function PlasmicBlogPostLayout__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
-    () => [
-      {
-        path: "themeContext",
-        type: "private",
-        variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          $props.themeContext
-      }
-    ],
-    [$props, $ctx, $refs]
-  );
-  const $state = useDollarState(stateSpecs, {
-    $props,
-    $ctx,
-    $queries: {},
-    $q: {},
-    $refs
-  });
-
   const styleTokensClassNames = _useStyleTokens();
 
   return (
@@ -191,27 +170,55 @@ function PlasmicBlogPostLayout__RenderFunc(props: {
         className={classNames("__wab_instance", sty.customHeader)}
       />
 
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
-      >
-        <div
-          data-plasmic-name={"text"}
-          data-plasmic-override={overrides.text}
+      <div className={classNames(projectcss.all, sty.freeBox__luIhi)}>
+        <PlasmicImg__
+          data-plasmic-name={"img"}
+          data-plasmic-override={overrides.img}
+          alt={""}
+          className={classNames(sty.img)}
+          displayHeight={"auto"}
+          displayMaxHeight={"none"}
+          displayMaxWidth={"100%"}
+          displayMinHeight={"0"}
+          displayMinWidth={"0"}
+          displayWidth={"50%"}
+          loading={"lazy"}
+          src={(() => {
+            try {
+              return $props.coverImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+        />
+
+        <h1
+          data-plasmic-name={"h1"}
+          data-plasmic-override={overrides.h1}
           className={classNames(
             projectcss.all,
+            projectcss.h1,
+            projectcss.h1__77YCn,
             projectcss.__wab_text,
-            sty.text
+            sty.h1,
+            ""
           )}
         >
           <React.Fragment>{$props.title}</React.Fragment>
-        </div>
+        </h1>
         {renderPlasmicSlot({
           defaultContents: null,
           value: args.contentSlot
         })}
       </div>
+      <div className={classNames(projectcss.all, sty.freeBox__udkDh)} />
+
       <CustomFooter
         data-plasmic-name={"customFooter"}
         data-plasmic-override={overrides.customFooter}
@@ -222,10 +229,10 @@ function PlasmicBlogPostLayout__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "customHeader", "freeBox", "text", "customFooter"],
+  root: ["root", "customHeader", "img", "h1", "customFooter"],
   customHeader: ["customHeader"],
-  freeBox: ["freeBox", "text"],
-  text: ["text"],
+  img: ["img"],
+  h1: ["h1"],
   customFooter: ["customFooter"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -234,8 +241,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   customHeader: typeof CustomHeader;
-  freeBox: "div";
-  text: "div";
+  img: typeof PlasmicImg__;
+  h1: "h1";
   customFooter: typeof CustomFooter;
 };
 
@@ -302,8 +309,8 @@ export const PlasmicBlogPostLayout = Object.assign(
   {
     // Helper components rendering sub-elements
     customHeader: makeNodeComponent("customHeader"),
-    freeBox: makeNodeComponent("freeBox"),
-    text: makeNodeComponent("text"),
+    img: makeNodeComponent("img"),
+    h1: makeNodeComponent("h1"),
     customFooter: makeNodeComponent("customFooter"),
 
     // Metadata about props expected for PlasmicBlogPostLayout

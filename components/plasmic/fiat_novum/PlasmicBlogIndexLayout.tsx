@@ -88,7 +88,6 @@ export const PlasmicBlogIndexLayout__ArgProps = new Array<ArgPropType>(
 export type PlasmicBlogIndexLayout__OverridesType = {
   root?: Flex__<"div">;
   customHeader?: Flex__<typeof CustomHeader>;
-  freeBox?: Flex__<"div">;
   customFooter?: Flex__<typeof CustomFooter>;
 };
 
@@ -159,11 +158,7 @@ function PlasmicBlogIndexLayout__RenderFunc(props: {
         className={classNames("__wab_instance", sty.customHeader)}
       />
 
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__ybBiR)}>
         {renderPlasmicSlot({
           defaultContents: (
             <React.Fragment>
@@ -177,6 +172,8 @@ function PlasmicBlogIndexLayout__RenderFunc(props: {
           value: args.postListSlot
         })}
       </div>
+      <div className={classNames(projectcss.all, sty.freeBox__dk1Uk)} />
+
       <CustomFooter
         data-plasmic-name={"customFooter"}
         data-plasmic-override={overrides.customFooter}
@@ -187,9 +184,8 @@ function PlasmicBlogIndexLayout__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "customHeader", "freeBox", "customFooter"],
+  root: ["root", "customHeader", "customFooter"],
   customHeader: ["customHeader"],
-  freeBox: ["freeBox"],
   customFooter: ["customFooter"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -198,7 +194,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   customHeader: typeof CustomHeader;
-  freeBox: "div";
   customFooter: typeof CustomFooter;
 };
 
@@ -265,7 +260,6 @@ export const PlasmicBlogIndexLayout = Object.assign(
   {
     // Helper components rendering sub-elements
     customHeader: makeNodeComponent("customHeader"),
-    freeBox: makeNodeComponent("freeBox"),
     customFooter: makeNodeComponent("customFooter"),
 
     // Metadata about props expected for PlasmicBlogIndexLayout

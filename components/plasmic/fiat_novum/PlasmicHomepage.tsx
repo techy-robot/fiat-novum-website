@@ -61,6 +61,7 @@ import {
 
 import CustomHeader from "../../CustomHeader"; // plasmic-import: lVLsklxwqNh2/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
+import CustomFooter from "../../CustomFooter"; // plasmic-import: dDACK3Z9VKbB/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -107,9 +108,15 @@ export type PlasmicHomepage__VariantsArgs = {};
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
 export const PlasmicHomepage__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicHomepage__ArgsType = {};
+export type PlasmicHomepage__ArgsType = {
+  skillTrackSlot?: React.ReactNode;
+  topThreeProjects?: React.ReactNode;
+};
 type ArgPropType = keyof PlasmicHomepage__ArgsType;
-export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
+export const PlasmicHomepage__ArgProps = new Array<ArgPropType>(
+  "skillTrackSlot",
+  "topThreeProjects"
+);
 
 export type PlasmicHomepage__OverridesType = {
   root?: Flex__<"div">;
@@ -120,7 +127,8 @@ export type PlasmicHomepage__OverridesType = {
   type3?: Flex__<"div">;
   type4?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
-  thisWebsite?: Flex__<"div">;
+  moreProjects?: Flex__<"a"> & Partial<LinkProps>;
+  customFooter?: Flex__<typeof CustomFooter>;
 };
 
 export interface DefaultHomepageProps {}
@@ -211,6 +219,26 @@ function PlasmicHomepage__RenderFunc(props: {
                 projectcss.__wab_text,
                 sty.h1__qsOcm
               )}
+              onScroll={async event => {
+                const $steps = {};
+
+                $steps["runInteractionProp"] = true
+                  ? (() => {
+                      const actionArgs = {};
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runInteractionProp"] != null &&
+                  typeof $steps["runInteractionProp"] === "object" &&
+                  typeof $steps["runInteractionProp"].then === "function"
+                ) {
+                  $steps["runInteractionProp"] =
+                    await $steps["runInteractionProp"];
+                }
+              }}
             >
               {"Magic"}
             </h1>
@@ -224,6 +252,7 @@ function PlasmicHomepage__RenderFunc(props: {
               <Reveal
                 data-plasmic-name={"reveal"}
                 data-plasmic-override={overrides.reveal}
+                cascade={true}
                 className={classNames("__wab_instance", sty.reveal)}
                 delay={100}
                 triggerOnce={true}
@@ -294,57 +323,74 @@ function PlasmicHomepage__RenderFunc(props: {
                 </div>
               </Reveal>
               <div className={classNames(projectcss.all, sty.freeBox__u1Rol)} />
-            </section>
-          </section>
-          <section className={classNames(projectcss.all, sty.section__obgUa)}>
-            <h1
-              className={classNames(
-                projectcss.all,
-                projectcss.h1,
-                projectcss.h1__77YCn,
-                projectcss.__wab_text,
-                sty.h1__cTcWp
-              )}
-              id={"about"}
-            >
-              {"About me"}
-            </h1>
-            <div className={classNames(projectcss.all, sty.freeBox__xZyei)}>
-              <div className={classNames(projectcss.all, sty.freeBox__davsf)}>
-                <div
+
+              <div className={classNames(projectcss.all, sty.freeBox__dvF3Y)}>
+                <h1
                   className={classNames(
                     projectcss.all,
+                    projectcss.h1,
+                    projectcss.h1__77YCn,
                     projectcss.__wab_text,
-                    sty.text__fcdo0
+                    sty.h1__cTcWp
                   )}
+                  id={"about"}
                 >
-                  {
-                    "I am a design engineer combining my intricate knowledge of mechanical, electrical, and computer engineering into products that focus on people and making the solution magical, not technical."
-                  }
+                  {"About Me"}
+                </h1>
+                <div className={classNames(projectcss.all, sty.freeBox__xZyei)}>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__davsf)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__fcdo0
+                      )}
+                    >
+                      {
+                        "I am a design engineer @ Colorado School of Mines, combining my intricate knowledge of mechanical, electrical, and computer engineering into products that focus on people and making the solution magical, not technical.\n\nI like creating fun project that don't always have an obvious purpose, but they entertain many and bring joy."
+                      }
+                    </div>
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__apW6B)}
+                  >
+                    <PlasmicImg__
+                      data-plasmic-name={"img"}
+                      data-plasmic-override={overrides.img}
+                      alt={""}
+                      className={classNames(sty.img)}
+                      displayHeight={"auto"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"none"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"50%"}
+                      loading={"lazy"}
+                      src={{
+                        src: "/plasmic/fiat_novum/images/userImageLinkedInJpg.jpg",
+                        fullWidth: 1307,
+                        fullHeight: 1743,
+                        aspectRatio: undefined
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__apW6B)}>
-                <PlasmicImg__
-                  data-plasmic-name={"img"}
-                  data-plasmic-override={overrides.img}
-                  alt={""}
-                  className={classNames(sty.img)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"none"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"50%"}
-                  loading={"lazy"}
-                  src={{
-                    src: "/plasmic/fiat_novum/images/userImageLinkedInJpg.jpg",
-                    fullWidth: 1307,
-                    fullHeight: 1743,
-                    aspectRatio: undefined
-                  }}
-                />
-              </div>
-            </div>
+            </section>
+          </section>
+          <section
+            className={classNames(
+              projectcss.all,
+              sty.section__c0Fox,
+              "marquee-container"
+            )}
+          >
+            {renderPlasmicSlot({
+              defaultContents: null,
+              value: args.skillTrackSlot
+            })}
           </section>
           <section className={classNames(projectcss.all, sty.section__fhLkD)}>
             <div className={classNames(projectcss.all, sty.freeBox__vzaZi)} />
@@ -361,18 +407,39 @@ function PlasmicHomepage__RenderFunc(props: {
             >
               {"Projects"}
             </h1>
-            <div
-              data-plasmic-name={"thisWebsite"}
-              data-plasmic-override={overrides.thisWebsite}
+            <div className={classNames(projectcss.all, sty.freeBox__m03S)}>
+              {renderPlasmicSlot({
+                defaultContents: (
+                  <React.Fragment>
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__is5Yx)}
+                    />
+
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__sIwed)}
+                    />
+                  </React.Fragment>
+                ),
+                value: args.topThreeProjects
+              })}
+            </div>
+            <PlasmicLink__
+              data-plasmic-name={"moreProjects"}
+              data-plasmic-override={overrides.moreProjects}
               className={classNames(
                 projectcss.all,
+                projectcss.a,
+                projectcss.a__77YCn,
                 projectcss.__wab_text,
-                sty.thisWebsite
+                sty.moreProjects
               )}
+              component={Link}
+              href={"/projects"}
+              legacyBehavior={false}
+              platform={"nextjs"}
             >
-              {"This website :). Stay tuned or check out my youtube channel"}
-            </div>
-            <div className={classNames(projectcss.all, sty.freeBox__q9MBb)} />
+              {"More Projects \u2794"}
+            </PlasmicLink__>
           </section>
           <section className={classNames(projectcss.all, sty.section__utLj)}>
             <h1
@@ -419,7 +486,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   legacyBehavior={false}
                   platform={"nextjs"}
                 >
-                  {"https://www.linkedin.com/in/asher-j-edwards1/"}
+                  {"LinkedIn: asher-j-edwards1"}
                 </PlasmicLink__>
               </div>
               <div className={classNames(projectcss.all, sty.freeBox__b2X27)}>
@@ -436,11 +503,35 @@ function PlasmicHomepage__RenderFunc(props: {
                   legacyBehavior={false}
                   platform={"nextjs"}
                 >
-                  {"https://www.youtube.com/@FiatNovumEngineering"}
+                  {"Youtube: @FiatNovumEngineering"}
+                </PlasmicLink__>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__ayIKe)}>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.a__77YCn,
+                    projectcss.__wab_text,
+                    sty.link__noZs
+                  )}
+                  component={Link}
+                  href={"https://github.com/techy-robot"}
+                  legacyBehavior={false}
+                  platform={"nextjs"}
+                >
+                  {"GitHub: techy-robot"}
                 </PlasmicLink__>
               </div>
             </div>
           </section>
+          <div className={classNames(projectcss.all, sty.freeBox___3EbkI)}>
+            <CustomFooter
+              data-plasmic-name={"customFooter"}
+              data-plasmic-override={overrides.customFooter}
+              className={classNames("__wab_instance", sty.customFooter)}
+            />
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -457,7 +548,8 @@ const PlasmicDescendants = {
     "type3",
     "type4",
     "img",
-    "thisWebsite"
+    "moreProjects",
+    "customFooter"
   ],
   customHeader: ["customHeader"],
   reveal: ["reveal", "type", "type2", "type3", "type4"],
@@ -466,7 +558,8 @@ const PlasmicDescendants = {
   type3: ["type3"],
   type4: ["type4"],
   img: ["img"],
-  thisWebsite: ["thisWebsite"]
+  moreProjects: ["moreProjects"],
+  customFooter: ["customFooter"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -480,7 +573,8 @@ type NodeDefaultElementType = {
   type3: "div";
   type4: "div";
   img: typeof PlasmicImg__;
-  thisWebsite: "div";
+  moreProjects: "a";
+  customFooter: typeof CustomFooter;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -552,7 +646,8 @@ export const PlasmicHomepage = Object.assign(
     type3: makeNodeComponent("type3"),
     type4: makeNodeComponent("type4"),
     img: makeNodeComponent("img"),
-    thisWebsite: makeNodeComponent("thisWebsite"),
+    moreProjects: makeNodeComponent("moreProjects"),
+    customFooter: makeNodeComponent("customFooter"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

@@ -74,21 +74,31 @@ export type PlasmicBlogCard__VariantsArgs = {};
 type VariantPropType = keyof PlasmicBlogCard__VariantsArgs;
 export const PlasmicBlogCard__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicBlogCard__ArgsType = { title?: string; date?: any };
+export type PlasmicBlogCard__ArgsType = {
+  title?: string;
+  date?: any;
+  summary?: string;
+  coverImage?: React.ComponentProps<typeof PlasmicImg__>["src"];
+};
 type ArgPropType = keyof PlasmicBlogCard__ArgsType;
 export const PlasmicBlogCard__ArgProps = new Array<ArgPropType>(
   "title",
-  "date"
+  "date",
+  "summary",
+  "coverImage"
 );
 
 export type PlasmicBlogCard__OverridesType = {
   root?: Flex__<"div">;
-  section?: Flex__<"section">;
+  img?: Flex__<typeof PlasmicImg__>;
+  h1?: Flex__<"h1">;
 };
 
 export interface DefaultBlogCardProps {
   title?: string;
   date?: any;
+  summary?: string;
+  coverImage?: React.ComponentProps<typeof PlasmicImg__>["src"];
   className?: string;
 }
 
@@ -114,7 +124,8 @@ function PlasmicBlogCard__RenderFunc(props: {
       Object.assign(
         {
           title: "Title",
-          date: "2026-05-01T05:39:27.675Z"
+          date: "2026-05-01T05:39:27.675Z",
+          summary: "summary"
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -151,44 +162,81 @@ function PlasmicBlogCard__RenderFunc(props: {
         sty.root
       )}
     >
-      <section
-        data-plasmic-name={"section"}
-        data-plasmic-override={overrides.section}
-        className={classNames(projectcss.all, sty.section)}
+      <PlasmicImg__
+        data-plasmic-name={"img"}
+        data-plasmic-override={overrides.img}
+        alt={""}
+        className={classNames(sty.img)}
+        displayHeight={"auto"}
+        displayMaxHeight={"none"}
+        displayMaxWidth={"none"}
+        displayMinHeight={"0"}
+        displayMinWidth={"0"}
+        displayWidth={"100%"}
+        loading={"lazy"}
+        src={(() => {
+          try {
+            return $props.coverImage;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        width={""}
+      />
+
+      <h1
+        data-plasmic-name={"h1"}
+        data-plasmic-override={overrides.h1}
+        className={classNames(
+          projectcss.all,
+          projectcss.h1,
+          projectcss.h1__77YCn,
+          projectcss.__wab_text,
+          sty.h1
+        )}
       >
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__fUmTr
-          )}
-        >
-          <React.Fragment>{$props.title}</React.Fragment>
-        </div>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__vPsA4
-          )}
-        >
-          <React.Fragment>{$props.date}</React.Fragment>
-        </div>
-      </section>
+        <React.Fragment>{$props.title}</React.Fragment>
+      </h1>
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__vPsA4
+        )}
+      >
+        <React.Fragment>{$props.date}</React.Fragment>
+      </div>
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__xKznQ
+        )}
+      >
+        <React.Fragment>{$props.summary}</React.Fragment>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "section"],
-  section: ["section"]
+  root: ["root", "img", "h1"],
+  img: ["img"],
+  h1: ["h1"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  section: "section";
+  img: typeof PlasmicImg__;
+  h1: "h1";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -253,7 +301,8 @@ export const PlasmicBlogCard = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    section: makeNodeComponent("section"),
+    img: makeNodeComponent("img"),
+    h1: makeNodeComponent("h1"),
 
     // Metadata about props expected for PlasmicBlogCard
     internalVariantProps: PlasmicBlogCard__VariantProps,

@@ -35,6 +35,43 @@ a {
   text-decoration: none;
 }
 
+.marquee-container {
+  overflow: hidden;
+  display: flex !important;
+  justify-content: flex-start !important; /* Forces items to start at the edge */
+  align-items: center;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+/* THE MOVING TRACK */
+.skill-track-animation {
+  display: flex;
+  flex-direction: row;
+  width: max-content; /* Vital: Tells the track to be its full size */
+  flex-wrap: nowrap;
+  /* Hardware acceleration to prevent jitter */
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  animation: scroll-marquee 20s linear infinite !important;
+  transition: none !important;
+}
+
+@keyframes scroll-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    /* Exact 1/3 move for triplicated list */
+    transform: translate3d(-33.333333%, 0, 0);
+  }
+}
+
+[class*="marquee-container"]:hover [class*="skill-track-animation"] {
+  animation-play-state: paused !important;
+}
+
 /* Free Sans */
 
 /* Regular */
@@ -143,14 +180,14 @@ a {
 
 /* Tars Fonts */
 @font-face {
-  font-family: 'Tars Mono Rounded';
+  font-family: 'tars-mono-rounded';
   src: url('/fonts/TarsMonoRounded.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Tars Mono Smooth';
+  font-family: 'tars-mono-smooth';
   src: url('/fonts/TarsMonoSmooth.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;

@@ -1,0 +1,70 @@
+.outerMargin {
+  display: inline-flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  justify-self: flex-start;
+  padding: 8px;
+  margin: 0px;
+}
+.link {
+  animation: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  transition-property: all;
+  transition-duration: 0.25s;
+  width: auto;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 0.25s;
+  border-radius: 10px;
+  padding: 8px;
+  border: 3px solid var(--token-W1ScpvjFaWi_);
+}
+.outerMargin:hover .link {
+  animation: none;
+  color: var(--token-W1ScpvjFaWi_);
+  box-shadow: 0px 4px 16px 0px var(--token-W1ScpvjFaWi_);
+}
+.freeBox {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  align-self: center;
+  column-gap: 0px;
+  width: auto;
+  height: auto;
+  margin: 0px;
+}
+.iconContainer {
+  animation: none;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  align-self: center;
+  flex-shrink: 0;
+  padding: 0px;
+  margin: 0px 8px 0px 16px;
+}
+.skill {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+  align-self: center;
+  white-space: pre;
+  min-width: 0;
+  padding: 0px;
+  margin: 0px;
+}

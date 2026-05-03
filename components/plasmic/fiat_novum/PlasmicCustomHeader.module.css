@@ -46,12 +46,14 @@
   background: var(--token-W1ScpvjFaWi_);
   box-shadow: none;
   transition-property: all;
-  transition-duration: 1s;
+  transition-duration: 0.3s;
   align-self: center;
   z-index: 1;
   font-size: 160%;
+  transition-timing-function: ease-in-out;
   -webkit-transition-property: all;
-  -webkit-transition-duration: 1s;
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 0.3s;
   border-radius: 10px;
   padding: 4%;
   margin: 0% 0% 0% 6%;
@@ -75,6 +77,16 @@
   max-width: 100%;
   color: var(--token-W1ScpvjFaWi_);
   font-size: 1.25em;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 0.3s;
+}
+.root .link___2WA8K:hover {
+  animation: none;
+  color: var(--token-FNlGonEzr_jx);
 }
 .link__x1Fun {
   position: relative;
@@ -83,6 +95,16 @@
   max-width: 100%;
   color: var(--token-W1ScpvjFaWi_);
   font-size: 1.25em;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 0.3s;
+}
+.root .link__x1Fun:hover {
+  animation: none;
+  color: var(--token-FNlGonEzr_jx);
 }
 .link__hsojC {
   position: relative;
@@ -91,6 +113,16 @@
   max-width: 100%;
   color: var(--token-W1ScpvjFaWi_);
   font-size: 1.25em;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 0.3s;
+}
+.root .link__hsojC:hover {
+  animation: none;
+  color: var(--token-FNlGonEzr_jx);
 }
 .link__t05Ll {
   position: relative;
@@ -99,4 +131,14 @@
   max-width: 100%;
   color: var(--token-W1ScpvjFaWi_);
   font-size: 1.25em;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 0.3s;
+}
+.root .link__t05Ll:hover {
+  animation: none;
+  color: var(--token-FNlGonEzr_jx);
 }
