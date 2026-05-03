@@ -1,0 +1,34 @@
+This is designed to be a super small, open source, adaptable control board. Each module is arranged in units of 1.5cm squared, but can handle high power micro robotic actuators, such as my [Mighty-Micro-Motors](https://github.com/techy-robot/Mighty-Micro-Motors). Ideally this board can be reused and rebuilt for all sorts of small robots.
+
+# Architecture
+
+There are currently 6 types of sub-boards:
+
+* Hubs (with a MCU on it, supports 2 or 4 drivers, 2 expansion cards, and a chain of peers)
+* PSUs (typically only one board)
+* Expansion Cards (vertical mezzanine connector boards for breaking out sensors and other interfaces)
+* Drivers (Any high power driver)
+* nanoSPI devices (Small 7-pin flex cable SPI devices, mostly for sensors)
+* Passives (spacers, end caps, etc...)
+
+The base unit for this project is 1.5 cm squared. The expansion cards and drivers should each be 1 unit, the Hubs 1x1 or 1x2, and the PSUs 3x1 units. For example, with a 12 motor board you would need 1 PSU, 3 1-by-2 hubs, and 12 drivers; the board would be 45x105mm. nanoSPI devices can be much smaller due to the 2.4mm wide flex cable, such as a 5mm diameter magnetic encoder.
+
+Unfortunately I was unable to create a 45x15mm PSU for the first version, it had to be extended up by 5mm to fit the high current circuitry.
+
+My initial idea was to have spring contacts to allow easy clip in clip out, but finding no connectors quite what I wanted and unable to manufacture my own, I went with 1.27mm pitch pin headers and micro Keystone edge board connectors for power.
+
+# Features
+
+## Required:
+
+* Super Small modules
+* Hubs with an mcu that can talk to its peers and a master
+* Motor driver boards that can handle several amps
+* Sensor ports with protocols like i2c and SPI
+* Extendable architecture
+* PSUs
+* LED status lights
+
+See the full project here!
+
+[https://github.com/techy-robot/cackle](https://github.com/techy-robot/cackle)
