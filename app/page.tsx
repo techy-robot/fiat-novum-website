@@ -30,7 +30,7 @@ export default async function Page() {
   const skills: Skill[] = skillsData.map(item => ({
     name: item.entry.name,
     iconName: item.entry.iconName,
-    link: item.slug,
+    link: `skills/${item.slug}`,
   }));
 
   return (
