@@ -458,19 +458,6 @@
           "componentType": "component"
         },
         {
-          "id": "_FSqgEpedOrt",
-          "name": "SkillCard",
-          "type": "managed",
-          "projectId": "77YCnrwhevb2XmBSeMeRKC",
-          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicSkillCard.tsx",
-          "importSpec": {
-            "modulePath": "SkillCard.tsx"
-          },
-          "cssFilePath": "plasmic/fiat_novum/PlasmicSkillCard.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "SRR7d6afVmf-",
           "name": "Homepage",
           "type": "managed",
@@ -520,6 +507,19 @@
             "modulePath": "ProjectPostLayout.tsx"
           },
           "cssFilePath": "plasmic/fiat_novum/PlasmicProjectPostLayout.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "_FSqgEpedOrt",
+          "name": "SkillCard",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicSkillCard.tsx",
+          "importSpec": {
+            "modulePath": "SkillCard.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicSkillCard.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
