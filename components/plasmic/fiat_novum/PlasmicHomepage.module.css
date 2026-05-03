@@ -322,14 +322,13 @@
     var(--token-FNlGonEzr_jx) 39%,
     #000000 100%
   );
-  flex-direction: column;
+  flex-direction: row;
   max-height: 25vh;
+  justify-content: center;
+  column-gap: 16px;
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
   padding: 8px;
-}
-.slotTargetTopThreeProjects {
-  color: var(--token-K0B3Pb04HWqq);
 }
 .section__utLj {
   display: grid;

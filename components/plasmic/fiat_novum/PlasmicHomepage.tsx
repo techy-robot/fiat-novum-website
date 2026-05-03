@@ -406,9 +406,8 @@ function PlasmicHomepage__RenderFunc(props: {
             </h1>
             <div className={classNames(projectcss.all, sty.freeBox__q9MBb)}>
               {renderPlasmicSlot({
-                defaultContents: "",
-                value: args.topThreeProjects,
-                className: classNames(sty.slotTargetTopThreeProjects)
+                defaultContents: null,
+                value: args.topThreeProjects
               })}
             </div>
           </section>

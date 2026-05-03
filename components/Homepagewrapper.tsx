@@ -63,7 +63,7 @@ export default function Homepage({ skills, featuredProjects }: HomepageClientPro
       }
 
       topThreeProjects={
-        <div className="flex">
+        <>
           {featuredProjects.map((project) => (
             <Link href={project.link} key={project.link} style={{ textDecoration: 'none' }}>
               <ProjectCard
@@ -74,7 +74,7 @@ export default function Homepage({ skills, featuredProjects }: HomepageClientPro
               />
             </Link>
           ))}
-        </div>
+        </>
       }
     />
   );
