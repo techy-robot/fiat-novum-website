@@ -170,6 +170,18 @@
   100% {
   }
 }
+@keyframes fadeNameOut0SmEMABq1Da {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0px, 0px, 0px);
+  }
+  100% {
+    opacity: 0;
+  }
+}
 
 .plasmic_default_styles {
   --mixin-sbRqF62IwZvB_font-family: "Inter", sans-serif;

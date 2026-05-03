@@ -277,7 +277,7 @@
   width: 100%;
   padding-left: 0;
   padding-right: 0;
-  background: var(--token-FNlGonEzr_jx);
+  background: none;
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
   grid-template-columns:
@@ -308,27 +308,76 @@
   max-width: 100%;
   color: var(--token-K0B3Pb04HWqq);
   text-align: center;
-  min-width: 0;
+  background: var(--token-FNlGonEzr_jx);
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
   padding: 10px;
 }
-.freeBox__q9MBb {
-  display: flex;
+.freeBox__m03S {
+  animation: none;
+  display: grid;
   position: relative;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   width: 100%;
+  height: auto;
   max-width: 100%;
+  grid-column-gap: 20px;
   background: linear-gradient(
-    180deg,
-    var(--token-FNlGonEzr_jx) 0%,
-    var(--token-FNlGonEzr_jx) 39%,
-    #000000 100%
+    0deg,
+    var(--token-GVsoIpJlGJFU) 0%,
+    var(--token-FNlGonEzr_jx) 57%,
+    var(--token-FNlGonEzr_jx) 100%
   );
-  flex-direction: row;
-  max-height: 25vh;
-  justify-content: center;
-  column-gap: 16px;
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
   padding: 8px;
+}
+.freeBox__is5Yx {
+  animation: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox__sIwed {
+  animation: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.moreProjects {
+  animation: none;
+  font-size: 32px;
+  background: var(--token-GVsoIpJlGJFU);
+  color: var(--token-K0B3Pb04HWqq);
+  font-weight: 700;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 0.3s;
+  border-radius: 5px;
+  margin: 10px;
+  border: 0px solid var(--token-W1ScpvjFaWi_);
+}
+.root .moreProjects:hover {
+  animation: none;
+  color: var(--token-K0B3Pb04HWqq);
+  background: var(--token-FNlGonEzr_jx);
 }
 .section__utLj {
   display: grid;

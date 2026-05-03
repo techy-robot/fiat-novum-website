@@ -126,6 +126,7 @@ export type PlasmicHomepage__OverridesType = {
   type3?: Flex__<"div">;
   type4?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
+  moreProjects?: Flex__<"a"> & Partial<LinkProps>;
 };
 
 export interface DefaultHomepageProps {}
@@ -404,12 +405,39 @@ function PlasmicHomepage__RenderFunc(props: {
             >
               {"Projects"}
             </h1>
-            <div className={classNames(projectcss.all, sty.freeBox__q9MBb)}>
+            <div className={classNames(projectcss.all, sty.freeBox__m03S)}>
               {renderPlasmicSlot({
-                defaultContents: null,
+                defaultContents: (
+                  <React.Fragment>
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__is5Yx)}
+                    />
+
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__sIwed)}
+                    />
+                  </React.Fragment>
+                ),
                 value: args.topThreeProjects
               })}
             </div>
+            <PlasmicLink__
+              data-plasmic-name={"moreProjects"}
+              data-plasmic-override={overrides.moreProjects}
+              className={classNames(
+                projectcss.all,
+                projectcss.a,
+                projectcss.a__77YCn,
+                projectcss.__wab_text,
+                sty.moreProjects
+              )}
+              component={Link}
+              href={"/projects"}
+              legacyBehavior={false}
+              platform={"nextjs"}
+            >
+              {"More Projects \u2794"}
+            </PlasmicLink__>
           </section>
           <section className={classNames(projectcss.all, sty.section__utLj)}>
             <h1
@@ -510,7 +538,8 @@ const PlasmicDescendants = {
     "type2",
     "type3",
     "type4",
-    "img"
+    "img",
+    "moreProjects"
   ],
   customHeader: ["customHeader"],
   reveal: ["reveal", "type", "type2", "type3", "type4"],
@@ -518,7 +547,8 @@ const PlasmicDescendants = {
   type2: ["type2"],
   type3: ["type3"],
   type4: ["type4"],
-  img: ["img"]
+  img: ["img"],
+  moreProjects: ["moreProjects"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -532,6 +562,7 @@ type NodeDefaultElementType = {
   type3: "div";
   type4: "div";
   img: typeof PlasmicImg__;
+  moreProjects: "a";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -603,6 +634,7 @@ export const PlasmicHomepage = Object.assign(
     type3: makeNodeComponent("type3"),
     type4: makeNodeComponent("type4"),
     img: makeNodeComponent("img"),
+    moreProjects: makeNodeComponent("moreProjects"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
