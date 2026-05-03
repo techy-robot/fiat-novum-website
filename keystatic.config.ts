@@ -27,9 +27,21 @@ export default config({
         title: fields.slug({ name: { label: 'Title' } }),
         // The date field is crucial for the URL scheme
         publishDate: fields.date({ label: 'Publish Date', validation: { isRequired: true } }),
-        cover: fields.image({ label: 'Cover Image' }),
+        cover: fields.image({ 
+          label: 'Cover Image',
+          directory: 'public/images/blog', 
+          publicPath: '/images/blog/' 
+        }),
         summary: fields.text({ label: 'Summary', validation: { isRequired: true } }),
-        content: fields.mdx({ label: 'Content' }),
+        content: fields.mdx({ 
+          label: 'Content',
+          options: {
+            image: {
+              directory: 'public/images/blog/mdx', 
+              publicPath: '/images/blog/mdx/' 
+            }
+          }
+        }),
       },
     }),
     projects: collection({
@@ -38,10 +50,22 @@ export default config({
       path: 'content/projects/*',
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
-        cover: fields.image({ label: 'Cover Image' }),
+        cover: fields.image({ 
+          label: 'Cover Image',
+          directory: 'public/images/projects', 
+          publicPath: '/images/projects/' 
+        }),
         coolnessFactor: fields.integer({ label: 'Coolness Factor', validation: {min: 0,max: 10}}),
         summary: fields.text({ label: 'Summary', validation: { isRequired: true } }),
-        content: fields.mdx({ label: 'Content' }),
+        content: fields.mdx({ 
+          label: 'Content',
+          options: {
+            image: {
+              directory: 'public/images/projects/mdx', 
+              publicPath: '/images/projects/mdx/' 
+            }
+          }
+        }),
       },
     }),
     skills: collection({
@@ -52,7 +76,15 @@ export default config({
         name: fields.slug({ name: { label: 'Skill Name' } }),
         proficiency: fields.integer({ label: 'Proficiency Level', validation: {min: 0,max: 10}}),
         iconName: fields.text({ label: 'Lucide Icon Name (e.g., Cpu, Zap, Code)' }),
-        content: fields.mdx({ label: 'Write up' }),
+        content: fields.mdx({ 
+          label: 'Write Up',
+          options: {
+            image: {
+              directory: 'public/images/skills/mdx', 
+              publicPath: '/images/skills/mdx/' 
+            }
+          }
+        }),
       },
     }),
   },
