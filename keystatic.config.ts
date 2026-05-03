@@ -25,7 +25,7 @@ export default config({
       path: 'content/blog/*',
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
-        // The date field is crucial for your URL scheme
+        // The date field is crucial for the URL scheme
         publishDate: fields.date({ label: 'Publish Date', validation: { isRequired: true } }),
         cover: fields.image({ label: 'Cover Image' }),
         summary: fields.text({ label: 'Summary', validation: { isRequired: true } }),
@@ -34,13 +34,10 @@ export default config({
     }),
     projects: collection({
       label: 'Projects',
-      // This determines the filename (e.g., "my-awesome-post.mdx")
       slugField: 'title', 
       path: 'content/projects/*',
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
-        // The date field is crucial for your URL scheme
-        publishDate: fields.date({ label: 'Publish Date', validation: { isRequired: true } }),
         cover: fields.image({ label: 'Cover Image' }),
         coolnessFactor: fields.integer({ label: 'Coolness Factor', validation: {min: 0,max: 10}}),
         summary: fields.text({ label: 'Summary', validation: { isRequired: true } }),

@@ -5,6 +5,8 @@ import * as Icons from '@tabler/icons-react'; // Import Tabler library
 import type { IconProps } from '@tabler/icons-react';
 import { PlasmicHomepage } from '@/components/plasmic/fiat_novum/PlasmicHomepage';
 import SkillCard from './SkillCard'; 
+import ProjectCard from './ProjectCard';
+import Link from 'next/link';
 
 interface Skill {
   name: string;
@@ -14,9 +16,16 @@ interface Skill {
 
 interface HomepageClientProps {
   skills: Skill[];
+  featuredProjects: {
+    title: string;
+    summary: string;
+    coolnessFactor: number;
+    coverImage: string | undefined;
+    link: string;
+  }[];
 }
 
-export default function Homepage({ skills }: HomepageClientProps) {
+export default function Homepage({ skills, featuredProjects }: HomepageClientProps) {
   return (
     <PlasmicHomepage 
       skillTrackSlot={
@@ -50,6 +59,21 @@ export default function Homepage({ skills }: HomepageClientProps) {
               />
             );
           })}
+        </div>
+      }
+
+      topThreeProjects={
+        <div className="flex">
+          {featuredProjects.map((project) => (
+            <Link href={project.link} key={project.link} style={{ textDecoration: 'none' }}>
+              <ProjectCard
+                title={project.title}
+                summary={project.summary}
+                coolnessFactor={project.coolnessFactor}
+                coverImage={project.coverImage}
+              />
+            </Link>
+          ))}
         </div>
       }
     />

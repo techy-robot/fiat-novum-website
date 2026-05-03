@@ -24,6 +24,15 @@
   align-items: center;
   padding: 8px;
 }
+.img {
+  object-fit: cover;
+  max-width: 100%;
+  width: 50%;
+  border-radius: 10px;
+}
+.img > picture > img {
+  object-fit: cover;
+}
 .text {
   font-size: 3rem;
 }

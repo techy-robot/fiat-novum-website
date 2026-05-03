@@ -483,6 +483,45 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/"
+        },
+        {
+          "id": "i4Mn9_jiO7iS",
+          "name": "ProjectIndexLayout",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicProjectIndexLayout.tsx",
+          "importSpec": {
+            "modulePath": "ProjectIndexLayout.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicProjectIndexLayout.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "dHJ67ZIIqVWh",
+          "name": "ProjectCard",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicProjectCard.tsx",
+          "importSpec": {
+            "modulePath": "ProjectCard.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicProjectCard.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "Mj-04DmSzVe7",
+          "name": "ProjectPostLayout",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicProjectPostLayout.tsx",
+          "importSpec": {
+            "modulePath": "ProjectPostLayout.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicProjectPostLayout.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

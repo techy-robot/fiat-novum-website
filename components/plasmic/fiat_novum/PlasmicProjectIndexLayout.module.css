@@ -3,7 +3,7 @@
   flex-direction: column;
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100%;
   justify-content: flex-start;
   align-items: center;
   background: var(--token-GVsoIpJlGJFU);
@@ -14,25 +14,51 @@
   max-width: 100%;
 }
 .freeBox {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-W1ScpvjFaWi_);
+  grid-row-gap: 10%;
+  grid-column-gap: 10%;
+  min-width: 0;
+  padding: 1%;
+}
+.freeBox__aNFnU {
+  animation: none;
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 65ch;
+  width: 100%;
   height: auto;
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
+  min-width: 0;
   padding: 8px;
 }
-.text {
-  font-size: 3rem;
+.freeBox__hEeJv {
+  animation: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
 }
 .customFooter:global(.__wab_instance) {
-  position: fixed;
+  max-width: 100%;
   align-self: baseline;
   left: 0;
   top: auto;
   z-index: 1;
+  position: fixed;
   right: 0;
   bottom: 0;
 }

@@ -227,7 +227,7 @@ function PlasmicCustomHeader__RenderFunc(props: {
               sty.link__x1Fun
             )}
             component={Link}
-            href={"/#projects"}
+            href={"/projects"}
             legacyBehavior={false}
             platform={"nextjs"}
           >

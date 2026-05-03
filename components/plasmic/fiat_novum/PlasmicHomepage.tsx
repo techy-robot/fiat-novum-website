@@ -107,10 +107,14 @@ export type PlasmicHomepage__VariantsArgs = {};
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
 export const PlasmicHomepage__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicHomepage__ArgsType = { skillTrackSlot?: React.ReactNode };
+export type PlasmicHomepage__ArgsType = {
+  skillTrackSlot?: React.ReactNode;
+  topThreeProjects?: React.ReactNode;
+};
 type ArgPropType = keyof PlasmicHomepage__ArgsType;
 export const PlasmicHomepage__ArgProps = new Array<ArgPropType>(
-  "skillTrackSlot"
+  "skillTrackSlot",
+  "topThreeProjects"
 );
 
 export type PlasmicHomepage__OverridesType = {
@@ -122,7 +126,6 @@ export type PlasmicHomepage__OverridesType = {
   type3?: Flex__<"div">;
   type4?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
-  thisWebsite?: Flex__<"div">;
 };
 
 export interface DefaultHomepageProps {}
@@ -401,18 +404,13 @@ function PlasmicHomepage__RenderFunc(props: {
             >
               {"Projects"}
             </h1>
-            <div
-              data-plasmic-name={"thisWebsite"}
-              data-plasmic-override={overrides.thisWebsite}
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.thisWebsite
-              )}
-            >
-              {"This website :). Stay tuned or check out my youtube channel"}
+            <div className={classNames(projectcss.all, sty.freeBox__q9MBb)}>
+              {renderPlasmicSlot({
+                defaultContents: "",
+                value: args.topThreeProjects,
+                className: classNames(sty.slotTargetTopThreeProjects)
+              })}
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox__q9MBb)} />
           </section>
           <section className={classNames(projectcss.all, sty.section__utLj)}>
             <h1
@@ -496,8 +494,7 @@ const PlasmicDescendants = {
     "type2",
     "type3",
     "type4",
-    "img",
-    "thisWebsite"
+    "img"
   ],
   customHeader: ["customHeader"],
   reveal: ["reveal", "type", "type2", "type3", "type4"],
@@ -505,8 +502,7 @@ const PlasmicDescendants = {
   type2: ["type2"],
   type3: ["type3"],
   type4: ["type4"],
-  img: ["img"],
-  thisWebsite: ["thisWebsite"]
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -520,7 +516,6 @@ type NodeDefaultElementType = {
   type3: "div";
   type4: "div";
   img: typeof PlasmicImg__;
-  thisWebsite: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -592,7 +587,6 @@ export const PlasmicHomepage = Object.assign(
     type3: makeNodeComponent("type3"),
     type4: makeNodeComponent("type4"),
     img: makeNodeComponent("img"),
-    thisWebsite: makeNodeComponent("thisWebsite"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
