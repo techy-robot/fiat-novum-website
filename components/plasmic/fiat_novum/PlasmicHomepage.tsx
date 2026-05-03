@@ -346,7 +346,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       )}
                     >
                       {
-                        "I am a design engineer combining my intricate knowledge of mechanical, electrical, and computer engineering into products that focus on people and making the solution magical, not technical."
+                        "I am a design engineer @ Colorado School of Mines, combining my intricate knowledge of mechanical, electrical, and computer engineering into products that focus on people and making the solution magical, not technical.\n\nI like creating fun project that don't always have an obvious purpose, but they entertain many and bring joy."
                       }
                     </div>
                   </div>
@@ -457,7 +457,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   legacyBehavior={false}
                   platform={"nextjs"}
                 >
-                  {"https://www.linkedin.com/in/asher-j-edwards1/"}
+                  {"LinkedIn: asher-j-edwards1"}
                 </PlasmicLink__>
               </div>
               <div className={classNames(projectcss.all, sty.freeBox__b2X27)}>
@@ -474,7 +474,24 @@ function PlasmicHomepage__RenderFunc(props: {
                   legacyBehavior={false}
                   platform={"nextjs"}
                 >
-                  {"https://www.youtube.com/@FiatNovumEngineering"}
+                  {"Youtube: @FiatNovumEngineering"}
+                </PlasmicLink__>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__ayIKe)}>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.a__77YCn,
+                    projectcss.__wab_text,
+                    sty.link__noZs
+                  )}
+                  component={Link}
+                  href={"https://github.com/techy-robot"}
+                  legacyBehavior={false}
+                  platform={"nextjs"}
+                >
+                  {"GitHub: techy-robot"}
                 </PlasmicLink__>
               </div>
             </div>
