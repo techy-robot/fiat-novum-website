@@ -50,9 +50,9 @@ function ProjectPostLayout_(
       root={{ ref }}
       // Inject the hashed classes into the content slot
       contentSlot={
-        <div className={`${styles.plasmic_default_styles} ${styles.root_reset} ${styles.root_reset_tags}`}>
+        <article className={`${styles.plasmic_default_styles} ${styles.root_reset} ${styles.root_reset_tags}`}>
           {contentSlot}
-        </div>
+        </article>
       }
       {...rest}
     />
