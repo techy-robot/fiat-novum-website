@@ -4,8 +4,8 @@ import React from 'react';
 import * as Icons from '@tabler/icons-react'; // Import Tabler library
 import type { IconProps } from '@tabler/icons-react';
 import { PlasmicHomepage } from '@/components/plasmic/fiat_novum/PlasmicHomepage';
-import SkillCard from './SkillCard'; 
-import ProjectCard from './ProjectCard';
+import SkillCard from './Cards/CardsSkillCard'; 
+import ProjectCard from './Cards/CardsProjectCard';
 import Link from 'next/link';
 
 interface Skill {

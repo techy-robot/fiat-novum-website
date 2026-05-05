@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '@/keystatic.config'; 
-import ProjectIndexLayout from '@/components/ProjectIndexLayout'; 
-import ProjectCard from '@/components/ProjectCard'; 
+import ProjectIndexLayout from '@/components/Pages/PagesProjectIndexLayout'; 
+import ProjectCard from '@/components/Cards/CardsProjectCard'; 
 
 export const metadata: Metadata = {
   title: "Projects | Fiat Novum",

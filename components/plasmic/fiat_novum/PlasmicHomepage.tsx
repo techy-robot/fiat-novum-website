@@ -59,9 +59,9 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import CustomHeader from "../../CustomHeader"; // plasmic-import: lVLsklxwqNh2/component
+import PageSupportCustomHeader from "../../PageSupport/PageSupportCustomHeader"; // plasmic-import: lVLsklxwqNh2/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
-import CustomFooter from "../../CustomFooter"; // plasmic-import: dDACK3Z9VKbB/component
+import PageSupportCustomFooter from "../../PageSupport/PageSupportCustomFooter"; // plasmic-import: dDACK3Z9VKbB/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -120,7 +120,7 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicHomepage__OverridesType = {
   root?: Flex__<"div">;
-  customHeader?: Flex__<typeof CustomHeader>;
+  pageSupportCustomHeader?: Flex__<typeof PageSupportCustomHeader>;
   reveal?: Flex__<typeof Reveal>;
   type?: Flex__<"div">;
   type2?: Flex__<"div">;
@@ -128,7 +128,7 @@ export type PlasmicHomepage__OverridesType = {
   type4?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
   moreProjects?: Flex__<"a"> & Partial<LinkProps>;
-  customFooter?: Flex__<typeof CustomFooter>;
+  pageSupportCustomFooter?: Flex__<typeof PageSupportCustomFooter>;
 };
 
 export interface DefaultHomepageProps {}
@@ -204,10 +204,13 @@ function PlasmicHomepage__RenderFunc(props: {
             sty.root
           )}
         >
-          <CustomHeader
-            data-plasmic-name={"customHeader"}
-            data-plasmic-override={overrides.customHeader}
-            className={classNames("__wab_instance", sty.customHeader)}
+          <PageSupportCustomHeader
+            data-plasmic-name={"pageSupportCustomHeader"}
+            data-plasmic-override={overrides.pageSupportCustomHeader}
+            className={classNames(
+              "__wab_instance",
+              sty.pageSupportCustomHeader
+            )}
           />
 
           <section className={classNames(projectcss.all, sty.section__bmLR)}>
@@ -420,6 +423,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     />
                   </React.Fragment>
                 ),
+
                 value: args.topThreeProjects
               })}
             </div>
@@ -526,10 +530,13 @@ function PlasmicHomepage__RenderFunc(props: {
             </div>
           </section>
           <div className={classNames(projectcss.all, sty.freeBox___3EbkI)}>
-            <CustomFooter
-              data-plasmic-name={"customFooter"}
-              data-plasmic-override={overrides.customFooter}
-              className={classNames("__wab_instance", sty.customFooter)}
+            <PageSupportCustomFooter
+              data-plasmic-name={"pageSupportCustomFooter"}
+              data-plasmic-override={overrides.pageSupportCustomFooter}
+              className={classNames(
+                "__wab_instance",
+                sty.pageSupportCustomFooter
+              )}
             />
           </div>
         </div>
@@ -541,7 +548,7 @@ function PlasmicHomepage__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "customHeader",
+    "pageSupportCustomHeader",
     "reveal",
     "type",
     "type2",
@@ -549,9 +556,10 @@ const PlasmicDescendants = {
     "type4",
     "img",
     "moreProjects",
-    "customFooter"
+    "pageSupportCustomFooter"
   ],
-  customHeader: ["customHeader"],
+
+  pageSupportCustomHeader: ["pageSupportCustomHeader"],
   reveal: ["reveal", "type", "type2", "type3", "type4"],
   type: ["type"],
   type2: ["type2"],
@@ -559,14 +567,14 @@ const PlasmicDescendants = {
   type4: ["type4"],
   img: ["img"],
   moreProjects: ["moreProjects"],
-  customFooter: ["customFooter"]
+  pageSupportCustomFooter: ["pageSupportCustomFooter"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  customHeader: typeof CustomHeader;
+  pageSupportCustomHeader: typeof PageSupportCustomHeader;
   reveal: typeof Reveal;
   type: "div";
   type2: "div";
@@ -574,7 +582,7 @@ type NodeDefaultElementType = {
   type4: "div";
   img: typeof PlasmicImg__;
   moreProjects: "a";
-  customFooter: typeof CustomFooter;
+  pageSupportCustomFooter: typeof PageSupportCustomFooter;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -582,6 +590,7 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicHomepage__OverridesType,
   DescendantsType<T>
 >;
+
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {
@@ -639,7 +648,7 @@ export const PlasmicHomepage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    customHeader: makeNodeComponent("customHeader"),
+    pageSupportCustomHeader: makeNodeComponent("pageSupportCustomHeader"),
     reveal: makeNodeComponent("reveal"),
     type: makeNodeComponent("type"),
     type2: makeNodeComponent("type2"),
@@ -647,7 +656,7 @@ export const PlasmicHomepage = Object.assign(
     type4: makeNodeComponent("type4"),
     img: makeNodeComponent("img"),
     moreProjects: makeNodeComponent("moreProjects"),
-    customFooter: makeNodeComponent("customFooter"),
+    pageSupportCustomFooter: makeNodeComponent("pageSupportCustomFooter"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
