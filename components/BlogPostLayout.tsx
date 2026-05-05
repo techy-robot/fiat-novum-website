@@ -5,7 +5,9 @@ import {
   DefaultBlogPostLayoutProps
 } from "./plasmic/fiat_novum/PlasmicBlogPostLayout";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
-import '@/components/plasmic/fiat_novum/plasmic.module.css';
+
+// Import styles as an object to handle hashing
+import styles from '@/components/plasmic/fiat_novum/plasmic.module.css';
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -32,12 +34,20 @@ function BlogPostLayout_(
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
-  //
+
+  const { contentSlot, ...rest } = props;
 
   return (
-    <div className="root_reset root_reset_tags">
-      <PlasmicBlogPostLayout root={{ ref }} {...props}/>
-    </div>
+    <PlasmicBlogPostLayout
+      root={{ ref }}
+      // Inject the hashed classes into the content slot
+      contentSlot={
+        <div className={`${styles.plasmic_default_styles} ${styles.root_reset} ${styles.root_reset_tags}`}>
+          {contentSlot}
+        </div>
+      }
+      {...rest}
+    />
   );
 }
 
