@@ -198,7 +198,7 @@
   --mixin-sbRqF62IwZvB_text-overflow: clip;
   --mixin-sbRqF62IwZvB_color: var(--token-W1ScpvjFaWi_);
   --mixin-QHSq_sSXJAIW_font-weight: 700;
-  --mixin-QHSq_sSXJAIW_font-size: 60px;
+  --mixin-QHSq_sSXJAIW_font-size: 3rem;
   --mixin-QHSq_sSXJAIW_line-height: 1;
   --mixin-QHSq_sSXJAIW_font-family: "tars-mono-smooth";
   --mixin-QHSq_sSXJAIW_transform: none;
@@ -210,7 +210,7 @@
   --mixin-QHSq_sSXJAIW_padding-bottom: 16px;
   --mixin-QHSq_sSXJAIW_padding-left: 16px;
   --mixin-QHSq_sSXJAIW_white-space: pre-wrap;
-  --mixin--UtuCdIzKUMx_font-size: 48px;
+  --mixin--UtuCdIzKUMx_font-size: 2.5rem;
   --mixin--UtuCdIzKUMx_font-weight: 700;
   --mixin--UtuCdIzKUMx_letter-spacing: -0.5px;
   --mixin--UtuCdIzKUMx_line-height: 1.1;
@@ -221,12 +221,12 @@
   --mixin-dClRLYoSitxl_transition-duration: 0.3s;
   --mixin-dClRLYoSitxl_transition-timing-function: ease-in-out;
   --mixin-dClRLYoSitxl_white-space: pre-wrap;
-  --mixin-Z2KRKrjajKCm_font-size: 32px;
+  --mixin-Z2KRKrjajKCm_font-size: 2rem;
   --mixin-Z2KRKrjajKCm_font-weight: 600;
   --mixin-Z2KRKrjajKCm_line-height: 1.2;
   --mixin-Z2KRKrjajKCm_font-family: "Space Mono";
   --mixin-Z2KRKrjajKCm_white-space: pre-wrap;
-  --mixin-61S0kNin2t4e_font-size: 24px;
+  --mixin-61S0kNin2t4e_font-size: 1.5rem;
   --mixin-61S0kNin2t4e_font-weight: 600;
   --mixin-61S0kNin2t4e_line-height: 1.3;
   --mixin-61S0kNin2t4e_font-family: "Space Mono";
@@ -302,12 +302,12 @@
   --mixin-WzgNj99kwXU3_position: relative;
   --mixin-WzgNj99kwXU3_list-style-type: decimal;
   --mixin-WzgNj99kwXU3_white-space: pre-wrap;
-  --mixin--XdPan-mkv1e_font-size: 20px;
+  --mixin--XdPan-mkv1e_font-size: 1.25rem;
   --mixin--XdPan-mkv1e_font-weight: 600;
   --mixin--XdPan-mkv1e_line-height: 1.5;
   --mixin--XdPan-mkv1e_font-family: "Space Mono";
   --mixin--XdPan-mkv1e_white-space: pre-wrap;
-  --mixin-wm97ukfKxvLg_font-size: 16px;
+  --mixin-wm97ukfKxvLg_font-size: 1rem;
   --mixin-wm97ukfKxvLg_font-weight: 600;
   --mixin-wm97ukfKxvLg_line-height: 1.5;
   --mixin-wm97ukfKxvLg_font-family: "Space Mono";
