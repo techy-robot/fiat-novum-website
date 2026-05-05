@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Handlee%3Aital%2Cwght%400%2C400&family=Space+Mono%3Aital%2Cwght%400%2C400%3B0%2C700%3B1%2C400%3B1%2C700&family=Inconsolata%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Inter%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B1%2C400%3B1%2C500%3B1%2C600%3B1%2C700&family=Space+Mono%3Aital%2Cwght%400%2C400%3B0%2C700%3B1%2C400%3B1%2C700&family=Inconsolata%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Handlee%3Aital%2Cwght%400%2C400&family=Inter%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700&display=swap");
 
 .plasmic_tokens {
   --token-PitMWV3NeiID: var(--token-Wx0_ffY-n8Bb);
@@ -184,7 +184,7 @@
 }
 
 .plasmic_default_styles {
-  --mixin-sbRqF62IwZvB_font-family: "Handlee";
+  --mixin-sbRqF62IwZvB_font-family: "Nunito", sans-serif;
   --mixin-sbRqF62IwZvB_font-size: 16px;
   --mixin-sbRqF62IwZvB_font-weight: 400;
   --mixin-sbRqF62IwZvB_font-style: normal;
@@ -259,6 +259,7 @@
   --mixin-DGH7AoJj7cXB_border-left-width: 3px;
   --mixin-DGH7AoJj7cXB_color: #888888;
   --mixin-DGH7AoJj7cXB_padding-left: 10px;
+  --mixin-DGH7AoJj7cXB_font-family: "Handlee";
   --mixin-DGH7AoJj7cXB_white-space: pre-wrap;
   --mixin-D_3R4MNoM9lz_background: linear-gradient(#f8f8f8, #f8f8f8);
   --mixin-D_3R4MNoM9lz_border-bottom-color: #dddddd;
@@ -335,6 +336,7 @@
   --mixin-7zwKzo0ALbos_white-space: pre-wrap;
   --mixin-yYQyD7KKdBs2_white-space: pre-wrap;
   --mixin-PnxogivZnC3u_white-space: pre-wrap;
+  --mixin-daYpu-Thv4Ul_white-space: pre-wrap;
 }
 
 .plasmic_mixins {
@@ -822,6 +824,7 @@ blockquote:where(.root_reset.blockquote__77YCn),
 blockquote:where(.root_reset_tags) {
   color: var(--mixin-DGH7AoJj7cXB_color);
   padding-left: var(--mixin-DGH7AoJj7cXB_padding-left);
+  font-family: var(--mixin-DGH7AoJj7cXB_font-family);
   border-left: var(--mixin-DGH7AoJj7cXB_border-left-width)
     var(--mixin-DGH7AoJj7cXB_border-left-style)
     var(--mixin-DGH7AoJj7cXB_border-left-color);
@@ -1030,4 +1033,11 @@ strong:where(.root_reset.strong__77YCn),
 :where(.root_reset .__wab_expr_html_text) strong,
 :where(.root_reset_tags) strong,
 strong:where(.root_reset_tags) {
+}
+
+:where(.root_reset) i:where(.i__77YCn),
+i:where(.root_reset.i__77YCn),
+:where(.root_reset .__wab_expr_html_text) i,
+:where(.root_reset_tags) i,
+i:where(.root_reset_tags) {
 }

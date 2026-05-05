@@ -200,6 +200,7 @@ function PlasmicCustomHeader__RenderFunc(props: {
           role={"img"}
         />
       }
+      forceOpenMenu={false}
       itemsGap={8}
       menuItems={
         <React.Fragment>
