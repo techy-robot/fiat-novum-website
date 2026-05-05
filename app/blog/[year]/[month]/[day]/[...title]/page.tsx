@@ -3,7 +3,7 @@ import { notFound, redirect } from 'next/navigation';
 import { createReader } from '@keystatic/core/reader';
 // Update this path to match your project root
 import keystaticConfig from '@/keystatic.config'; 
-import BlogPostLayout from '@/components/BlogPostLayout'; // Import your Client Wrapper
+import BlogPostLayout from '@/components/Pages/PagesBlogPostLayout'; // Import your Client Wrapper
 // Use the React Server Component version of MDXRemote
 import { MDXRemote } from 'next-mdx-remote/rsc'; 
 

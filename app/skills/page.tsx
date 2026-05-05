@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { createReader } from '@keystatic/core/reader';
 // Update this path to match your project root
 import keystaticConfig from '@/keystatic.config'; 
-import BlogIndexLayout from '@/components/BlogIndexLayout'; // Import your Client Wrapper
-import BlogCard from '@/components/BlogCard'; // Import your Client Wrapper
+import BlogIndexLayout from '@/components/Pages/PagesBlogIndexLayout'; // Import your Client Wrapper
+import BlogCard from '@/components/Cards/CardsBlogCard'; // Import your Client Wrapper
 
 export const metadata: Metadata = {
   title: "Skills | Fiat Novum",

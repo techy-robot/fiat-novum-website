@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '@/keystatic.config'; 
-import ProjectPostLayout from '@/components/ProjectPostLayout'; // Client Wrapper
+import ProjectPostLayout from '@/components/Pages/PagesProjectPostLayout'; // Client Wrapper
 import { MDXRemote } from 'next-mdx-remote/rsc'; 
 
 const reader = createReader(process.cwd(), keystaticConfig);

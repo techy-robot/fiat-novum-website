@@ -20,7 +20,7 @@
 .root > * {
   grid-column: 4;
 }
-.customHeader:global(.__wab_instance):global(.__wab_instance) {
+.pageSupportCustomHeader:global(.__wab_instance):global(.__wab_instance) {
   margin-bottom: 20px;
 }
 .section__bmLR {
@@ -113,6 +113,7 @@
   object-fit: cover;
   color: var(--token-GVsoIpJlGJFU);
   font-size: 48px;
+  font-family: "Handlee";
 }
 .type {
   width: 100%;
@@ -528,7 +529,7 @@
   min-width: 0;
   padding: 8px;
 }
-.customFooter:global(.__wab_instance) {
+.pageSupportCustomFooter:global(.__wab_instance) {
   max-width: 100%;
   position: absolute;
   left: 0px;
