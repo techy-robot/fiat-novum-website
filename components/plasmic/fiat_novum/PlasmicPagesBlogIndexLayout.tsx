@@ -160,16 +160,7 @@ function PlasmicPagesBlogIndexLayout__RenderFunc(props: {
 
       <div className={classNames(projectcss.all, sty.freeBox__ybBiR)}>
         {renderPlasmicSlot({
-          defaultContents: (
-            <React.Fragment>
-              <div className={classNames(projectcss.all, sty.freeBox__bdciq)} />
-
-              <div
-                className={classNames(projectcss.all, sty.freeBox___7A0Ek)}
-              />
-            </React.Fragment>
-          ),
-
+          defaultContents: null,
           value: args.postListSlot
         })}
       </div>
@@ -203,7 +194,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicPagesBlogIndexLayout__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

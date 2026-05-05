@@ -160,14 +160,7 @@ function PlasmicPagesProjectIndexLayout__RenderFunc(props: {
 
       <div className={classNames(projectcss.all, sty.freeBox__heaIv)}>
         {renderPlasmicSlot({
-          defaultContents: (
-            <React.Fragment>
-              <div className={classNames(projectcss.all, sty.freeBox__aNFnU)} />
-
-              <div className={classNames(projectcss.all, sty.freeBox__hEeJv)} />
-            </React.Fragment>
-          ),
-
+          defaultContents: null,
           value: args.projectListSlot
         })}
       </div>
@@ -201,7 +194,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicPagesProjectIndexLayout__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

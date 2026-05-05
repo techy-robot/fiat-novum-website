@@ -126,6 +126,7 @@ export type PlasmicHomepage__OverridesType = {
   type2?: Flex__<"div">;
   type3?: Flex__<"div">;
   type4?: Flex__<"div">;
+  columns?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
   moreProjects?: Flex__<"a"> & Partial<LinkProps>;
   pageSupportCustomFooter?: Flex__<typeof PageSupportCustomFooter>;
@@ -340,9 +341,13 @@ function PlasmicHomepage__RenderFunc(props: {
                 >
                   {"About Me"}
                 </h1>
-                <div className={classNames(projectcss.all, sty.freeBox__xZyei)}>
+                <div
+                  data-plasmic-name={"columns"}
+                  data-plasmic-override={overrides.columns}
+                  className={classNames(projectcss.all, sty.columns)}
+                >
                   <div
-                    className={classNames(projectcss.all, sty.freeBox__davsf)}
+                    className={classNames(projectcss.all, sty.column__jphpD)}
                   >
                     <div
                       className={classNames(
@@ -357,7 +362,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     </div>
                   </div>
                   <div
-                    className={classNames(projectcss.all, sty.freeBox__apW6B)}
+                    className={classNames(projectcss.all, sty.column__bicYz)}
                   >
                     <PlasmicImg__
                       data-plasmic-name={"img"}
@@ -410,40 +415,31 @@ function PlasmicHomepage__RenderFunc(props: {
             >
               {"Projects"}
             </h1>
-            <div className={classNames(projectcss.all, sty.freeBox__m03S)}>
-              {renderPlasmicSlot({
-                defaultContents: (
-                  <React.Fragment>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__is5Yx)}
-                    />
-
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__sIwed)}
-                    />
-                  </React.Fragment>
-                ),
-
-                value: args.topThreeProjects
-              })}
+            <div className={classNames(projectcss.all, sty.freeBox__mA0Bv)}>
+              <PlasmicLink__
+                data-plasmic-name={"moreProjects"}
+                data-plasmic-override={overrides.moreProjects}
+                className={classNames(
+                  projectcss.all,
+                  projectcss.a,
+                  projectcss.a__77YCn,
+                  projectcss.__wab_text,
+                  sty.moreProjects
+                )}
+                component={Link}
+                href={"/projects"}
+                legacyBehavior={false}
+                platform={"nextjs"}
+              >
+                {"More Projects \u2794"}
+              </PlasmicLink__>
+              <div className={classNames(projectcss.all, sty.freeBox__lP80H)}>
+                {renderPlasmicSlot({
+                  defaultContents: null,
+                  value: args.topThreeProjects
+                })}
+              </div>
             </div>
-            <PlasmicLink__
-              data-plasmic-name={"moreProjects"}
-              data-plasmic-override={overrides.moreProjects}
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                projectcss.a__77YCn,
-                projectcss.__wab_text,
-                sty.moreProjects
-              )}
-              component={Link}
-              href={"/projects"}
-              legacyBehavior={false}
-              platform={"nextjs"}
-            >
-              {"More Projects \u2794"}
-            </PlasmicLink__>
           </section>
           <section className={classNames(projectcss.all, sty.section__utLj)}>
             <h1
@@ -554,17 +550,18 @@ const PlasmicDescendants = {
     "type2",
     "type3",
     "type4",
+    "columns",
     "img",
     "moreProjects",
     "pageSupportCustomFooter"
   ],
-
   pageSupportCustomHeader: ["pageSupportCustomHeader"],
   reveal: ["reveal", "type", "type2", "type3", "type4"],
   type: ["type"],
   type2: ["type2"],
   type3: ["type3"],
   type4: ["type4"],
+  columns: ["columns", "img"],
   img: ["img"],
   moreProjects: ["moreProjects"],
   pageSupportCustomFooter: ["pageSupportCustomFooter"]
@@ -580,6 +577,7 @@ type NodeDefaultElementType = {
   type2: "div";
   type3: "div";
   type4: "div";
+  columns: "div";
   img: typeof PlasmicImg__;
   moreProjects: "a";
   pageSupportCustomFooter: typeof PageSupportCustomFooter;
@@ -590,7 +588,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicHomepage__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {
@@ -654,6 +651,7 @@ export const PlasmicHomepage = Object.assign(
     type2: makeNodeComponent("type2"),
     type3: makeNodeComponent("type3"),
     type4: makeNodeComponent("type4"),
+    columns: makeNodeComponent("columns"),
     img: makeNodeComponent("img"),
     moreProjects: makeNodeComponent("moreProjects"),
     pageSupportCustomFooter: makeNodeComponent("pageSupportCustomFooter"),
