@@ -220,6 +220,7 @@
   --mixin-dClRLYoSitxl_transition-property: all;
   --mixin-dClRLYoSitxl_transition-duration: 0.3s;
   --mixin-dClRLYoSitxl_transition-timing-function: ease-in-out;
+  --mixin-dClRLYoSitxl_text-decoration-line: underline;
   --mixin-dClRLYoSitxl_white-space: pre-wrap;
   --mixin-Z2KRKrjajKCm_font-size: 2rem;
   --mixin-Z2KRKrjajKCm_font-weight: 600;
@@ -764,6 +765,7 @@ a:where(.root_reset_tags) {
   transition-timing-function: var(
     --mixin-dClRLYoSitxl_transition-timing-function
   );
+  text-decoration-line: var(--mixin-dClRLYoSitxl_text-decoration-line);
 }
 
 :where(.root_reset) h3:where(.h3__77YCn),
