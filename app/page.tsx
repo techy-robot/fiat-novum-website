@@ -1,7 +1,6 @@
 // app/page.tsx
 import { Metadata } from "next";
 import Homepage from "@/components/Homepagewrapper";
-import PlasmicClientProvider from "./PlasmicClientProvider";
 import { Analytics } from '@vercel/analytics/next';
 import '../styles/globals.css';
 import { createReader } from '@keystatic/core/reader';
@@ -59,10 +58,10 @@ export default async function Page() {
     .slice(0, 3); 
 
   return (
-    <PlasmicClientProvider>
+    <>
       {/* Pass the new featuredProjects array to your wrapper */}
       <Homepage skills={skills} featuredProjects={featuredProjects} />
       <Analytics />
-    </PlasmicClientProvider>
+    </>
   );
 }
