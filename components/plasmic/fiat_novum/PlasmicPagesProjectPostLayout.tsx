@@ -60,7 +60,6 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import PageSupportCustomHeader from "../../PageSupport/PageSupportCustomHeader"; // plasmic-import: lVLsklxwqNh2/component
-import PageSupportCustomFooter from "../../PageSupport/PageSupportCustomFooter"; // plasmic-import: dDACK3Z9VKbB/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -94,9 +93,9 @@ export const PlasmicPagesProjectPostLayout__ArgProps = new Array<ArgPropType>(
 export type PlasmicPagesProjectPostLayout__OverridesType = {
   root?: Flex__<"div">;
   pageSupportCustomHeader?: Flex__<typeof PageSupportCustomHeader>;
+  freeBox?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
   h1?: Flex__<"h1">;
-  pageSupportCustomFooter?: Flex__<typeof PageSupportCustomFooter>;
 };
 
 export interface DefaultPagesProjectPostLayoutProps {
@@ -171,7 +170,11 @@ function PlasmicPagesProjectPostLayout__RenderFunc(props: {
         className={classNames("__wab_instance", sty.pageSupportCustomHeader)}
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__chXqb)}>
+      <div
+        data-plasmic-name={"freeBox"}
+        data-plasmic-override={overrides.freeBox}
+        className={classNames(projectcss.all, sty.freeBox)}
+      >
         <PlasmicImg__
           data-plasmic-name={"img"}
           data-plasmic-override={overrides.img}
@@ -217,30 +220,16 @@ function PlasmicPagesProjectPostLayout__RenderFunc(props: {
           value: args.contentSlot
         })}
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__kf4Vk)} />
-
-      <PageSupportCustomFooter
-        data-plasmic-name={"pageSupportCustomFooter"}
-        data-plasmic-override={overrides.pageSupportCustomFooter}
-        className={classNames("__wab_instance", sty.pageSupportCustomFooter)}
-      />
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "pageSupportCustomHeader",
-    "img",
-    "h1",
-    "pageSupportCustomFooter"
-  ],
-
+  root: ["root", "pageSupportCustomHeader", "freeBox", "img", "h1"],
   pageSupportCustomHeader: ["pageSupportCustomHeader"],
+  freeBox: ["freeBox", "img", "h1"],
   img: ["img"],
-  h1: ["h1"],
-  pageSupportCustomFooter: ["pageSupportCustomFooter"]
+  h1: ["h1"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -248,9 +237,9 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   pageSupportCustomHeader: typeof PageSupportCustomHeader;
+  freeBox: "div";
   img: typeof PlasmicImg__;
   h1: "h1";
-  pageSupportCustomFooter: typeof PageSupportCustomFooter;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -258,7 +247,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicPagesProjectPostLayout__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {
@@ -317,9 +305,9 @@ export const PlasmicPagesProjectPostLayout = Object.assign(
   {
     // Helper components rendering sub-elements
     pageSupportCustomHeader: makeNodeComponent("pageSupportCustomHeader"),
+    freeBox: makeNodeComponent("freeBox"),
     img: makeNodeComponent("img"),
     h1: makeNodeComponent("h1"),
-    pageSupportCustomFooter: makeNodeComponent("pageSupportCustomFooter"),
 
     // Metadata about props expected for PlasmicPagesProjectPostLayout
     internalVariantProps: PlasmicPagesProjectPostLayout__VariantProps,

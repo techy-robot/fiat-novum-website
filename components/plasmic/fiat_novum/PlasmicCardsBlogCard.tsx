@@ -218,6 +218,12 @@ function PlasmicCardsBlogCard__RenderFunc(props: {
           projectcss.__wab_text,
           sty.text__xKznQ
         )}
+        style={{
+          display: "-webkit-box",
+          "-webkit-box-orient": "vertical",
+          "-webkit-line-clamp": "3",
+          overflow: "hidden"
+        }}
       >
         <React.Fragment>{$props.summary}</React.Fragment>
       </div>
@@ -244,7 +250,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicCardsBlogCard__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

@@ -72,6 +72,18 @@ a {
   animation-play-state: paused !important;
 }
 
+/* Forces the card to stretch to the grid row, but NEVER shrink smaller than its text */
+.plasmic-card-fix {
+  height: 100% !important;
+  min-height: max-content !important;
+}
+
+/* Forces Plasmic's grid to automatically size its rows based on the tallest card */
+[class*="plasmic_default__all"][style*="display: grid"],
+.plasmic-grid-container {
+  grid-auto-rows: max-content !important;
+}
+
 /* Tars Fonts */
 @font-face {
   font-family: 'tars-mono-rounded';
