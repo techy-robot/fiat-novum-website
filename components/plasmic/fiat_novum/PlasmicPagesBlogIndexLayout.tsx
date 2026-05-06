@@ -60,7 +60,6 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import PageSupportCustomHeader from "../../PageSupport/PageSupportCustomHeader"; // plasmic-import: lVLsklxwqNh2/component
-import PageSupportCustomFooter from "../../PageSupport/PageSupportCustomFooter"; // plasmic-import: dDACK3Z9VKbB/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -88,7 +87,7 @@ export const PlasmicPagesBlogIndexLayout__ArgProps = new Array<ArgPropType>(
 export type PlasmicPagesBlogIndexLayout__OverridesType = {
   root?: Flex__<"div">;
   pageSupportCustomHeader?: Flex__<typeof PageSupportCustomHeader>;
-  pageSupportCustomFooter?: Flex__<typeof PageSupportCustomFooter>;
+  freeBox?: Flex__<"div">;
 };
 
 export interface DefaultPagesBlogIndexLayoutProps {
@@ -158,27 +157,24 @@ function PlasmicPagesBlogIndexLayout__RenderFunc(props: {
         className={classNames("__wab_instance", sty.pageSupportCustomHeader)}
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__ybBiR)}>
+      <div
+        data-plasmic-name={"freeBox"}
+        data-plasmic-override={overrides.freeBox}
+        className={classNames(projectcss.all, sty.freeBox)}
+      >
         {renderPlasmicSlot({
           defaultContents: null,
           value: args.postListSlot
         })}
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__dk1Uk)} />
-
-      <PageSupportCustomFooter
-        data-plasmic-name={"pageSupportCustomFooter"}
-        data-plasmic-override={overrides.pageSupportCustomFooter}
-        className={classNames("__wab_instance", sty.pageSupportCustomFooter)}
-      />
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "pageSupportCustomHeader", "pageSupportCustomFooter"],
+  root: ["root", "pageSupportCustomHeader", "freeBox"],
   pageSupportCustomHeader: ["pageSupportCustomHeader"],
-  pageSupportCustomFooter: ["pageSupportCustomFooter"]
+  freeBox: ["freeBox"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -186,7 +182,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   pageSupportCustomHeader: typeof PageSupportCustomHeader;
-  pageSupportCustomFooter: typeof PageSupportCustomFooter;
+  freeBox: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -252,7 +248,7 @@ export const PlasmicPagesBlogIndexLayout = Object.assign(
   {
     // Helper components rendering sub-elements
     pageSupportCustomHeader: makeNodeComponent("pageSupportCustomHeader"),
-    pageSupportCustomFooter: makeNodeComponent("pageSupportCustomFooter"),
+    freeBox: makeNodeComponent("freeBox"),
 
     // Metadata about props expected for PlasmicPagesBlogIndexLayout
     internalVariantProps: PlasmicPagesBlogIndexLayout__VariantProps,

@@ -40,13 +40,28 @@ export default async function BlogIndexPage() {
   return (
     <BlogIndexLayout 
       postListSlot={
-        <>
+        <div style={{ 
+          display: 'grid', 
+          /* This auto-fill logic automatically handles mobile/desktop breakpoints! */
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
+          gap: '2rem', 
+          width: '100%',
+          alignItems: 'stretch' /* Forces all cards in a row to be the same height */
+        }}>
           {posts.map((post) => (
-            <Link href={post.url} key={post.url} style={{ textDecoration: 'none' }}>
+            <Link 
+              href={post.url} 
+              key={post.url} 
+              style={{ 
+                textDecoration: 'none', 
+                display: 'flex', 
+                flexDirection: 'column' 
+              }}
+            >
               <BlogCard title={post.title} date={post.date} summary={post.summary} coverImage={post.cover} />
             </Link>
           ))}
-        </>
+        </div>
       }
     />
   );
