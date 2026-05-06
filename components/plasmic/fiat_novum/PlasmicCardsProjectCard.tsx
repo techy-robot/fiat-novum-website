@@ -209,6 +209,12 @@ function PlasmicCardsProjectCard__RenderFunc(props: {
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
         className={classNames(projectcss.all, projectcss.__wab_text, sty.text)}
+        style={{
+          display: "-webkit-box",
+          "-webkit-box-orient": "vertical",
+          "-webkit-line-clamp": "3",
+          overflow: "hidden"
+        }}
       >
         <React.Fragment>{$props.summary}</React.Fragment>
       </div>

@@ -49,5 +49,6 @@
   height: auto;
   max-width: 100%;
   text-align: center;
+  max-height: 4.5rem;
   min-width: 0;
 }
