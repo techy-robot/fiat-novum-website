@@ -7,6 +7,7 @@
   justify-content: flex-start;
   align-items: center;
   background: var(--token-GVsoIpJlGJFU);
+  min-height: 95vh;
   min-width: 0;
 }
 .pageSupportCustomHeader:global(.__wab_instance):global(.__wab_instance) {
@@ -18,10 +19,11 @@
   flex-direction: column;
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
   min-width: 0;
+  min-height: 0;
   padding: 2rem;
 }
