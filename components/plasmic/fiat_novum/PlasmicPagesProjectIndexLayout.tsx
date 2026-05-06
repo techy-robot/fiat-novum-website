@@ -60,7 +60,6 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import PageSupportCustomHeader from "../../PageSupport/PageSupportCustomHeader"; // plasmic-import: lVLsklxwqNh2/component
-import PageSupportCustomFooter from "../../PageSupport/PageSupportCustomFooter"; // plasmic-import: dDACK3Z9VKbB/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -88,7 +87,7 @@ export const PlasmicPagesProjectIndexLayout__ArgProps = new Array<ArgPropType>(
 export type PlasmicPagesProjectIndexLayout__OverridesType = {
   root?: Flex__<"div">;
   pageSupportCustomHeader?: Flex__<typeof PageSupportCustomHeader>;
-  pageSupportCustomFooter?: Flex__<typeof PageSupportCustomFooter>;
+  freeBox?: Flex__<"div">;
 };
 
 export interface DefaultPagesProjectIndexLayoutProps {
@@ -158,34 +157,24 @@ function PlasmicPagesProjectIndexLayout__RenderFunc(props: {
         className={classNames("__wab_instance", sty.pageSupportCustomHeader)}
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__heaIv)}>
+      <div
+        data-plasmic-name={"freeBox"}
+        data-plasmic-override={overrides.freeBox}
+        className={classNames(projectcss.all, sty.freeBox)}
+      >
         {renderPlasmicSlot({
-          defaultContents: (
-            <React.Fragment>
-              <div className={classNames(projectcss.all, sty.freeBox__aNFnU)} />
-
-              <div className={classNames(projectcss.all, sty.freeBox__hEeJv)} />
-            </React.Fragment>
-          ),
-
+          defaultContents: null,
           value: args.projectListSlot
         })}
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__vLt1W)} />
-
-      <PageSupportCustomFooter
-        data-plasmic-name={"pageSupportCustomFooter"}
-        data-plasmic-override={overrides.pageSupportCustomFooter}
-        className={classNames("__wab_instance", sty.pageSupportCustomFooter)}
-      />
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "pageSupportCustomHeader", "pageSupportCustomFooter"],
+  root: ["root", "pageSupportCustomHeader", "freeBox"],
   pageSupportCustomHeader: ["pageSupportCustomHeader"],
-  pageSupportCustomFooter: ["pageSupportCustomFooter"]
+  freeBox: ["freeBox"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -193,7 +182,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   pageSupportCustomHeader: typeof PageSupportCustomHeader;
-  pageSupportCustomFooter: typeof PageSupportCustomFooter;
+  freeBox: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -201,7 +190,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicPagesProjectIndexLayout__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {
@@ -260,7 +248,7 @@ export const PlasmicPagesProjectIndexLayout = Object.assign(
   {
     // Helper components rendering sub-elements
     pageSupportCustomHeader: makeNodeComponent("pageSupportCustomHeader"),
-    pageSupportCustomFooter: makeNodeComponent("pageSupportCustomFooter"),
+    freeBox: makeNodeComponent("freeBox"),
 
     // Metadata about props expected for PlasmicPagesProjectIndexLayout
     internalVariantProps: PlasmicPagesProjectIndexLayout__VariantProps,

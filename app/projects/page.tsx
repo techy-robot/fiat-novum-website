@@ -42,18 +42,33 @@ export default async function ProjectsIndexPage() {
   return (
     <ProjectIndexLayout 
       projectListSlot={
-        <>
+        <div style={{ 
+          display: 'grid', 
+          /* This auto-fill logic automatically handles mobile/desktop breakpoints! */
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
+          gap: '2rem', 
+          width: '100%',
+          alignItems: 'stretch' /* Forces all cards in a row to be the same height */
+        }}>
           {projects.map((project) => (
-            <Link href={project.url} key={project.url} style={{ textDecoration: 'none' }}>
+            <Link 
+              href={project.url} 
+              key={project.url} 
+              style={{ 
+                textDecoration: 'none', 
+                display: 'flex', 
+                flexDirection: 'column' 
+              }}
+            >
               <ProjectCard 
                 title={project.title} 
                 summary={project.summary}
                 coolnessFactor={project.coolnessFactor}
-                coverImage={project.cover} // Now purely string | undefined
+                coverImage={project.cover} 
               />
             </Link>
           ))}
-        </>
+        </div>
       }
     />
   );
