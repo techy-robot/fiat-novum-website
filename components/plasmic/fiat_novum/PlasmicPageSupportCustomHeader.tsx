@@ -87,7 +87,7 @@ export const PlasmicPageSupportCustomHeader__ArgProps =
 export type PlasmicPageSupportCustomHeader__OverridesType = {
   root?: Flex__<typeof NavigationBar>;
   img?: Flex__<typeof PlasmicImg__>;
-  name?: Flex__<"h1">;
+  name?: Flex__<"div">;
 };
 
 export interface DefaultPageSupportCustomHeaderProps {
@@ -133,6 +133,8 @@ function PlasmicPageSupportCustomHeader__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const globalVariants = _useGlobalVariants();
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
@@ -159,12 +161,24 @@ function PlasmicPageSupportCustomHeader__RenderFunc(props: {
             data-plasmic-override={overrides.img}
             alt={""}
             className={classNames(sty.img)}
-            displayHeight={"100%"}
+            displayHeight={
+              hasVariant(globalVariants, "screen", "mobile")
+                ? "clamp(3rem, 15vw, 5.625rem)"
+                : "clamp(1.67rem, 6.67vw, 5rem)"
+            }
             displayMaxHeight={"none"}
             displayMaxWidth={"none"}
-            displayMinHeight={"0"}
-            displayMinWidth={"0"}
-            displayWidth={"auto"}
+            displayMinHeight={"0px"}
+            displayMinWidth={
+              hasVariant(globalVariants, "screen", "mobile")
+                ? "clamp(3rem, 15vw, 5.625rem)"
+                : "clamp(1.67rem, 6.67vw, 5rem)"
+            }
+            displayWidth={
+              hasVariant(globalVariants, "screen", "mobile")
+                ? "clamp(3rem, 15vw, 5.625rem)"
+                : "clamp(1.67rem, 6.67vw, 5rem)"
+            }
             src={{
               src: "/plasmic/fiat_novum/images/youtubeChannelLogoV3Png.png",
               fullWidth: 1080,
@@ -173,19 +187,17 @@ function PlasmicPageSupportCustomHeader__RenderFunc(props: {
             }}
           />
 
-          <h1
+          <div
             data-plasmic-name={"name"}
             data-plasmic-override={overrides.name}
             className={classNames(
               projectcss.all,
-              projectcss.h1,
-              projectcss.h1__77YCn,
               projectcss.__wab_text,
               sty.name
             )}
           >
             {"FIAT NOVUM\nENGINEERING"}
-          </h1>
+          </div>
         </PlasmicLink__>
       }
       className={classNames(
@@ -290,7 +302,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: typeof NavigationBar;
   img: typeof PlasmicImg__;
-  name: "h1";
+  name: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -298,7 +310,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicPageSupportCustomHeader__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

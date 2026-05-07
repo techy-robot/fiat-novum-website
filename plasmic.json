@@ -29,20 +29,6 @@
       "cssFilePath": "plasmic/fiat_novum/plasmic.module.css",
       "components": [
         {
-          "id": "SRR7d6afVmf-",
-          "name": "Homepage",
-          "type": "managed",
-          "projectId": "77YCnrwhevb2XmBSeMeRKC",
-          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicHomepage.tsx",
-          "importSpec": {
-            "modulePath": "plasmic/useless-generated-pages/index.tsx"
-          },
-          "cssFilePath": "plasmic/fiat_novum/PlasmicHomepage.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/"
-        },
-        {
           "id": "bCv3rmLWmiVO",
           "name": "UiButton",
           "type": "managed",
@@ -470,6 +456,20 @@
           "cssFilePath": "plasmic/fiat_novum/PlasmicCardsBlogCard.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "SRR7d6afVmf-",
+          "name": "Homepage",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicHomepage.tsx",
+          "importSpec": {
+            "modulePath": "plasmic/useless-generated-pages/index.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicHomepage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/"
         }
       ],
       "icons": [
