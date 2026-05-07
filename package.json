@@ -12,7 +12,7 @@
     "@keystatic/core": "^0.5.50",
     "@keystatic/next": "^5.0.4",
     "@markdoc/markdoc": "^0.5.7",
-    "@plasmicapp/cli": "^0.1.359",
+    "@plasmicapp/cli": "^0.1.361",
     "@plasmicapp/loader-nextjs": "^2.0.1",
     "@plasmicapp/react-web": "^1.0.0",
     "@plasmicpkgs/cms": "^0.0.22",
