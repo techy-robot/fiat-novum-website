@@ -64,14 +64,7 @@ export default function Homepage({ skills, projects }: HomepageClientProps) {
 
       featuredProjects={
         <>
-          <div style={{ 
-            display: 'grid', 
-            /* This auto-fill logic automatically handles mobile/desktop breakpoints! */
-            gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', 
-            gap: '2rem', 
-            width: '100%',
-            alignItems: 'stretch' /* Forces all cards in a row to be the same height */
-          }}>
+          <div className={"strict-grid-layout"}>
             {projects.map((project) => (
               <Link 
                 href={project.url} 

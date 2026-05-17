@@ -23,6 +23,23 @@ body {
   margin: 0;
 }
 
+/* Default to 3 columns for desktop */
+.strict-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  gap: 2rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+/* Jump to 1 columns on mobile & tablet */
+@media (max-width: 860px) {
+  .strict-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 .marquee-container {
   overflow: hidden;
   display: flex !important;
