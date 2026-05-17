@@ -2,7 +2,6 @@
 import '@/styles/globals.css'
 import PlasmicClientProvider from "./PlasmicClientProvider";
 
-// Use the standard import just like you suggested!
 import PageSupportCustomFooter from "@/components/PageSupport/PageSupportCustomFooter"; 
 
 export default function RootLayout({ 
