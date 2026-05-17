@@ -5,8 +5,6 @@ import { Analytics } from '@vercel/analytics/next';
 import '../styles/globals.css';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../keystatic.config';
-import Link from 'next/link';
-import ProjectCard from '@/components/Cards/CardsProjectCard'; 
 
 // Handle SEO here
 export const metadata: Metadata = {
