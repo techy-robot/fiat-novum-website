@@ -109,12 +109,12 @@ export const PlasmicHomepage__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicHomepage__ArgsType = {
   skillTrackSlot?: React.ReactNode;
-  topThreeProjects?: React.ReactNode;
+  featuredProjects?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicHomepage__ArgsType;
 export const PlasmicHomepage__ArgProps = new Array<ArgPropType>(
   "skillTrackSlot",
-  "topThreeProjects"
+  "featuredProjects"
 );
 
 export type PlasmicHomepage__OverridesType = {
@@ -414,10 +414,10 @@ function PlasmicHomepage__RenderFunc(props: {
               {"Projects"}
             </h1>
             <div className={classNames(projectcss.all, sty.freeBox__mA0Bv)}>
-              <div className={classNames(projectcss.all, sty.freeBox__lP80H)}>
+              <div className={classNames(projectcss.all, sty.freeBox__hi2Fn)}>
                 {renderPlasmicSlot({
                   defaultContents: null,
-                  value: args.topThreeProjects
+                  value: args.featuredProjects
                 })}
               </div>
               <PlasmicLink__
