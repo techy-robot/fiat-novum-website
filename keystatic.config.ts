@@ -23,6 +23,7 @@ export default config({
       // This determines the filename (e.g., "my-awesome-post.mdx")
       slugField: 'title', 
       path: 'content/blog/*',
+      format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
         // The date field is crucial for the URL scheme
@@ -48,6 +49,7 @@ export default config({
       label: 'Projects',
       slugField: 'title', 
       path: 'content/projects/*',
+      format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
         cover: fields.image({ 
@@ -72,6 +74,7 @@ export default config({
       label: 'Skills',
       slugField: 'name',
       path: 'content/skills/*',
+      format: { contentField: 'content' },
       schema: {
         name: fields.slug({ name: { label: 'Skill Name' } }),
         proficiency: fields.integer({ label: 'Proficiency Level', validation: {min: 0,max: 10}}),
