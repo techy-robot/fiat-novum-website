@@ -1,32 +1,18 @@
-// app/page.tsx
+
 import { Metadata } from "next";
 import Homepage from "@/components/Homepagewrapper";
 import { Analytics } from '@vercel/analytics/next';
 import '../styles/globals.css';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../keystatic.config';
+import { ProjectCardProps } from "@/types/projects";
+import { Skill } from "@/types/skills";
 
 // Handle SEO here
 export const metadata: Metadata = {
   title: "Fiat Novum | Home",
   description: "Welcome to my personal website.",
 };
-
-// types/skills.ts
-interface Skill {
-  name: string;
-  iconName: string; // The string from Keystatic (e.g., "Cpu")
-  link: string;
-}
-
-// Define the shape for our Featured Project prop
-interface FeaturedProject {
-  title: string;
-  summary: string;
-  coolnessFactor: number;
-  cover: string | undefined;
-  url: string;
-}
 
 // Render the page
 export default async function Page() {
@@ -44,7 +30,7 @@ export default async function Page() {
   // 2. Fetch and Process Projects Data
   const projectsData = await reader.collections.projects.all();
   
-  const featuredProjects: FeaturedProject[] = projectsData
+  const featuredProjects: ProjectCardProps[] = projectsData
     .map(item => ({
       title: item.entry.title || "Untitled",
       summary: item.entry.summary || "",
