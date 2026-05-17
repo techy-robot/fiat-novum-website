@@ -177,9 +177,9 @@ function PlasmicUiPopover__RenderFunc(props: {
         onChangeProp: "onOpenChange"
       }
     ],
-
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -266,7 +266,6 @@ function PlasmicUiPopover__RenderFunc(props: {
                   </div>
                 </div>
               ),
-
               value: args.content
             })}
           </BaseDialog>
@@ -300,7 +299,6 @@ const PlasmicDescendants = {
     "uiOverlayArrow",
     "ariaDialog"
   ],
-
   ariaPopover: ["ariaPopover", "uiOverlayArrow", "ariaDialog"],
   uiOverlayArrow: ["uiOverlayArrow"],
   ariaDialog: ["ariaDialog"]
@@ -320,7 +318,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiPopover__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

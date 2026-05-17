@@ -16,16 +16,16 @@ interface Skill {
 
 interface HomepageClientProps {
   skills: Skill[];
-  featuredProjects: {
+  projects: {
     title: string;
     summary: string;
     coolnessFactor: number;
-    coverImage: string | undefined;
-    link: string;
+    cover: string | undefined;
+    url: string;
   }[];
 }
 
-export default function Homepage({ skills, featuredProjects }: HomepageClientProps) {
+export default function Homepage({ skills, projects }: HomepageClientProps) {
   return (
     <PlasmicHomepage 
       skillTrackSlot={
@@ -62,18 +62,28 @@ export default function Homepage({ skills, featuredProjects }: HomepageClientPro
         </div>
       }
 
-      topThreeProjects={
+      featuredProjects={
         <>
-          {featuredProjects.map((project) => (
-            <Link href={project.link} key={project.link} style={{ textDecoration: 'none' }}>
-              <ProjectCard
-                title={project.title}
-                summary={project.summary}
-                coolnessFactor={project.coolnessFactor}
-                coverImage={project.coverImage}
-              />
-            </Link>
-          ))}
+          <div className={"strict-grid-layout"}>
+            {projects.map((project) => (
+              <Link 
+                href={project.url} 
+                key={project.url} 
+                style={{ 
+                  textDecoration: 'none', 
+                  display: 'flex', 
+                  flexDirection: 'column' 
+                }}
+              >
+                <ProjectCard 
+                  title={project.title} 
+                  summary={project.summary}
+                  coolnessFactor={project.coolnessFactor}
+                  coverImage={project.cover} 
+                />
+              </Link>
+            ))}
+          </div>
         </>
       }
     />

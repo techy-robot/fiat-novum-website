@@ -156,9 +156,9 @@ function PlasmicUiMenuPopover__RenderFunc(props: {
         onMutate: generateOnMutateForSpec("selectedValue", BaseListBox_Helpers)
       }
     ],
-
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -220,7 +220,6 @@ function PlasmicUiMenuPopover__RenderFunc(props: {
               plasmicStateName: "ariaListBox.selectedValue"
             }
           ],
-
           [],
           BaseListBox_Helpers ?? {},
           child$Props
@@ -287,7 +286,6 @@ function PlasmicUiMenuPopover__RenderFunc(props: {
                   />
                 </React.Fragment>
               ),
-
               value: args.menuItems
             })}
           </BaseListBox>
@@ -314,7 +312,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiMenuPopover__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

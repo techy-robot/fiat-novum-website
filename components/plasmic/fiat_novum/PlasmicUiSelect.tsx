@@ -215,9 +215,9 @@ function PlasmicUiSelect__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.type
       }
     ],
-
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -409,7 +409,6 @@ function PlasmicUiSelect__RenderFunc(props: {
               />
             </React.Fragment>
           ),
-
           value: args.items
         })}
         offset={2}
@@ -430,7 +429,6 @@ const PlasmicDescendants = {
     "uiDescription",
     "uiMenuPopover"
   ],
-
   uiLabel: ["uiLabel"],
   ariaButton: ["ariaButton", "ariaSelectedValue", "text", "freeBox", "svg"],
   ariaSelectedValue: ["ariaSelectedValue", "text"],
@@ -460,7 +458,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiSelect__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

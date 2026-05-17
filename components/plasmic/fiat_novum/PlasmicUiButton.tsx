@@ -86,7 +86,6 @@ export type PlasmicUiButton__VariantsArgs = {
   color?: SingleChoiceArg<
     "neutral" | "muted" | "success" | "warning" | "errorDestructive"
   >;
-
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
   iconStart?: SingleBooleanChoiceArg<"iconStart">;
@@ -152,7 +151,6 @@ export interface DefaultUiButtonProps {
   color?: SingleChoiceArg<
     "neutral" | "muted" | "success" | "warning" | "errorDestructive"
   >;
-
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
   iconStart?: SingleBooleanChoiceArg<"iconStart">;
@@ -249,9 +247,9 @@ function PlasmicUiButton__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.flatSide
       }
     ],
-
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -720,7 +718,6 @@ function PlasmicUiButton__RenderFunc(props: {
               {"Text"}
             </div>
           ),
-
           value: args.label,
           className: classNames(sty.slotTargetLabel, {
             [sty.slotTargetLabelcolor_errorDestructive]: hasVariant(
@@ -970,7 +967,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiButton__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

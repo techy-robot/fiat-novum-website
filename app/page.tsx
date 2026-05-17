@@ -5,6 +5,8 @@ import { Analytics } from '@vercel/analytics/next';
 import '../styles/globals.css';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../keystatic.config';
+import Link from 'next/link';
+import ProjectCard from '@/components/Cards/CardsProjectCard'; 
 
 // Handle SEO here
 export const metadata: Metadata = {
@@ -24,8 +26,8 @@ interface FeaturedProject {
   title: string;
   summary: string;
   coolnessFactor: number;
-  coverImage: string | undefined;
-  link: string;
+  cover: string | undefined;
+  url: string;
 }
 
 // Render the page
@@ -49,8 +51,8 @@ export default async function Page() {
       title: item.entry.title || "Untitled",
       summary: item.entry.summary || "",
       coolnessFactor: item.entry.coolnessFactor || 0,
-      coverImage: item.entry.cover ?? undefined, 
-      link: `projects/${item.slug}`,
+      cover: item.entry.cover ?? undefined, 
+      url: `projects/${item.slug}`,
     }))
     // Sort highest coolness factor to lowest
     .sort((a, b) => b.coolnessFactor - a.coolnessFactor) 
@@ -60,7 +62,7 @@ export default async function Page() {
   return (
     <>
       {/* Pass the new featuredProjects array to your wrapper */}
-      <Homepage skills={skills} featuredProjects={featuredProjects} />
+      <Homepage skills={skills} projects={featuredProjects} />
       <Analytics />
     </>
   );

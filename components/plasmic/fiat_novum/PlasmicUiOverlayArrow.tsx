@@ -145,9 +145,9 @@ function PlasmicUiOverlayArrow__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.dark
       }
     ],
-
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -223,7 +223,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiOverlayArrow__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

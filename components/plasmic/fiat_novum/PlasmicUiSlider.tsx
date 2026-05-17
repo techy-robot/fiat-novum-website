@@ -197,9 +197,9 @@ function PlasmicUiSlider__RenderFunc(props: {
         onChangeProp: "onChange"
       }
     ],
-
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -277,7 +277,6 @@ function PlasmicUiSlider__RenderFunc(props: {
                     {"Label"}
                   </div>
                 ),
-
                 value: args.label
               })}
             </UiLabel>
@@ -363,7 +362,6 @@ const PlasmicDescendants = {
     "foreground",
     "uiDescription"
   ],
-
   uiLabel: ["uiLabel"],
   ariaSliderOutput: ["ariaSliderOutput"],
   background: ["background", "ariaSliderTrack", "foreground"],
@@ -389,7 +387,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiSlider__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {
