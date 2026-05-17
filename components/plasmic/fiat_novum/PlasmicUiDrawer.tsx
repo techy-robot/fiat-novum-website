@@ -207,9 +207,9 @@ function PlasmicUiDrawer__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noTrigger
       }
     ],
-
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -299,7 +299,6 @@ function PlasmicUiDrawer__RenderFunc(props: {
                     {"Heading"}
                   </h2>
                 ),
-
                 value: args.heading
               })}
               <div
@@ -334,7 +333,6 @@ function PlasmicUiDrawer__RenderFunc(props: {
                       </div>
                     </div>
                   ),
-
                   value: args.content
                 })}
               </div>
@@ -394,7 +392,6 @@ function PlasmicUiDrawer__RenderFunc(props: {
                       />
                     </div>
                   ),
-
                   value: args.footer
                 })}
               </div>
@@ -444,7 +441,6 @@ const PlasmicDescendants = {
     "ariaDialog",
     "scrollableContent"
   ],
-
   ariaModal: ["ariaModal", "ariaDialog", "scrollableContent"],
   ariaDialog: ["ariaDialog", "scrollableContent"],
   scrollableContent: ["scrollableContent"]
@@ -464,7 +460,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiDrawer__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

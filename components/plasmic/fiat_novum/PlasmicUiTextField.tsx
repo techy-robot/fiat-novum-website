@@ -381,9 +381,9 @@ function PlasmicUiTextField__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
-
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -646,7 +646,6 @@ const PlasmicDescendants = {
     "textAreaInput",
     "uiDescription"
   ],
-
   uiLabel: ["uiLabel"],
   textInput: ["textInput"],
   textAreaInput: ["textAreaInput"],
@@ -668,7 +667,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiTextField__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

@@ -234,9 +234,9 @@ function PlasmicUiCombobox__RenderFunc(props: {
         onMutate: generateOnMutateForSpec("value", BaseInput_Helpers)
       }
     ],
-
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -342,7 +342,6 @@ function PlasmicUiCombobox__RenderFunc(props: {
                 plasmicStateName: "ariaInput.value"
               }
             ],
-
             [],
             BaseInput_Helpers ?? {},
             child$Props
@@ -426,7 +425,6 @@ function PlasmicUiCombobox__RenderFunc(props: {
               />
             </React.Fragment>
           ),
-
           value: args.items
         })}
         offset={2}
@@ -446,7 +444,6 @@ const PlasmicDescendants = {
     "uiDescription",
     "uiMenuPopover"
   ],
-
   uiLabel: ["uiLabel"],
   freeBox: ["freeBox", "ariaInput", "ariaButton", "svg"],
   ariaInput: ["ariaInput"],
@@ -474,7 +471,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiCombobox__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

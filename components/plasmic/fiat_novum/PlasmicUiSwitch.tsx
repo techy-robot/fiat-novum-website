@@ -176,9 +176,9 @@ function PlasmicUiSwitch__RenderFunc(props: {
         onChangeProp: "onChange"
       }
     ],
-
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -281,7 +281,6 @@ const PlasmicDescendants = {
     "thumb",
     "uiDescription"
   ],
-
   freeBox: ["freeBox", "switchIndicator", "thumb"],
   switchIndicator: ["switchIndicator", "thumb"],
   thumb: ["thumb"],
@@ -303,7 +302,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiSwitch__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

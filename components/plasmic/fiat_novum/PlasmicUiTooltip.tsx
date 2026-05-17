@@ -181,9 +181,9 @@ function PlasmicUiTooltip__RenderFunc(props: {
         onChangeProp: "onOpenChange"
       }
     ],
-
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -277,7 +277,6 @@ function PlasmicUiTooltip__RenderFunc(props: {
                   </div>
                 </React.Fragment>
               ),
-
               value: args.content,
               className: classNames(sty.slotTargetContent)
             })}
@@ -298,7 +297,6 @@ function PlasmicUiTooltip__RenderFunc(props: {
             {"Hover me!"}
           </div>
         ),
-
         value: args.trigger,
         className: classNames(sty.slotTargetTrigger)
       })}
@@ -325,7 +323,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiTooltip__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {
