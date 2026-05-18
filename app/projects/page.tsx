@@ -5,26 +5,19 @@ import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '@/keystatic.config'; 
 import ProjectIndexLayout from '@/components/Pages/PagesProjectIndexLayout'; 
 import ProjectCard from '@/components/Cards/CardsProjectCard'; 
+import { ProjectCardProps } from '@/types/projects';
 
 export const metadata: Metadata = {
-  title: "Projects | Fiat Novum",
+  title: "Projects",
   description: "Explore my latest work and projects.",
 };
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
-interface MappedProject {
-  title: string;
-  summary: string;
-  coolnessFactor: number;
-  cover: string | undefined; // Changed from null to undefined
-  url: string;
-}
-
 export default async function ProjectsIndexPage() {
   const rawProjects = await reader.collections.projects.all();
 
-  const projects: MappedProject[] = rawProjects.map((project) => {
+  const projects: ProjectCardProps[] = rawProjects.map((project) => {
     const { title, summary, coolnessFactor, cover } = project.entry;
     
     return {

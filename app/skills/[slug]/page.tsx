@@ -30,10 +30,10 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   // Use .read() for a direct lookup instead of filtering through .all()
   const skill = await reader.collections.skills.read(slug);
 
-  if (!skill) return { title: "Skill Not Found | Fiat Novum" };
+  if (!skill) return { title: "Skill has not been learned" };
 
   return {
-    title: `${skill.name} | Fiat Novum`,
+    title: `${skill.name} Skill`,
   };
 }
 

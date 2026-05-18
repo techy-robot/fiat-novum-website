@@ -7,22 +7,12 @@ import { PlasmicHomepage } from '@/components/plasmic/fiat_novum/PlasmicHomepage
 import SkillCard from './Cards/CardsSkillCard'; 
 import ProjectCard from './Cards/CardsProjectCard';
 import Link from 'next/link';
-
-interface Skill {
-  name: string;
-  iconName: string; // The string from Keystatic (e.g., "Cpu")
-  link: string;
-}
+import { Skill } from '@/types/skills';
+import { ProjectCardProps } from '@/types/projects';
 
 interface HomepageClientProps {
   skills: Skill[];
-  projects: {
-    title: string;
-    summary: string;
-    coolnessFactor: number;
-    cover: string | undefined;
-    url: string;
-  }[];
+  projects: ProjectCardProps[];
 }
 
 export default function Homepage({ skills, projects }: HomepageClientProps) {

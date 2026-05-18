@@ -6,10 +6,11 @@ import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '@/keystatic.config'; 
 import BlogIndexLayout from '@/components/Pages/PagesBlogIndexLayout'; // Import your Client Wrapper
 import BlogCard from '@/components/Cards/CardsBlogCard'; // Import your Client Wrapper
+import { BlogCardProps } from '@/types/blog';
 
 export const metadata: Metadata = {
-  title: "Blog | Fiat Novum",
-  description: "Read the latest thoughts and updates.",
+  title: "Blog",
+  description: "Read my latest blog posts on various projects or random thoughts.",
 };
 
 const reader = createReader(process.cwd(), keystaticConfig);
@@ -21,17 +22,17 @@ export default async function BlogIndexPage() {
   // Fetch data directly inside the Server Component
   const rawPosts = await reader.collections.posts.all();
 
-  const posts = rawPosts.map((post) => {
+  const posts: BlogCardProps[] = rawPosts.map((post) => {
     const { title, publishDate, summary, cover } = post.entry;
     const [year, month, day] = (publishDate || "2026-01-01").split('-');
     const safeSlug = slugify(title || post.slug);
     
     return {
       title: title || "Untitled",
-      date: publishDate || "No Date",
-      url: `/blog/${year}/${month}/${day}/${safeSlug}`,
       summary: summary || "No Summary",
-      cover: cover || undefined
+      date: publishDate || "No Date",
+      cover: cover || undefined,
+      url: `/blog/${year}/${month}/${day}/${safeSlug}`
     };
   });
 
@@ -58,7 +59,12 @@ export default async function BlogIndexPage() {
                 flexDirection: 'column' 
               }}
             >
-              <BlogCard title={post.title} date={post.date} summary={post.summary} coverImage={post.cover} />
+              <BlogCard 
+                title={post.title}
+                summary={post.summary}
+                date={post.date}
+                coverImage={post.cover}
+              />
             </Link>
           ))}
         </div>
