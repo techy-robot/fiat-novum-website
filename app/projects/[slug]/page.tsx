@@ -66,14 +66,36 @@ export default async function ProjectPostPage({ params }: RouteParams) {
   // Extract the raw MDX content string
   const mdxContentStr = await project.content(); 
 
+  // Generate JSON-LD SEO metadata
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    headline: project.title,
+    image: project.cover || 'https://www.fiatnovum.com/default-project-og.jpg',
+    author: {
+      '@type': 'Person',
+      name: 'Asher Edwards',
+      url: 'https://www.fiatnovum.com',
+    },
+    description: project.summary,
+  };
+
   return (
-    <ProjectPostLayout 
-      title={project.title}
-      coolnessFactor={project.coolnessFactor ?? undefined}
-      coverImage={project.cover ?? undefined}
-      contentSlot={
-        <MDXRemote source={mdxContentStr} />
-      } 
-    />
+    <section>
+      {/* Add the JSON-LD to the page head dynamically */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <ProjectPostLayout 
+        title={project.title}
+        coolnessFactor={project.coolnessFactor ?? undefined}
+        coverImage={project.cover ?? undefined}
+        contentSlot={
+          <MDXRemote source={mdxContentStr} />
+        } 
+      />
+    </section>
   );
 }
