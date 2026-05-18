@@ -10,8 +10,8 @@ import { Skill } from "@/types/skills";
 
 // Handle SEO here
 export const metadata: Metadata = {
-  title: "Fiat Novum | Home",
-  description: "Welcome to my personal website.",
+  title: "Fiat Novum | Engineering & Design Portfolio",
+  description: "Bridging the gap between hardware engineering and magic.",
 };
 
 // Render the page

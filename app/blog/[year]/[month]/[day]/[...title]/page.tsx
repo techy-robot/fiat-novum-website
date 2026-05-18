@@ -35,10 +35,30 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   const allPosts = await reader.collections.posts.all();
   const post = allPosts.find((p) => p.entry.publishDate === targetDate);
 
-  if (!post) return { title: "Post Not Found | Fiat Novum" };
+  if (!post) return { title: "Post Not Found" };
 
   return {
-    title: `${post.entry.title} | Fiat Novum`,
+    title: `${post.entry.title}`,
+    description: post.entry.summary || `Read ${post.entry.title}`,
+    openGraph: {
+      title: post.entry.title,
+      description: post.entry.summary,
+      type: 'article',
+      publishedTime: post.entry.publishDate,
+      url: `https://www.fiatnovum.com/blog/${year}/${month}/${day}/${post.slug}`,
+      images: [
+        {
+          url: post.entry.cover || '/default-blog-og.jpg', // TODO: This should be /public folder, yet to be created
+          alt: post.entry.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.entry.title,
+      description: post.entry.summary,
+      images: [post.entry.cover || '/default-blog-og.jpg'], // TODO: This should be /public folder, yet to be created
+    },
   };
 }
 

@@ -8,7 +8,7 @@ import BlogIndexLayout from '@/components/Pages/PagesBlogIndexLayout'; // Import
 import BlogCard from '@/components/Cards/CardsBlogCard'; // Import your Client Wrapper
 
 export const metadata: Metadata = {
-  title: "Skills | Fiat Novum",
+  title: "Skills",
   description: "Asher Edwards' Skills",
 };
 

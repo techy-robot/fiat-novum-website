@@ -26,11 +26,29 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   
   const project = await reader.collections.projects.read(slug);
 
-  if (!project) return { title: "Project Not Found | Fiat Novum" };
+  if (!project) return { title: "Project Not Found" };
 
   return {
-    title: `${project.title} | Fiat Novum`,
-    description: project.summary || "View this project.",
+    title: `${project.title}`,
+    description: project.summary || `View project ${project.title}`,
+    openGraph: {
+      title: project.title,
+      description: project.summary,
+      type: 'article',
+      url: `https://www.fiatnovum.com/projects/${slug}`,
+      images: [
+        {
+          url: project.cover || '/default-project-og.jpg', // TODO: This should be /public folder, yet to be created
+          alt: project.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: project.title,
+      description: project.summary,
+      images: [project.cover || '/default-project-og.jpg'], // TODO: This should be /public folder, yet to be created
+    },
   };
 }
 

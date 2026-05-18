@@ -9,8 +9,8 @@ import BlogCard from '@/components/Cards/CardsBlogCard'; // Import your Client W
 import { BlogCardProps } from '@/types/blog';
 
 export const metadata: Metadata = {
-  title: "Blog | Fiat Novum",
-  description: "Read the latest thoughts and updates.",
+  title: "Blog",
+  description: "Read my latest blog posts on various projects or random thoughts.",
 };
 
 const reader = createReader(process.cwd(), keystaticConfig);

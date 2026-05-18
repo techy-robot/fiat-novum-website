@@ -8,7 +8,7 @@ import ProjectCard from '@/components/Cards/CardsProjectCard';
 import { ProjectCardProps } from '@/types/projects';
 
 export const metadata: Metadata = {
-  title: "Projects | Fiat Novum",
+  title: "Projects",
   description: "Explore my latest work and projects.",
 };
 
