@@ -396,6 +396,7 @@
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
+  text-decoration-line: none;
   -webkit-transition-property: all;
   -webkit-transition-timing-function: ease-in-out;
   -webkit-transition-duration: 0.3s;
