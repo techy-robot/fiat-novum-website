@@ -28,6 +28,9 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
 
   if (!project) return { title: "Project Not Found" };
 
+  // Construct the absolute path to the generated open graph image
+  const ogImageUrl = `/api/og/blog?slug=${slug}`;
+
   return {
     title: `${project.title}`,
     description: project.summary || `View project ${project.title}`,
@@ -38,7 +41,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
       url: `https://www.fiatnovum.com/projects/${slug}`,
       images: [
         {
-          url: project.cover || '/default-project-og.jpg', // TODO: This should be /public folder, yet to be created
+          url: ogImageUrl,
           alt: project.title,
         },
       ],
@@ -47,7 +50,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
       card: 'summary_large_image',
       title: project.title,
       description: project.summary,
-      images: [project.cover || '/default-project-og.jpg'], // TODO: This should be /public folder, yet to be created
+      images: [ogImageUrl],
     },
   };
 }

@@ -37,6 +37,9 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
 
   if (!post) return { title: "Post Not Found" };
 
+  // Construct the absolute path to the generated open graph image
+  const ogImageUrl = `/api/og/blog?year=${year}&month=${month}&day=${day}&slug=${post.slug}`;
+
   return {
     title: `${post.entry.title}`,
     description: post.entry.summary || `Read ${post.entry.title}`,
@@ -48,7 +51,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
       url: `https://www.fiatnovum.com/blog/${year}/${month}/${day}/${post.slug}`,
       images: [
         {
-          url: post.entry.cover || '/default-blog-og.jpg', // TODO: This should be /public folder, yet to be created
+          url: ogImageUrl,
           alt: post.entry.title,
         },
       ],
@@ -57,7 +60,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
       card: 'summary_large_image',
       title: post.entry.title,
       description: post.entry.summary,
-      images: [post.entry.cover || '/default-blog-og.jpg'], // TODO: This should be /public folder, yet to be created
+      images: [ogImageUrl],
     },
   };
 }
