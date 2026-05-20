@@ -8,6 +8,13 @@ import keystaticConfig from '../keystatic.config';
 import { ProjectCardProps } from "@/types/projects";
 import { Skill } from "@/types/skills";
 
+import React from 'react';
+import * as Icons from '@tabler/icons-react'; // Import Tabler library
+import type { IconProps } from '@tabler/icons-react';
+import SkillCard from '@/components/Cards/CardsSkillCard'; 
+import ProjectCard from '@/components/Cards/CardsProjectCard';
+import Link from 'next/link';
+
 // Handle SEO here
 export const metadata: Metadata = {
   title: "Fiat Novum | Engineering & Design Portfolio",
@@ -43,10 +50,69 @@ export default async function Page() {
     // Grab only the top 3
     .slice(0, 3); 
 
+  const skillTrackSlot=(
+    <div className="skill-track-animation flex">
+      {[...skills, ...skills, ...skills].map((skill, i) => {
+        
+        // 1. Format the name (e.g., "Cpu" -> "IconCpu")
+        const iconKey = `Icon${skill.iconName}`;
+        
+        // 2. Type-safe lookup: cast Icons to a record of Tabler components
+        const IconsRecord = Icons as unknown as Record<string, React.FC<IconProps>>;
+        
+        // 3. Select the icon or fall back to a default
+        const SelectedIcon = IconsRecord[iconKey] || Icons.IconCpu;
+        
+        return (
+          <SkillCard
+            key={`${skill.name}-${i}`}
+            text={skill.name}
+            link={skill.link}
+            // 4. Inject the React Component into the Slot
+            iconSlot={
+              <SelectedIcon 
+                size={24} 
+                stroke={1.5} 
+                color="#00FF9D" 
+                // Add a filter/shadow here if you want that extra "glow"
+                style={{ filter: 'drop-shadow(0 0 5px rgba(0, 255, 157, 0.4))' }}
+              />
+            }
+          />
+        );
+      })}
+    </div>
+  );
+
+  const featuredProjectsSlot=(
+    <>
+      <div className={"strict-grid-layout"}>
+        {featuredProjects.map((project) => (
+          <Link 
+            href={project.url} 
+            key={project.url} 
+            style={{ 
+              textDecoration: 'none', 
+              display: 'flex', 
+              flexDirection: 'column' 
+            }}
+          >
+            <ProjectCard 
+              title={project.title} 
+              summary={project.summary}
+              coolnessFactor={project.coolnessFactor}
+              coverImage={project.cover} 
+            />
+          </Link>
+        ))}
+      </div>
+    </>
+  );
+
   return (
     <>
       {/* Pass the new featuredProjects array to your wrapper */}
-      <Homepage skills={skills} projects={featuredProjects} />
+      <Homepage skills={skillTrackSlot} projects={featuredProjectsSlot} />
       <Analytics />
     </>
   );
