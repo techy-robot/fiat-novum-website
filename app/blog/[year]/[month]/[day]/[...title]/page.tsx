@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   if (!post) return { title: "Post Not Found" };
 
   // Construct the absolute path to the generated open graph image
-  const ogImageUrl = `/api/og/blog?year=${year}&month=${month}&day=${day}&slug=${post.slug}`;
+  const ogImageUrl = `/api/og/blog/${year}/${month}/${day}/${post.slug}`;
 
   return {
     title: `${post.entry.title}`,

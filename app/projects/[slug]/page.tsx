@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   if (!project) return { title: "Project Not Found" };
 
   // Construct the absolute path to the generated open graph image
-  const ogImageUrl = `/api/og/blog?slug=${slug}`;
+  const ogImageUrl = `/api/og/projects/${slug}`;
 
   return {
     title: `${project.title}`,
