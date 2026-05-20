@@ -1,13 +1,15 @@
-// app/blog/page.tsx
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { createReader } from '@keystatic/core/reader';
-// Update this path to match your project root
 import keystaticConfig from '@/keystatic.config'; 
-import BlogIndexLayout from '@/components/Pages/PagesBlogIndexLayout'; // Import your Client Wrapper
-import BlogCard from '@/components/Cards/CardsBlogCard'; // Import your Client Wrapper
+
+// Import components (with client wrappers)
+import BlogIndexLayout from '@/components/Pages/PagesBlogIndexLayout';
+import BlogCard from '@/components/Cards/CardsBlogCard';
+
 import { BlogCardProps } from '@/types/blog';
 
+// Basic metadata, no complex opengraph logic
 export const metadata: Metadata = {
   title: "Blog",
   description: "Read my latest blog posts on various projects or random thoughts.",
@@ -15,11 +17,12 @@ export const metadata: Metadata = {
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
+// Slugify function
 const slugify = (text: string) => 
   text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 
 export default async function BlogIndexPage() {
-  // Fetch data directly inside the Server Component
+  // Fetch all blog posts and sort by date
   const rawPosts = await reader.collections.posts.all();
 
   const posts: BlogCardProps[] = rawPosts.map((post) => {
@@ -38,6 +41,7 @@ export default async function BlogIndexPage() {
 
   posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+  // Render blog cards
   return (
     <BlogIndexLayout 
       postListSlot={

@@ -1,20 +1,20 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { createReader } from '@keystatic/core/reader';
-// Update this path to match your project root
 import keystaticConfig from '@/keystatic.config'; 
-import BlogPostLayout from '@/components/Pages/PagesBlogPostLayout'; // Using blog layout for testing
+// Client Wrapper
+import BlogPostLayout from '@/components/Pages/PagesBlogPostLayout';
 // Use the React Server Component version of MDXRemote
 import { MDXRemote } from 'next-mdx-remote/rsc'; 
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
-// Skills use a much simpler URL structure, requiring only a slug parameter
+// Define our URL parameters
 interface RouteParams {
   params: { slug: string };
 }
 
-// Replaces getStaticPaths
+// Generate Static Routes for each skill
 export async function generateStaticParams() {
   const skills = await reader.collections.skills.all();
 
@@ -56,7 +56,6 @@ export default async function SkillPage({ params }: RouteParams) {
     <BlogPostLayout 
       title={skill.name}
       contentSlot={
-        // MDXRemote/rsc takes the raw string directly
         <MDXRemote source={mdxContentStr} />
       } 
     />

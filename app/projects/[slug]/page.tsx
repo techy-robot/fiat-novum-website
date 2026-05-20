@@ -2,16 +2,19 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '@/keystatic.config'; 
-import ProjectPostLayout from '@/components/Pages/PagesProjectPostLayout'; // Client Wrapper
+// Client Wrapper
+import ProjectPostLayout from '@/components/Pages/PagesProjectPostLayout'; 
+// Use the React Server Component version of MDXRemote
 import { MDXRemote } from 'next-mdx-remote/rsc'; 
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
+// Define our URL parameters
 interface RouteParams {
   params: { slug: string };
 }
 
-// Generate Static Paths for Vercel Build
+// Generate Static Routes for each project
 export async function generateStaticParams() {
   const projects = await reader.collections.projects.all();
 
