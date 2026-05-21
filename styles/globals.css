@@ -40,6 +40,96 @@ body {
   }
 }
 
+.star-field {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.star-field--active {
+  cursor: crosshair;
+}
+
+.twinkling-star {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+}
+
+.twinkling-star__glyph {
+  position: absolute;
+  display: block;
+  transform-origin: center;
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 157, 0.35));
+}
+
+.twinkling-star__glyph--seed {
+  filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.55));
+}
+
+.twinkling-star__pulse {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0.95;
+  animation-name: twinkling-star-pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.twinkling-star__pulse--collected {
+  animation-name: twinkling-star-fade;
+  animation-duration: 220ms !important;
+  animation-fill-mode: forwards;
+}
+
+.twinkling-star__core,
+.twinkling-star__spark {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, #ffffff 0%, #00ffa5 42%, rgba(0, 255, 165, 0) 72%);
+  border-radius: 999px;
+}
+
+.twinkling-star__spark {
+  opacity: 0.9;
+}
+
+.twinkling-star__spark--horizontal {
+  transform: scaleX(1.8) scaleY(0.35);
+}
+
+.twinkling-star__spark--vertical {
+  transform: scaleX(0.35) scaleY(1.8);
+}
+
+@keyframes twinkling-star-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(0.88);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes twinkling-star-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+}
+
 .marquee-container {
   overflow: hidden;
   display: flex !important;
