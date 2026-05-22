@@ -37,8 +37,9 @@ export function createCollector() {
       seeds.add(id);
     },
     unregister(id: string) {
-      seeds.delete(id);
-      collected.delete(id);
+      if (!collected.has(id)) {
+        seeds.delete(id);
+      }
     },
     markCollected(id: string) {
       if (!collected.has(id)) collected.add(id);

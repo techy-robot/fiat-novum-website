@@ -104,10 +104,12 @@ export default function TwinklingStar({
     const currentPosition = positionRef.current;
     const cursorPosition = { x: cursor.x, y: cursor.y };
     const distanceToCursor = distanceBetween(currentPosition, cursorPosition);
+    console.log(`Star ${starId}: distance=${distanceToCursor.toFixed(1)}, collectionRadius=${collectionRadius.toFixed(1)}, seedMode=${seedMode}`);
 
     if (distanceToCursor <= collectionRadius && !isCollected) {
       setIsCollected(true);
-      if (seedMode && !gameActive) {
+      console.log(`COLLECTED! Star ${starId}, seedMode=${seedMode}`);
+      if (seedMode) {
         field.markSeedCollected(starId);
       }
       controls.start({ scale: 0, opacity: 0 }, { duration: 0.22 });
