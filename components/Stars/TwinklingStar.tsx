@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion, useAnimation } from "framer-motion";
 import { useStarField } from "./StarFieldProvider";
 
 export interface TwinklingStarProps
@@ -26,11 +27,9 @@ const DEFAULT_DRIFT_SPEED = 0.085;
 
 function hashString(value: string) {
   let hash = 0;
-
-  for (let index = 0; index < value.length; index += 1) {
-    hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
+  for (let i = 0; i < value.length; i++) {
+    hash = (hash * 31 + value.charCodeAt(i)) >>> 0;
   }
-
   return hash;
 }
 
@@ -53,144 +52,93 @@ export default function TwinklingStar({
   ...rest
 }: TwinklingStarProps) {
   const starField = useStarField();
+  const controls = useAnimation();
   const starId = React.useId();
   const motionVariation = React.useMemo(() => hashString(starId), [starId]);
   const driftScale = 0.82 + ((motionVariation % 24) / 100);
   const radiusOffset = (motionVariation % 7) - 3;
-  const [position, setPosition] = React.useState<Position>({ x, y });
   const positionRef = React.useRef<Position>({ x, y });
-  const collectedRef = React.useRef(false);
   const [isCollected, setIsCollected] = React.useState(false);
   const [isGone, setIsGone] = React.useState(false);
 
   React.useEffect(() => {
     positionRef.current = { x, y };
-    setPosition({ x, y });
-  }, [x, y]);
+    controls.set({ x, y, scale: 1, opacity: 1 });
+  }, [x, y, controls]);
 
   React.useEffect(() => {
-    if (!starField || !seedMode) {
-      return;
-    }
-
+    if (!starField || !seedMode) return;
     starField.registerSeedStar(starId);
-
-    return () => {
-      starField.unregisterSeedStar(starId);
-    };
+    return () => starField.unregisterSeedStar(starId);
   }, [seedMode, starField, starId]);
 
   React.useEffect(() => {
     if (isCollected) {
-      const timeout = window.setTimeout(() => {
-        setIsGone(true);
-      }, 220);
-
-      return () => window.clearTimeout(timeout);
+      const t = window.setTimeout(() => setIsGone(true), 220);
+      return () => window.clearTimeout(t);
     }
-
     return undefined;
   }, [isCollected]);
 
   React.useEffect(() => {
-    if (isGone) {
-      return;
-    }
-
+    if (isGone) return;
     const field = starField;
-
-    if (!field) {
-      return;
-    }
+    if (!field) return;
 
     const canChase = seedMode || field.gameActive;
+    if (!canChase) return;
 
-    if (!canChase) {
+    const { cursor, gameActive, seedActivationRadius, collectRadius: fieldCollectRadius } = field;
+
+    const interactionRadius =
+      seedMode && !gameActive
+        ? (activationRadius ?? seedActivationRadius) + radiusOffset
+        : (collectRadius ?? fieldCollectRadius) + radiusOffset;
+
+    const collectionRadius = Math.max(6, interactionRadius * 0.42);
+
+    if (!cursor.inside) return;
+
+    const currentPosition = positionRef.current;
+    const cursorPosition = { x: cursor.x, y: cursor.y };
+    const distanceToCursor = distanceBetween(currentPosition, cursorPosition);
+
+    if (distanceToCursor <= collectionRadius && !isCollected) {
+      setIsCollected(true);
+      if (seedMode && !gameActive) {
+        field.markSeedCollected(starId);
+      }
+      controls.start({ scale: 0, opacity: 0 }, { duration: 0.22 });
+      const t = window.setTimeout(() => setIsGone(true), 220);
+      return () => window.clearTimeout(t);
+    }
+
+    if (distanceToCursor > Math.max(8, interactionRadius)) {
+      // out of influence — do nothing
       return;
     }
 
-    let animationFrameId = 0;
-    let cancelled = false;
-
-    const animate = () => {
-      if (cancelled || !field || isCollected || isGone) {
-        return;
-      }
-
-      const {
-        cursor,
-        gameActive,
-        seedActivationRadius,
-        collectRadius: fieldCollectRadius,
-      } = field;
-
-      const interactionRadius =
-        seedMode && !gameActive
-          ? (activationRadius ?? seedActivationRadius) + radiusOffset
-          : (collectRadius ?? fieldCollectRadius) + radiusOffset;
-
-      const collectionRadius = Math.max(6, interactionRadius * 0.42);
-
-      if (!cursor.inside) {
-        return;
-      }
-
-      const currentPosition = positionRef.current;
-      const cursorPosition = { x: cursor.x, y: cursor.y };
-      const distanceToCursor = distanceBetween(currentPosition, cursorPosition);
-
-      if (distanceToCursor > Math.max(8, interactionRadius)) {
-        animationFrameId = window.requestAnimationFrame(animate);
-        return;
-      }
-
-      if (distanceToCursor <= collectionRadius && !collectedRef.current) {
-        collectedRef.current = true;
-        setIsCollected(true);
-
-        if (seedMode && !gameActive) {
-          field.markSeedCollected(starId);
-        }
-
-        return;
-      }
-
-      const nextPosition = {
-        x:
-          currentPosition.x +
-          (cursorPosition.x - currentPosition.x) * (driftSpeed * driftScale),
-        y:
-          currentPosition.y +
-          (cursorPosition.y - currentPosition.y) * (driftSpeed * driftScale),
-      };
-
-      positionRef.current = nextPosition;
-      setPosition(nextPosition);
-      animationFrameId = window.requestAnimationFrame(animate);
-    };
-
-    animationFrameId = window.requestAnimationFrame(animate);
-
-    return () => {
-      cancelled = true;
-      window.cancelAnimationFrame(animationFrameId);
-    };
+    const target = { x: cursorPosition.x, y: cursorPosition.y };
+    positionRef.current = target;
+    controls.start(
+      { x: target.x, y: target.y },
+      { type: "spring", stiffness: 140 * driftScale * (1 + driftSpeed), damping: 20 }
+    );
   }, [
     activationRadius,
     collectRadius,
-    driftSpeed,
     driftScale,
+    driftSpeed,
     isCollected,
     isGone,
     radiusOffset,
     seedMode,
     starField,
     starId,
+    controls,
   ]);
 
-  if (isGone) {
-    return null;
-  }
+  if (isGone) return null;
 
   const inlineStyle: React.CSSProperties = {
     width: size,
@@ -202,46 +150,26 @@ export default function TwinklingStar({
 
   return (
     <span
-      className={[
-        "twinkling-star",
-        className ?? "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={["twinkling-star", className ?? ""].filter(Boolean).join(" ")}
       style={inlineStyle}
       aria-hidden="true"
       {...rest}
     >
-      <span
-        className={[
-          "twinkling-star__glyph",
-          seedMode ? "twinkling-star__glyph--seed" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-        style={{
-          transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`,
-          width: size,
-          height: size,
-        }}
+      <motion.span
+        className={["twinkling-star__glyph", seedMode ? "twinkling-star__glyph--seed" : ""].filter(Boolean).join(" ")}
+        style={{ width: size, height: size, position: "absolute", left: 0, top: 0, transform: "translate(-50%, -50%)" }}
+        animate={controls}
+        initial={false}
       >
         <span
-          className={[
-            "twinkling-star__pulse",
-            isCollected ? "twinkling-star__pulse--collected" : "",
-          ]
-            .filter(Boolean)
-            .join(" ")}
-          style={{
-            animationDuration: `${twinkleDuration}s`,
-            animationDelay: `${twinkleDelay}s`,
-          }}
+          className={["twinkling-star__pulse", isCollected ? "twinkling-star__pulse--collected" : ""].filter(Boolean).join(" ")}
+          style={{ animationDuration: `${twinkleDuration}s`, animationDelay: `${twinkleDelay}s` }}
         >
           <span className="twinkling-star__core" />
           <span className="twinkling-star__spark twinkling-star__spark--horizontal" />
           <span className="twinkling-star__spark twinkling-star__spark--vertical" />
         </span>
-      </span>
+      </motion.span>
     </span>
   );
 }
