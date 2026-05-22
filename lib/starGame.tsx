@@ -9,8 +9,8 @@ export type CursorState = {
 };
 
 export const DEFAULTS = {
-  seedActivationRadius: 30,
-  collectRadius: 30,
+  seedActivationRadius: 48,
+  collectRadius: 48,
   driftSpeed: 0.085,
 };
 

@@ -95,7 +95,8 @@ export default function TwinklingStar({
         ? (activationRadius ?? seedActivationRadius) + radiusOffset
         : (collectRadius ?? fieldCollectRadius) + radiusOffset;
 
-    const collectionRadius = Math.max(6, interactionRadius * 0.42);
+    const influenceRadius = Math.max(18, interactionRadius * 2.2);
+    const collectionRadius = Math.max(10, interactionRadius * 0.34);
 
     if (!cursor.inside) return;
 
@@ -113,16 +114,22 @@ export default function TwinklingStar({
       return () => window.clearTimeout(t);
     }
 
-    if (distanceToCursor > Math.max(8, interactionRadius)) {
+    if (distanceToCursor > influenceRadius) {
       // out of influence — do nothing
       return;
     }
 
     const target = { x: cursorPosition.x, y: cursorPosition.y };
     positionRef.current = target;
+    const intensity = 1 - distanceToCursor / influenceRadius;
+    const easedIntensity = intensity * intensity;
     controls.start(
       { x: target.x, y: target.y },
-      { type: "spring", stiffness: 140 * driftScale * (1 + driftSpeed), damping: 20 }
+      {
+        type: "spring",
+        stiffness: 110 * driftScale * (1 + driftSpeed) + 140 * easedIntensity,
+        damping: 18 - Math.min(4, easedIntensity * 4),
+      }
     );
   }, [
     activationRadius,
