@@ -2,7 +2,6 @@
 import { Metadata } from "next";
 import Homepage from "@/components/Homepagewrapper";
 import { Analytics } from '@vercel/analytics/next';
-import '../styles/globals.css';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../keystatic.config';
 import { ProjectCardProps } from "@/types/projects";
@@ -14,6 +13,7 @@ import type { IconProps } from '@tabler/icons-react';
 import SkillCard from '@/components/Cards/CardsSkillCard'; 
 import ProjectCard from '@/components/Cards/CardsProjectCard';
 import Link from 'next/link';
+import styles from './page.module.css';
 
 // Handle SEO here
 export const metadata: Metadata = {
@@ -51,7 +51,7 @@ export default async function Page() {
     .slice(0, 3); 
 
   const skillTrackSlot=(
-    <div className="skill-track-animation flex">
+    <div className={`${styles.skillTrackAnimation} flex`}>
       {[...skills, ...skills, ...skills].map((skill, i) => {
         
         // 1. Format the name (e.g., "Cpu" -> "IconCpu")
@@ -86,7 +86,7 @@ export default async function Page() {
 
   const featuredProjectsSlot=(
     <>
-      <div className={"strict-grid-layout"}>
+      <div className={styles.strictGridLayout}>
         {featuredProjects.map((project) => (
           <Link 
             href={project.url} 

@@ -1,0 +1,49 @@
+.skillTrackAnimation {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  flex-wrap: nowrap;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  animation: scrollMarquee 20s linear infinite !important;
+  transition: none !important;
+}
+
+.strictGridLayout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  gap: 2rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+@media (max-width: 860px) {
+  .strictGridLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+:global(.marquee-container):hover .skillTrackAnimation {
+  animation-play-state: paused !important;
+}
+
+:global(.plasmic-card-fix) {
+  height: 100% !important;
+  min-height: max-content !important;
+}
+
+:global([class*="plasmic_default__all"][style*="display: grid"]),
+:global(.plasmic-grid-container) {
+  grid-auto-rows: max-content !important;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-33.333333%, 0, 0);
+  }
+}

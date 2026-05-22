@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useMouseTracker, createCollector, DEFAULTS } from "@/lib/starGame";
+import styles from "./star-game.module.css";
 
 type CursorState = {
   x: number;
@@ -110,7 +111,7 @@ export default function StarFieldProvider({
   return (
     <StarFieldContext.Provider value={value}>
       <div
-        className={["star-field", gameActive ? "star-field--active" : "", className ?? ""].filter(Boolean).join(" ")}
+        className={[styles.starField, gameActive ? styles.starFieldActive : "", className ?? ""].filter(Boolean).join(" ")}
         style={style}
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}

@@ -1,0 +1,89 @@
+.starField {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.starFieldActive {
+  cursor: crosshair;
+}
+
+.twinklingStar {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+}
+
+.twinklingStarGlyph {
+  position: absolute;
+  display: block;
+  transform-origin: center;
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 157, 0.35));
+}
+
+.twinklingStarGlyphSeed {
+  filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.55));
+}
+
+.twinklingStarPulse {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0.95;
+  animation-name: twinklingStarPulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.twinklingStarPulseCollected {
+  animation-name: twinklingStarFade;
+  animation-duration: 220ms !important;
+  animation-fill-mode: forwards;
+}
+
+.twinklingStarCore,
+.twinklingStarSpark {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, #ffffff 0%, #00ffa5 42%, rgba(0, 255, 165, 0) 72%);
+  border-radius: 999px;
+}
+
+.twinklingStarSpark {
+  opacity: 0.9;
+}
+
+.twinklingStarSparkHorizontal {
+  transform: scaleX(1.8) scaleY(0.35);
+}
+
+.twinklingStarSparkVertical {
+  transform: scaleX(0.35) scaleY(1.8);
+}
+
+@keyframes twinklingStarPulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(0.88);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes twinklingStarFade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+}

@@ -3,6 +3,7 @@
 import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useStarField } from "./StarFieldProvider";
+import styles from "./star-game.module.css";
 
 export interface TwinklingStarProps
   extends Omit<React.HTMLAttributes<HTMLSpanElement>, "style"> {
@@ -157,24 +158,24 @@ export default function TwinklingStar({
 
   return (
     <span
-      className={["twinkling-star", className ?? ""].filter(Boolean).join(" ")}
+      className={[styles.twinklingStar, className ?? ""].filter(Boolean).join(" ")}
       style={inlineStyle}
       aria-hidden="true"
       {...rest}
     >
       <motion.span
-        className={["twinkling-star__glyph", seedMode ? "twinkling-star__glyph--seed" : ""].filter(Boolean).join(" ")}
+        className={[styles.twinklingStarGlyph, seedMode ? styles.twinklingStarGlyphSeed : ""].filter(Boolean).join(" ")}
         style={{ width: size, height: size, position: "absolute", left: 0, top: 0, transform: "translate(-50%, -50%)" }}
         animate={controls}
         initial={false}
       >
         <span
-          className={["twinkling-star__pulse", isCollected ? "twinkling-star__pulse--collected" : ""].filter(Boolean).join(" ")}
+          className={[styles.twinklingStarPulse, isCollected ? styles.twinklingStarPulseCollected : ""].filter(Boolean).join(" ")}
           style={{ animationDuration: `${twinkleDuration}s`, animationDelay: `${twinkleDelay}s` }}
         >
-          <span className="twinkling-star__core" />
-          <span className="twinkling-star__spark twinkling-star__spark--horizontal" />
-          <span className="twinkling-star__spark twinkling-star__spark--vertical" />
+          <span className={styles.twinklingStarCore} />
+          <span className={[styles.twinklingStarSpark, styles.twinklingStarSparkHorizontal].join(" ")} />
+          <span className={[styles.twinklingStarSpark, styles.twinklingStarSparkVertical].join(" ")} />
         </span>
       </motion.span>
     </span>
