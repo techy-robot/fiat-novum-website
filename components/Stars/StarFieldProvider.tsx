@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useMouseTracker, createCollector, DEFAULTS } from "@/lib/starGame";
 
 type CursorState = {
   x: number;
@@ -38,33 +39,24 @@ export default function StarFieldProvider({
   children,
   className,
   style,
-  seedActivationRadius = 30,
-  collectRadius = 30,
+  seedActivationRadius = DEFAULTS.seedActivationRadius,
+  collectRadius = DEFAULTS.collectRadius,
   onGameStart,
-  onPointerMove,
-  onPointerLeave,
   ...rest
 }: StarFieldProviderProps) {
-  const [cursor, setCursor] = React.useState<CursorState>({
-    x: 0,
-    y: 0,
-    inside: false,
-  });
+  const { cursor, onPointerMove, onPointerLeave } = useMouseTracker();
   const [gameActive, setGameActive] = React.useState(false);
-  const seedStarsRef = React.useRef(new Set<string>());
-  const collectedSeedsRef = React.useRef(new Set<string>());
+  const collectorRef = React.useRef(createCollector());
   const [seedCount, setSeedCount] = React.useState(0);
   const [collectedSeedCount, setCollectedSeedCount] = React.useState(0);
 
   const syncCounts = React.useCallback(() => {
-    setSeedCount(seedStarsRef.current.size);
-    setCollectedSeedCount(collectedSeedsRef.current.size);
+    setSeedCount(collectorRef.current.getSeedCount());
+    setCollectedSeedCount(collectorRef.current.getCollectedCount());
   }, []);
 
   const maybeStartGame = React.useCallback(() => {
-    const allSeedsCollected =
-      seedStarsRef.current.size > 0 &&
-      seedStarsRef.current.size === collectedSeedsRef.current.size;
+    const allSeedsCollected = collectorRef.current.allCollected();
 
     if (allSeedsCollected && !gameActive) {
       setGameActive(true);
@@ -74,7 +66,7 @@ export default function StarFieldProvider({
 
   const registerSeedStar = React.useCallback(
     (id: string) => {
-      seedStarsRef.current.add(id);
+      collectorRef.current.register(id);
       syncCounts();
       maybeStartGame();
     },
@@ -83,8 +75,7 @@ export default function StarFieldProvider({
 
   const unregisterSeedStar = React.useCallback(
     (id: string) => {
-      seedStarsRef.current.delete(id);
-      collectedSeedsRef.current.delete(id);
+      collectorRef.current.unregister(id);
       syncCounts();
       maybeStartGame();
     },
@@ -93,40 +84,11 @@ export default function StarFieldProvider({
 
   const markSeedCollected = React.useCallback(
     (id: string) => {
-      if (!collectedSeedsRef.current.has(id)) {
-        collectedSeedsRef.current.add(id);
-        syncCounts();
-        maybeStartGame();
-      }
+      collectorRef.current.markCollected(id);
+      syncCounts();
+      maybeStartGame();
     },
     [maybeStartGame, syncCounts]
-  );
-
-  const handlePointerMove = React.useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      const rect = event.currentTarget.getBoundingClientRect();
-
-      setCursor({
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top,
-        inside: true,
-      });
-
-      onPointerMove?.(event);
-    },
-    [onPointerMove]
-  );
-
-  const handlePointerLeave = React.useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      setCursor((previous) => ({
-        ...previous,
-        inside: false,
-      }));
-
-      onPointerLeave?.(event);
-    },
-    [onPointerLeave]
   );
 
   const value = React.useMemo<StarFieldContextValue>(
@@ -142,32 +104,16 @@ export default function StarFieldProvider({
       unregisterSeedStar,
       markSeedCollected,
     }),
-    [
-      cursor,
-      gameActive,
-      seedCount,
-      collectedSeedCount,
-      seedActivationRadius,
-      collectRadius,
-      registerSeedStar,
-      unregisterSeedStar,
-      markSeedCollected,
-    ]
+    [cursor, gameActive, seedCount, collectedSeedCount, seedActivationRadius, collectRadius, registerSeedStar, unregisterSeedStar, markSeedCollected]
   );
 
   return (
     <StarFieldContext.Provider value={value}>
       <div
-        className={[
-          "star-field",
-          gameActive ? "star-field--active" : "",
-          className ?? "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
+        className={["star-field", gameActive ? "star-field--active" : "", className ?? ""].filter(Boolean).join(" ")}
         style={style}
-        onPointerMove={handlePointerMove}
-        onPointerLeave={handlePointerLeave}
+        onPointerMove={onPointerMove}
+        onPointerLeave={onPointerLeave}
         {...rest}
       >
         {children}
