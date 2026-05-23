@@ -63,10 +63,8 @@ export default function StarFieldProvider({
 
   const maybeStartGame = React.useCallback(() => {
     const allSeedsCollected = collectorRef.current.allCollected();
-    console.log(`[MaybeStartGame] allSeedsCollected: ${allSeedsCollected}, gameActive: ${globalGameState.active}`);
 
     if (allSeedsCollected && !globalGameState.active) {
-      console.log(`[StartGame] Starting game now!`);
       starGame.start();
       onGameStart?.();
     }
@@ -77,7 +75,6 @@ export default function StarFieldProvider({
       collectorRef.current.register(id);
       syncCounts();
       maybeStartGame();
-      console.log(`[Register] ID: ${id}, seeds: ${collectorRef.current.getSeedCount()}, collected: ${collectorRef.current.getCollectedCount()}, allCollected: ${collectorRef.current.allCollected()}`);
     },
     [maybeStartGame, syncCounts]
   );
@@ -96,7 +93,6 @@ export default function StarFieldProvider({
       collectorRef.current.markCollected(id);
       syncCounts();
       maybeStartGame();
-      console.log(`[Collected] ID: ${id}, seeds: ${collectorRef.current.getSeedCount()}, collected: ${collectorRef.current.getCollectedCount()}, allCollected: ${collectorRef.current.allCollected()}`);
     },
     [maybeStartGame, syncCounts]
   );

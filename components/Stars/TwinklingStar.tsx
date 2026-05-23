@@ -72,10 +72,8 @@ export default function TwinklingStar({
   React.useEffect(() => {
     if (!starField || !seedMode) return;
     starField.registerSeedStar(starId);
-    console.log(`[TwinklingStar] Register seed: ${starId}`);
     return () => {
       starField.unregisterSeedStar(starId);
-      console.log(`[TwinklingStar] Unregister seed: ${starId}`);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [seedMode, starId]);
@@ -111,17 +109,10 @@ export default function TwinklingStar({
     const currentPosition = positionRef.current;
     const cursorPosition = { x: cursor.x, y: cursor.y };
     const distanceToCursor = distanceBetween(currentPosition, cursorPosition);
-    console.log(
-      `Star ${starId}: distance=${distanceToCursor.toFixed(1)}, collectionRadius=${collectionRadius.toFixed(
-        1
-      )}, seedMode=${seedMode}`
-    );
 
     if (distanceToCursor <= collectionRadius && !isCollected) {
       setIsCollected(true);
-      console.log(`[TwinklingStar] COLLECTED! Star ${starId}, seedMode=${seedMode}`);
       if (seedMode) {
-        console.log(`[TwinklingStar] Marking seed collected: ${starId}`);
         field.markSeedCollected(starId);
       }
       controls.start({ scale: 0, opacity: 0 }, { duration: 0.22 });
