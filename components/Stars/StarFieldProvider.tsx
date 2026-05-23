@@ -12,7 +12,6 @@ type CursorState = {
 
 type StarFieldContextValue = {
   cursor: CursorState;
-  gameActive: boolean;
   seedCount: number;
   collectedSeedCount: number;
   allSeedsCollected: boolean;
@@ -64,8 +63,10 @@ export default function StarFieldProvider({
 
   const maybeStartGame = React.useCallback(() => {
     const allSeedsCollected = collectorRef.current.allCollected();
+    console.log(`[MaybeStartGame] allSeedsCollected: ${allSeedsCollected}, gameActive: ${globalGameState.active}`);
 
     if (allSeedsCollected && !globalGameState.active) {
+      console.log(`[StartGame] Starting game now!`);
       starGame.start();
       onGameStart?.();
     }
@@ -76,6 +77,7 @@ export default function StarFieldProvider({
       collectorRef.current.register(id);
       syncCounts();
       maybeStartGame();
+      console.log(`[Register] ID: ${id}, seeds: ${collectorRef.current.getSeedCount()}, collected: ${collectorRef.current.getCollectedCount()}, allCollected: ${collectorRef.current.allCollected()}`);
     },
     [maybeStartGame, syncCounts]
   );
@@ -94,6 +96,7 @@ export default function StarFieldProvider({
       collectorRef.current.markCollected(id);
       syncCounts();
       maybeStartGame();
+      console.log(`[Collected] ID: ${id}, seeds: ${collectorRef.current.getSeedCount()}, collected: ${collectorRef.current.getCollectedCount()}, allCollected: ${collectorRef.current.allCollected()}`);
     },
     [maybeStartGame, syncCounts]
   );
@@ -101,7 +104,6 @@ export default function StarFieldProvider({
   const value = React.useMemo<StarFieldContextValue>(
     () => ({
       cursor,
-      gameActive: globalGameState.active,
       seedCount,
       collectedSeedCount,
       allSeedsCollected: seedCount > 0 && seedCount === collectedSeedCount,
@@ -111,7 +113,7 @@ export default function StarFieldProvider({
       unregisterSeedStar,
       markSeedCollected,
     }),
-    [cursor, globalGameState.active, seedCount, collectedSeedCount, seedActivationRadius, collectRadius, registerSeedStar, unregisterSeedStar, markSeedCollected]
+    [cursor, seedCount, collectedSeedCount, seedActivationRadius, collectRadius, registerSeedStar, unregisterSeedStar, markSeedCollected]
   );
 
   return (
