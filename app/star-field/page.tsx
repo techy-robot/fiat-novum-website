@@ -9,12 +9,15 @@ export const metadata: Metadata = {
   description: "Interactive star collection demo for the Fiat Novum website.",
 };
 
+/**
+ * Demo route for the star-game interaction.
+ * The page keeps the layout simple so the activation flow is easy to understand.
+ */
 export default function StarFieldPage() {
   return (
     <main className={styles.page}>
-      <StarFieldProvider
-        className={styles.demo}
-      >
+      {/* The provider owns cursor tracking, seed collection, and cursor glow for the whole demo surface. */}
+      <StarFieldProvider className={styles.demo}>
         <div className={styles.content}>
           <p className={styles.eyebrow}>Prototype</p>
           <h1 className={styles.title}>
@@ -25,6 +28,7 @@ export default function StarFieldPage() {
           </p>
         </div>
 
+        {/* These seed stars must be collected first to unlock the active field state. */}
         <TwinklingStar x={96} y={82} size={18} seedMode twinkleDuration={2.4} />
         <TwinklingStar
           x={220}
@@ -42,6 +46,8 @@ export default function StarFieldPage() {
           twinkleDuration={2.6}
           twinkleDelay={0.5}
         />
+
+        {/* Once the seeds are complete, the remaining stars become collectable too. */}
         <TwinklingStar x={492} y={204} size={15} twinkleDuration={3.2} />
         <TwinklingStar
           x={612}

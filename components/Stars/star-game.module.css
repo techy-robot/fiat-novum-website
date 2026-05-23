@@ -1,3 +1,4 @@
+/* The field wrapper clips the glow and establishes the shared stacking context. */
 .starField {
   position: relative;
   overflow: hidden;
@@ -5,10 +6,12 @@
   isolation: isolate;
 }
 
+/* The glow overlay sits above the background but below the interactive stars. */
 .starField > :not(.cursorGlow) {
   z-index: 1;
 }
 
+/* The cursor glow is a full-field overlay that reads the CSS variables from the provider. */
 .cursorGlow {
   position: absolute;
   inset: 0;
@@ -16,6 +19,7 @@
   z-index: 2;
 }
 
+/* The radial highlight stays centered on the live cursor position. */
 .cursorGlow::before {
   content: "";
   position: absolute;
@@ -41,16 +45,19 @@
   transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Active mode switches the cursor into a crosshair so the collection state is obvious. */
 .starFieldActive {
   cursor: crosshair;
 }
 
+/* Stars are positioned absolutely so the page can treat the field like a play surface. */
 .twinklingStar {
   position: absolute;
   pointer-events: none;
   will-change: transform, opacity, filter;
 }
 
+/* The glyph combines the pulse animation with a subtle glow. */
 .twinklingStarGlyph {
   position: absolute;
   display: block;
@@ -59,10 +66,12 @@
   filter: drop-shadow(0 0 6px rgba(0, 255, 157, 0.35));
 }
 
+/* Seed stars get a stronger glow so they are easier to identify at the start. */
 .twinklingStarGlyphSeed {
   filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.55));
 }
 
+/* The pulse keeps stars feeling alive even when the cursor is not nearby. */
 .twinklingStarPulse {
   position: absolute;
   inset: 0;
@@ -74,12 +83,14 @@
   animation-iteration-count: infinite;
 }
 
+/* Collected stars fade out quickly instead of disappearing abruptly. */
 .twinklingStarPulseCollected {
   animation-name: twinklingStarFade;
   animation-duration: 220ms !important;
   animation-fill-mode: forwards;
 }
 
+/* The star body is built from a bright core and crossing flares. */
 .twinklingStarCore,
 .twinklingStarSpark {
   position: absolute;
@@ -88,14 +99,17 @@
   border-radius: 999px;
 }
 
+/* The outer sparks are slightly softer than the center core. */
 .twinklingStarSpark {
   opacity: 0.9;
 }
 
+/* Stretch the horizontal spark to create the cross-shaped flare. */
 .twinklingStarSparkHorizontal {
   transform: scaleX(1.8) scaleY(0.35);
 }
 
+/* Stretch the vertical spark to complete the flare shape. */
 .twinklingStarSparkVertical {
   transform: scaleX(0.35) scaleY(1.8);
 }

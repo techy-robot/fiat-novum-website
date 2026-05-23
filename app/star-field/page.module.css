@@ -1,7 +1,9 @@
+/* Give the demo room away from the rest of the page so the field feels framed. */
 .page {
   padding: 2rem 1.25rem 4rem;
 }
 
+/* The demo surface is a dark, rounded play area that holds the stars and glow. */
 .demo {
   min-height: 440px;
   border-radius: 1.5rem;
@@ -10,12 +12,14 @@
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
 }
 
+/* Text is layered above the stars so the interaction instructions stay readable. */
 .content {
   position: relative;
   z-index: 1;
   padding: 1.5rem;
 }
 
+/* The eyebrow establishes that this is a prototype rather than a finished section. */
 .eyebrow {
   margin-bottom: 0.5rem;
   letter-spacing: 0.08em;
@@ -23,11 +27,13 @@
   font-size: 0.75rem;
 }
 
+/* Larger type makes the interaction goal obvious at a glance. */
 .title {
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
+/* The description stays narrow so it remains legible over the animated scene. */
 .description {
   max-width: 560px;
   line-height: 1.6;
