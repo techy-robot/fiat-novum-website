@@ -3,6 +3,7 @@
 import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useStarField } from "./StarFieldProvider";
+import { useGameState } from "@/hooks/useGameState";
 import styles from "./star-game.module.css";
 
 export interface TwinklingStarProps
@@ -54,6 +55,7 @@ export default function TwinklingStar({
 }: TwinklingStarProps) {
   const starField = useStarField();
   const controls = useAnimation();
+  const global = useGameState();
   const starId = React.useId();
   const motionVariation = React.useMemo(() => hashString(starId), [starId]);
   const driftScale = 0.82 + ((motionVariation % 24) / 100);
@@ -86,13 +88,13 @@ export default function TwinklingStar({
     const field = starField;
     if (!field) return;
 
-    const canChase = seedMode || field.gameActive;
+    const canChase = seedMode || global.active;
     if (!canChase) return;
 
-    const { cursor, gameActive, seedActivationRadius, collectRadius: fieldCollectRadius } = field;
+    const { cursor, seedActivationRadius, collectRadius: fieldCollectRadius } = field;
 
     const interactionRadius =
-      seedMode && !gameActive
+      seedMode && !global.active
         ? (activationRadius ?? seedActivationRadius) + radiusOffset
         : (collectRadius ?? fieldCollectRadius) + radiusOffset;
 
@@ -104,7 +106,11 @@ export default function TwinklingStar({
     const currentPosition = positionRef.current;
     const cursorPosition = { x: cursor.x, y: cursor.y };
     const distanceToCursor = distanceBetween(currentPosition, cursorPosition);
-    console.log(`Star ${starId}: distance=${distanceToCursor.toFixed(1)}, collectionRadius=${collectionRadius.toFixed(1)}, seedMode=${seedMode}`);
+    console.log(
+      `Star ${starId}: distance=${distanceToCursor.toFixed(1)}, collectionRadius=${collectionRadius.toFixed(
+        1
+      )}, seedMode=${seedMode}`
+    );
 
     if (distanceToCursor <= collectionRadius && !isCollected) {
       setIsCollected(true);
@@ -146,6 +152,7 @@ export default function TwinklingStar({
     starField,
     starId,
     controls,
+    global.active,
   ]);
 
   if (isGone) return null;

@@ -71,3 +71,67 @@ export function useMouseTracker() {
 
   return { cursor, onPointerMove, onPointerLeave } as const;
 }
+
+type GameState = { active: boolean; total: number; collected: number };
+type GameListener = (s: GameState) => void;
+
+class StarGame {
+  private state: GameState = { active: false, total: 0, collected: 0 };
+  private listeners = new Set<GameListener>();
+
+  start() {
+    if (!this.state.active) {
+      this.state.active = true;
+      this.emit();
+    }
+  }
+
+  stop() {
+    if (this.state.active) {
+      this.state.active = false;
+      this.emit();
+    }
+  }
+
+  reset() {
+    this.state = { active: false, total: 0, collected: 0 };
+    this.emit();
+  }
+
+  // Update totals (useful when provider manages per-area seeds)
+  setCounts(total: number, collected: number) {
+    let changed = false;
+    if (this.state.total !== total) {
+      this.state.total = total;
+      changed = true;
+    }
+    if (this.state.collected !== collected) {
+      this.state.collected = collected;
+      changed = true;
+    }
+    if (changed) this.emit();
+  }
+
+  collect(n = 1) {
+    this.state.collected += n;
+    this.emit();
+  }
+
+  getState() {
+    return { ...this.state };
+  }
+
+  subscribe(listener: GameListener) {
+    this.listeners.add(listener);
+    listener(this.getState());
+    return () => {
+      this.listeners.delete(listener);
+    };
+  }
+
+  private emit() {
+    for (const l of Array.from(this.listeners)) l(this.getState());
+  }
+}
+
+export const starGame = new StarGame();

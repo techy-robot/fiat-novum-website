@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useMouseTracker, createCollector, DEFAULTS } from "@/lib/starGame";
+import { useMouseTracker, createCollector, DEFAULTS, starGame } from "@/lib/starGame";
 import styles from "./star-game.module.css";
 
 type CursorState = {
@@ -46,24 +46,30 @@ export default function StarFieldProvider({
   ...rest
 }: StarFieldProviderProps) {
   const { cursor, onPointerMove, onPointerLeave } = useMouseTracker();
-  const [gameActive, setGameActive] = React.useState(false);
+  const [globalGameState, setGlobalGameState] = React.useState(() => starGame.getState());
+  React.useEffect(() => {
+    return starGame.subscribe((s) => setGlobalGameState(s));
+  }, []);
   const collectorRef = React.useRef(createCollector());
   const [seedCount, setSeedCount] = React.useState(0);
   const [collectedSeedCount, setCollectedSeedCount] = React.useState(0);
 
   const syncCounts = React.useCallback(() => {
-    setSeedCount(collectorRef.current.getSeedCount());
-    setCollectedSeedCount(collectorRef.current.getCollectedCount());
+    const total = collectorRef.current.getSeedCount();
+    const collected = collectorRef.current.getCollectedCount();
+    setSeedCount(total);
+    setCollectedSeedCount(collected);
+    starGame.setCounts(total, collected);
   }, []);
 
   const maybeStartGame = React.useCallback(() => {
     const allSeedsCollected = collectorRef.current.allCollected();
 
-    if (allSeedsCollected && !gameActive) {
-      setGameActive(true);
+    if (allSeedsCollected && !globalGameState.active) {
+      starGame.start();
       onGameStart?.();
     }
-  }, [gameActive, onGameStart]);
+  }, [globalGameState.active, onGameStart]);
 
   const registerSeedStar = React.useCallback(
     (id: string) => {
@@ -95,7 +101,7 @@ export default function StarFieldProvider({
   const value = React.useMemo<StarFieldContextValue>(
     () => ({
       cursor,
-      gameActive,
+      gameActive: globalGameState.active,
       seedCount,
       collectedSeedCount,
       allSeedsCollected: seedCount > 0 && seedCount === collectedSeedCount,
@@ -105,13 +111,13 @@ export default function StarFieldProvider({
       unregisterSeedStar,
       markSeedCollected,
     }),
-    [cursor, gameActive, seedCount, collectedSeedCount, seedActivationRadius, collectRadius, registerSeedStar, unregisterSeedStar, markSeedCollected]
+    [cursor, globalGameState.active, seedCount, collectedSeedCount, seedActivationRadius, collectRadius, registerSeedStar, unregisterSeedStar, markSeedCollected]
   );
 
   return (
     <StarFieldContext.Provider value={value}>
       <div
-        className={[styles.starField, gameActive ? styles.starFieldActive : "", className ?? ""].filter(Boolean).join(" ")}
+        className={[styles.starField, globalGameState.active ? styles.starFieldActive : "", className ?? ""].filter(Boolean).join(" ")}
         style={style}
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
