@@ -63,6 +63,7 @@ export default function TwinklingStar({
   const positionRef = React.useRef<Position>({ x, y });
   const [isCollected, setIsCollected] = React.useState(false);
   const [isGone, setIsGone] = React.useState(false);
+  const seedCollectionProgress = starField && starField.seedCount > 0 ? starField.collectedSeedCount / starField.seedCount : 0;
 
   React.useEffect(() => {
     positionRef.current = { x, y };
@@ -79,6 +80,12 @@ export default function TwinklingStar({
   }, [seedMode, starId]);
 
   React.useEffect(() => {
+    return () => {
+      starField?.clearCursorGlow(starId);
+    };
+  }, [starField, starId]);
+
+  React.useEffect(() => {
     if (isCollected) {
       const t = window.setTimeout(() => setIsGone(true), 220);
       return () => window.clearTimeout(t);
@@ -90,6 +97,11 @@ export default function TwinklingStar({
     if (isGone) return;
     const field = starField;
     if (!field) return;
+
+    if (isCollected) {
+      field.reportCursorGlow(starId, 0);
+      return;
+    }
 
     const canChase = seedMode || global.active;
     if (!canChase) return;
@@ -110,25 +122,40 @@ export default function TwinklingStar({
     const cursorPosition = { x: cursor.x, y: cursor.y };
     const distanceToCursor = distanceBetween(currentPosition, cursorPosition);
 
+    const canGlow = seedMode ? !global.active : global.active;
+    if (!canGlow) {
+      field.reportCursorGlow(starId, 0);
+    }
+
     if (distanceToCursor <= collectionRadius && !isCollected) {
       setIsCollected(true);
       if (seedMode) {
         field.markSeedCollected(starId);
       }
       controls.start({ scale: 0, opacity: 0 }, { duration: 0.22 });
+      field.reportCursorGlow(starId, 0);
       const t = window.setTimeout(() => setIsGone(true), 220);
       return () => window.clearTimeout(t);
     }
 
     if (distanceToCursor > influenceRadius) {
       // out of influence — do nothing
+      field.reportCursorGlow(starId, 0);
       return;
     }
 
-    const target = { x: cursorPosition.x, y: cursorPosition.y };
-    positionRef.current = target;
+    if (!canGlow) {
+      return;
+    }
+
     const intensity = 1 - distanceToCursor / influenceRadius;
     const easedIntensity = intensity * intensity;
+    const glowIntensity = seedMode ? easedIntensity * seedCollectionProgress : 1;
+
+    field.reportCursorGlow(starId, glowIntensity);
+
+    const target = { x: cursorPosition.x, y: cursorPosition.y };
+    positionRef.current = target;
     controls.start(
       { x: target.x, y: target.y },
       {
@@ -145,6 +172,7 @@ export default function TwinklingStar({
     isCollected,
     isGone,
     radiusOffset,
+    seedCollectionProgress,
     seedMode,
     starField,
     starId,

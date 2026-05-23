@@ -2,6 +2,43 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+  isolation: isolate;
+}
+
+.starField > :not(.cursorGlow) {
+  z-index: 1;
+}
+
+.cursorGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cursorGlow::before {
+  content: "";
+  position: absolute;
+  left: var(--cursor-glow-x, 0px);
+  top: var(--cursor-glow-y, 0px);
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: var(--cursor-glow-opacity, 0);
+  transform: translate(-50%, -50%) scale(var(--cursor-glow-scale, 0));
+  transform-origin: center;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(0, 255, 157, 0.72) 18%,
+    rgba(0, 255, 157, 0.28) 38%,
+    rgba(0, 255, 157, 0.08) 58%,
+    rgba(0, 255, 157, 0) 74%
+  );
+  filter: blur(12px) drop-shadow(0 0 24px rgba(0, 255, 157, 0.45));
+  mix-blend-mode: screen;
+  transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .starFieldActive {
