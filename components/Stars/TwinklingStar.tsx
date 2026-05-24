@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion, useAnimation } from "framer-motion";
+import { IconStarFilled } from "@tabler/icons-react";
 import { useStarField } from "./StarFieldProvider";
 import { useGameState } from "@/hooks/useGameState";
 import styles from "./star-game.module.css";
@@ -243,9 +244,12 @@ export default function TwinklingStar({
           className={[styles.twinklingStarPulse, isCollected ? styles.twinklingStarPulseCollected : ""].filter(Boolean).join(" ")}
           style={{ animationDuration: `${twinkleDuration}s`, animationDelay: `${twinkleDelay}s` }}
         >
-          <span className={styles.twinklingStarCore} />
-          <span className={[styles.twinklingStarSpark, styles.twinklingStarSparkHorizontal].join(" ")} />
-          <span className={[styles.twinklingStarSpark, styles.twinklingStarSparkVertical].join(" ")} />
+          <IconStarFilled
+            className={styles.twinklingStarIcon}
+            size={size}
+            color="#00ffa5"
+            aria-hidden="true"
+          />
         </span>
       </motion.span>
     </span>

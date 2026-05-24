@@ -90,28 +90,9 @@
   animation-fill-mode: forwards;
 }
 
-/* The star body is built from a bright core and crossing flares. */
-.twinklingStarCore,
-.twinklingStarSpark {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, #ffffff 0%, #00ffa5 42%, rgba(0, 255, 165, 0) 72%);
-  border-radius: 999px;
-}
-
-/* The outer sparks are slightly softer than the center core. */
-.twinklingStarSpark {
-  opacity: 0.9;
-}
-
-/* Stretch the horizontal spark to create the cross-shaped flare. */
-.twinklingStarSparkHorizontal {
-  transform: scaleX(1.8) scaleY(0.35);
-}
-
-/* Stretch the vertical spark to complete the flare shape. */
-.twinklingStarSparkVertical {
-  transform: scaleX(0.35) scaleY(1.8);
+/* The icon keeps the body simple while the wrapper handles glow and motion. */
+.twinklingStarIcon {
+  display: block;
 }
 
 @keyframes twinklingStarPulse {
