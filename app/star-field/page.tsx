@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import StarFieldProvider from "@/components/Stars/StarFieldProvider";
+import StarGlowSurface from "@/components/Stars/StarGlowSurface";
 import TwinklingStar from "@/components/Stars/TwinklingStar";
 import styles from "./page.module.css";
 
@@ -16,8 +16,7 @@ export const metadata: Metadata = {
 export default function StarFieldPage() {
   return (
     <main className={styles.page}>
-      {/* The provider owns cursor tracking, seed collection, and cursor glow for the whole demo surface. */}
-      <StarFieldProvider className={styles.demo}>
+      <StarGlowSurface className={styles.demo}>
         <div className={styles.content}>
           <p className={styles.eyebrow}>Prototype</p>
           <h1 className={styles.title}>
@@ -63,7 +62,7 @@ export default function StarFieldPage() {
           twinkleDuration={3}
           twinkleDelay={0.4}
         />
-      </StarFieldProvider>
+      </StarGlowSurface>
     </main>
   );
 }

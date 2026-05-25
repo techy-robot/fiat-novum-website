@@ -13,7 +13,7 @@ export type CursorState = {
 };
 
 /**
- * Default interaction tuning shared by the provider and star components.
+ * Default interaction tuning shared by the glow surface and star components.
  * Keeping these values in one place prevents the field from drifting out of sync.
  */
 export const DEFAULTS = {
@@ -75,7 +75,7 @@ export function createCollector() {
 
 /**
  * Track pointer coordinates relative to the active field wrapper.
- * The returned handlers are attached directly to the provider shell.
+ * The returned handlers are attached directly to the glow surface shell.
  */
 export function useMouseTracker() {
   const [cursor, setCursor] = React.useState<CursorState>({ x: 0, y: 0, inside: false });
@@ -94,17 +94,101 @@ export function useMouseTracker() {
   return { cursor, onPointerMove, onPointerLeave } as const;
 }
 
-/** The shared game snapshot that the provider, hook, and stars observe. */
-type GameState = { active: boolean; total: number; collected: number };
+/** The shared game snapshot that the surface, hook, and stars observe. */
+type GameState = { active: boolean; total: number; collected: number; cursorGlowIntensity: number };
 type GameListener = (s: GameState) => void;
 
 /**
  * Observable singleton store for the star-game lifecycle and counters.
- * The provider keeps React in sync with this store so the rest of the field can stay declarative.
+ * The shared hooks keep React in sync with this store so the rest of the UI can stay declarative.
  */
 class StarGame {
-  private state: GameState = { active: false, total: 0, collected: 0 };
+  private state: GameState = { active: false, total: 0, collected: 0, cursorGlowIntensity: 0 };
   private listeners = new Set<GameListener>();
+  private collector = createCollector();
+  private cursorGlowReports = new Map<string, number>();
+
+  private syncCounts() {
+    const total = this.collector.getSeedCount();
+    const collected = this.collector.getCollectedCount();
+
+    let changed = false;
+
+    if (this.state.total !== total) {
+      this.state.total = total;
+      changed = true;
+    }
+
+    if (this.state.collected !== collected) {
+      this.state.collected = collected;
+      changed = true;
+    }
+
+    if (changed) {
+      this.emit();
+    }
+  }
+
+  private syncCursorGlow() {
+    let maxIntensity = 0;
+
+    for (const intensity of this.cursorGlowReports.values()) {
+      if (intensity > maxIntensity) {
+        maxIntensity = intensity;
+      }
+    }
+
+    if (this.state.cursorGlowIntensity !== maxIntensity) {
+      this.state.cursorGlowIntensity = maxIntensity;
+      this.emit();
+    }
+  }
+
+  private maybeStartGame() {
+    if (this.collector.allCollected() && !this.state.active) {
+      this.start();
+    }
+  }
+
+  /** Register a seed star so it participates in the unlock check. */
+  registerSeedStar(id: string) {
+    this.collector.register(id);
+    this.syncCounts();
+    this.maybeStartGame();
+  }
+
+  /** Remove a seed star from the unlock check unless it has already been collected. */
+  unregisterSeedStar(id: string) {
+    this.collector.unregister(id);
+    this.syncCounts();
+    this.maybeStartGame();
+  }
+
+  /** Mark a registered seed star as collected. */
+  markSeedCollected(id: string) {
+    this.collector.markCollected(id);
+    this.syncCounts();
+    this.maybeStartGame();
+  }
+
+  /** Report a live glow contribution from a star. */
+  reportCursorGlow(id: string, intensity: number) {
+    if (intensity <= 0) {
+      this.cursorGlowReports.delete(id);
+      this.syncCursorGlow();
+      return;
+    }
+
+    this.cursorGlowReports.set(id, Math.min(1, intensity));
+    this.syncCursorGlow();
+  }
+
+  /** Clear a live glow contribution for a star. */
+  clearCursorGlow(id: string) {
+    if (this.cursorGlowReports.delete(id)) {
+      this.syncCursorGlow();
+    }
+  }
 
   /** Activate the field once the seed collection phase is complete. */
   start() {
@@ -124,12 +208,14 @@ class StarGame {
 
   /** Reset both the lifecycle state and the progress counters. */
   reset() {
-    this.state = { active: false, total: 0, collected: 0 };
+    this.state = { active: false, total: 0, collected: 0, cursorGlowIntensity: 0 };
+    this.collector = createCollector();
+    this.cursorGlowReports.clear();
     this.emit();
   }
 
   /**
-   * Keep the shared counters aligned with the provider-managed collector.
+  * Keep the shared counters aligned with the internal collector.
    * This lets the rest of the UI react to stars mounting and unmounting dynamically.
    */
   setCounts(total: number, collected: number) {
@@ -149,6 +235,11 @@ class StarGame {
   collect(n = 1) {
     this.state.collected += n;
     this.emit();
+  }
+
+  /** Read the current seed collection progress as a 0-1 ratio. */
+  getSeedCollectionProgress() {
+    return this.state.total > 0 ? this.state.collected / this.state.total : 0;
   }
 
   /** Read the current snapshot without subscribing. */

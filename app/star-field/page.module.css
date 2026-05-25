@@ -17,6 +17,7 @@
   position: relative;
   z-index: 1;
   padding: 1.5rem;
+  max-width: 560px;
 }
 
 /* The eyebrow establishes that this is a prototype rather than a finished section. */

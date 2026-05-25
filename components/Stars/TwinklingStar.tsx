@@ -3,9 +3,8 @@
 import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { IconStarFilled } from "@tabler/icons-react";
-import { useStarField } from "./StarFieldProvider";
 import { useViewportCursor } from "@/lib/useViewportCursor";
-import { DEFAULTS } from "@/lib/starGame";
+import { DEFAULTS, starGame } from "@/lib/starGame";
 import { useGameState } from "@/hooks/useGameState";
 import styles from "./star-game.module.css";
 
@@ -92,7 +91,6 @@ export default function TwinklingStar({
   style,
   ...rest
 }: TwinklingStarProps) {
-  const starField = useStarField();
   const viewportCursor = useViewportCursor();
   const controls = useAnimation();
   const global = useGameState();
@@ -108,8 +106,8 @@ export default function TwinklingStar({
   const starRef = React.useRef<HTMLSpanElement | null>(null);
   const [isCollected, setIsCollected] = React.useState(false);
   const [isGone, setIsGone] = React.useState(false);
-  // Seed stars glow harder as the field gets closer to completion.
-  const seedCollectionProgress = starField && starField.seedCount > 0 ? starField.collectedSeedCount / starField.seedCount : 0;
+  // Seed stars glow harder as the shared game gets closer to completion.
+  const seedCollectionProgress = global.total > 0 ? global.collected / global.total : 0;
 
   React.useEffect(() => {
     // Reset the animation target if the authored position changes.
@@ -118,21 +116,20 @@ export default function TwinklingStar({
   }, [x, y, controls]);
 
   React.useEffect(() => {
-    // Seed stars register while mounted so the provider can count them.
-    if (!starField || !seedMode) return;
-    starField.registerSeedStar(starId);
+    // Seed stars register while mounted so the shared game can count them.
+    if (!seedMode) return;
+    starGame.registerSeedStar(starId);
     return () => {
-      starField.unregisterSeedStar(starId);
+      starGame.unregisterSeedStar(starId);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [seedMode, starId]);
 
   React.useEffect(() => {
     // Clear any reported glow when this instance leaves the tree.
     return () => {
-      starField?.clearCursorGlow(starId);
+      starGame.clearCursorGlow(starId);
     };
-  }, [starField, starId]);
+  }, [starId]);
 
   React.useEffect(() => {
     if (isCollected) {
@@ -145,10 +142,9 @@ export default function TwinklingStar({
 
   React.useEffect(() => {
     if (isGone) return;
-    const field = starField;
 
     if (isCollected) {
-      field?.reportCursorGlow(starId, 0);
+      starGame.reportCursorGlow(starId, 0);
       return;
     }
 
@@ -156,7 +152,7 @@ export default function TwinklingStar({
     const canChase = seedMode || global.active;
     if (!canChase) return;
 
-    const { seedActivationRadius = DEFAULTS.seedActivationRadius, collectRadius: fieldCollectRadius = DEFAULTS.collectRadius } = field ?? {};
+    const { seedActivationRadius, collectRadius: fieldCollectRadius } = DEFAULTS;
     const cursor = getLocalCursorPosition(viewportCursor, starRef.current);
 
     // Each phase uses its own radius so the pre-game and active states feel distinct.
@@ -176,24 +172,24 @@ export default function TwinklingStar({
 
     const canGlow = seedMode ? !global.active : global.active;
     if (!canGlow) {
-      field?.reportCursorGlow(starId, 0);
+      starGame.reportCursorGlow(starId, 0);
     }
 
     if (distanceToCursor <= collectionRadius && !isCollected) {
       // Close enough to collect, the star fades out and marks itself complete.
       setIsCollected(true);
       if (seedMode) {
-        field?.markSeedCollected(starId);
+        starGame.markSeedCollected(starId);
       }
       controls.start({ scale: 0, opacity: 0 }, { duration: 0.22 });
-      field?.reportCursorGlow(starId, 0);
+      starGame.reportCursorGlow(starId, 0);
       const t = window.setTimeout(() => setIsGone(true), 220);
       return () => window.clearTimeout(t);
     }
 
     if (distanceToCursor > influenceRadius) {
       // Outside the influence radius, the star stays put and stops contributing glow.
-      field?.reportCursorGlow(starId, 0);
+      starGame.reportCursorGlow(starId, 0);
       return;
     }
 
@@ -207,7 +203,7 @@ export default function TwinklingStar({
     // Seed stars scale their glow with overall collection progress.
     const glowIntensity = seedMode ? easedIntensity * seedCollectionProgress : 1;
 
-    field?.reportCursorGlow(starId, glowIntensity);
+    starGame.reportCursorGlow(starId, glowIntensity);
 
     const target = { x: cursorPosition.x, y: cursorPosition.y };
     positionRef.current = target;
@@ -230,7 +226,6 @@ export default function TwinklingStar({
     radiusOffset,
     seedCollectionProgress,
     seedMode,
-    starField,
     starId,
     controls,
     viewportCursor,
