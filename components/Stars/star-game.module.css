@@ -95,6 +95,77 @@
   display: block;
 }
 
+/* The special link gets its own halo so the stars feel anchored to the call to action. */
+.starLink {
+  position: relative;
+  display: inline-block;
+  padding: 0.15rem 1rem 0.15rem 0;
+  border: 0;
+  background: none;
+  color: #00ffa5;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 255, 157, 0.78);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  letter-spacing: 0.01em;
+  font-size: 0.95rem;
+  font-weight: 550;
+  box-shadow: none;
+  transition: color 180ms ease, text-decoration-color 180ms ease, text-shadow 180ms ease;
+}
+
+/* A soft bloom behind the link keeps the three star accents from feeling detached. */
+.starLink::before {
+  content: "";
+  position: absolute;
+  inset: -0.85rem -1rem;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(0, 255, 157, 0.18), rgba(0, 255, 157, 0.08) 38%, transparent 72%);
+  opacity: 0.42;
+  filter: blur(14px);
+  z-index: -1;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.starLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 36%);
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.starLink:hover,
+.starLink:focus-visible {
+  color: #8fffd0;
+  text-decoration-color: rgba(143, 255, 208, 0.92);
+  text-shadow: 0 0 10px rgba(0, 255, 157, 0.18);
+}
+
+.starLink:hover::before,
+.starLink:focus-visible::before {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.starLink:focus-visible {
+  outline: none;
+}
+
+.starLinkLabel {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starLink,
+  .starLink::before {
+    transition: none;
+  }
+}
+
 @keyframes twinklingStarPulse {
   0%,
   100% {

@@ -1,6 +1,8 @@
 /* Give the demo room away from the rest of the page so the field feels framed. */
 .page {
   padding: 2rem 1.25rem 4rem;
+  display: grid;
+  gap: 1.5rem;
 }
 
 /* The demo surface is a dark, rounded play area that holds the stars and glow. */
@@ -38,4 +40,32 @@
 .description {
   max-width: 560px;
   line-height: 1.6;
+}
+
+/* The second section turns the link into a small showcase instead of a bare example. */
+.linkSection {
+  display: grid;
+  gap: 1rem;
+  padding: 1.35rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(0, 255, 157, 0.12);
+  background: linear-gradient(180deg, rgba(4, 10, 10, 0.9), rgba(0, 0, 0, 0.78));
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+}
+
+.sectionTitle {
+  font-size: 1.55rem;
+  margin-bottom: 0.4rem;
+}
+
+.sectionDescription {
+  max-width: 620px;
+  line-height: 1.6;
+  color: rgba(245, 255, 251, 0.76);
+}
+
+.linkPreview {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
 }
