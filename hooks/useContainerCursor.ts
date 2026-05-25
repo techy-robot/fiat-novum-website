@@ -4,11 +4,11 @@ import React from "react";
 import { CursorState } from "@/lib/starGame";
 
 /**
- * Track pointer coordinates relative to a glow surface.
- * This sits in `hooks/` with the other reusable star-game hooks because it
- * captures interactive state, while `lib/starGame.tsx` keeps the pure helpers.
+ * Track pointer coordinates relative to a container
+ * This hook is for any container that wants the local cursor position to drive
+ * effects or entrance/exit state.
  */
-export function useMouseTracker() {
+export function useContainerCursor() {
   const [cursor, setCursor] = React.useState<CursorState>({ x: 0, y: 0, inside: false });
 
   const onPointerMove = React.useCallback((event: React.PointerEvent<HTMLDivElement>) => {

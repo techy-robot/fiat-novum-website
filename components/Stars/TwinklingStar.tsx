@@ -4,7 +4,7 @@ import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { IconStarFilled } from "@tabler/icons-react";
 import { DEFAULTS, starGame } from "@/lib/starGame";
-import { useViewportCursor } from "@/hooks/useViewportCursor";
+import { useGlobalCursor } from "@/hooks/useGlobalCursor";
 import { useGameState } from "@/hooks/useGameState";
 import styles from "./star-game.module.css";
 
@@ -91,7 +91,7 @@ export default function TwinklingStar({
   style,
   ...rest
 }: TwinklingStarProps) {
-  const viewportCursor = useViewportCursor();
+  const viewportCursor = useGlobalCursor();
   const controls = useAnimation();
   const global = useGameState();
   // Shared game state tells the star whether the field is still in seed-collection mode.

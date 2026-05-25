@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useGameState } from "@/hooks/useGameState";
-import { useMouseTracker } from "@/hooks/useMouseTracker";
+import { useContainerCursor } from "@/hooks/useContainerCursor";
 import styles from "./star-game.module.css";
 
 /**
@@ -21,7 +21,7 @@ export default function StarGlowSurface({
   glowIntensity = 0,
   ...rest
 }: StarGlowSurfaceProps) {
-  const { cursor, onPointerMove, onPointerLeave } = useMouseTracker();
+  const { cursor, onPointerMove, onPointerLeave } = useContainerCursor();
   const global = useGameState();
 
   const seedCollectionProgress = global.total > 0 ? global.collected / global.total : 0;
