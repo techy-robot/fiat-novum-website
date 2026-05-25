@@ -75,7 +75,10 @@ function subscribe(listener: () => void) {
 
 /**
  * Track the pointer across the viewport so stars can react even when they are
- * not rendered inside the star-field wrapper.
+ * not rendered inside the glow surface itself.
+ *
+ * This lives beside `useGameState` in `hooks/` because the star UI consumes both
+ * pieces together: one hook owns cursor position, the other owns the shared game snapshot.
  */
 export function useViewportCursor() {
   const [cursor, setCursor] = React.useState(() => cursorState);

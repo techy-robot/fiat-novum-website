@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 /**
  * Cursor position tracked relative to the star field.
  * `inside` becomes false when the pointer leaves the wrapper element.
@@ -71,27 +69,6 @@ export function createCollector() {
       return seeds.size > 0 && seeds.size === collected.size;
     },
   };
-}
-
-/**
- * Track pointer coordinates relative to the active field wrapper.
- * The returned handlers are attached directly to the glow surface shell.
- */
-export function useMouseTracker() {
-  const [cursor, setCursor] = React.useState<CursorState>({ x: 0, y: 0, inside: false });
-
-  const onPointerMove = React.useCallback((event: React.PointerEvent<HTMLDivElement>) => {
-    // Convert viewport coordinates into field-local coordinates.
-    const rect = event.currentTarget.getBoundingClientRect();
-
-    setCursor({ x: event.clientX - rect.left, y: event.clientY - rect.top, inside: true });
-  }, []);
-
-  const onPointerLeave = React.useCallback(() => {
-    setCursor((prev) => ({ ...prev, inside: false }));
-  }, []);
-
-  return { cursor, onPointerMove, onPointerLeave } as const;
 }
 
 /** The shared game snapshot that the surface, hook, and stars observe. */

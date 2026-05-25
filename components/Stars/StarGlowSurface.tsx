@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { useMouseTracker } from "@/lib/starGame";
 import { useGameState } from "@/hooks/useGameState";
+import { useMouseTracker } from "@/hooks/useMouseTracker";
 import styles from "./star-game.module.css";
 
 /**

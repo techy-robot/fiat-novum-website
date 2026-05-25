@@ -3,8 +3,8 @@
 import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { IconStarFilled } from "@tabler/icons-react";
-import { useViewportCursor } from "@/lib/useViewportCursor";
 import { DEFAULTS, starGame } from "@/lib/starGame";
+import { useViewportCursor } from "@/hooks/useViewportCursor";
 import { useGameState } from "@/hooks/useGameState";
 import styles from "./star-game.module.css";
 
