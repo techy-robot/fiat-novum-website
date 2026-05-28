@@ -24,10 +24,8 @@ export interface TwinklingStarProps
   size?: number;
   /** Mark the star as part of the seed set that unlocks the game. */
   seedMode?: boolean;
-  /** Override for the pre-game activation radius. */
+  /** Override for the radius where the star starts moving. */
   activationRadius?: number;
-  /** Override for the active-game collection radius. */
-  collectRadius?: number;
   /** Duration of the idle twinkle loop in seconds. */
   twinkleDuration?: number;
   /** Delay before the twinkle loop starts. */
@@ -83,7 +81,6 @@ export default function TwinklingStar({
   size = 14,
   seedMode = false,
   activationRadius,
-  collectRadius,
   twinkleDuration = 2.7,
   twinkleDelay = 0,
   driftSpeed = DEFAULT_DRIFT_SPEED,
@@ -152,17 +149,11 @@ export default function TwinklingStar({
     const canChase = seedMode || global.active;
     if (!canChase) return;
 
-    const { seedActivationRadius, collectRadius: fieldCollectRadius } = DEFAULTS;
+    const { activationRadius: defaultActivationRadius } = DEFAULTS;
     const cursor = getLocalCursorPosition(viewportCursor, starRef.current);
 
-    // Each phase uses its own radius so the pre-game and active states feel distinct.
-    const interactionRadius =
-      seedMode && !global.active
-        ? (activationRadius ?? seedActivationRadius) + radiusOffset
-        : (collectRadius ?? fieldCollectRadius) + radiusOffset;
-
-    const influenceRadius = Math.max(18, interactionRadius * 2.2);
-    const collectionRadius = Math.max(10, interactionRadius * 0.34);
+    const movementRadius = (activationRadius ?? defaultActivationRadius) + radiusOffset;
+    const collectionRadius = movementRadius * 0.34;
 
     if (!viewportCursor.inside) return;
 
@@ -187,7 +178,7 @@ export default function TwinklingStar({
       return () => window.clearTimeout(t);
     }
 
-    if (distanceToCursor > influenceRadius) {
+    if (distanceToCursor > movementRadius) {
       // Outside the influence radius, the star stays put and stops contributing glow.
       starGame.reportCursorGlow(starId, 0);
       return;
@@ -198,7 +189,7 @@ export default function TwinklingStar({
     }
 
     // Closer stars respond more strongly and emit a brighter glow.
-    const intensity = 1 - distanceToCursor / influenceRadius;
+    const intensity = 1 - distanceToCursor / movementRadius;
     const easedIntensity = intensity * intensity;
     // Seed stars scale their glow with overall collection progress.
     const glowIntensity = seedMode ? easedIntensity * seedCollectionProgress : 1;
@@ -218,7 +209,6 @@ export default function TwinklingStar({
     );
   }, [
     activationRadius,
-    collectRadius,
     driftScale,
     driftSpeed,
     isCollected,

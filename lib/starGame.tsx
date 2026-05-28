@@ -15,8 +15,7 @@ export type CursorState = {
  * Keeping these values in one place prevents the field from drifting out of sync.
  */
 export const DEFAULTS = {
-  seedActivationRadius: 48,
-  collectRadius: 48,
+  activationRadius: 48,
   driftSpeed: 0.085,
 };
 
