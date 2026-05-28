@@ -75,7 +75,11 @@ export default function StarFieldPage() {
         </div>
 
         <div className={styles.linkPreview}>
-          <StarLink href="/projects">Open the project archive</StarLink>
+          <StarGlowSurface className={styles.linkGlowSurface} style={{ overflow: "visible" }}>
+            <StarLink href="/projects" collectRadius={4}>
+              Open the project archive
+            </StarLink>
+          </StarGlowSurface>
         </div>
       </section>
     </main>
