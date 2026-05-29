@@ -28,12 +28,12 @@ export default function StarFieldPage() {
           </div>
 
           {/* These seed stars must be collected first to unlock the active field state. */}
-          <TwinklingStar x={96} y={82} size={18} seedMode twinkleDuration={2.4} />
+          <TwinklingStar x={96} y={82} size={18} interactionMode="seed" twinkleDuration={2.4} />
           <TwinklingStar
             x={220}
             y={178}
             size={14}
-            seedMode
+            interactionMode="seed"
             twinkleDuration={2.9}
             twinkleDelay={0.25}
           />
@@ -41,7 +41,7 @@ export default function StarFieldPage() {
             x={372}
             y={120}
             size={16}
-            seedMode
+            interactionMode="seed"
             twinkleDuration={2.6}
             twinkleDelay={0.5}
           />

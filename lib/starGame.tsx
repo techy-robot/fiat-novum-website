@@ -16,6 +16,12 @@ export type CursorState = {
  */
 export const DEFAULTS = {
   activationRadius: 48,
+  size: 14,
+  interactionMode: "gameState" as const,
+  twinkleDuration: 2.7,
+  twinkleDelay: 0,
+  callbackSequence: 0,
+  callbackTarget: null,
   driftSpeed: 0.085,
 };
 
