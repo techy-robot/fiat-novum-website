@@ -23,7 +23,7 @@ export interface TwinklingStarProps
   /** Visual size of the star glyph in pixels. */
   size?: number;
   /** Controls how the star reacts to interaction. */
-  interactionMode?: "seed" | "gameState" | "callback";
+  interactionMode?: "seed" | "gameState" | "callback" | "fixed";
   /** Override for the radius where the star starts moving. */
   activationRadius?: number;
   /** Cursor or click target, provided in viewport coordinates. */
@@ -161,7 +161,7 @@ export default function TwinklingStar({
   }, [isCollected]);
 
   React.useEffect(() => {
-    if (interactionMode === "callback") return;
+    if (interactionMode === "callback" || interactionMode === "fixed") return;
     if (isGone) return;
 
     if (isCollected) {

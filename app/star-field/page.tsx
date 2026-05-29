@@ -62,6 +62,11 @@ export default function StarFieldPage() {
             twinkleDuration={3}
             twinkleDelay={0.4}
           />
+
+          {/* Fixed stars add a non-interactive backdrop layer. */}
+          <TwinklingStar x={164} y={266} size={10} interactionMode="fixed" twinkleDuration={4.1} twinkleDelay={0.15} />
+          <TwinklingStar x={564} y={54} size={9} interactionMode="fixed" twinkleDuration={3.7} twinkleDelay={0.55} />
+          <TwinklingStar x={802} y={256} size={11} interactionMode="fixed" twinkleDuration={4.4} twinkleDelay={0.8} />
         </StarGlowSurface>
       </section>
 
