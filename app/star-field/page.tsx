@@ -68,9 +68,9 @@ export default function StarFieldPage() {
       <section className={styles.linkSection}>
         <div>
           <p className={styles.eyebrow}>Link treatment</p>
-          <h2 className={styles.sectionTitle}>A link with its own small constellation</h2>
+          <h2 className={styles.sectionTitle}>A link that collects on click</h2>
           <p className={styles.sectionDescription}>
-            This version adds three stars and a stronger glow so the call to action reads like a distinct interactive element.
+            Click the link and the stars zoom in first, then the page changes right after the animation finishes.
           </p>
         </div>
 

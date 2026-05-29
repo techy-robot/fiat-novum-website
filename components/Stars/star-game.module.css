@@ -159,6 +159,47 @@
   z-index: 1;
 }
 
+.starLinkStars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.starLinkStar {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  color: #8cffd1;
+  filter: drop-shadow(0 0 7px rgba(0, 255, 157, 0.45));
+  transform-origin: center;
+}
+
+.starLinkStarTopLeft {
+  left: -1rem;
+  top: -0.7rem;
+}
+
+.starLinkStarTopRight {
+  right: -0.35rem;
+  top: -1.05rem;
+}
+
+.starLinkStarBottom {
+  left: 1.65rem;
+  bottom: -1.05rem;
+}
+
+.starLinkCollecting::before {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+.starLinkCollecting {
+  color: #a9ffe0;
+  text-decoration-color: rgba(169, 255, 224, 0.96);
+  text-shadow: 0 0 12px rgba(0, 255, 157, 0.26);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .starLink,
   .starLink::before {

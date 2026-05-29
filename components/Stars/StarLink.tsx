@@ -1,20 +1,84 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/navigation";
 import TwinklingStar from "./TwinklingStar";
 import styles from "./star-game.module.css";
 
 export interface StarLinkProps extends Omit<React.ComponentPropsWithoutRef<typeof Link>, "href" | "children"> {
   href: string;
   children: React.ReactNode;
-  activationRadius?: number;
 }
 
-export default function StarLink({ href, children, className, activationRadius = 16, ...rest }: StarLinkProps) {
+const STAR_POSITIONS = [
+  { className: styles.starLinkStarTopLeft, delay: 0.02, size: 11, x: -14, y: -12 },
+  { className: styles.starLinkStarTopRight, delay: 0.07, size: 10, x: 66, y: -18 },
+  { className: styles.starLinkStarBottom, delay: 0.12, size: 12, x: 28, y: 22 },
+] as const;
+
+export default function StarLink({ href, children, className, onClick, target, ...rest }: StarLinkProps) {
+  const router = useRouter();
+  const [isCollecting, setIsCollecting] = React.useState(false);
+  const [callbackTarget, setCallbackTarget] = React.useState<{ x: number; y: number } | null>(null);
+  const [callbackSequence, setCallbackSequence] = React.useState(0);
+  const [completedCount, setCompletedCount] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!isCollecting) return;
+    if (completedCount < STAR_POSITIONS.length) return;
+
+    router.push(href);
+  }, [completedCount, href, isCollecting, router]);
+
+  const handleClick = React.useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      onClick?.(event);
+
+      if (event.defaultPrevented) return;
+      if (event.button !== 0 || event.metaKey || event.altKey || event.ctrlKey || event.shiftKey || target === "_blank") {
+        return;
+      }
+
+      if (isCollecting) {
+        event.preventDefault();
+        return;
+      }
+
+      const linkRect = event.currentTarget.getBoundingClientRect();
+      const hasPointerCoordinates = event.clientX !== 0 || event.clientY !== 0;
+      const clickX = hasPointerCoordinates ? event.clientX - linkRect.left : linkRect.width / 2;
+      const clickY = hasPointerCoordinates ? event.clientY - linkRect.top : linkRect.height / 2;
+
+      event.preventDefault();
+
+      setIsCollecting(true);
+      setCompletedCount(0);
+      setCallbackTarget({ x: event.clientX || linkRect.left + clickX, y: event.clientY || linkRect.top + clickY });
+      setCallbackSequence((value) => value + 1);
+    },
+    [isCollecting, onClick, target]
+  );
+
   return (
-    <Link href={href} className={[styles.starLink, className ?? ""].filter(Boolean).join(" ")} {...rest}>
-      <TwinklingStar x={-14} y={-12} size={11} twinkleDuration={2.2} twinkleDelay={0.1} activationRadius={activationRadius} />
-      <TwinklingStar x={66} y={-18} size={10} twinkleDuration={2.7} twinkleDelay={0.55} activationRadius={activationRadius} />
-      <TwinklingStar x={28} y={22} size={12} twinkleDuration={2.4} twinkleDelay={0.9} activationRadius={activationRadius} />
+    <Link href={href} onClick={handleClick} className={[styles.starLink, isCollecting ? styles.starLinkCollecting : "", className ?? ""].filter(Boolean).join(" ")} target={target} {...rest}>
+      <span className={styles.starLinkStars} aria-hidden="true">
+        {STAR_POSITIONS.map((star) => (
+          <TwinklingStar
+            key={star.className}
+            className={[styles.starLinkStar, star.className].join(" ")}
+            x={star.x}
+            y={star.y}
+            size={star.size}
+            twinkleDuration={2.1}
+            twinkleDelay={star.delay}
+            interactionMode="callback"
+            callbackTarget={callbackTarget}
+            callbackSequence={callbackSequence}
+            onCallbackComplete={() => setCompletedCount((value) => value + 1)}
+          />
+        ))}
+      </span>
       <span className={styles.starLinkLabel}>{children}</span>
     </Link>
   );

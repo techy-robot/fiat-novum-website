@@ -26,6 +26,14 @@ export interface TwinklingStarProps
   seedMode?: boolean;
   /** Override for the radius where the star starts moving. */
   activationRadius?: number;
+  /** Switch the star from cursor-driven motion to a callback-driven trigger. */
+  interactionMode?: "cursor" | "callback";
+  /** Cursor or click target, provided in viewport coordinates. */
+  callbackTarget?: Position | null;
+  /** Bump the callback trigger so the star can react to repeated clicks at the same point. */
+  callbackSequence?: number;
+  /** Notified after the callback-triggered zoom finishes. */
+  onCallbackComplete?: () => void;
   /** Duration of the idle twinkle loop in seconds. */
   twinkleDuration?: number;
   /** Delay before the twinkle loop starts. */
@@ -81,6 +89,10 @@ export default function TwinklingStar({
   size = 14,
   seedMode = false,
   activationRadius,
+  interactionMode = "cursor",
+  callbackTarget = null,
+  callbackSequence = 0,
+  onCallbackComplete,
   twinkleDuration = 2.7,
   twinkleDelay = 0,
   driftSpeed = DEFAULT_DRIFT_SPEED,
@@ -129,6 +141,23 @@ export default function TwinklingStar({
   }, [starId]);
 
   React.useEffect(() => {
+    if (interactionMode !== "callback") return;
+    if (!callbackTarget || isCollected || isGone) return;
+
+    const target = getLocalCursorPosition(callbackTarget, starRef.current);
+    positionRef.current = target;
+    starGame.reportCursorGlow(starId, 0);
+    setIsCollected(true);
+
+    void controls.start(
+      { x: target.x, y: target.y, scale: 1.9, opacity: 0 },
+      { duration: 0.18, ease: "easeOut" }
+    ).then(() => {
+      onCallbackComplete?.();
+    });
+  }, [callbackSequence, callbackTarget, controls, isCollected, isGone, interactionMode, onCallbackComplete, starId]);
+
+  React.useEffect(() => {
     if (isCollected) {
       // Let the collection animation finish before removing the star.
       const t = window.setTimeout(() => setIsGone(true), 220);
@@ -138,6 +167,7 @@ export default function TwinklingStar({
   }, [isCollected]);
 
   React.useEffect(() => {
+    if (interactionMode === "callback") return;
     if (isGone) return;
 
     if (isCollected) {
@@ -218,6 +248,7 @@ export default function TwinklingStar({
     seedMode,
     starId,
     controls,
+    interactionMode,
     viewportCursor,
     viewportCursor.inside,
     viewportCursor.x,
