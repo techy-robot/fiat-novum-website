@@ -10,6 +10,12 @@ export type CursorState = {
   inside: boolean;
 };
 
+/** 2D point used for cursor and star positions. */
+export type Position = {
+  x: number;
+  y: number;
+};
+
 /**
  * Default interaction tuning shared by the glow surface and star components.
  * Keeping these values in one place prevents the field from drifting out of sync.
@@ -42,6 +48,21 @@ export function hashString(value: string) {
   }
 
   return hash;
+}
+
+/** Convert viewport coordinates into the star's local parent coordinates. */
+export function getLocalCursorPosition(cursor: Position, starElement: HTMLSpanElement | null) {
+  const offsetParent = starElement?.offsetParent instanceof HTMLElement ? starElement.offsetParent : starElement?.parentElement;
+
+  if (!offsetParent) {
+    return cursor;
+  }
+
+  const rect = offsetParent.getBoundingClientRect();
+  return {
+    x: cursor.x - rect.left,
+    y: cursor.y - rect.top,
+  };
 }
 
 /**

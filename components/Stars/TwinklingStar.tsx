@@ -3,7 +3,7 @@
 import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { IconStarFilled } from "@tabler/icons-react";
-import { DEFAULTS, starGame } from "@/lib/starGame";
+import { DEFAULTS, getLocalCursorPosition, hashString, starGame, type Position, distanceBetween } from "@/lib/starGame";
 import { useGlobalCursor } from "@/hooks/useGlobalCursor";
 import { useGameState } from "@/hooks/useGameState";
 import styles from "./star-game.module.css";
@@ -38,44 +38,6 @@ export interface TwinklingStarProps
   twinkleDelay?: number;
   /** Spring tuning used when the star chases the cursor. */
   driftSpeed?: number;
-}
-
-/** 2D point used for cursor and star positions. */
-type Position = {
-  x: number;
-  y: number;
-};
-
-/**
- * Hash a React id into a stable variation bucket.
- * This keeps each star's motion distinct without introducing randomness on re-render.
- */
-function hashString(value: string) {
-  let hash = 0;
-  for (let i = 0; i < value.length; i++) {
-    hash = (hash * 31 + value.charCodeAt(i)) >>> 0;
-  }
-  return hash;
-}
-
-/** Measure the distance between the cursor and a star position. */
-function distanceBetween(a: Position, b: Position) {
-  return Math.hypot(a.x - b.x, a.y - b.y);
-}
-
-/** Convert viewport coordinates into the star's local parent coordinates. */
-function getLocalCursorPosition(cursor: Position, starElement: HTMLSpanElement | null) {
-  const offsetParent = starElement?.offsetParent instanceof HTMLElement ? starElement.offsetParent : starElement?.parentElement;
-
-  if (!offsetParent) {
-    return cursor;
-  }
-
-  const rect = offsetParent.getBoundingClientRect();
-  return {
-    x: cursor.x - rect.left,
-    y: cursor.y - rect.top,
-  };
 }
 
 export default function TwinklingStar({
