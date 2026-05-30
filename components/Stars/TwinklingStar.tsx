@@ -38,6 +38,8 @@ export interface TwinklingStarProps
   twinkleDelay?: number;
   /** Spring tuning used when the star chases the cursor. */
   driftSpeed?: number;
+  /** Optional icon color override; defaults to inheriting the current text color. */
+  color?: string;
 }
 
 export default function TwinklingStar({
@@ -52,6 +54,7 @@ export default function TwinklingStar({
   twinkleDuration = DEFAULTS.twinkleDuration,
   twinkleDelay = DEFAULTS.twinkleDelay,
   driftSpeed = DEFAULTS.driftSpeed,
+  color = "currentColor",
   className,
   style,
   ...rest
@@ -241,7 +244,7 @@ export default function TwinklingStar({
           <IconStarFilled
             className={styles.twinklingStarIcon}
             size={size}
-            color="#00ffa5"
+            color={color}
             aria-hidden="true"
           />
         </span>
