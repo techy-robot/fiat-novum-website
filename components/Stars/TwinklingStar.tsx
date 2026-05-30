@@ -229,7 +229,7 @@ export default function TwinklingStar({
       {...rest}
     >
       <motion.span
-        className={[styles.twinklingStarGlyph, interactionMode === "seed" ? styles.twinklingStarGlyphSeed : ""].filter(Boolean).join(" ")}
+        className={[styles.twinklingStarGlyph].filter(Boolean).join(" ")}
         style={{ width: size, height: size, position: "absolute", left: 0, top: 0, transform: "translate(-50%, -50%)" }}
         animate={controls}
         initial={false}

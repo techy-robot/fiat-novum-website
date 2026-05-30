@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/navigation";
 import TwinklingStar from "./TwinklingStar";
+import projectcss from "@/components/plasmic/fiat_novum/plasmic.module.css";
 import styles from "./star-game.module.css";
 
 export interface StarLinkProps extends Omit<React.ComponentPropsWithoutRef<typeof Link>, "href" | "children"> {
@@ -61,7 +62,21 @@ export default function StarLink({ href, children, className, onClick, target, .
   );
 
   return (
-    <Link href={href} onClick={handleClick} className={[styles.starLink, isCollecting ? styles.starLinkCollecting : "", className ?? ""].filter(Boolean).join(" ")} target={target} {...rest}>
+    <Link
+      href={href}
+      onClick={handleClick}
+      className={[
+        projectcss.plasmic_default_styles,
+        projectcss.plasmic_tokens,
+        styles.starLink,
+        isCollecting ? styles.starLinkCollecting : "",
+        className ?? "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      target={target}
+      {...rest}
+    >
       <span className={styles.starLinkStars} aria-hidden="true">
         {STAR_POSITIONS.map((star) => (
           <TwinklingStar
