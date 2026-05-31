@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import StarGlowSurface from "@/components/Stars/StarGlowSurface";
 import StarLink from "@/components/Stars/StarLink";
 import TwinklingStar from "@/components/Stars/TwinklingStar";
+import { STAR_FIELD_LAYOUT_SIZE, STAR_FIELD_STARS, getStarInteractionMode } from "@/lib/starFieldLayout";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -15,6 +16,12 @@ export const metadata: Metadata = {
  * The page keeps the layout simple so the activation flow is easy to understand.
  */
 export default function StarFieldPage() {
+  const stars = STAR_FIELD_STARS.map((star) => ({
+    ...star,
+    x: star.x / STAR_FIELD_LAYOUT_SIZE.width,
+    y: star.y / STAR_FIELD_LAYOUT_SIZE.height,
+  }));
+
   return (
     <main className={styles.page}>
       <section>
@@ -27,46 +34,18 @@ export default function StarFieldPage() {
             </p>
           </div>
 
-          {/* These seed stars must be collected first to unlock the active field state. */}
-          <TwinklingStar x={96} y={82} size={18} interactionMode="seed" twinkleDuration={2.4} />
-          <TwinklingStar
-            x={220}
-            y={178}
-            size={14}
-            interactionMode="seed"
-            twinkleDuration={2.9}
-            twinkleDelay={0.25}
-          />
-          <TwinklingStar
-            x={372}
-            y={120}
-            size={16}
-            interactionMode="seed"
-            twinkleDuration={2.6}
-            twinkleDelay={0.5}
-          />
-
-          {/* Once the seeds are complete, the remaining stars become collectable too. */}
-          <TwinklingStar x={492} y={204} size={15} twinkleDuration={3.2} />
-          <TwinklingStar
-            x={612}
-            y={108}
-            size={13}
-            twinkleDuration={2.7}
-            twinkleDelay={0.2}
-          />
-          <TwinklingStar
-            x={744}
-            y={182}
-            size={17}
-            twinkleDuration={3}
-            twinkleDelay={0.4}
-          />
-
-          {/* Fixed stars add a non-interactive backdrop layer. */}
-          <TwinklingStar x={164} y={266} size={10} interactionMode="fixed" twinkleDuration={4.1} twinkleDelay={0.15} />
-          <TwinklingStar x={564} y={54} size={9} interactionMode="fixed" twinkleDuration={3.7} twinkleDelay={0.55} />
-          <TwinklingStar x={802} y={256} size={11} interactionMode="fixed" twinkleDuration={4.4} twinkleDelay={0.8} />
+          {stars.map((star) => (
+            <TwinklingStar
+              key={star.id}
+              x={star.x}
+              y={star.y}
+              coordinateSpace="ratio"
+              size={star.size}
+              interactionMode={getStarInteractionMode(star.role)}
+              twinkleDuration={star.twinkleDuration}
+              twinkleDelay={star.twinkleDelay}
+            />
+          ))}
         </StarGlowSurface>
       </section>
 

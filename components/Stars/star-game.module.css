@@ -25,8 +25,8 @@
   position: absolute;
   left: var(--cursor-glow-x, 0px);
   top: var(--cursor-glow-y, 0px);
-  width: 180px;
-  height: 180px;
+  width: clamp(120px, 18vw, 180px);
+  height: clamp(120px, 18vw, 180px);
   border-radius: 999px;
   pointer-events: none;
   opacity: var(--cursor-glow-opacity, 0);

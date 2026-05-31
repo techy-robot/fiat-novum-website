@@ -13,12 +13,10 @@ export interface StarGlowSurfaceProps extends React.HTMLAttributes<HTMLDivElemen
 
 }
 
-export default function StarGlowSurface({
-  children,
-  className,
-  style,
-  ...rest
-}: StarGlowSurfaceProps) {
+const StarGlowSurface = React.forwardRef<HTMLDivElement, StarGlowSurfaceProps>(function StarGlowSurface(
+  { children, className, style, ...rest },
+  ref
+) {
   const { cursor, onPointerMove, onPointerLeave } = useContainerCursor();
   const global = useGameState();
 
@@ -39,6 +37,7 @@ export default function StarGlowSurface({
 
   return (
     <div
+      ref={ref}
       className={[styles.starField, global.active ? styles.starFieldActive : "", className ?? ""].filter(Boolean).join(" ")}
       style={fieldStyle}
       onPointerMove={onPointerMove}
@@ -49,4 +48,6 @@ export default function StarGlowSurface({
       {children}
     </div>
   );
-}
+});
+
+export default StarGlowSurface;

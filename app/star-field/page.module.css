@@ -7,11 +7,12 @@
 
 /* The demo surface is a dark, rounded play area that holds the stars and glow. */
 .demo {
-  min-height: 440px;
+  min-height: clamp(320px, 56vw, 500px);
   border-radius: 1.5rem;
   border: 1px solid rgba(0, 255, 157, 0.16);
   background: radial-gradient(circle at top, rgba(0, 255, 157, 0.14), rgba(0, 0, 0, 0.04) 35%, rgba(0, 0, 0, 0.82) 100%);
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+  padding-bottom: clamp(0.5rem, 2vw, 1rem);
 }
 
 /* Text is layered above the stars so the interaction instructions stay readable. */

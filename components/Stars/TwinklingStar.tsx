@@ -21,6 +21,8 @@ export interface TwinklingStarProps extends Omit<React.HTMLAttributes<HTMLSpanEl
   style?: React.CSSProperties;
   /** Visual size of the star glyph in pixels. */
   size?: number;
+  /** Whether x/y are raw pixels or ratios relative to the parent element. */
+  coordinateSpace?: "pixel" | "ratio";
   /** Controls how the star reacts to interaction. */
   interactionMode?: "seed" | "gameState" | "callback" | "fixed";
   /** Override for the radius where the star starts moving. */
@@ -44,6 +46,7 @@ export interface TwinklingStarProps extends Omit<React.HTMLAttributes<HTMLSpanEl
 type TwinklingStarMotionState = {
   controls: ReturnType<typeof useAnimation>;
   starRef: React.MutableRefObject<HTMLSpanElement | null>;
+  position: Position;
 };
 
 type TwinklingStarCollectionState = {
@@ -64,15 +67,63 @@ type TwinklingStarStaticProps = Omit<TwinklingStarProps, "style"> & {
   isCollected?: boolean;
 };
 
-function useTwinklingStarMotion(x: number, y: number): TwinklingStarMotionState {
+function resolveCoordinate(value: number, length: number, coordinateSpace: "pixel" | "ratio") {
+  return coordinateSpace === "ratio" ? value * length : value;
+}
+
+function useResolvedStarPosition(
+  x: number,
+  y: number,
+  coordinateSpace: "pixel" | "ratio",
+  starRef: React.MutableRefObject<HTMLSpanElement | null>
+) {
+  const [position, setPosition] = React.useState<Position>({ x: 0, y: 0 });
+
+  React.useLayoutEffect(() => {
+    const updatePosition = () => {
+      const offsetParent = starRef.current?.offsetParent instanceof HTMLElement ? starRef.current.offsetParent : starRef.current?.parentElement;
+
+      if (!offsetParent) {
+        setPosition({ x, y });
+        return;
+      }
+
+      const rect = offsetParent.getBoundingClientRect();
+      setPosition({
+        x: resolveCoordinate(x, rect.width, coordinateSpace),
+        y: resolveCoordinate(y, rect.height, coordinateSpace),
+      });
+    };
+
+    updatePosition();
+
+    const observedElement = starRef.current?.offsetParent instanceof HTMLElement ? starRef.current.offsetParent : starRef.current?.parentElement;
+    if (!observedElement) return;
+
+    if (typeof ResizeObserver === "undefined") {
+      window.addEventListener("resize", updatePosition);
+      return () => window.removeEventListener("resize", updatePosition);
+    }
+
+    const observer = new ResizeObserver(updatePosition);
+    observer.observe(observedElement);
+
+    return () => observer.disconnect();
+  }, [coordinateSpace, starRef, x, y]);
+
+  return position;
+}
+
+function useTwinklingStarMotion(x: number, y: number, coordinateSpace: "pixel" | "ratio"): TwinklingStarMotionState {
   const controls = useAnimation();
   const starRef = React.useRef<HTMLSpanElement | null>(null);
+  const position = useResolvedStarPosition(x, y, coordinateSpace, starRef);
 
   React.useEffect(() => {
-    controls.set({ x, y, scale: 1, opacity: 1 });
-  }, [controls, x, y]);
+    controls.set({ x: position.x, y: position.y, scale: 1, opacity: 1 });
+  }, [controls, position]);
 
-  return { controls, starRef };
+  return { controls, starRef, position };
 }
 
 function useTwinklingStarCollection(): TwinklingStarCollectionState {
@@ -159,6 +210,7 @@ function TwinklingStarStatic({
   className,
   style,
   isCollected = false,
+  coordinateSpace = "pixel",
   ...rest
 }: TwinklingStarStaticProps) {
 
@@ -170,10 +222,19 @@ function TwinklingStarStatic({
     ...style,
   };
 
+  const resolvedStyle: React.CSSProperties =
+    coordinateSpace === "ratio"
+      ? {
+          ...inlineStyle,
+          left: `${x * 100}%`,
+          top: `${y * 100}%`,
+        }
+      : inlineStyle;
+
   return (
     <span
       className={[styles.twinklingStar, className ?? ""].filter(Boolean).join(" ")}
-      style={inlineStyle}
+      style={resolvedStyle}
       aria-hidden="true"
       {...rest}
     >
@@ -187,12 +248,13 @@ function TwinklingStarStatic({
 function CallbackTwinklingStar({
   x,
   y,
+  coordinateSpace = "pixel",
   callbackTarget,
   callbackSequence,
   onCallbackComplete,
   ...rest
 }: TwinklingStarProps) {
-  const { controls, starRef } = useTwinklingStarMotion(x, y);
+  const { controls, starRef } = useTwinklingStarMotion(x, y, coordinateSpace);
   const { isCollected, isGone, setIsCollected } = useTwinklingStarCollection();
 
   React.useEffect(() => {
@@ -215,6 +277,7 @@ function CallbackTwinklingStar({
 function ProximityTwinklingStar({
   x,
   y,
+  coordinateSpace = "pixel",
   interactionMode = DEFAULTS.interactionMode,
   activationRadius = DEFAULTS.activationRadius,
   driftSpeed = DEFAULTS.driftSpeed,
@@ -222,20 +285,20 @@ function ProximityTwinklingStar({
 }: TwinklingStarProps) {
   const viewportCursor = useGlobalCursor();
   const global = useGameState();
-  const { controls, starRef } = useTwinklingStarMotion(x, y);
+  const { controls, starRef, position } = useTwinklingStarMotion(x, y, coordinateSpace);
   const { isCollected, isGone, setIsCollected } = useTwinklingStarCollection();
   const starId = React.useId();
   const motionVariation = React.useMemo(() => hashString(starId), [starId]);
   const driftScale = 0.82 + ((motionVariation % 24) / 100);
   const radiusOffset = (motionVariation % 7) - 3;
-  const positionRef = React.useRef<Position>({ x, y });
+  const positionRef = React.useRef<Position>(position);
   const isCommittedRef = React.useRef(false);
   const committedTargetRef = React.useRef<Position | null>(null);
 
   React.useEffect(() => {
     isCommittedRef.current = false;
     committedTargetRef.current = null;
-  }, [interactionMode, x, y]);
+  }, [interactionMode, position]);
 
   React.useEffect(() => {
     if (interactionMode !== "seed") return;
@@ -247,8 +310,8 @@ function ProximityTwinklingStar({
   }, [interactionMode, starId]);
 
   React.useEffect(() => {
-    positionRef.current = { x, y };
-  }, [x, y]);
+    positionRef.current = position;
+  }, [position]);
 
   React.useEffect(() => {
     if (isGone || isCollected) return;
