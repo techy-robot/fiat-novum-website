@@ -12,8 +12,7 @@ import styles from "./star-game.module.css";
  * Render one animated star in the play surface.
  * Seed stars participate in the activation phase, while regular stars become collectable once the game is live.
  */
-export interface TwinklingStarProps
-  extends Omit<React.HTMLAttributes<HTMLSpanElement>, "style"> {
+export interface TwinklingStarProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, "style"> {
   /** Horizontal position inside the field. */
   x: number;
   /** Vertical position inside the field. */
@@ -42,159 +41,84 @@ export interface TwinklingStarProps
   color?: string;
 }
 
-export default function TwinklingStar({
-  x,
-  y,
-  size = DEFAULTS.size,
-  interactionMode = DEFAULTS.interactionMode,
-  activationRadius = DEFAULTS.activationRadius,
-  callbackTarget = DEFAULTS.callbackTarget,
-  callbackSequence = DEFAULTS.callbackSequence,
-  onCallbackComplete,
-  twinkleDuration = DEFAULTS.twinkleDuration,
-  twinkleDelay = DEFAULTS.twinkleDelay,
-  driftSpeed = DEFAULTS.driftSpeed,
-  color = "currentColor",
-  className,
-  style,
-  ...rest
-}: TwinklingStarProps) {
-  const viewportCursor = useGlobalCursor();
+type TwinklingStarMotionState = {
+  controls: ReturnType<typeof useAnimation>;
+  starRef: React.MutableRefObject<HTMLSpanElement | null>;
+};
+
+type TwinklingStarCollectionState = {
+  isCollected: boolean;
+  isGone: boolean;
+  setIsCollected: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+type TwinklingStarShellState = Omit<TwinklingStarCollectionState, "setIsCollected">;
+
+type TwinklingStarShellProps = Omit<TwinklingStarProps, "x" | "y"> &
+  TwinklingStarMotionState &
+  TwinklingStarShellState;
+
+type TwinklingStarStaticProps = Omit<TwinklingStarProps, "style"> & {
+  className?: string;
+  style?: React.CSSProperties;
+  isCollected?: boolean;
+};
+
+function useTwinklingStarMotion(x: number, y: number): TwinklingStarMotionState {
   const controls = useAnimation();
-  const global = useGameState();
-  // Shared game state tells the star whether the field is still in seed-collection mode.
-  const starId = React.useId();
-  // Use the React id so each star keeps the same motion profile for its lifetime.
-  const motionVariation = React.useMemo(() => hashString(starId), [starId]);
-  // Small offsets make neighboring stars feel less mechanically uniform.
-  const driftScale = 0.82 + ((motionVariation % 24) / 100);
-  const radiusOffset = (motionVariation % 7) - 3;
-  // Keep the last target position so the spring continues from the previous cursor chase.
-  const positionRef = React.useRef<Position>({ x, y });
   const starRef = React.useRef<HTMLSpanElement | null>(null);
+
+  React.useEffect(() => {
+    controls.set({ x, y, scale: 1, opacity: 1 });
+  }, [controls, x, y]);
+
+  return { controls, starRef };
+}
+
+function useTwinklingStarCollection(): TwinklingStarCollectionState {
   const [isCollected, setIsCollected] = React.useState(false);
   const [isGone, setIsGone] = React.useState(false);
-  // Seed stars glow harder as the shared game gets closer to completion.
-  const seedCollectionProgress = global.total > 0 ? global.collected / global.total : 0;
 
   React.useEffect(() => {
-    // Reset the animation target if the authored position changes.
-    positionRef.current = { x, y };
-    controls.set({ x, y, scale: 1, opacity: 1 });
-  }, [x, y, controls]);
+    if (!isCollected) return;
 
-  React.useEffect(() => {
-    // Seed stars register while mounted so the shared game can count them.
-    if (interactionMode !== "seed") return;
-    starGame.registerSeedStar(starId);
-    return () => {
-      starGame.unregisterSeedStar(starId);
-    };
-  }, [interactionMode, starId]);
-
-  React.useEffect(() => {
-    if (interactionMode !== "callback") return;
-    if (!callbackTarget || isCollected || isGone) return;
-
-    const target = getLocalCursorPosition(callbackTarget, starRef.current);
-    positionRef.current = target;
-    setIsCollected(true);
-
-    void controls.start(
-      { x: target.x, y: target.y, scale: 1.9, opacity: 0 },
-      { duration: 0.18, ease: "easeOut" }
-    ).then(() => {
-      onCallbackComplete?.();
-    });
-  }, [callbackSequence, callbackTarget, controls, interactionMode, isCollected, isGone, onCallbackComplete, starId]);
-
-  React.useEffect(() => {
-    if (isCollected) {
-      // Let the collection animation finish before removing the star.
-      const t = window.setTimeout(() => setIsGone(true), 220);
-      return () => window.clearTimeout(t);
-    }
-    return undefined;
+    const timeout = window.setTimeout(() => setIsGone(true), 220);
+    return () => window.clearTimeout(timeout);
   }, [isCollected]);
 
-  React.useEffect(() => {
-    if (interactionMode === "callback" || interactionMode === "fixed") return;
-    if (isGone) return;
+  return { isCollected, isGone, setIsCollected };
+}
 
-    if (isCollected) {
-      return;
-    }
+function TwinklingStarGlyph({
+  size = DEFAULTS.size,
+  twinkleDuration = DEFAULTS.twinkleDuration,
+  twinkleDelay = DEFAULTS.twinkleDelay,
+  color = "currentColor",
+  isCollected,
+}: Pick<TwinklingStarShellProps, "size" | "twinkleDuration" | "twinkleDelay" | "color" | "isCollected">) {
+  return (
+    <span
+      className={[styles.twinklingStarPulse, isCollected ? styles.twinklingStarPulseCollected : ""].filter(Boolean).join(" ")}
+      style={{ animationDuration: `${twinkleDuration}s`, animationDelay: `${twinkleDelay}s` }}
+    >
+      <IconStarFilled className={styles.twinklingStarIcon} size={size} color={color} aria-hidden="true" />
+    </span>
+  );
+}
 
-    // Seed stars are interactive before activation; regular stars wake up afterward.
-    const canChase = interactionMode === "seed" || (interactionMode === "gameState" && global.active);
-    if (!canChase) return;
-
-    const cursor = getLocalCursorPosition(viewportCursor, starRef.current);
-
-    const movementRadius = activationRadius + radiusOffset;
-    const collectionRadius = movementRadius * 0.34;
-
-    if (!viewportCursor.inside) return;
-
-    const currentPosition = positionRef.current;
-    const cursorPosition = { x: cursor.x, y: cursor.y };
-    const distanceToCursor = distanceBetween(currentPosition, cursorPosition);
-
-    const canGlow = interactionMode === "seed" ? !global.active : global.active;
-
-    if (distanceToCursor <= collectionRadius && !isCollected) {
-      // Close enough to collect, the star fades out and marks itself complete.
-      setIsCollected(true);
-      if (interactionMode === "seed") {
-        starGame.markSeedCollected(starId);
-      }
-      controls.start({ scale: 0, opacity: 0 }, { duration: 0.22 });
-      const t = window.setTimeout(() => setIsGone(true), 220);
-      return () => window.clearTimeout(t);
-    }
-
-    if (distanceToCursor > movementRadius) {
-      // Outside the influence radius, the star stays put
-      return;
-    }
-
-    if (!canGlow) {
-      return;
-    }
-
-    // Closer stars respond more strongly
-    const intensity = 1 - distanceToCursor / movementRadius;
-    const easedIntensity = intensity * intensity;
-    
-    const target = { x: cursorPosition.x, y: cursorPosition.y };
-    positionRef.current = target;
-    // Pull the star toward the cursor with a spring that varies slightly per instance.
-    controls.start(
-      { x: target.x, y: target.y },
-      {
-        type: "spring",
-        stiffness: 110 * driftScale * (1 + driftSpeed) + 140 * easedIntensity,
-        damping: 18 - Math.min(4, easedIntensity * 4),
-      }
-    );
-  }, [
-    activationRadius,
-    driftScale,
-    driftSpeed,
-    isCollected,
-    isGone,
-    radiusOffset,
-    seedCollectionProgress,
-    starId,
-    controls,
-    interactionMode,
-    viewportCursor,
-    viewportCursor.inside,
-    viewportCursor.x,
-    viewportCursor.y,
-    global.active,
-  ]);
-
+function TwinklingStarMotionShell({
+  size = DEFAULTS.size,
+  className,
+  style,
+  twinkleDuration = DEFAULTS.twinkleDuration,
+  twinkleDelay = DEFAULTS.twinkleDelay,
+  color = "currentColor",
+  controls,
+  starRef,
+  isCollected,
+  isGone,
+  ...rest
+}: TwinklingStarShellProps) {
   if (isGone) return null;
 
   const inlineStyle: React.CSSProperties = {
@@ -214,23 +138,202 @@ export default function TwinklingStar({
       {...rest}
     >
       <motion.span
-        className={[styles.twinklingStarGlyph].filter(Boolean).join(" ")}
+        className={styles.twinklingStarGlyph}
         style={{ width: size, height: size, position: "absolute", left: 0, top: 0, transform: "translate(-50%, -50%)" }}
         animate={controls}
         initial={false}
       >
-        <span
-          className={[styles.twinklingStarPulse, isCollected ? styles.twinklingStarPulseCollected : ""].filter(Boolean).join(" ")}
-          style={{ animationDuration: `${twinkleDuration}s`, animationDelay: `${twinkleDelay}s` }}
-        >
-          <IconStarFilled
-            className={styles.twinklingStarIcon}
-            size={size}
-            color={color}
-            aria-hidden="true"
-          />
-        </span>
+        <TwinklingStarGlyph size={size} twinkleDuration={twinkleDuration} twinkleDelay={twinkleDelay} color={color} isCollected={isCollected} />
       </motion.span>
     </span>
   );
+}
+
+function TwinklingStarStatic({
+  x,
+  y,
+  size = DEFAULTS.size,
+  twinkleDuration = DEFAULTS.twinkleDuration,
+  twinkleDelay = DEFAULTS.twinkleDelay,
+  color = "currentColor",
+  className,
+  style,
+  isCollected = false,
+  ...rest
+}: TwinklingStarStaticProps) {
+
+  const inlineStyle: React.CSSProperties = {
+    width: size,
+    height: size,
+    left: x,
+    top: y,
+    ...style,
+  };
+
+  return (
+    <span
+      className={[styles.twinklingStar, className ?? ""].filter(Boolean).join(" ")}
+      style={inlineStyle}
+      aria-hidden="true"
+      {...rest}
+    >
+      <span className={styles.twinklingStarGlyph} style={{ width: size, height: size, position: "absolute", left: 0, top: 0, transform: "translate(-50%, -50%)" }}>
+        <TwinklingStarGlyph size={size} twinkleDuration={twinkleDuration} twinkleDelay={twinkleDelay} color={color} isCollected={isCollected} />
+      </span>
+    </span>
+  );
+}
+
+function CallbackTwinklingStar({
+  x,
+  y,
+  callbackTarget,
+  callbackSequence,
+  onCallbackComplete,
+  ...rest
+}: TwinklingStarProps) {
+  const { controls, starRef } = useTwinklingStarMotion(x, y);
+  const { isCollected, isGone, setIsCollected } = useTwinklingStarCollection();
+
+  React.useEffect(() => {
+    if (!callbackTarget || isCollected || isGone) return;
+
+    const target = getLocalCursorPosition(callbackTarget, starRef.current);
+    setIsCollected(true);
+
+    void controls.start(
+      { x: target.x, y: target.y, scale: 1.9, opacity: 0 },
+      { duration: 0.18, ease: "easeOut" }
+    ).then(() => {
+      onCallbackComplete?.();
+    });
+  }, [callbackSequence, callbackTarget, controls, isCollected, isGone, onCallbackComplete, setIsCollected, starRef]);
+
+  return <TwinklingStarMotionShell {...rest} controls={controls} starRef={starRef} isCollected={isCollected} isGone={isGone} />;
+}
+
+function ProximityTwinklingStar({
+  x,
+  y,
+  interactionMode = DEFAULTS.interactionMode,
+  activationRadius = DEFAULTS.activationRadius,
+  driftSpeed = DEFAULTS.driftSpeed,
+  ...rest
+}: TwinklingStarProps) {
+  const viewportCursor = useGlobalCursor();
+  const global = useGameState();
+  const { controls, starRef } = useTwinklingStarMotion(x, y);
+  const { isCollected, isGone, setIsCollected } = useTwinklingStarCollection();
+  const starId = React.useId();
+  const motionVariation = React.useMemo(() => hashString(starId), [starId]);
+  const driftScale = 0.82 + ((motionVariation % 24) / 100);
+  const radiusOffset = (motionVariation % 7) - 3;
+  const positionRef = React.useRef<Position>({ x, y });
+
+  React.useEffect(() => {
+    if (interactionMode !== "seed") return;
+
+    starGame.registerSeedStar(starId);
+    return () => {
+      starGame.unregisterSeedStar(starId);
+    };
+  }, [interactionMode, starId]);
+
+  React.useEffect(() => {
+    positionRef.current = { x, y };
+  }, [x, y]);
+
+  React.useEffect(() => {
+    if (isGone || isCollected) return;
+
+    const canChase = interactionMode === "seed" || (interactionMode === "gameState" && global.active);
+    if (!canChase || !viewportCursor.inside) return;
+
+    const cursor = getLocalCursorPosition(viewportCursor, starRef.current);
+    const movementRadius = activationRadius + radiusOffset;
+    const collectionRadius = movementRadius * 0.34;
+    const currentPosition = positionRef.current;
+    const cursorPosition = { x: cursor.x, y: cursor.y };
+    const distanceToCursor = distanceBetween(currentPosition, cursorPosition);
+
+    if (distanceToCursor <= collectionRadius) {
+      setIsCollected(true);
+      if (interactionMode === "seed") {
+        starGame.markSeedCollected(starId);
+      }
+
+      controls.start({ scale: 0, opacity: 0 }, { duration: 0.22 });
+      return;
+    }
+
+    if (distanceToCursor > movementRadius) {
+      return;
+    }
+
+    const target = { x: cursorPosition.x, y: cursorPosition.y };
+    positionRef.current = target;
+
+    const intensity = 1 - distanceToCursor / movementRadius;
+    const easedIntensity = intensity * intensity;
+
+    controls.start(
+      { x: target.x, y: target.y },
+      {
+        type: "spring",
+        stiffness: 110 * driftScale * (1 + driftSpeed) + 140 * easedIntensity,
+        damping: 18 - Math.min(4, easedIntensity * 4),
+      }
+    );
+  }, [
+    activationRadius,
+    controls,
+    driftScale,
+    driftSpeed,
+    global.active,
+    interactionMode,
+    isCollected,
+    isGone,
+    radiusOffset,
+    setIsCollected,
+    starId,
+    starRef,
+    viewportCursor,
+    viewportCursor.inside,
+    viewportCursor.x,
+    viewportCursor.y,
+  ]);
+
+  return <TwinklingStarMotionShell {...rest} controls={controls} starRef={starRef} isCollected={isCollected} isGone={isGone} />;
+}
+
+function FixedTwinklingStar(props: TwinklingStarProps) {
+  return <TwinklingStarStatic {...props} isCollected={false} />;
+}
+
+function SeedTwinklingStar(props: TwinklingStarProps) {
+  return <ProximityTwinklingStar {...props} />;
+}
+
+function GameStateTwinklingStar(props: TwinklingStarProps) {
+  return <ProximityTwinklingStar {...props} />;
+}
+
+export default function TwinklingStar(props: TwinklingStarProps) {
+  const interactionMode = props.interactionMode ?? DEFAULTS.interactionMode;
+  const resolvedProps: TwinklingStarProps = {
+    ...props,
+    interactionMode,
+  };
+
+  switch (interactionMode) {
+    case "callback":
+      return <CallbackTwinklingStar {...resolvedProps} />;
+    case "seed":
+      return <SeedTwinklingStar {...resolvedProps} />;
+    case "fixed":
+      return <FixedTwinklingStar {...resolvedProps} />;
+    case "gameState":
+    default:
+      return <GameStateTwinklingStar {...resolvedProps} />;
+  }
 }
