@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/navigation";
+import StarGlowSurface from "./StarGlowSurface";
 import TwinklingStar from "./TwinklingStar";
 import projectcss from "@/components/plasmic/fiat_novum/plasmic.module.css";
 import styles from "./star-game.module.css";
@@ -62,39 +63,41 @@ export default function StarLink({ href, children, className, onClick, target, .
   );
 
   return (
-    <Link
-      href={href}
-      onClick={handleClick}
-      className={[
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_tokens,
-        styles.starLink,
-        isCollecting ? styles.starLinkCollecting : "",
-        className ?? "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-      target={target}
-      {...rest}
-    >
-      <span className={styles.starLinkStars} aria-hidden="true">
-        {STAR_POSITIONS.map((star) => (
-          <TwinklingStar
-            key={star.className}
-            className={[styles.starLinkStar, star.className].join(" ")}
-            x={star.x}
-            y={star.y}
-            size={star.size}
-            twinkleDuration={2.1}
-            twinkleDelay={star.delay}
-            interactionMode="callback"
-            callbackTarget={callbackTarget}
-            callbackSequence={callbackSequence}
-            onCallbackComplete={() => setCompletedCount((value) => value + 1)}
-          />
-        ))}
-      </span>
-      <span className={styles.starLinkLabel}>{children}</span>
-    </Link>
+    <StarGlowSurface className={styles.starLinkSurface}>
+      <Link
+        href={href}
+        onClick={handleClick}
+        className={[
+          projectcss.plasmic_default_styles,
+          projectcss.plasmic_tokens,
+          styles.starLink,
+          isCollecting ? styles.starLinkCollecting : "",
+          className ?? "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        target={target}
+        {...rest}
+      >
+        <span className={styles.starLinkStars} aria-hidden="true">
+          {STAR_POSITIONS.map((star) => (
+            <TwinklingStar
+              key={star.className}
+              className={[styles.starLinkStar, star.className].join(" ")}
+              x={star.x}
+              y={star.y}
+              size={star.size}
+              twinkleDuration={2.1}
+              twinkleDelay={star.delay}
+              interactionMode="callback"
+              callbackTarget={callbackTarget}
+              callbackSequence={callbackSequence}
+              onCallbackComplete={() => setCompletedCount((value) => value + 1)}
+            />
+          ))}
+        </span>
+        <span className={styles.starLinkLabel}>{children}</span>
+      </Link>
+    </StarGlowSurface>
   );
 }

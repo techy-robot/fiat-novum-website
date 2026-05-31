@@ -69,11 +69,3 @@
   justify-content: center;
   padding-top: 0.5rem;
 }
-
-.linkGlowSurface {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-  padding: 1rem;
-}

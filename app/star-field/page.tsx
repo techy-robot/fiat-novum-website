@@ -80,11 +80,7 @@ export default function StarFieldPage() {
         </div>
 
         <div className={styles.linkPreview}>
-          <StarGlowSurface className={styles.linkGlowSurface} style={{ overflow: "visible" }}>
-            <StarLink href="/projects">
-              Open the project archive
-            </StarLink>
-          </StarGlowSurface>
+          <StarLink href="/projects">Open the project archive</StarLink>
         </div>
       </section>
     </main>

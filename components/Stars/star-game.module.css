@@ -91,9 +91,21 @@
 }
 
 /* The special link with collectable stars */
+.starLinkSurface {
+  display: inline-flex;
+  width: fit-content;
+  height: fit-content;
+  overflow: visible;
+  padding: 1rem;
+}
+
 .starLink {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
   padding: 0.15rem 1rem 0.15rem 0;
   border: 0;
   background: none;
