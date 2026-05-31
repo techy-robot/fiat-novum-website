@@ -306,18 +306,6 @@ function ProximityTwinklingStar({
   return <TwinklingStarMotionShell {...rest} controls={controls} starRef={starRef} isCollected={isCollected} isGone={isGone} />;
 }
 
-function FixedTwinklingStar(props: TwinklingStarProps) {
-  return <TwinklingStarStatic {...props} isCollected={false} />;
-}
-
-function SeedTwinklingStar(props: TwinklingStarProps) {
-  return <ProximityTwinklingStar {...props} />;
-}
-
-function GameStateTwinklingStar(props: TwinklingStarProps) {
-  return <ProximityTwinklingStar {...props} />;
-}
-
 export default function TwinklingStar(props: TwinklingStarProps) {
   const interactionMode = props.interactionMode ?? DEFAULTS.interactionMode;
   const resolvedProps: TwinklingStarProps = {
@@ -329,11 +317,11 @@ export default function TwinklingStar(props: TwinklingStarProps) {
     case "callback":
       return <CallbackTwinklingStar {...resolvedProps} />;
     case "seed":
-      return <SeedTwinklingStar {...resolvedProps} />;
+      return <ProximityTwinklingStar {...resolvedProps} />;
     case "fixed":
-      return <FixedTwinklingStar {...resolvedProps} />;
+      return <TwinklingStarStatic {...resolvedProps} isCollected={false} />;;
     case "gameState":
     default:
-      return <GameStateTwinklingStar {...resolvedProps} />;
+      return <ProximityTwinklingStar {...resolvedProps} />;
   }
 }
