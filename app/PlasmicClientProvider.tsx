@@ -1,6 +1,8 @@
 
 "use client";
 
+import "@/plasmic-init";
+
 import { PlasmicRootProvider } from "@plasmicapp/react-web";
 
 // Add the type definition for children here:
