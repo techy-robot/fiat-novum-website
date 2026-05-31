@@ -229,6 +229,13 @@ function ProximityTwinklingStar({
   const driftScale = 0.82 + ((motionVariation % 24) / 100);
   const radiusOffset = (motionVariation % 7) - 3;
   const positionRef = React.useRef<Position>({ x, y });
+  const isCommittedRef = React.useRef(false);
+  const committedTargetRef = React.useRef<Position | null>(null);
+
+  React.useEffect(() => {
+    isCommittedRef.current = false;
+    committedTargetRef.current = null;
+  }, [interactionMode, x, y]);
 
   React.useEffect(() => {
     if (interactionMode !== "seed") return;
@@ -247,7 +254,7 @@ function ProximityTwinklingStar({
     if (isGone || isCollected) return;
 
     const canChase = interactionMode === "seed" || (interactionMode === "gameState" && global.active);
-    if (!canChase || !viewportCursor.inside) return;
+    if (!canChase) return;
 
     const cursor = getLocalCursorPosition(viewportCursor, starRef.current);
     const movementRadius = activationRadius + radiusOffset;
@@ -256,7 +263,17 @@ function ProximityTwinklingStar({
     const cursorPosition = { x: cursor.x, y: cursor.y };
     const distanceToCursor = distanceBetween(currentPosition, cursorPosition);
 
-    if (distanceToCursor <= collectionRadius) {
+    if (!isCommittedRef.current) {
+      if (!viewportCursor.inside || distanceToCursor > movementRadius) return;
+
+      isCommittedRef.current = true;
+    }
+
+    committedTargetRef.current = cursorPosition;
+    const target = committedTargetRef.current;
+    const distanceToTarget = distanceBetween(currentPosition, target);
+
+    if (distanceToTarget <= collectionRadius) {
       setIsCollected(true);
       if (interactionMode === "seed") {
         starGame.markSeedCollected(starId);
@@ -266,22 +283,18 @@ function ProximityTwinklingStar({
       return;
     }
 
-    if (distanceToCursor > movementRadius) {
-      return;
-    }
-
-    const target = { x: cursorPosition.x, y: cursorPosition.y };
     positionRef.current = target;
 
-    const intensity = 1 - distanceToCursor / movementRadius;
+    const intensity = 1 - Math.min(distanceToTarget / movementRadius, 1);
     const easedIntensity = intensity * intensity;
+    const committedBoost = isCommittedRef.current ? 1.35 : 1;
 
     controls.start(
       { x: target.x, y: target.y },
       {
         type: "spring",
-        stiffness: 110 * driftScale * (1 + driftSpeed) + 140 * easedIntensity,
-        damping: 18 - Math.min(4, easedIntensity * 4),
+        stiffness: (110 * driftScale * (1 + driftSpeed) + 140 * easedIntensity) * committedBoost,
+        damping: (isCommittedRef.current ? 15 : 18) - Math.min(isCommittedRef.current ? 5 : 4, easedIntensity * (isCommittedRef.current ? 5 : 4)),
       }
     );
   }, [
