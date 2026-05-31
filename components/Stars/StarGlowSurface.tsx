@@ -10,23 +10,20 @@ import styles from "./star-game.module.css";
  * Any div can use this wrapper to get the cursor glow and active cursor styling.
  */
 export interface StarGlowSurfaceProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Optional extra glow intensity to layer on top of the game-driven glow. */
-  glowIntensity?: number;
+
 }
 
 export default function StarGlowSurface({
   children,
   className,
   style,
-  glowIntensity = 0,
   ...rest
 }: StarGlowSurfaceProps) {
   const { cursor, onPointerMove, onPointerLeave } = useContainerCursor();
   const global = useGameState();
 
   const seedCollectionProgress = global.total > 0 ? global.collected / global.total : 0;
-  const seedFieldAmbientGlow = cursor.inside && seedCollectionProgress > 0 ? Math.pow(seedCollectionProgress, 1.8) : 0;
-  const cursorGlowLevel = cursor.inside ? Math.max(glowIntensity, global.cursorGlowIntensity, seedFieldAmbientGlow) : 0;
+  const cursorGlowLevel = cursor.inside && seedCollectionProgress > 0 ? Math.pow(seedCollectionProgress, 1.8) : 0;
 
   const fieldStyle = React.useMemo(
     () =>

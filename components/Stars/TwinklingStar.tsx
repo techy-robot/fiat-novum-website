@@ -93,19 +93,11 @@ export default function TwinklingStar({
   }, [interactionMode, starId]);
 
   React.useEffect(() => {
-    // Clear any reported glow when this instance leaves the tree.
-    return () => {
-      starGame.clearCursorGlow(starId);
-    };
-  }, [starId]);
-
-  React.useEffect(() => {
     if (interactionMode !== "callback") return;
     if (!callbackTarget || isCollected || isGone) return;
 
     const target = getLocalCursorPosition(callbackTarget, starRef.current);
     positionRef.current = target;
-    starGame.reportCursorGlow(starId, 0);
     setIsCollected(true);
 
     void controls.start(
@@ -130,7 +122,6 @@ export default function TwinklingStar({
     if (isGone) return;
 
     if (isCollected) {
-      starGame.reportCursorGlow(starId, 0);
       return;
     }
 
@@ -150,9 +141,6 @@ export default function TwinklingStar({
     const distanceToCursor = distanceBetween(currentPosition, cursorPosition);
 
     const canGlow = interactionMode === "seed" ? !global.active : global.active;
-    if (!canGlow) {
-      starGame.reportCursorGlow(starId, 0);
-    }
 
     if (distanceToCursor <= collectionRadius && !isCollected) {
       // Close enough to collect, the star fades out and marks itself complete.
@@ -161,14 +149,12 @@ export default function TwinklingStar({
         starGame.markSeedCollected(starId);
       }
       controls.start({ scale: 0, opacity: 0 }, { duration: 0.22 });
-      starGame.reportCursorGlow(starId, 0);
       const t = window.setTimeout(() => setIsGone(true), 220);
       return () => window.clearTimeout(t);
     }
 
     if (distanceToCursor > movementRadius) {
-      // Outside the influence radius, the star stays put and stops contributing glow.
-      starGame.reportCursorGlow(starId, 0);
+      // Outside the influence radius, the star stays put
       return;
     }
 
@@ -176,14 +162,10 @@ export default function TwinklingStar({
       return;
     }
 
-    // Closer stars respond more strongly and emit a brighter glow.
+    // Closer stars respond more strongly
     const intensity = 1 - distanceToCursor / movementRadius;
     const easedIntensity = intensity * intensity;
-    // Seed stars scale their glow with overall collection progress.
-    const glowIntensity = interactionMode === "seed" ? easedIntensity * seedCollectionProgress : 1;
-
-    starGame.reportCursorGlow(starId, glowIntensity);
-
+    
     const target = { x: cursorPosition.x, y: cursorPosition.y };
     positionRef.current = target;
     // Pull the star toward the cursor with a spring that varies slightly per instance.

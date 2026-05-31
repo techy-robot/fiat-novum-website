@@ -98,7 +98,7 @@ export function createCollector() {
 }
 
 /** The shared game snapshot that the surface, hook, and stars observe. */
-type GameState = { active: boolean; total: number; collected: number; cursorGlowIntensity: number };
+type GameState = { active: boolean; total: number; collected: number };
 type GameListener = (s: GameState) => void;
 
 /**
@@ -106,7 +106,7 @@ type GameListener = (s: GameState) => void;
  * The shared hooks keep React in sync with this store so the rest of the UI can stay declarative.
  */
 class StarGame {
-  private state: GameState = { active: false, total: 0, collected: 0, cursorGlowIntensity: 0 };
+  private state: GameState = { active: false, total: 0, collected: 0 };
   private listeners = new Set<GameListener>();
   private collector = createCollector();
   private cursorGlowReports = new Map<string, number>();
@@ -128,21 +128,6 @@ class StarGame {
     }
 
     if (changed) {
-      this.emit();
-    }
-  }
-
-  private syncCursorGlow() {
-    let maxIntensity = 0;
-
-    for (const intensity of this.cursorGlowReports.values()) {
-      if (intensity > maxIntensity) {
-        maxIntensity = intensity;
-      }
-    }
-
-    if (this.state.cursorGlowIntensity !== maxIntensity) {
-      this.state.cursorGlowIntensity = maxIntensity;
       this.emit();
     }
   }
@@ -174,25 +159,6 @@ class StarGame {
     this.maybeStartGame();
   }
 
-  /** Report a live glow contribution from a star. */
-  reportCursorGlow(id: string, intensity: number) {
-    if (intensity <= 0) {
-      this.cursorGlowReports.delete(id);
-      this.syncCursorGlow();
-      return;
-    }
-
-    this.cursorGlowReports.set(id, Math.min(1, intensity));
-    this.syncCursorGlow();
-  }
-
-  /** Clear a live glow contribution for a star. */
-  clearCursorGlow(id: string) {
-    if (this.cursorGlowReports.delete(id)) {
-      this.syncCursorGlow();
-    }
-  }
-
   /** Activate the field once the seed collection phase is complete. */
   start() {
     if (!this.state.active) {
@@ -211,7 +177,7 @@ class StarGame {
 
   /** Reset both the lifecycle state and the progress counters. */
   reset() {
-    this.state = { active: false, total: 0, collected: 0, cursorGlowIntensity: 0 };
+    this.state = { active: false, total: 0, collected: 0 };
     this.collector = createCollector();
     this.cursorGlowReports.clear();
     this.emit();
