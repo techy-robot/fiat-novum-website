@@ -5,6 +5,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import StarGlowSurface from "./StarGlowSurface";
 import TwinklingStar from "./TwinklingStar";
+import { useGameState } from "@/hooks/useGameState";
 import projectcss from "@/components/plasmic/fiat_novum/plasmic.module.css";
 import styles from "./star-game.module.css";
 
@@ -21,6 +22,7 @@ const STAR_POSITIONS = [
 
 export default function StarLink({ href, children, className, onClick, target, ...rest }: StarLinkProps) {
   const router = useRouter();
+  const global = useGameState();
   const [isCollecting, setIsCollecting] = React.useState(false);
   const [callbackTarget, setCallbackTarget] = React.useState<{ x: number; y: number } | null>(null);
   const [callbackSequence, setCallbackSequence] = React.useState(0);
@@ -47,6 +49,10 @@ export default function StarLink({ href, children, className, onClick, target, .
         return;
       }
 
+      if (!global.active) {
+        return;
+      }
+
       const linkRect = event.currentTarget.getBoundingClientRect();
       const hasPointerCoordinates = event.clientX !== 0 || event.clientY !== 0;
       const clickX = hasPointerCoordinates ? event.clientX - linkRect.left : linkRect.width / 2;
@@ -59,7 +65,7 @@ export default function StarLink({ href, children, className, onClick, target, .
       setCallbackTarget({ x: event.clientX || linkRect.left + clickX, y: event.clientY || linkRect.top + clickY });
       setCallbackSequence((value) => value + 1);
     },
-    [isCollecting, onClick, target]
+    [global.active, isCollecting, onClick, target]
   );
 
   return (
