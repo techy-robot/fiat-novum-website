@@ -37,6 +37,7 @@ export default function StarFieldPage() {
           {stars.map((star) => (
             <TwinklingStar
               key={star.id}
+              collectionId={star.id}
               x={star.x}
               y={star.y}
               size={star.size}

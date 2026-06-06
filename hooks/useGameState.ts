@@ -12,7 +12,10 @@ export function useGameState() {
   const [state, setState] = useState(() => starGame.getState());
 
   useEffect(() => {
-    return starGame.subscribe((s) => setState(s));
+    const unsubscribe = starGame.subscribe((s) => setState(s));
+    starGame.hydrate();
+
+    return unsubscribe;
   }, []);
 
   return state;

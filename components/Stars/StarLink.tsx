@@ -8,6 +8,7 @@ import TwinklingStar from "./TwinklingStar";
 import { useGameState } from "@/hooks/useGameState";
 import projectcss from "@/components/plasmic/fiat_novum/plasmic.module.css";
 import styles from "./star-game.module.css";
+import { starGame } from "@/lib/starGame";
 
 export interface StarLinkProps extends Omit<React.ComponentPropsWithoutRef<typeof Link>, "href" | "children"> {
   href: string;
@@ -19,6 +20,16 @@ const STAR_POSITIONS = [
   { className: styles.starLinkStarTopRight, delay: 0.07, size: 10, x: 66, y: -18 },
   { className: styles.starLinkStarBottom, delay: 0.12, size: 12, x: 28, y: 22 },
 ] as const;
+
+function getStarLinkCollectionId(href: string, index: number) {
+  return `star-link:${href}:${index}`;
+}
+
+function getStarLinkCollectedCount(href: string) {
+  return STAR_POSITIONS.reduce((count, _, index) => {
+    return count + (starGame.isCollected(getStarLinkCollectionId(href, index)) ? 1 : 0);
+  }, 0);
+}
 
 export default function StarLink({ href, children, className, onClick, target, ...rest }: StarLinkProps) {
   const router = useRouter();
@@ -60,12 +71,13 @@ export default function StarLink({ href, children, className, onClick, target, .
 
       event.preventDefault();
 
+        const initialCompletedCount = getStarLinkCollectedCount(href);
       setIsCollecting(true);
-      setCompletedCount(0);
+        setCompletedCount(initialCompletedCount);
       setCallbackTarget({ x: event.clientX || linkRect.left + clickX, y: event.clientY || linkRect.top + clickY });
       setCallbackSequence((value) => value + 1);
     },
-    [global.active, isCollecting, onClick, target]
+    [global.active, href, isCollecting, onClick, target]
   );
 
   return (
@@ -86,7 +98,7 @@ export default function StarLink({ href, children, className, onClick, target, .
         {...rest}
       >
         <span className={styles.starLinkStars} aria-hidden="true">
-          {STAR_POSITIONS.map((star) => (
+          {STAR_POSITIONS.map((star, index) => (
             <TwinklingStar
               key={star.className}
               className={[styles.starLinkStar, star.className].join(" ")}
@@ -96,6 +108,7 @@ export default function StarLink({ href, children, className, onClick, target, .
               twinkleDuration={2.1}
               twinkleDelay={star.delay}
               interactionMode="callback"
+              collectionId={getStarLinkCollectionId(href, index)}
               callbackTarget={callbackTarget}
               callbackSequence={callbackSequence}
               onCallbackComplete={() => setCompletedCount((value) => value + 1)}

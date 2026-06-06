@@ -101,6 +101,56 @@ export function createCollector() {
 type GameState = { active: boolean; total: number; collected: number };
 type GameListener = (s: GameState) => void;
 
+type PersistedStarGameState = {
+  version: 1;
+  active: boolean;
+  collectedStarIds: string[];
+};
+
+const STAR_GAME_STORAGE_KEY = "fiat-novum.star-game-state";
+
+function canUseLocalStorage() {
+  return typeof window !== "undefined" && typeof window.localStorage !== "undefined";
+}
+
+function uniqueStrings(values: unknown) {
+  if (!Array.isArray(values)) return [];
+
+  return Array.from(new Set(values.filter((value): value is string => typeof value === "string")));
+}
+
+function readPersistedStarGameState(): PersistedStarGameState | null {
+  if (!canUseLocalStorage()) return null;
+
+  try {
+    const rawValue = window.localStorage.getItem(STAR_GAME_STORAGE_KEY);
+    if (!rawValue) return null;
+
+    const parsed = JSON.parse(rawValue) as Partial<PersistedStarGameState> & { collectedStarIds?: unknown };
+    if (parsed.version !== 1 || typeof parsed.active !== "boolean") {
+      return null;
+    }
+
+    return {
+      version: 1,
+      active: parsed.active,
+      collectedStarIds: uniqueStrings(parsed.collectedStarIds),
+    };
+  } catch {
+    return null;
+  }
+}
+
+function writePersistedStarGameState(state: PersistedStarGameState) {
+  if (!canUseLocalStorage()) return;
+
+  try {
+    window.localStorage.setItem(STAR_GAME_STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    // Ignore storage failures so the game keeps working in restricted contexts.
+  }
+}
+
 /**
  * Observable singleton store for the star-game lifecycle and counters.
  * The shared hooks keep React in sync with this store so the rest of the UI can stay declarative.
@@ -110,6 +160,40 @@ class StarGame {
   private listeners = new Set<GameListener>();
   private collector = createCollector();
   private cursorGlowReports = new Map<string, number>();
+  private collectedStarIds = new Set<string>();
+  private hydrated = false;
+
+  hydrate() {
+    if (this.hydrated) return;
+
+    this.hydrated = true;
+
+    const persisted = readPersistedStarGameState();
+    if (!persisted) return;
+
+    let changed = false;
+
+    if (this.state.active !== persisted.active) {
+      this.state.active = persisted.active;
+      changed = true;
+    }
+
+    if (persisted.collectedStarIds.length > 0) {
+      this.collectedStarIds = new Set(persisted.collectedStarIds);
+    }
+
+    if (changed) {
+      this.emit();
+    }
+  }
+
+  private persist() {
+    writePersistedStarGameState({
+      version: 1,
+      active: this.state.active,
+      collectedStarIds: Array.from(this.collectedStarIds),
+    });
+  }
 
   private syncCounts() {
     const total = this.collector.getSeedCount();
@@ -141,6 +225,11 @@ class StarGame {
   /** Register a seed star so it participates in the unlock check. */
   registerSeedStar(id: string) {
     this.collector.register(id);
+
+    if (this.collectedStarIds.has(id)) {
+      this.collector.markCollected(id);
+    }
+
     this.syncCounts();
     this.maybeStartGame();
   }
@@ -154,15 +243,30 @@ class StarGame {
 
   /** Mark a registered seed star as collected. */
   markSeedCollected(id: string) {
+    this.markCollected(id);
     this.collector.markCollected(id);
     this.syncCounts();
     this.maybeStartGame();
+  }
+
+  /** Remember that a star has been collected on this device. */
+  markCollected(id: string) {
+    if (this.collectedStarIds.has(id)) return;
+
+    this.collectedStarIds.add(id);
+    this.persist();
+  }
+
+  /** Read whether a star has already been collected on this device. */
+  isCollected(id: string) {
+    return this.collectedStarIds.has(id);
   }
 
   /** Activate the field once the seed collection phase is complete. */
   start() {
     if (!this.state.active) {
       this.state.active = true;
+      this.persist();
       this.emit();
     }
   }
@@ -171,6 +275,7 @@ class StarGame {
   stop() {
     if (this.state.active) {
       this.state.active = false;
+      this.persist();
       this.emit();
     }
   }
@@ -180,6 +285,9 @@ class StarGame {
     this.state = { active: false, total: 0, collected: 0 };
     this.collector = createCollector();
     this.cursorGlowReports.clear();
+    this.collectedStarIds.clear();
+    this.hydrated = true;
+    this.persist();
     this.emit();
   }
 
