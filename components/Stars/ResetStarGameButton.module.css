@@ -1,0 +1,33 @@
+.resetButton {
+  appearance: none;
+  border: 1px solid rgba(0, 255, 157, 0.24);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(0, 255, 157, 0.14), rgba(0, 0, 0, 0.24));
+  color: #d8fff1;
+  box-shadow: 0 0 0 1px rgba(0, 255, 157, 0.08) inset, 0 12px 28px rgba(0, 0, 0, 0.24);
+  padding: 0.72rem 1.05rem;
+  font: inherit;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.resetButton:hover,
+.resetButton:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(0, 255, 157, 0.4);
+  background: linear-gradient(180deg, rgba(0, 255, 157, 0.2), rgba(0, 0, 0, 0.32));
+  box-shadow: 0 0 0 1px rgba(0, 255, 157, 0.16) inset, 0 14px 30px rgba(0, 0, 0, 0.28), 0 0 24px rgba(0, 255, 157, 0.12);
+  outline: none;
+}
+
+.resetButton:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resetButton {
+    transition: none;
+  }
+}

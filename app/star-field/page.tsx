@@ -2,6 +2,7 @@ import { Metadata } from "next";
 
 import StarGlowSurface from "@/components/Stars/StarGlowSurface";
 import StarLink from "@/components/Stars/StarLink";
+import ResetStarGameButton from "@/components/Stars/ResetStarGameButton";
 import TwinklingStar from "@/components/Stars/TwinklingStar";
 import { STAR_FIELD_LAYOUT_SIZE, STAR_FIELD_STARS, getStarInteractionMode } from "@/lib/starFieldLayout";
 import styles from "./page.module.css";
@@ -32,6 +33,9 @@ export default function StarFieldPage() {
             <p className={styles.description}>
               Move the cursor near the seed stars. Once all of them are collected, the section flips into game mode and every star becomes collectable.
             </p>
+            <div className={styles.actions}>
+              <ResetStarGameButton />
+            </div>
           </div>
 
           {stars.map((star) => (

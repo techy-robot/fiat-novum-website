@@ -385,6 +385,7 @@ function ProximityTwinklingStar({
 }
 
 export default function TwinklingStar(props: TwinklingStarProps) {
+  const { resetRevision } = useGameState();
   const interactionMode = props.interactionMode ?? DEFAULTS.interactionMode;
   const resolvedProps: TwinklingStarProps = {
     ...props,
@@ -393,13 +394,13 @@ export default function TwinklingStar(props: TwinklingStarProps) {
 
   switch (interactionMode) {
     case "callback":
-      return <CallbackTwinklingStar {...resolvedProps} />;
+      return <CallbackTwinklingStar key={resetRevision} {...resolvedProps} />;
     case "seed":
-      return <ProximityTwinklingStar {...resolvedProps} />;
+      return <ProximityTwinklingStar key={resetRevision} {...resolvedProps} />;
     case "fixed":
-      return <TwinklingStarShell {...resolvedProps} isCollected={false} />;
+      return <TwinklingStarShell key={resetRevision} {...resolvedProps} isCollected={false} />;
     case "gameState":
     default:
-      return <ProximityTwinklingStar {...resolvedProps} />;
+      return <ProximityTwinklingStar key={resetRevision} {...resolvedProps} />;
   }
 }

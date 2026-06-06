@@ -43,6 +43,13 @@
   line-height: 1.6;
 }
 
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+}
+
 /* The second section turns the link into a small showcase instead of a bare example. */
 .linkSection {
   display: grid;

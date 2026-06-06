@@ -98,7 +98,7 @@ export function createCollector() {
 }
 
 /** The shared game snapshot that the surface, hook, and stars observe. */
-type GameState = { active: boolean; total: number; collected: number };
+type GameState = { active: boolean; total: number; collected: number; resetRevision: number };
 type GameListener = (s: GameState) => void;
 
 type PersistedStarGameState = {
@@ -156,7 +156,7 @@ function writePersistedStarGameState(state: PersistedStarGameState) {
  * The shared hooks keep React in sync with this store so the rest of the UI can stay declarative.
  */
 class StarGame {
-  private state: GameState = { active: false, total: 0, collected: 0 };
+  private state: GameState = { active: false, total: 0, collected: 0, resetRevision: 0 };
   private listeners = new Set<GameListener>();
   private collector = createCollector();
   private cursorGlowReports = new Map<string, number>();
@@ -282,7 +282,7 @@ class StarGame {
 
   /** Reset both the lifecycle state and the progress counters. */
   reset() {
-    this.state = { active: false, total: 0, collected: 0 };
+    this.state = { active: false, total: 0, collected: 0, resetRevision: this.state.resetRevision + 1 };
     this.collector = createCollector();
     this.cursorGlowReports.clear();
     this.collectedStarIds.clear();
