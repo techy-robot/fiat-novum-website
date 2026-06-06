@@ -18,8 +18,8 @@ export const metadata: Metadata = {
 export default function StarFieldPage() {
   const stars = STAR_FIELD_STARS.map((star) => ({
     ...star,
-    x: star.x / STAR_FIELD_LAYOUT_SIZE.width,
-    y: star.y / STAR_FIELD_LAYOUT_SIZE.height,
+    x: `${(star.x / STAR_FIELD_LAYOUT_SIZE.width) * 100}%`,
+    y: `${(star.y / STAR_FIELD_LAYOUT_SIZE.height) * 100}%`,
   }));
 
   return (
@@ -39,7 +39,6 @@ export default function StarFieldPage() {
               key={star.id}
               x={star.x}
               y={star.y}
-              coordinateSpace="ratio"
               size={star.size}
               interactionMode={getStarInteractionMode(star.role)}
               twinkleDuration={star.twinkleDuration}
