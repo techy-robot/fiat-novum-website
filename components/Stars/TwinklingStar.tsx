@@ -47,22 +47,43 @@ type TwinklingStarMotionState = {
   position: Position;
   basePositionRef: React.MutableRefObject<Position | null>;
 };
-
 type TwinklingStarCollectionState = {
   isCollected: boolean;
   isGone: boolean;
   setIsCollected: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-type TwinklingStarShellState = Omit<TwinklingStarCollectionState, "setIsCollected">;
-
-type TwinklingStarShellProps = TwinklingStarProps & Pick<TwinklingStarMotionState, "controls" | "starRef"> & TwinklingStarShellState;
-
-type TwinklingStarStaticProps = Omit<TwinklingStarProps, "style"> & {
-  className?: string;
-  style?: React.CSSProperties;
+type TwinklingStarShellProps = TwinklingStarProps & {
+  controls?: ReturnType<typeof useAnimation>;
+  starRef?: React.MutableRefObject<HTMLSpanElement | null>;
   isCollected?: boolean;
+  isGone?: boolean;
 };
+
+function joinClasses(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
+
+function getStarShellStyle(x: React.CSSProperties["left"], y: React.CSSProperties["top"], size: number, style?: React.CSSProperties) {
+  return {
+    width: size,
+    height: size,
+    left: x,
+    top: y,
+    ...style,
+  } as React.CSSProperties;
+}
+
+function getStarGlyphStyle(size: number) {
+  return {
+    width: size,
+    height: size,
+    position: "absolute" as const,
+    left: 0,
+    top: 0,
+    transform: "translate(-50%, -50%)",
+  };
+}
 
 function useResolvedStarPosition(
   starRef: React.MutableRefObject<HTMLSpanElement | null>,
@@ -146,7 +167,7 @@ function TwinklingStarGlyph({
 }: Pick<TwinklingStarShellProps, "size" | "twinkleDuration" | "twinkleDelay" | "color" | "isCollected">) {
   return (
     <span
-      className={[styles.twinklingStarPulse, isCollected ? styles.twinklingStarPulseCollected : ""].filter(Boolean).join(" ")}
+      className={joinClasses(styles.twinklingStarPulse, isCollected && styles.twinklingStarPulseCollected)}
       style={{ animationDuration: `${twinkleDuration}s`, animationDelay: `${twinkleDelay}s` }}
     >
       <IconStarFilled className={styles.twinklingStarIcon} size={size} color={color} aria-hidden="true" />
@@ -154,7 +175,7 @@ function TwinklingStarGlyph({
   );
 }
 
-function TwinklingStarMotionShell({
+function TwinklingStarShell({
   x,
   y,
   size = DEFAULTS.size,
@@ -171,66 +192,23 @@ function TwinklingStarMotionShell({
 }: TwinklingStarShellProps) {
   if (isGone) return null;
 
-  const inlineStyle: React.CSSProperties = {
-    width: size,
-    height: size,
-    left: x,
-    top: y,
-    ...style,
-  };
+  const inlineStyle = getStarShellStyle(x, y, size, style);
+  const animationProps = controls ? { animate: controls } : {};
 
   return (
     <motion.span
       ref={starRef}
-      className={[styles.twinklingStar, className ?? ""].filter(Boolean).join(" ")}
+      className={joinClasses(styles.twinklingStar, className)}
       style={inlineStyle}
       aria-hidden="true"
-      animate={controls}
       initial={false}
+      {...animationProps}
       {...(rest as React.ComponentPropsWithoutRef<typeof motion.span>)}
     >
-      <span
-        className={styles.twinklingStarGlyph}
-        style={{ width: size, height: size, position: "absolute", left: 0, top: 0, transform: "translate(-50%, -50%)" }}
-      >
+      <span className={styles.twinklingStarGlyph} style={getStarGlyphStyle(size)}>
         <TwinklingStarGlyph size={size} twinkleDuration={twinkleDuration} twinkleDelay={twinkleDelay} color={color} isCollected={isCollected} />
       </span>
     </motion.span>
-  );
-}
-
-function TwinklingStarStatic({
-  x,
-  y,
-  size = DEFAULTS.size,
-  twinkleDuration = DEFAULTS.twinkleDuration,
-  twinkleDelay = DEFAULTS.twinkleDelay,
-  color = "currentColor",
-  className,
-  style,
-  isCollected = false,
-  ...rest
-}: TwinklingStarStaticProps) {
-
-  const inlineStyle: React.CSSProperties = {
-    width: size,
-    height: size,
-    left: x,
-    top: y,
-    ...style,
-  };
-
-  return (
-    <span
-      className={[styles.twinklingStar, className ?? ""].filter(Boolean).join(" ")}
-      style={inlineStyle}
-      aria-hidden="true"
-      {...rest}
-    >
-      <span className={styles.twinklingStarGlyph} style={{ width: size, height: size, position: "absolute", left: 0, top: 0, transform: "translate(-50%, -50%)" }}>
-        <TwinklingStarGlyph size={size} twinkleDuration={twinkleDuration} twinkleDelay={twinkleDelay} color={color} isCollected={isCollected} />
-      </span>
-    </span>
   );
 }
 
@@ -261,7 +239,7 @@ function CallbackTwinklingStar({
     });
   }, [basePositionRef, callbackSequence, callbackTarget, controls, isCollected, isGone, onCallbackComplete, setIsCollected, starRef]);
 
-  return <TwinklingStarMotionShell x={x} y={y} {...rest} controls={controls} starRef={starRef} isCollected={isCollected} isGone={isGone} />;
+  return <TwinklingStarShell x={x} y={y} {...rest} controls={controls} starRef={starRef} isCollected={isCollected} isGone={isGone} />;
 }
 
 function ProximityTwinklingStar({
@@ -277,7 +255,7 @@ function ProximityTwinklingStar({
   const { controls, starRef, position, basePositionRef } = useTwinklingStarMotion();
   const { isCollected, isGone, setIsCollected } = useTwinklingStarCollection();
   const starId = React.useId();
-  const motionVariation = React.useMemo(() => hashString(starId), [starId]);
+  const motionVariation = hashString(starId);
   const driftScale = 0.82 + ((motionVariation % 24) / 100);
   const radiusOffset = (motionVariation % 7) - 3;
   const positionRef = React.useRef<Position>(position);
@@ -370,7 +348,7 @@ function ProximityTwinklingStar({
     viewportCursor.y,
   ]);
 
-  return <TwinklingStarMotionShell x={x} y={y} {...rest} controls={controls} starRef={starRef} isCollected={isCollected} isGone={isGone} />;
+  return <TwinklingStarShell x={x} y={y} {...rest} controls={controls} starRef={starRef} isCollected={isCollected} isGone={isGone} />;
 }
 
 export default function TwinklingStar(props: TwinklingStarProps) {
@@ -386,7 +364,7 @@ export default function TwinklingStar(props: TwinklingStarProps) {
     case "seed":
       return <ProximityTwinklingStar {...resolvedProps} />;
     case "fixed":
-      return <TwinklingStarStatic {...resolvedProps} isCollected={false} />;;
+      return <TwinklingStarShell {...resolvedProps} isCollected={false} />;
     case "gameState":
     default:
       return <ProximityTwinklingStar {...resolvedProps} />;
