@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { starGame } from "@/lib/starGame";
+
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : React.useLayoutEffect;
 
 /**
  * Subscribe to the shared star-game store from React components.
@@ -11,7 +13,7 @@ import { starGame } from "@/lib/starGame";
 export function useGameState() {
   const [state, setState] = useState(() => starGame.getState());
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const unsubscribe = starGame.subscribe((s) => setState(s));
     starGame.hydrate();
 
