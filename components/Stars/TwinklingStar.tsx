@@ -83,9 +83,7 @@ function getStarGlyphStyle(size: number) {
     width: size,
     height: size,
     position: "absolute" as const,
-    left: 0,
-    top: 0,
-    transform: "translate(-50%, -50%)",
+    inset: 0,
   };
 }
 
