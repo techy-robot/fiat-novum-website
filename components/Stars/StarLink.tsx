@@ -10,8 +10,12 @@ import projectcss from "@/components/plasmic/fiat_novum/plasmic.module.css";
 import styles from "./star-game.module.css";
 import { starGame } from "@/lib/starGame";
 
-export interface StarLinkProps extends Omit<React.ComponentPropsWithoutRef<typeof Link>, "href" | "children"> {
-  href: string;
+export interface StarLinkProps extends Omit<React.ComponentPropsWithoutRef<typeof Link>, "children" | "href"> {
+  href?: string;
+  ariaLabel?: string;
+  ariaDescribedby?: string;
+  ariaHidden?: boolean;
+  ariaLabelledby?: string;
   children: React.ReactNode;
 }
 
@@ -31,20 +35,32 @@ function getStarLinkCollectedCount(href: string) {
   }, 0);
 }
 
-export default function StarLink({ href, children, className, onClick, target, ...rest }: StarLinkProps) {
+export default function StarLink({
+  href,
+  ariaLabel,
+  ariaDescribedby,
+  ariaHidden,
+  ariaLabelledby,
+  children,
+  className,
+  onClick,
+  target,
+  ...rest
+}: StarLinkProps) {
   const router = useRouter();
   const global = useGameState();
   const [isCollecting, setIsCollecting] = React.useState(false);
   const [callbackTarget, setCallbackTarget] = React.useState<{ x: number; y: number } | null>(null);
   const [callbackSequence, setCallbackSequence] = React.useState(0);
   const [completedCount, setCompletedCount] = React.useState(0);
+  const destination = href ?? "/";
 
   React.useEffect(() => {
     if (!isCollecting) return;
     if (completedCount < STAR_POSITIONS.length) return;
 
-    router.push(href);
-  }, [completedCount, href, isCollecting, router]);
+    router.push(destination);
+  }, [completedCount, destination, isCollecting, router]);
 
   const handleClick = React.useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -71,20 +87,24 @@ export default function StarLink({ href, children, className, onClick, target, .
 
       event.preventDefault();
 
-        const initialCompletedCount = getStarLinkCollectedCount(href);
+        const initialCompletedCount = getStarLinkCollectedCount(destination);
       setIsCollecting(true);
         setCompletedCount(initialCompletedCount);
       setCallbackTarget({ x: event.clientX || linkRect.left + clickX, y: event.clientY || linkRect.top + clickY });
       setCallbackSequence((value) => value + 1);
     },
-    [global.active, href, isCollecting, onClick, target]
+        [destination, global.active, isCollecting, onClick, target]
   );
 
   return (
     <StarGlowSurface className={styles.starLinkSurface}>
       <Link
-        href={href}
+        href={destination}
         onClick={handleClick}
+        aria-label={ariaLabel}
+        aria-describedby={ariaDescribedby}
+        aria-hidden={ariaHidden}
+        aria-labelledby={ariaLabelledby}
         className={[
           projectcss.plasmic_default_styles,
           projectcss.plasmic_tokens,
@@ -108,7 +128,7 @@ export default function StarLink({ href, children, className, onClick, target, .
               twinkleDuration={2.1}
               twinkleDelay={star.delay}
               interactionMode="callback"
-              collectionId={getStarLinkCollectionId(href, index)}
+              collectionId={getStarLinkCollectionId(destination, index)}
               callbackTarget={callbackTarget}
               callbackSequence={callbackSequence}
               onCallbackComplete={() => setCompletedCount((value) => value + 1)}
