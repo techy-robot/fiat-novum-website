@@ -47,8 +47,8 @@ PLASMIC.registerComponent(TwinklingStar, {
   importPath: "@/components/Stars/TwinklingStar",
   isDefaultExport: true,
   props: {
-    x: { type: "number", displayName: "X", defaultValue: 0 },
-    y: { type: "number", displayName: "Y", defaultValue: 0 },
+    x: { type: "string", displayName: "X", defaultValue: "0px" },
+    y: { type: "string", displayName: "Y", defaultValue: "0px" },
     size: { type: "number", displayName: "Size", defaultValue: 14 },
     interactionMode: {
       type: "choice",
