@@ -9,6 +9,12 @@ import { useGameState } from "@/hooks/useGameState";
 import styles from "./star-game.module.css";
 
 /**
+ * Internal spring tuning for the cursor-chasing motion.
+ * Kept private so Plasmic only exposes layout and visual knobs.
+ */
+const STAR_DRIFT_SPEED = 0.085;
+
+/**
  * Render one animated star in the play surface.
  * Seed stars participate in the activation phase, while regular stars become collectable once the game is live.
  */
@@ -37,8 +43,6 @@ export interface TwinklingStarProps extends Omit<React.HTMLAttributes<HTMLSpanEl
   twinkleDuration?: number;
   /** Delay before the twinkle loop starts. */
   twinkleDelay?: number;
-  /** Spring tuning used when the star chases the cursor. */
-  driftSpeed?: number;
   /** Optional icon color override; defaults to inheriting the current text color. */
   color?: string;
 }
@@ -271,7 +275,6 @@ function ProximityTwinklingStar({
   collectionId,
   interactionMode = DEFAULTS.interactionMode,
   activationRadius = DEFAULTS.activationRadius,
-  driftSpeed = DEFAULTS.driftSpeed,
   ...rest
 }: TwinklingStarProps) {
   const viewportCursor = useGlobalCursor();
@@ -353,7 +356,7 @@ function ProximityTwinklingStar({
       { x: target.x - basePosition.x, y: target.y - basePosition.y },
       {
         type: "spring",
-        stiffness: (110 * driftScale * (1 + driftSpeed) + 140 * easedIntensity) * committedBoost,
+        stiffness: (110 * driftScale * (1 + STAR_DRIFT_SPEED) + 140 * easedIntensity) * committedBoost,
         damping: (isCommittedRef.current ? 15 : 18) - Math.min(isCommittedRef.current ? 5 : 4, easedIntensity * (isCommittedRef.current ? 5 : 4)),
       }
     );
@@ -361,7 +364,6 @@ function ProximityTwinklingStar({
     activationRadius,
     controls,
     driftScale,
-    driftSpeed,
     collectionId,
     global.active,
     interactionMode,

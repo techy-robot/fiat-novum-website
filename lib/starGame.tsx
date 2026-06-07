@@ -28,7 +28,6 @@ export const DEFAULTS = {
   twinkleDelay: 0,
   callbackSequence: 0,
   callbackTarget: null,
-  driftSpeed: 0.085,
 };
 
 /** Measure the Euclidean distance between two points. */

@@ -64,7 +64,6 @@ PLASMIC.registerComponent(TwinklingStar, {
     activationRadius: { type: "number", displayName: "Activation radius", defaultValue: 48, advanced: true },
     twinkleDuration: { type: "number", displayName: "Twinkle duration", defaultValue: 2.7, advanced: true },
     twinkleDelay: { type: "number", displayName: "Twinkle delay", defaultValue: 0, advanced: true },
-    driftSpeed: { type: "number", displayName: "Drift speed", defaultValue: 0.085, advanced: true },
     color: { type: "string", displayName: "Icon color", defaultValue: "currentColor", advanced: true },
   },
   styleSections: true,
