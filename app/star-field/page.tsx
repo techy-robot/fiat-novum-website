@@ -63,7 +63,10 @@ export default function StarFieldPage() {
         </div>
 
         <div className={styles.linkPreview}>
-          <StarLink href="/projects">Open the project archive</StarLink>
+          <p> 
+            Testing normal text with <StarLink href="/projects">Open the project archive</StarLink> in the middle <br></br>
+            More text to fill the space and show how the star link interacts with surrounding content.
+          </p>
         </div>
       </section>
     </main>

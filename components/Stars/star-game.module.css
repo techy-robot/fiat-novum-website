@@ -96,7 +96,6 @@
   width: fit-content;
   height: fit-content;
   overflow: visible;
-  padding: 1rem;
 }
 
 .starLink {
@@ -106,8 +105,6 @@
   justify-content: center;
   width: fit-content;
   height: fit-content;
-  padding: 0.15rem 1rem 0.15rem 0;
-  border: 0;
   background: none;
   color: var(--mixin-dClRLYoSitxl_color);
   transition-property: var(--mixin-dClRLYoSitxl_transition-property);
