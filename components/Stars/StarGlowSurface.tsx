@@ -4,6 +4,7 @@ import React from "react";
 import { useGameState } from "@/hooks/useGameState";
 import { useContainerCursor } from "@/hooks/useContainerCursor";
 import styles from "./star-game.module.css";
+import Link from "next/link";
 
 /**
  * Visual surface for the star-field glow.
@@ -35,8 +36,19 @@ const StarGlowSurface = React.forwardRef<HTMLDivElement, StarGlowSurfaceProps>(f
     [style, cursor.x, cursor.y, cursorGlowLevel]
   );
 
+  // Check if any child is a Next.js Link or inline element
+  const hasInlineChild = React.Children.toArray(children).some((child) => {
+    if (!React.isValidElement(child)) return false;
+    // Detects Next.js Link components or raw standard anchor tags
+    return child.type === Link || child.type === 'a';
+  });
+
+  // Fall back to 'span' if used inline, otherwise default to 'div'. 
+  // Prevents nesting divs in paragraphs which causes HTML validation issues and unexpected styling problems.
+  const Component = hasInlineChild ? 'span' : 'div';
+
   return (
-    <div
+    <Component
       ref={ref}
       className={[styles.starField, global.active ? styles.starFieldActive : "", className ?? ""].filter(Boolean).join(" ")}
       style={fieldStyle}
@@ -44,9 +56,9 @@ const StarGlowSurface = React.forwardRef<HTMLDivElement, StarGlowSurfaceProps>(f
       onPointerLeave={onPointerLeave}
       {...rest}
     >
-      <div aria-hidden="true" className={styles.cursorGlow} />
+      <span aria-hidden="true" className={styles.cursorGlow} />
       {children}
-    </div>
+    </Component>
   );
 });
 
