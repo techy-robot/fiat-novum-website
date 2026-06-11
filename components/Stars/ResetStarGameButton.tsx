@@ -2,6 +2,7 @@
 
 import React from "react";
 import { starGame } from "@/lib/starGame";
+import projectcss from "@/components/plasmic/fiat_novum/plasmic.module.css";
 import styles from "./ResetStarGameButton.module.css";
 
 export interface ResetStarGameButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
@@ -19,8 +20,8 @@ export default function ResetStarGameButton({ className, type = "button", onClic
   );
 
   return (
-    <button type={type} className={[styles.resetButton, className ?? ""].filter(Boolean).join(" ")} onClick={handleClick} {...rest}>
-      Reset demo
+    <button type={type} className={[styles.resetButton, projectcss.plasmic_default_styles, projectcss.plasmic_tokens, className ?? ""].filter(Boolean).join(" ")} onClick={handleClick} {...rest}>
+      Reset Star Collection
     </button>
   );
 }
