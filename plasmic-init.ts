@@ -1,5 +1,6 @@
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
 
+import ResetStarGameButton from "@/components/Stars/ResetStarGameButton";
 import StarGlowSurface from "@/components/Stars/StarGlowSurface";
 import StarLink from "@/components/Stars/StarLink";
 import TwinklingStar from "@/components/Stars/TwinklingStar";
@@ -97,6 +98,19 @@ PLASMIC.registerComponent(StarLink, {
     ariaLabel: { type: "string", displayName: "Aria Label" },
     ariaLabelledby: { type: "string", displayName: "Aria Labelledby" },
     children: { type: "slot", displayName: "Content" },
+  },
+  styleSections: true,
+});
+
+PLASMIC.registerComponent(ResetStarGameButton, {
+  name: "ResetStarGameButton",
+  displayName: "Reset Star Game Button",
+  description: "A button that resets the star collection game state.",
+  section: STAR_GAME_SECTION,
+  importPath: "@/components/Stars/ResetStarGameButton",
+  isDefaultExport: true,
+  props: {
+    text: { type: "string", displayName: "Text", defaultValue: "Reset Star Collection" },
   },
   styleSections: true,
 });

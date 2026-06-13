@@ -6,7 +6,7 @@ import projectcss from "@/components/plasmic/fiat_novum/plasmic.module.css";
 import styles from "./ResetStarGameButton.module.css";
 
 export interface ResetStarGameButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  text: string
+  text?: string
 }
 
 export default function ResetStarGameButton({ className, type = "button", onClick, text = "Reset Star Collection", ...rest }: ResetStarGameButtonProps) {
