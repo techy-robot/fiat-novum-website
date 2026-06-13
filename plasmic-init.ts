@@ -66,6 +66,7 @@ PLASMIC.registerComponent(TwinklingStar, {
     twinkleDuration: { type: "number", displayName: "Twinkle duration", defaultValue: 2.7, advanced: true },
     twinkleDelay: { type: "number", displayName: "Twinkle delay", defaultValue: 0, advanced: true },
     color: { type: "string", displayName: "Icon color", defaultValue: "currentColor", advanced: true },
+    collectionId: { type: "string", displayName: "Collection ID", description: "Stable identifier used to persist collection state on the device. Falls back to a position-based identifier if left blank." },
   },
   styleSections: true,
 });
