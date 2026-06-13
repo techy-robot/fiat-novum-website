@@ -1,5 +1,3 @@
-import { DEFAULTS } from "@/lib/starGame";
-
 export type StarFieldRole = "seed" | "collectable" | "fixed";
 
 export type StarFieldDefinition = {
@@ -125,5 +123,5 @@ export function layoutStarField(width: number, height: number) {
 export function getStarInteractionMode(role: StarFieldRole) {
   if (role === "seed") return "seed" as const;
   if (role === "fixed") return "fixed" as const;
-  return DEFAULTS.interactionMode;
+  return "gameState" as const;
 }
