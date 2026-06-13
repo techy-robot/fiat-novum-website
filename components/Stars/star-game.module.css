@@ -1,7 +1,7 @@
 /* The field wrapper clips the glow and establishes the shared stacking context. */
 .starField {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   width: 100%;
   isolation: isolate;
 }
