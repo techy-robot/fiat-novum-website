@@ -152,6 +152,21 @@ function useTwinklingStarMotion(): TwinklingStarMotionState {
 
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? React.useEffect : React.useLayoutEffect;
 
+function useStableStarId(
+  collectionId: string | undefined,
+  x: React.CSSProperties["left"],
+  y: React.CSSProperties["top"]
+): string {
+  const generatedCollectionId = React.useId();
+  return React.useMemo(() => {
+    if (collectionId) return collectionId;
+    const cleanX = String(x ?? "").trim().replace(/\s+/g, "");
+    const cleanY = String(y ?? "").trim().replace(/\s+/g, "");
+    if (!cleanX && !cleanY) return generatedCollectionId;
+    return `star-pos-${cleanX}-${cleanY}`;
+  }, [collectionId, x, y, generatedCollectionId]);
+}
+
 function useTwinklingStarCollection(collectionId?: string): TwinklingStarCollectionState {
   const [isCollected, setIsCollected] = React.useState(false);
   const [isGone, setIsGone] = React.useState(false);
@@ -244,7 +259,8 @@ function CallbackTwinklingStar({
   ...rest
 }: TwinklingStarProps) {
   const { controls, starRef, basePositionRef } = useTwinklingStarMotion();
-  const { isCollected, isGone, isReady, setIsCollected } = useTwinklingStarCollection(collectionId);
+  const starId = useStableStarId(collectionId, x, y);
+  const { isCollected, isGone, isReady, setIsCollected } = useTwinklingStarCollection(starId);
 
   React.useEffect(() => {
     if (!isReady || !callbackTarget || isCollected || isGone) return;
@@ -252,8 +268,8 @@ function CallbackTwinklingStar({
     const target = getLocalCursorPosition(callbackTarget, starRef.current);
     setIsCollected(true);
 
-    if (collectionId) {
-      starGame.markCollected(collectionId);
+    if (starId) {
+      starGame.markCollected(starId);
     }
 
     const basePosition = basePositionRef.current ?? { x: 0, y: 0 };
@@ -264,9 +280,9 @@ function CallbackTwinklingStar({
     ).then(() => {
       onCallbackComplete?.();
     });
-  }, [basePositionRef, callbackSequence, callbackTarget, collectionId, controls, isCollected, isGone, isReady, onCallbackComplete, setIsCollected, starRef]);
+  }, [basePositionRef, callbackSequence, callbackTarget, starId, controls, isCollected, isGone, isReady, onCallbackComplete, setIsCollected, starRef]);
 
-  return <TwinklingStarShell x={x} y={y} {...rest} collectionId={collectionId} isReady={isReady} controls={controls} starRef={starRef} isCollected={isCollected} isGone={isGone} />;
+  return <TwinklingStarShell x={x} y={y} {...rest} collectionId={starId} isReady={isReady} controls={controls} starRef={starRef} isCollected={isCollected} isGone={isGone} />;
 }
 
 function ProximityTwinklingStar({
@@ -280,9 +296,8 @@ function ProximityTwinklingStar({
   const viewportCursor = useGlobalCursor();
   const global = useGameState();
   const { controls, starRef, position, basePositionRef } = useTwinklingStarMotion();
-  const generatedCollectionId = React.useId();
-  const starId = collectionId ?? generatedCollectionId;
-  const { isCollected, isGone, isReady, setIsCollected } = useTwinklingStarCollection(collectionId);
+  const starId = useStableStarId(collectionId, x, y);
+  const { isCollected, isGone, isReady, setIsCollected } = useTwinklingStarCollection(starId);
   const motionVariation = hashString(starId);
   const driftScale = 0.82 + ((motionVariation % 24) / 100);
   const radiusOffset = (motionVariation % 7) - 3;
@@ -296,13 +311,13 @@ function ProximityTwinklingStar({
   }, [interactionMode, position]);
 
   React.useEffect(() => {
-    if (!isReady || interactionMode !== "seed" || !collectionId) return;
+    if (!isReady || interactionMode !== "seed" || !starId) return;
 
-    starGame.registerSeedStar(collectionId);
+    starGame.registerSeedStar(starId);
     return () => {
-      starGame.unregisterSeedStar(collectionId);
+      starGame.unregisterSeedStar(starId);
     };
-  }, [collectionId, interactionMode, isReady]);
+  }, [starId, interactionMode, isReady]);
 
   React.useEffect(() => {
     positionRef.current = position;
@@ -333,11 +348,11 @@ function ProximityTwinklingStar({
 
     if (distanceToTarget <= collectionRadius) {
       setIsCollected(true);
-      if (collectionId) {
+      if (starId) {
         if (interactionMode === "seed") {
-          starGame.markSeedCollected(collectionId);
+          starGame.markSeedCollected(starId);
         } else {
-          starGame.markCollected(collectionId);
+          starGame.markCollected(starId);
         }
       }
 
@@ -364,7 +379,7 @@ function ProximityTwinklingStar({
     activationRadius,
     controls,
     driftScale,
-    collectionId,
+    starId,
     global.active,
     interactionMode,
     isCollected,
@@ -373,7 +388,6 @@ function ProximityTwinklingStar({
     radiusOffset,
     setIsCollected,
     basePositionRef,
-    starId,
     starRef,
     viewportCursor,
     viewportCursor.inside,
@@ -381,7 +395,7 @@ function ProximityTwinklingStar({
     viewportCursor.y,
   ]);
 
-  return <TwinklingStarShell x={x} y={y} {...rest} collectionId={collectionId} isReady={isReady} controls={controls} starRef={starRef} isCollected={isCollected} isGone={isGone} />;
+  return <TwinklingStarShell x={x} y={y} {...rest} collectionId={starId} isReady={isReady} controls={controls} starRef={starRef} isCollected={isCollected} isGone={isGone} />;
 }
 
 export default function TwinklingStar(props: TwinklingStarProps) {
