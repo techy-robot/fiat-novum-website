@@ -70,7 +70,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicUiRangeSlider.module.css"; // plasmic-import: uBZaFZN4VRcn/css
 
 createPlasmicElementProxy;
@@ -237,9 +236,9 @@ function PlasmicUiRangeSlider__RenderFunc(props: {
       aria-label={args.ariaLabel}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaRangeSlider
       )}
@@ -258,7 +257,7 @@ function PlasmicUiRangeSlider__RenderFunc(props: {
       step={args.step}
       value={generateStateValueProp($state, ["ariaRangeSlider", "value"])}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__kItSb)}>
+      <div className={classNames("all", sty.freeBox__kItSb)}>
         {$props.showLabel ? (
           <UiLabel
             data-plasmic-name={"uiLabel"}
@@ -268,11 +267,7 @@ function PlasmicUiRangeSlider__RenderFunc(props: {
             {renderPlasmicSlot({
               defaultContents: (
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__wy3Ca
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__wy3Ca)}
                 >
                   {"Label"}
                 </div>
@@ -290,11 +285,7 @@ function PlasmicUiRangeSlider__RenderFunc(props: {
             <div
               data-plasmic-name={"text"}
               data-plasmic-override={overrides.text}
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text
-              )}
+              className={classNames("all", "__wab_text", sty.text)}
             >
               <React.Fragment>
                 {(() => {
@@ -318,11 +309,11 @@ function PlasmicUiRangeSlider__RenderFunc(props: {
           </BaseSliderOutput>
         ) : null}
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__pzpDd)}>
+      <div className={classNames("all", sty.freeBox__pzpDd)}>
         <div
           data-plasmic-name={"background"}
           data-plasmic-override={overrides.background}
-          className={classNames(projectcss.all, sty.background)}
+          className={classNames("all", sty.background)}
         >
           <BaseSliderTrack
             data-plasmic-name={"ariaSliderTrack"}
@@ -333,7 +324,7 @@ function PlasmicUiRangeSlider__RenderFunc(props: {
                 <div
                   data-plasmic-name={"foreground"}
                   data-plasmic-override={overrides.foreground}
-                  className={classNames(projectcss.all, sty.foreground)}
+                  className={classNames("all", sty.foreground)}
                 />
               ) : null
             }

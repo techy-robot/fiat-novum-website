@@ -1,3 +1,7 @@
+.plasmic_default_styles {
+  --mixin-SnTY4S5hPhfm_white-space: pre-wrap;
+}
+
 :where(.all) {
   display: block;
   white-space: inherit;
@@ -361,5 +365,6 @@
 .__wab_expr_html_text {
   white-space: normal;
 }
-:where(.root_reset) {
+:where(.root_reset_7nJ7UcFmq9UzB6eXfC5z4a) {
+  white-space: var(--mixin-SnTY4S5hPhfm_white-space);
 }

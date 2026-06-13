@@ -28,15 +28,7 @@
   animation-play-state: paused !important;
 }
 
-:global(.plasmic-card-fix) {
-  height: 100% !important;
-  min-height: max-content !important;
-}
 
-:global([class*="plasmic_default__all"][style*="display: grid"]),
-:global(.plasmic-grid-container) {
-  grid-auto-rows: max-content !important;
-}
 
 @keyframes scrollMarquee {
   0% {

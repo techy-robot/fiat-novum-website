@@ -65,7 +65,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicPagesBlogPostLayout.module.css"; // plasmic-import: TS8wfnEFQi2m/css
 
 createPlasmicElementProxy;
@@ -156,10 +155,10 @@ function PlasmicPagesBlogPostLayout__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -173,7 +172,7 @@ function PlasmicPagesBlogPostLayout__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
+        className={classNames("all", sty.freeBox)}
       >
         <PlasmicImg__
           data-plasmic-name={"img"}
@@ -206,10 +205,10 @@ function PlasmicPagesBlogPostLayout__RenderFunc(props: {
           data-plasmic-name={"h1"}
           data-plasmic-override={overrides.h1}
           className={classNames(
-            projectcss.all,
-            projectcss.h1,
-            projectcss.h1__77YCn,
-            projectcss.__wab_text,
+            "all",
+            "h1",
+            "h1__77YCn",
+            "__wab_text",
             sty.h1,
             ""
           )}

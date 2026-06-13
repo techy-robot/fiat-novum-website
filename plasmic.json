@@ -7,7 +7,7 @@
   },
   "style": {
     "scheme": "css-modules",
-    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.module.css"
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
   },
   "images": {
     "scheme": "public-files",
@@ -26,7 +26,7 @@
       "projectApiToken": "vbQyou03NYKoUJYS5XQuqHd1f0lvaFhEPqfaaHmK31dT23rx3SxsFVupkacMBjTpM3WPzbm42ZdACSUug",
       "projectName": "Fiat Novum",
       "version": "latest",
-      "cssFilePath": "plasmic/fiat_novum/plasmic.module.css",
+      "cssFilePath": "plasmic/fiat_novum/plasmic.css",
       "components": [
         {
           "id": "bCv3rmLWmiVO",
@@ -554,6 +554,30 @@
           "name": "Fetcher",
           "displayName": "plasmic-data-source-fetcher",
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
+        },
+        {
+          "id": "hQM1E7ocOG30",
+          "name": "StarGlowSurface",
+          "displayName": "StarGlowSurface",
+          "componentImportPath": "@/components/Stars/StarGlowSurface"
+        },
+        {
+          "id": "s3DLyi4vLIfb",
+          "name": "TwinklingStar",
+          "displayName": "TwinklingStar",
+          "componentImportPath": "@/components/Stars/TwinklingStar"
+        },
+        {
+          "id": "s6FuT5oTRRFq",
+          "name": "StarLink",
+          "displayName": "StarLink",
+          "componentImportPath": "@/components/Stars/StarLink"
+        },
+        {
+          "id": "l-ftsQOgs2u5",
+          "name": "ResetStarGameButton",
+          "displayName": "ResetStarGameButton",
+          "componentImportPath": "@/components/Stars/ResetStarGameButton"
         }
       ],
       "customFunctions": []
@@ -563,7 +587,7 @@
       "projectApiToken": "SPBdkt73OFtq1kHnZibm53X9j5ueDaUPFKq7JYjwg8o9geyjqL4z1xm8AzpOQVJqn5GKWhUDLH4bEwYo4DOqg",
       "projectName": "[Library] Tabler 3.2 Icons",
       "version": ">0.0.0",
-      "cssFilePath": "plasmic/library_tabler_3_2_icons/plasmic.module.css",
+      "cssFilePath": "plasmic/library_tabler_3_2_icons/plasmic.css",
       "components": [],
       "icons": [
         {
@@ -26695,7 +26719,7 @@
       "projectApiToken": "LBbn8U2dmbpX9oeuRsYNyEKki39EXydGQgs9vBvR5sLHfGEZsK4owvOj7Q7SnflW4ASIEdLFAeeoxGxXZ8dJtA",
       "projectName": "react-aria",
       "version": ">0.0.0",
-      "cssFilePath": "plasmic/react_aria/plasmic.module.css",
+      "cssFilePath": "plasmic/react_aria/plasmic.css",
       "components": [],
       "icons": [],
       "images": [],
@@ -26906,7 +26930,7 @@
       "projectApiToken": "uZp069FLSLNVA2dpWnqC3BUaj3flvtNBNXt6e1b67rm4Uh6lGHgYJ65FCBXlOFTB5KDW7RmmOxIAzgHYCg",
       "projectName": "plasmic-nav",
       "version": ">0.0.0",
-      "cssFilePath": "plasmic/plasmic_nav/plasmic.module.css",
+      "cssFilePath": "plasmic/plasmic_nav/plasmic.css",
       "components": [],
       "icons": [],
       "images": [],
@@ -26931,7 +26955,7 @@
       "projectApiToken": "LjSpKE3KGAP0BTj4Pw8tdHYXzQ9mZeNg0L7YRJ25qLJhCZwbS2n1ybcTImjPg1BuEA0QKeRAjEW1DLKh0VQ",
       "projectName": "cms",
       "version": ">0.0.0",
-      "cssFilePath": "plasmic/cms/plasmic.module.css",
+      "cssFilePath": "plasmic/cms/plasmic.css",
       "components": [],
       "icons": [],
       "images": [],
@@ -26971,7 +26995,7 @@
       "projectApiToken": "eSFGpQaYCtO9sRbPuQ2Ll9dmLOg8I4oKhx6e1PuCrsfmUIVbFbSXcy32UrPTwF9zX2HVXA0xaIKJNhCMHvA",
       "projectName": "react-slick",
       "version": ">0.0.0",
-      "cssFilePath": "plasmic/react_slick/plasmic.module.css",
+      "cssFilePath": "plasmic/react_slick/plasmic.css",
       "components": [],
       "icons": [],
       "images": [],
@@ -27000,7 +27024,7 @@
       "projectApiToken": "DIkcfhBwjMCJSjcxfBkMuy4NImyytq5EWylxVcpS9t9EpdhnPQuBgBGxmk00AB1itMFa1KXTxOKnrjN2PN9nlA",
       "projectName": "react-awesome-reveal",
       "version": ">0.0.0",
-      "cssFilePath": "plasmic/react_awesome_reveal/plasmic.module.css",
+      "cssFilePath": "plasmic/react_awesome_reveal/plasmic.css",
       "components": [],
       "icons": [],
       "images": [],
@@ -27025,7 +27049,7 @@
       "projectApiToken": "UksWJg8OaU7Et0wrGHCnNaKVdXs3QaJA2LrcWX3oELzI4W0RognhFJL3XL0Xuq4LIYLIftyRKwslnLp67oHuw",
       "projectName": "jquery",
       "version": ">0.0.0",
-      "cssFilePath": "plasmic/jquery/plasmic.module.css",
+      "cssFilePath": "plasmic/jquery/plasmic.css",
       "components": [],
       "icons": [],
       "images": [],
@@ -27043,7 +27067,7 @@
       "projectApiToken": "L5kqyh9xqKCqpdc8gqCglVcLZTxdkkP1Dt9pLUlWpyKVItIbbXr5272ePgMpZZiezhSe0AIOuQB353jQnw",
       "projectName": "plasmic-cms",
       "version": ">0.0.0",
-      "cssFilePath": "plasmic/plasmic_cms/plasmic.module.css",
+      "cssFilePath": "plasmic/plasmic_cms/plasmic.css",
       "components": [],
       "icons": [],
       "images": [],
@@ -27104,7 +27128,7 @@
       "projectApiToken": "34o5R5KswluuZ4sD83F88oQrcLWsNNeUpCptQ8Okf4hYqgjnHnX2idGAlhtB7WWQQelNAInf5XFazR1cGw",
       "projectName": "plasmic-embed-css",
       "version": ">0.0.0",
-      "cssFilePath": "plasmic/plasmic_embed_css/plasmic.module.css",
+      "cssFilePath": "plasmic/plasmic_embed_css/plasmic.css",
       "components": [],
       "icons": [],
       "images": [],
@@ -27129,7 +27153,7 @@
       "projectApiToken": "3tpUfxQvphO2cHJi05AuO753aYZNx8rBT7az6UNI7jXbmOJk2XXkoH4WvRjeGXTNuoqaBAC6S3boxyriSGZRA",
       "projectName": "rive",
       "version": ">0.0.0",
-      "cssFilePath": "plasmic/rive/plasmic.module.css",
+      "cssFilePath": "plasmic/rive/plasmic.css",
       "components": [],
       "icons": [],
       "images": [],
@@ -27172,6 +27196,6 @@
     "appDir": "../app",
     "pagesDir": "plasmic/useless-generated-pages"
   },
-  "cliVersion": "0.1.361",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.361/dist/plasmic.schema.json"
+  "cliVersion": "0.1.364",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.364/dist/plasmic.schema.json"
 }

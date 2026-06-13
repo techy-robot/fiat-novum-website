@@ -69,7 +69,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicUiTextField.module.css"; // plasmic-import: zJr2vjWiu79V/css
 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: mnMIqnlbNw36/icon
@@ -423,9 +422,9 @@ function PlasmicUiTextField__RenderFunc(props: {
       autoFocus={args.autoFocus}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaTextField,
         {
@@ -473,7 +472,7 @@ function PlasmicUiTextField__RenderFunc(props: {
         </UiLabel>
       ) : null}
       <div
-        className={classNames(projectcss.all, sty.freeBox__cftzC, {
+        className={classNames("all", sty.freeBox__cftzC, {
           [sty.freeBoxiconEnd__cftzCpHWaF]: hasVariant(
             $state,
             "iconEnd",
@@ -492,7 +491,7 @@ function PlasmicUiTextField__RenderFunc(props: {
         })}
       >
         <div
-          className={classNames(projectcss.all, sty.freeBox__zjEBs, {
+          className={classNames("all", sty.freeBox__zjEBs, {
             [sty.freeBoxiconStart__zjEBsAtiOn]: hasVariant(
               $state,
               "iconStart",
@@ -508,7 +507,7 @@ function PlasmicUiTextField__RenderFunc(props: {
           {renderPlasmicSlot({
             defaultContents: (
               <CircleIcon
-                className={classNames(projectcss.all, sty.svg__nmYYn)}
+                className={classNames("all", sty.svg__nmYYn)}
                 role={"img"}
               />
             ),
@@ -596,7 +595,7 @@ function PlasmicUiTextField__RenderFunc(props: {
           />
         ) : null}
         <div
-          className={classNames(projectcss.all, sty.freeBox__qwqT4, {
+          className={classNames("all", sty.freeBox__qwqT4, {
             [sty.freeBoxiconEnd__qwqT4PHWaF]: hasVariant(
               $state,
               "iconEnd",
@@ -612,7 +611,7 @@ function PlasmicUiTextField__RenderFunc(props: {
           {renderPlasmicSlot({
             defaultContents: (
               <CircleIcon
-                className={classNames(projectcss.all, sty.svg__pcVoa)}
+                className={classNames("all", sty.svg__pcVoa)}
                 role={"img"}
               />
             ),

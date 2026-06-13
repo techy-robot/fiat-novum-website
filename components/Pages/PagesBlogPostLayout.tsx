@@ -7,9 +7,6 @@ import {
 } from "../plasmic/fiat_novum/PlasmicPagesBlogPostLayout";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
-// Import styles as an object to handle hashing
-import styles from '@/components/plasmic/fiat_novum/plasmic.module.css';
-
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
 // attach to named nodes in your component.
@@ -43,7 +40,7 @@ function PagesBlogPostLayout_(
       root={{ ref }}
       // Inject the hashed classes into the content slot
       contentSlot={
-        <article className={`${styles.plasmic_default_styles} ${styles.root_reset} ${styles.root_reset_tags}`}>
+        <article className={`${"plasmic_default_styles"} ${"root_reset_77YCnrwhevb2XmBSeMeRKC"} ${"root_reset_77YCnrwhevb2XmBSeMeRKC_tags"}`}>
           {contentSlot}
         </article>
       }

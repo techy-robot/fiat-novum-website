@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import StarGlowSurface from "./StarGlowSurface";
 import TwinklingStar from "./TwinklingStar";
 import { useGameState } from "@/hooks/useGameState";
-import projectcss from "@/components/plasmic/fiat_novum/plasmic.module.css";
 import styles from "./star-game.module.css";
 import { starGame } from "@/lib/starGame";
 
@@ -106,8 +105,8 @@ export default function StarLink({
         aria-hidden={ariaHidden}
         aria-labelledby={ariaLabelledby}
         className={[
-          projectcss.plasmic_default_styles,
-          projectcss.plasmic_tokens,
+          "plasmic_default_styles",
+          "plasmic_tokens",
           styles.starLink,
           isCollecting ? styles.starLinkCollecting : "",
           className ?? "",

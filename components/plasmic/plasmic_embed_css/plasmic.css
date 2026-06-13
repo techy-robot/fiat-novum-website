@@ -1,5 +1,5 @@
 .plasmic_default_styles {
-  --mixin-SnTY4S5hPhfm_white-space: pre-wrap;
+  --mixin-2CBzNdhBI2Og_white-space: pre-wrap;
 }
 
 :where(.all) {
@@ -365,6 +365,6 @@
 .__wab_expr_html_text {
   white-space: normal;
 }
-:where(.root_reset) {
-  white-space: var(--mixin-SnTY4S5hPhfm_white-space);
+:where(.root_reset_8PtdGodUbexNYgkuyBUcWu) {
+  white-space: var(--mixin-2CBzNdhBI2Og_white-space);
 }

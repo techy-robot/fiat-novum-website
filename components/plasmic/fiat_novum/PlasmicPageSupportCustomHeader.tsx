@@ -60,12 +60,12 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { NavigationBar } from "@plasmicpkgs/plasmic-nav";
+import StarLink from "@/components/Stars/StarLink"; // plasmic-import: s6FuT5oTRRFq/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicPageSupportCustomHeader.module.css"; // plasmic-import: lVLsklxwqNh2/css
 
 import Menu2Icon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Menu2"; // plasmic-import: d1b8xWlyUKWm/icon
@@ -88,6 +88,8 @@ export type PlasmicPageSupportCustomHeader__OverridesType = {
   root?: Flex__<typeof NavigationBar>;
   img?: Flex__<typeof PlasmicImg__>;
   name?: Flex__<"div">;
+  starLink?: Flex__<typeof StarLink>;
+  text?: Flex__<"div">;
 };
 
 export interface DefaultPageSupportCustomHeaderProps {
@@ -145,12 +147,7 @@ function PlasmicPageSupportCustomHeader__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       brand={
         <PlasmicLink__
-          className={classNames(
-            projectcss.all,
-            projectcss.a,
-            projectcss.a__77YCn,
-            sty.link__akXc
-          )}
+          className={classNames("all", "a", "a__77YCn", sty.link__akXc)}
           component={Link}
           href={`/`}
           legacyBehavior={false}
@@ -190,11 +187,7 @@ function PlasmicPageSupportCustomHeader__RenderFunc(props: {
           <div
             data-plasmic-name={"name"}
             data-plasmic-override={overrides.name}
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.name
-            )}
+            className={classNames("all", "__wab_text", sty.name)}
           >
             {"FIAT NOVUM\nENGINEERING"}
           </div>
@@ -202,15 +195,15 @@ function PlasmicPageSupportCustomHeader__RenderFunc(props: {
       }
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
       closeButton={
         <CircleXIcon
-          className={classNames(projectcss.all, sty.svg__bvt4H)}
+          className={classNames("all", sty.svg__bvt4H)}
           role={"img"}
         />
       }
@@ -220,10 +213,10 @@ function PlasmicPageSupportCustomHeader__RenderFunc(props: {
         <React.Fragment>
           <PlasmicLink__
             className={classNames(
-              projectcss.all,
-              projectcss.a,
-              projectcss.a__77YCn,
-              projectcss.__wab_text,
+              "all",
+              "a",
+              "a__77YCn",
+              "__wab_text",
               sty.link___2WA8K
             )}
             component={Link}
@@ -233,27 +226,27 @@ function PlasmicPageSupportCustomHeader__RenderFunc(props: {
           >
             {"Blog"}
           </PlasmicLink__>
-          <PlasmicLink__
-            className={classNames(
-              projectcss.all,
-              projectcss.a,
-              projectcss.a__77YCn,
-              projectcss.__wab_text,
-              sty.link__x1Fun
-            )}
-            component={Link}
+          <StarLink
+            data-plasmic-name={"starLink"}
+            data-plasmic-override={overrides.starLink}
+            className={classNames("__wab_instance", sty.starLink)}
             href={"/projects"}
-            legacyBehavior={false}
-            platform={"nextjs"}
+            target={"_self"}
           >
-            {"Projects"}
-          </PlasmicLink__>
+            <div
+              data-plasmic-name={"text"}
+              data-plasmic-override={overrides.text}
+              className={classNames("all", "__wab_text", sty.text)}
+            >
+              {"Projects"}
+            </div>
+          </StarLink>
           <PlasmicLink__
             className={classNames(
-              projectcss.all,
-              projectcss.a,
-              projectcss.a__77YCn,
-              projectcss.__wab_text,
+              "all",
+              "a",
+              "a__77YCn",
+              "__wab_text",
               sty.link__hsojC
             )}
             component={Link}
@@ -265,10 +258,10 @@ function PlasmicPageSupportCustomHeader__RenderFunc(props: {
           </PlasmicLink__>
           <PlasmicLink__
             className={classNames(
-              projectcss.all,
-              projectcss.a,
-              projectcss.a__77YCn,
-              projectcss.__wab_text,
+              "all",
+              "a",
+              "a__77YCn",
+              "__wab_text",
               sty.link__t05Ll
             )}
             component={Link}
@@ -281,10 +274,7 @@ function PlasmicPageSupportCustomHeader__RenderFunc(props: {
         </React.Fragment>
       }
       openButton={
-        <Menu2Icon
-          className={classNames(projectcss.all, sty.svg__yfHcd)}
-          role={"img"}
-        />
+        <Menu2Icon className={classNames("all", sty.svg__yfHcd)} role={"img"} />
       }
       responsiveBreakpoint={768}
     />
@@ -292,9 +282,11 @@ function PlasmicPageSupportCustomHeader__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img", "name"],
+  root: ["root", "img", "name", "starLink", "text"],
   img: ["img"],
-  name: ["name"]
+  name: ["name"],
+  starLink: ["starLink", "text"],
+  text: ["text"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -303,6 +295,8 @@ type NodeDefaultElementType = {
   root: typeof NavigationBar;
   img: typeof PlasmicImg__;
   name: "div";
+  starLink: typeof StarLink;
+  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -369,6 +363,8 @@ export const PlasmicPageSupportCustomHeader = Object.assign(
     // Helper components rendering sub-elements
     img: makeNodeComponent("img"),
     _name: makeNodeComponent("name"),
+    starLink: makeNodeComponent("starLink"),
+    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicPageSupportCustomHeader
     internalVariantProps: PlasmicPageSupportCustomHeader__VariantProps,

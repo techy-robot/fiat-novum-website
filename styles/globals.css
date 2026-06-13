@@ -37,3 +37,13 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+.plasmic-card-fix {
+  height: 100% !important;
+  min-height: max-content !important;
+}
+
+[class*="plasmic_default__all"][style*="display: grid"],
+.plasmic-grid-container {
+  grid-auto-rows: max-content !important;
+}
