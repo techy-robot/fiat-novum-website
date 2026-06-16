@@ -1,0 +1,84 @@
+import { Metadata } from "next";
+
+import StarGlowSurface from "@/components/Stars/StarGlowSurface";
+import StarLink from "@/components/Stars/StarLink";
+import ResetStarGameButton from "@/components/Stars/ResetStarGameButton";
+import TwinklingStar from "@/components/Stars/TwinklingStar";
+import { STAR_FIELD_LAYOUT_SIZE, STAR_FIELD_STARS, getStarInteractionMode } from "@/lib/starFieldLayout";
+import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: "Star Field Prototype",
+  description: "Interactive star collection demo for the Fiat Novum website.",
+};
+
+/**
+ * Demo route for the star-game interaction.
+ * The page keeps the layout simple so the activation flow is easy to understand.
+ */
+export default function StarFieldPage() {
+  const stars = STAR_FIELD_STARS.map((star) => ({
+    ...star,
+    x: `${(star.x / STAR_FIELD_LAYOUT_SIZE.width) * 100}%`,
+    y: `${(star.y / STAR_FIELD_LAYOUT_SIZE.height) * 100}%`,
+  }));
+
+  return (
+    <main className={styles.page}>
+      <section>
+        <StarGlowSurface
+          className={styles.demo}
+          completionMessage={
+            <div style={{ textAlign: "center" }}>
+              <strong style={{ fontSize: "1.1rem", display: "block", marginBottom: "0.25rem", color: "#00ff9d" }}>
+                ✨ Seed Collection Complete! ✨
+              </strong>
+              <span style={{ opacity: 0.9 }}>The space is fully active. You can now collect any star on the screen.</span>
+            </div>
+          }
+        >
+          <div className={styles.content}>
+            <p className={styles.eyebrow}>Prototype</p>
+            <h1 className={styles.title}>Collect the seed stars</h1>
+            <p className={styles.description}>
+              Move the cursor near the seed stars. Once all of them are collected, the section flips into game mode and every star becomes collectable.
+            </p>
+            <div className={styles.actions}>
+              <ResetStarGameButton />
+            </div>
+          </div>
+
+          {stars.map((star) => (
+            <TwinklingStar
+              key={star.id}
+              collectionId={star.id}
+              x={star.x}
+              y={star.y}
+              size={star.size}
+              interactionMode={getStarInteractionMode(star.role)}
+              twinkleDuration={star.twinkleDuration}
+              twinkleDelay={star.twinkleDelay}
+            />
+          ))}
+        </StarGlowSurface>
+      </section>
+
+      <section className={styles.linkSection}>
+        <div>
+          <p className={styles.eyebrow}>Link treatment</p>
+          <h2 className={styles.sectionTitle}>A link that collects on click</h2>
+          <p className={styles.sectionDescription}>
+            Click the link and the stars zoom in first, then the page changes right after the animation finishes.
+          </p>
+        </div>
+
+        <div className={styles.linkPreview}>
+          <p> 
+            Testing normal text with <StarLink href="/projects">Open the project archive</StarLink> in the middle <br></br>
+            More text to fill the space and show how the star link interacts with surrounding content.
+          </p>
+        </div>
+      </section>
+    </main>
+  );
+}

@@ -1,12 +1,15 @@
-// app/projects/page.tsx
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '@/keystatic.config'; 
+
+// Import components
 import ProjectIndexLayout from '@/components/Pages/PagesProjectIndexLayout'; 
 import ProjectCard from '@/components/Cards/CardsProjectCard'; 
+
 import { ProjectCardProps } from '@/types/projects';
 
+// Basic metadata, no complex opengraph logic
 export const metadata: Metadata = {
   title: "Projects",
   description: "Explore my latest work and projects.",
@@ -15,6 +18,8 @@ export const metadata: Metadata = {
 const reader = createReader(process.cwd(), keystaticConfig);
 
 export default async function ProjectsIndexPage() {
+
+  // Fetch all projects and sort by coolness factor
   const rawProjects = await reader.collections.projects.all();
 
   const projects: ProjectCardProps[] = rawProjects.map((project) => {
@@ -32,6 +37,7 @@ export default async function ProjectsIndexPage() {
 
   projects.sort((a, b) => b.coolnessFactor - a.coolnessFactor);
 
+  // Render project cards
   return (
     <ProjectIndexLayout 
       projectListSlot={

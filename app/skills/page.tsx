@@ -1,12 +1,13 @@
-// app/blog/page.tsx
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { createReader } from '@keystatic/core/reader';
-// Update this path to match your project root
 import keystaticConfig from '@/keystatic.config'; 
-import BlogIndexLayout from '@/components/Pages/PagesBlogIndexLayout'; // Import your Client Wrapper
-import BlogCard from '@/components/Cards/CardsBlogCard'; // Import your Client Wrapper
 
+// Import components
+import BlogIndexLayout from '@/components/Pages/PagesBlogIndexLayout';
+import BlogCard from '@/components/Cards/CardsBlogCard';
+
+// Basic metadata, no complex opengraph logic
 export const metadata: Metadata = {
   title: "Skills",
   description: "Asher Edwards' Skills",
@@ -15,7 +16,9 @@ export const metadata: Metadata = {
 const reader = createReader(process.cwd(), keystaticConfig);
 
 export default async function SkillsIndexPage() {
-  // Fetch data directly inside the Server Component
+
+  // Fetch skills and sort by proficiency
+  
   const rawSkills = await reader.collections.skills.all();
 
   const skills = rawSkills.map((skill) => {
@@ -31,6 +34,7 @@ export default async function SkillsIndexPage() {
 
   skills.sort((a, b) => b.proficiency - a.proficiency);
 
+  // Render skill cards
   return (
     <BlogIndexLayout 
       postListSlot={

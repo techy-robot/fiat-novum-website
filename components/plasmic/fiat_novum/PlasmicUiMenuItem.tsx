@@ -67,7 +67,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicUiMenuItem.module.css"; // plasmic-import: KgLjNhvdSd7Q/css
 
 createPlasmicElementProxy;
@@ -176,9 +175,9 @@ function PlasmicUiMenuItem__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -186,21 +185,15 @@ function PlasmicUiMenuItem__RenderFunc(props: {
       plasmicUpdateVariant={updateVariant}
       textValue={args.label}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__jDdPj)}>
+      <div className={classNames("all", sty.freeBox__jDdPj)}>
         <BaseText
           data-plasmic-name={"ariaText"}
           data-plasmic-override={overrides.ariaText}
           className={classNames("__wab_instance", sty.ariaText)}
           slot={"label"}
         >
-          <div className={classNames(projectcss.all, sty.freeBox__jbDga)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__lqcX2
-              )}
-            >
+          <div className={classNames("all", sty.freeBox__jbDga)}>
+            <div className={classNames("all", "__wab_text", sty.text__lqcX2)}>
               <React.Fragment>
                 {(() => {
                   try {
@@ -238,13 +231,7 @@ function PlasmicUiMenuItem__RenderFunc(props: {
             className={classNames("__wab_instance", sty.ariaDescription)}
             slot={"description"}
           >
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__lkd1S
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__lkd1S)}>
               <React.Fragment>{$props.description}</React.Fragment>
             </div>
           </BaseText2>
@@ -273,7 +260,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiMenuItem__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

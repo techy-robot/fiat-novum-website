@@ -60,13 +60,15 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import PageSupportCustomHeader from "../../PageSupport/PageSupportCustomHeader"; // plasmic-import: lVLsklxwqNh2/component
+import StarGlowSurface from "@/components/Stars/StarGlowSurface"; // plasmic-import: hQM1E7ocOG30/codeComponent
+import TwinklingStar from "@/components/Stars/TwinklingStar"; // plasmic-import: s3DLyi4vLIfb/codeComponent
+import ResetStarGameButton from "@/components/Stars/ResetStarGameButton"; // plasmic-import: l-ftsQOgs2u5/codeComponent
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: SRR7d6afVmf-/css
 
 const emptyProxy: any = new Proxy(() => "", {
@@ -120,6 +122,8 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>(
 export type PlasmicHomepage__OverridesType = {
   root?: Flex__<"div">;
   pageSupportCustomHeader?: Flex__<typeof PageSupportCustomHeader>;
+  starGlowSurface?: Flex__<typeof StarGlowSurface>;
+  resetStarGameButton?: Flex__<typeof ResetStarGameButton>;
   reveal?: Flex__<typeof Reveal>;
   type?: Flex__<"div">;
   type2?: Flex__<"div">;
@@ -188,17 +192,17 @@ function PlasmicHomepage__RenderFunc(props: {
         }
       `}</style>
 
-      <div className={projectcss.plasmic_page_wrapper}>
+      <div className={"plasmic_page_wrapper"}>
         <div
           data-plasmic-name={"root"}
           data-plasmic-override={overrides.root}
           data-plasmic-root={true}
           data-plasmic-for-node={forNode}
           className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
+            "all",
+            "root_reset_77YCnrwhevb2XmBSeMeRKC",
+            "plasmic_default_styles",
+            "plasmic_mixins",
             styleTokensClassNames,
             sty.root
           )}
@@ -212,44 +216,185 @@ function PlasmicHomepage__RenderFunc(props: {
             )}
           />
 
-          <section className={classNames(projectcss.all, sty.section__bmLR)}>
-            <h1
-              className={classNames(
-                projectcss.all,
-                projectcss.h1,
-                projectcss.h1__77YCn,
-                projectcss.__wab_text,
-                sty.h1__qsOcm
-              )}
-              onScroll={async event => {
-                const $steps = {};
-
-                $steps["runInteractionProp"] = true
-                  ? (() => {
-                      const actionArgs = {};
-                      return (({ eventRef, args }) => {
-                        return eventRef?.(...(args ?? []));
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["runInteractionProp"] != null &&
-                  typeof $steps["runInteractionProp"] === "object" &&
-                  typeof $steps["runInteractionProp"].then === "function"
-                ) {
-                  $steps["runInteractionProp"] =
-                    await $steps["runInteractionProp"];
-                }
-              }}
+          <section className={classNames("all", sty.section__bmLR)}>
+            <StarGlowSurface
+              data-plasmic-name={"starGlowSurface"}
+              data-plasmic-override={overrides.starGlowSurface}
+              className={classNames("__wab_instance", sty.starGlowSurface)}
+              completionMessage={
+                <section className={classNames("all", sty.section__x8OOk)}>
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__sQugD)}
+                  >
+                    {"Collect all the stars!"}
+                  </div>
+                  <ResetStarGameButton
+                    data-plasmic-name={"resetStarGameButton"}
+                    data-plasmic-override={overrides.resetStarGameButton}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.resetStarGameButton
+                    )}
+                    text={"Reset Game"}
+                  />
+                </section>
+              }
             >
-              {"Magic"}
-            </h1>
-            <div className={classNames(projectcss.all, sty.freeBox__eopKl)} />
+              <h1
+                className={classNames(
+                  "all",
+                  "h1",
+                  "h1__77YCn",
+                  "__wab_text",
+                  sty.h1__qsOcm
+                )}
+                onScroll={async event => {
+                  const $steps = {};
 
-            <section
-              className={classNames(projectcss.all, sty.section___7ZwnX)}
-            >
-              <div className={classNames(projectcss.all, sty.freeBox__pXwg9)} />
+                  $steps["runInteractionProp"] = true
+                    ? (() => {
+                        const actionArgs = {};
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runInteractionProp"] != null &&
+                    typeof $steps["runInteractionProp"] === "object" &&
+                    typeof $steps["runInteractionProp"].then === "function"
+                  ) {
+                    $steps["runInteractionProp"] =
+                      await $steps["runInteractionProp"];
+                  }
+                }}
+              >
+                {"Magic"}
+              </h1>
+              <TwinklingStar
+                activationRadius={48}
+                className={classNames(
+                  "__wab_instance",
+                  sty.twinklingStar__r5EN
+                )}
+                color={"currentColor"}
+                interactionMode={"seed"}
+                size={28}
+                twinkleDelay={0}
+                twinkleDuration={2.7}
+                x={"15vw"}
+                y={"0"}
+              />
+
+              <TwinklingStar
+                activationRadius={48}
+                className={classNames(
+                  "__wab_instance",
+                  sty.twinklingStar__dHkMg
+                )}
+                color={"currentColor"}
+                interactionMode={"fixed"}
+                size={20}
+                twinkleDelay={0}
+                twinkleDuration={2.7}
+                x={"30vw"}
+                y={"50%"}
+              />
+
+              <TwinklingStar
+                activationRadius={48}
+                className={classNames(
+                  "__wab_instance",
+                  sty.twinklingStar__kUqw9
+                )}
+                color={"currentColor"}
+                interactionMode={"seed"}
+                size={28}
+                twinkleDelay={0}
+                twinkleDuration={2.7}
+                x={"50vw"}
+                y={"70%"}
+              />
+
+              <TwinklingStar
+                activationRadius={48}
+                className={classNames(
+                  "__wab_instance",
+                  sty.twinklingStar__fdaUt
+                )}
+                color={"currentColor"}
+                interactionMode={"fixed"}
+                size={20}
+                twinkleDelay={0}
+                twinkleDuration={2.7}
+                x={"10vw"}
+                y={"71%"}
+              />
+
+              <TwinklingStar
+                activationRadius={48}
+                className={classNames(
+                  "__wab_instance",
+                  sty.twinklingStar__u2T3W
+                )}
+                color={"currentColor"}
+                interactionMode={"fixed"}
+                size={20}
+                twinkleDelay={0}
+                twinkleDuration={2.7}
+                x={"60vw"}
+                y={"0"}
+              />
+
+              <TwinklingStar
+                activationRadius={48}
+                className={classNames(
+                  "__wab_instance",
+                  sty.twinklingStar__uXGa
+                )}
+                color={"currentColor"}
+                interactionMode={"fixed"}
+                size={20}
+                twinkleDelay={0}
+                twinkleDuration={2.7}
+                x={"65vw"}
+                y={"60%"}
+              />
+
+              <TwinklingStar
+                activationRadius={48}
+                className={classNames(
+                  "__wab_instance",
+                  sty.twinklingStar__qhbgZ
+                )}
+                color={"currentColor"}
+                interactionMode={"seed"}
+                size={28}
+                twinkleDelay={0}
+                twinkleDuration={2.7}
+                x={"80vw"}
+                y={"20%"}
+              />
+
+              <TwinklingStar
+                activationRadius={48}
+                className={classNames(
+                  "__wab_instance",
+                  sty.twinklingStar__yPmR
+                )}
+                color={"currentColor"}
+                interactionMode={"fixed"}
+                size={20}
+                twinkleDelay={0}
+                twinkleDuration={2.7}
+                x={"90vw"}
+                y={"55%"}
+              />
+
+              <div className={classNames("all", sty.freeBox__eopKl)} />
+            </StarGlowSurface>
+            <section className={classNames("all", sty.section___7ZwnX)}>
+              <div className={classNames("all", sty.freeBox__pXwg9)} />
 
               <Reveal
                 data-plasmic-name={"reveal"}
@@ -262,53 +407,33 @@ function PlasmicHomepage__RenderFunc(props: {
                 <div
                   data-plasmic-name={"type"}
                   data-plasmic-override={overrides.type}
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.type
-                  )}
+                  className={classNames("all", "__wab_text", sty.type)}
                 >
                   {"Should"}
                 </div>
                 <div
                   data-plasmic-name={"type2"}
                   data-plasmic-override={overrides.type2}
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.type2
-                  )}
+                  className={classNames("all", "__wab_text", sty.type2)}
                 >
                   {"Not"}
                 </div>
                 <div
                   data-plasmic-name={"type3"}
                   data-plasmic-override={overrides.type3}
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.type3
-                  )}
+                  className={classNames("all", "__wab_text", sty.type3)}
                 >
                   {"Be"}
                 </div>
                 <div
                   data-plasmic-name={"type4"}
                   data-plasmic-override={overrides.type4}
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.type4
-                  )}
+                  className={classNames("all", "__wab_text", sty.type4)}
                 >
                   {"Impossible"}
                 </div>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__ttbXz
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__ttbXz)}
                 >
                   <React.Fragment>
                     <span
@@ -324,15 +449,15 @@ function PlasmicHomepage__RenderFunc(props: {
                   </React.Fragment>
                 </div>
               </Reveal>
-              <div className={classNames(projectcss.all, sty.freeBox__u1Rol)} />
+              <div className={classNames("all", sty.freeBox__u1Rol)} />
 
-              <div className={classNames(projectcss.all, sty.freeBox__dvF3Y)}>
+              <div className={classNames("all", sty.freeBox__dvF3Y)}>
                 <h1
                   className={classNames(
-                    projectcss.all,
-                    projectcss.h1,
-                    projectcss.h1__77YCn,
-                    projectcss.__wab_text,
+                    "all",
+                    "h1",
+                    "h1__77YCn",
+                    "__wab_text",
                     sty.h1__cTcWp
                   )}
                   id={"about"}
@@ -342,15 +467,13 @@ function PlasmicHomepage__RenderFunc(props: {
                 <div
                   data-plasmic-name={"columns"}
                   data-plasmic-override={overrides.columns}
-                  className={classNames(projectcss.all, sty.columns)}
+                  className={classNames("all", sty.columns)}
                 >
-                  <div
-                    className={classNames(projectcss.all, sty.column__jphpD)}
-                  >
+                  <div className={classNames("all", sty.column__jphpD)}>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__fcdo0
                       )}
                     >
@@ -359,9 +482,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       }
                     </div>
                   </div>
-                  <div
-                    className={classNames(projectcss.all, sty.column__bicYz)}
-                  >
+                  <div className={classNames("all", sty.column__bicYz)}>
                     <PlasmicImg__
                       data-plasmic-name={"img"}
                       data-plasmic-override={overrides.img}
@@ -388,7 +509,7 @@ function PlasmicHomepage__RenderFunc(props: {
           </section>
           <section
             className={classNames(
-              projectcss.all,
+              "all",
               sty.section__c0Fox,
               "marquee-container"
             )}
@@ -398,23 +519,23 @@ function PlasmicHomepage__RenderFunc(props: {
               value: args.skillTrackSlot
             })}
           </section>
-          <section className={classNames(projectcss.all, sty.section__fhLkD)}>
-            <div className={classNames(projectcss.all, sty.freeBox__vzaZi)} />
+          <section className={classNames("all", sty.section__fhLkD)}>
+            <div className={classNames("all", sty.freeBox__vzaZi)} />
 
             <h1
               className={classNames(
-                projectcss.all,
-                projectcss.h1,
-                projectcss.h1__77YCn,
-                projectcss.__wab_text,
+                "all",
+                "h1",
+                "h1__77YCn",
+                "__wab_text",
                 sty.h1__nC7W
               )}
               id={"projects"}
             >
               {"Projects"}
             </h1>
-            <div className={classNames(projectcss.all, sty.freeBox__mA0Bv)}>
-              <div className={classNames(projectcss.all, sty.freeBox__hi2Fn)}>
+            <div className={classNames("all", sty.freeBox__mA0Bv)}>
+              <div className={classNames("all", sty.freeBox__hi2Fn)}>
                 {renderPlasmicSlot({
                   defaultContents: null,
                   value: args.featuredProjects
@@ -424,10 +545,10 @@ function PlasmicHomepage__RenderFunc(props: {
                 data-plasmic-name={"moreProjects"}
                 data-plasmic-override={overrides.moreProjects}
                 className={classNames(
-                  projectcss.all,
-                  projectcss.a,
-                  projectcss.a__77YCn,
-                  projectcss.__wab_text,
+                  "all",
+                  "a",
+                  "a__77YCn",
+                  "__wab_text",
                   sty.moreProjects
                 )}
                 component={Link}
@@ -439,27 +560,27 @@ function PlasmicHomepage__RenderFunc(props: {
               </PlasmicLink__>
             </div>
           </section>
-          <section className={classNames(projectcss.all, sty.section__utLj)}>
+          <section className={classNames("all", sty.section__utLj)}>
             <h1
               className={classNames(
-                projectcss.all,
-                projectcss.h1,
-                projectcss.h1__77YCn,
-                projectcss.__wab_text,
+                "all",
+                "h1",
+                "h1__77YCn",
+                "__wab_text",
                 sty.h1__gCsO
               )}
               id={"contact"}
             >
               {"Contact"}
             </h1>
-            <div className={classNames(projectcss.all, sty.freeBox__jtTb)}>
-              <div className={classNames(projectcss.all, sty.freeBox__bIgf)}>
+            <div className={classNames("all", sty.freeBox__jtTb)}>
+              <div className={classNames("all", sty.freeBox__bIgf)}>
                 <PlasmicLink__
                   className={classNames(
-                    projectcss.all,
-                    projectcss.a,
-                    projectcss.a__77YCn,
-                    projectcss.__wab_text,
+                    "all",
+                    "a",
+                    "a__77YCn",
+                    "__wab_text",
                     sty.link__lHhq
                   )}
                   component={Link}
@@ -470,13 +591,13 @@ function PlasmicHomepage__RenderFunc(props: {
                   {"asher@fiatnovum.com"}
                 </PlasmicLink__>
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox___6Tem)}>
+              <div className={classNames("all", sty.freeBox___6Tem)}>
                 <PlasmicLink__
                   className={classNames(
-                    projectcss.all,
-                    projectcss.a,
-                    projectcss.a__77YCn,
-                    projectcss.__wab_text,
+                    "all",
+                    "a",
+                    "a__77YCn",
+                    "__wab_text",
                     sty.link__cnSr1
                   )}
                   component={Link}
@@ -487,13 +608,13 @@ function PlasmicHomepage__RenderFunc(props: {
                   {"LinkedIn: asher-j-edwards1"}
                 </PlasmicLink__>
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__b2X27)}>
+              <div className={classNames("all", sty.freeBox__b2X27)}>
                 <PlasmicLink__
                   className={classNames(
-                    projectcss.all,
-                    projectcss.a,
-                    projectcss.a__77YCn,
-                    projectcss.__wab_text,
+                    "all",
+                    "a",
+                    "a__77YCn",
+                    "__wab_text",
                     sty.link___6OPty
                   )}
                   component={Link}
@@ -504,13 +625,13 @@ function PlasmicHomepage__RenderFunc(props: {
                   {"Youtube: @FiatNovumEngineering"}
                 </PlasmicLink__>
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__ayIKe)}>
+              <div className={classNames("all", sty.freeBox__ayIKe)}>
                 <PlasmicLink__
                   className={classNames(
-                    projectcss.all,
-                    projectcss.a,
-                    projectcss.a__77YCn,
-                    projectcss.__wab_text,
+                    "all",
+                    "a",
+                    "a__77YCn",
+                    "__wab_text",
                     sty.link__noZs
                   )}
                   component={Link}
@@ -533,6 +654,8 @@ const PlasmicDescendants = {
   root: [
     "root",
     "pageSupportCustomHeader",
+    "starGlowSurface",
+    "resetStarGameButton",
     "reveal",
     "type",
     "type2",
@@ -543,6 +666,8 @@ const PlasmicDescendants = {
     "moreProjects"
   ],
   pageSupportCustomHeader: ["pageSupportCustomHeader"],
+  starGlowSurface: ["starGlowSurface", "resetStarGameButton"],
+  resetStarGameButton: ["resetStarGameButton"],
   reveal: ["reveal", "type", "type2", "type3", "type4"],
   type: ["type"],
   type2: ["type2"],
@@ -558,6 +683,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   pageSupportCustomHeader: typeof PageSupportCustomHeader;
+  starGlowSurface: typeof StarGlowSurface;
+  resetStarGameButton: typeof ResetStarGameButton;
   reveal: typeof Reveal;
   type: "div";
   type2: "div";
@@ -631,6 +758,8 @@ export const PlasmicHomepage = Object.assign(
   {
     // Helper components rendering sub-elements
     pageSupportCustomHeader: makeNodeComponent("pageSupportCustomHeader"),
+    starGlowSurface: makeNodeComponent("starGlowSurface"),
+    resetStarGameButton: makeNodeComponent("resetStarGameButton"),
     reveal: makeNodeComponent("reveal"),
     type: makeNodeComponent("type"),
     type2: makeNodeComponent("type2"),

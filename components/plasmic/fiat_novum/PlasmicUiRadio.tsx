@@ -65,7 +65,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicUiRadio.module.css"; // plasmic-import: ZAJiHSGC0jt9/css
 
 createPlasmicElementProxy;
@@ -178,9 +177,9 @@ function PlasmicUiRadio__RenderFunc(props: {
       autoFocus={args.autoFocus}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaRadio
       )}
@@ -188,8 +187,8 @@ function PlasmicUiRadio__RenderFunc(props: {
       plasmicUpdateVariant={updateVariant}
       value={args.value}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__zHHk)}>
-        <div className={classNames(projectcss.all, sty.freeBox__l3C1Q)} />
+      <div className={classNames("all", sty.freeBox__zHHk)}>
+        <div className={classNames("all", sty.freeBox__l3C1Q)} />
       </div>
       {renderPlasmicSlot({
         defaultContents: "Option",
@@ -214,7 +213,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicUiRadio__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

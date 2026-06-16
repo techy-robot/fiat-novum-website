@@ -64,7 +64,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicCardsSkillCard.module.css"; // plasmic-import: _FSqgEpedOrt/css
 
 createPlasmicElementProxy;
@@ -152,10 +151,10 @@ function PlasmicCardsSkillCard__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.outerMargin
       )}
@@ -163,12 +162,7 @@ function PlasmicCardsSkillCard__RenderFunc(props: {
       <PlasmicLink__
         data-plasmic-name={"link"}
         data-plasmic-override={overrides.link}
-        className={classNames(
-          projectcss.all,
-          projectcss.a,
-          projectcss.a__77YCn,
-          sty.link
-        )}
+        className={classNames("all", "a", "a__77YCn", sty.link)}
         component={Link}
         href={$props.link}
         legacyBehavior={false}
@@ -177,12 +171,12 @@ function PlasmicCardsSkillCard__RenderFunc(props: {
         <div
           data-plasmic-name={"freeBox"}
           data-plasmic-override={overrides.freeBox}
-          className={classNames(projectcss.all, sty.freeBox)}
+          className={classNames("all", sty.freeBox)}
         >
           <div
             data-plasmic-name={"iconContainer"}
             data-plasmic-override={overrides.iconContainer}
-            className={classNames(projectcss.all, sty.iconContainer)}
+            className={classNames("all", sty.iconContainer)}
           >
             {renderPlasmicSlot({
               defaultContents: null,
@@ -192,11 +186,7 @@ function PlasmicCardsSkillCard__RenderFunc(props: {
           <div
             data-plasmic-name={"skill"}
             data-plasmic-override={overrides.skill}
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.skill
-            )}
+            className={classNames("all", "__wab_text", sty.skill)}
           >
             <React.Fragment>
               {(() => {

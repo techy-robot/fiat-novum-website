@@ -1,20 +1,19 @@
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 import { createReader } from '@keystatic/core/reader';
-// Update this path to match your project root
 import keystaticConfig from '@/keystatic.config'; 
-import BlogPostLayout from '@/components/Pages/PagesBlogPostLayout'; // Import your Client Wrapper
+import BlogPostLayout from '@/components/Pages/PagesBlogPostLayout';
 // Use the React Server Component version of MDXRemote
 import { MDXRemote } from 'next-mdx-remote/rsc'; 
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
-// Define the shape of our URL parameters
+// Define our URL parameters
 interface RouteParams {
   params: { year: string; month: string; day: string; title: string[] };
 }
 
-// Replaces getStaticPaths
+// Generate static routes for each post
 export async function generateStaticParams() {
   const posts = await reader.collections.posts.all();
 
@@ -32,10 +31,14 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   const { year, month, day } = params;
   const targetDate = `${year}-${month}-${day}`;
   
+  // Filter through all posts to find the one for this specific date
   const allPosts = await reader.collections.posts.all();
   const post = allPosts.find((p) => p.entry.publishDate === targetDate);
 
   if (!post) return { title: "Post Not Found" };
+
+  // Construct the absolute path to the generated open graph image
+  const ogImageUrl = `/api/og/blog/${year}/${month}/${day}/${post.slug}`;
 
   return {
     title: `${post.entry.title}`,
@@ -48,7 +51,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
       url: `https://www.fiatnovum.com/blog/${year}/${month}/${day}/${post.slug}`,
       images: [
         {
-          url: post.entry.cover || '/default-blog-og.jpg', // TODO: This should be /public folder, yet to be created
+          url: ogImageUrl,
           alt: post.entry.title,
         },
       ],
@@ -57,7 +60,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
       card: 'summary_large_image',
       title: post.entry.title,
       description: post.entry.summary,
-      images: [post.entry.cover || '/default-blog-og.jpg'], // TODO: This should be /public folder, yet to be created
+      images: [ogImageUrl],
     },
   };
 }
@@ -68,6 +71,7 @@ export default async function BlogPostPage({ params }: RouteParams) {
   const requestedSlug = title[0];
   const targetDate = `${year}-${month}-${day}`;
 
+  // Filter through all posts to find the one for this specific date
   const allPosts = await reader.collections.posts.all();
   const post = allPosts.find((p) => p.entry.publishDate === targetDate);
 
@@ -110,7 +114,6 @@ export default async function BlogPostPage({ params }: RouteParams) {
       <BlogPostLayout 
         title={post.entry.title}
         contentSlot={
-          // MDXRemote/rsc takes the raw string directly!
           <MDXRemote source={mdxContentStr} />
         } 
         date={post.entry.publishDate}

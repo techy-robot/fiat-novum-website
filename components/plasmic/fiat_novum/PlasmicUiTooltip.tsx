@@ -66,7 +66,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicUiTooltip.module.css"; // plasmic-import: s48vZeFGNPr3/css
 
 createPlasmicElementProxy;
@@ -202,9 +201,9 @@ function PlasmicUiTooltip__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaTooltip
       )}
@@ -222,9 +221,9 @@ function PlasmicUiTooltip__RenderFunc(props: {
       }}
       placement={args.placement}
       resetClassName={classNames(
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames
       )}
       tooltipContent={
@@ -252,26 +251,22 @@ function PlasmicUiTooltip__RenderFunc(props: {
           <div
             data-plasmic-name={"freeBox"}
             data-plasmic-override={overrides.freeBox}
-            className={classNames(projectcss.all, sty.freeBox)}
+            className={classNames("all", sty.freeBox)}
           >
             {renderPlasmicSlot({
               defaultContents: (
                 <React.Fragment>
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text___76RYw
                     )}
                   >
                     {"Hello from Tooltip! "}
                   </div>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__xNraL
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__xNraL)}
                   >
                     {"Lorem ipsum dolor sit amet"}
                   </div>
@@ -287,13 +282,7 @@ function PlasmicUiTooltip__RenderFunc(props: {
     >
       {renderPlasmicSlot({
         defaultContents: (
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__aXcy8
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__aXcy8)}>
             {"Hover me!"}
           </div>
         ),

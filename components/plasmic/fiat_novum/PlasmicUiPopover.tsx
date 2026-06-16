@@ -69,7 +69,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicUiPopover.module.css"; // plasmic-import: VDfXZ58PVEHt/css
 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: mnMIqnlbNw36/icon
@@ -198,9 +197,9 @@ function PlasmicUiPopover__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaDialogTrigger
       )}
@@ -213,9 +212,9 @@ function PlasmicUiPopover__RenderFunc(props: {
           offset={args.offset}
           placement={args.placement}
           resetClassName={classNames(
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
+            "root_reset_77YCnrwhevb2XmBSeMeRKC",
+            "plasmic_default_styles",
+            "plasmic_mixins",
             styleTokensClassNames
           )}
           shouldFlip={args.shouldFlip}
@@ -234,31 +233,23 @@ function PlasmicUiPopover__RenderFunc(props: {
           >
             {renderPlasmicSlot({
               defaultContents: (
-                <div className={classNames(projectcss.all, sty.freeBox___6N4J)}>
+                <div className={classNames("all", sty.freeBox___6N4J)}>
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text___9D4SL
                     )}
                   >
                     {"This is a Popover!"}
                   </div>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__jTFbb
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__jTFbb)}
                   >
                     {"You can put anything here!"}
                   </div>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__ouvBv
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__ouvBv)}
                   >
                     {
                       "Use it in a `Aria Dialog Trigger` component to trigger it on a button click."
