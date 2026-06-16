@@ -1,5 +1,6 @@
 // app/layout.tsx
 import '@/styles/globals.css'
+import "@/components/plasmic/fiat_novum/plasmic.css";
 import PlasmicClientProvider from "./PlasmicClientProvider";
 
 import PageSupportCustomFooter from "@/components/PageSupport/PageSupportCustomFooter"; 

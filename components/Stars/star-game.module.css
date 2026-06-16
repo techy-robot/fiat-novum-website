@@ -1,0 +1,222 @@
+/* The field wrapper clips the glow and establishes the shared stacking context. */
+.starField {
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  isolation: isolate;
+}
+
+/* The glow overlay sits above the background but below the interactive stars. */
+.starField > :not(.cursorGlow) {
+  z-index: 1;
+}
+
+/* The cursor glow is a full-field overlay that reads the CSS variables from the provider. */
+.cursorGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* The radial highlight stays centered on the live cursor position. */
+.cursorGlow::before {
+  content: "";
+  position: absolute;
+  left: var(--cursor-glow-x, 0px);
+  top: var(--cursor-glow-y, 0px);
+  width: clamp(120px, 18vw, 180px);
+  height: clamp(120px, 18vw, 180px);
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: var(--cursor-glow-opacity, 0);
+  transform: translate(-50%, -50%) scale(var(--cursor-glow-scale, 0));
+  transform-origin: center;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(0, 255, 157, 0.72) 18%,
+    rgba(0, 255, 157, 0.28) 38%,
+    rgba(0, 255, 157, 0.08) 58%,
+    rgba(0, 255, 157, 0) 74%
+  );
+  filter: blur(12px) drop-shadow(0 0 24px rgba(0, 255, 157, 0.45));
+  mix-blend-mode: screen;
+  transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Active mode switches the cursor into a crosshair so the collection state is obvious. */
+.starFieldActive {
+  cursor: crosshair;
+}
+
+/* Stars are positioned absolutely so the page can treat the field like a play surface. */
+.twinklingStar {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+}
+
+/* The glyph combines the pulse animation with a subtle glow. */
+.twinklingStarGlyph {
+  position: absolute;
+  display: block;
+  transform-origin: center;
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 157, 0.35));
+}
+
+/* The pulse keeps stars feeling alive even when the cursor is not nearby. */
+.twinklingStarPulse {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0.95;
+  animation-name: twinklingStarPulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/* Collected stars fade out quickly instead of disappearing abruptly. */
+.twinklingStarPulseCollected {
+  animation-name: twinklingStarFade;
+  animation-duration: 220ms !important;
+  animation-fill-mode: forwards;
+}
+
+/* The icon keeps the body simple while the wrapper handles glow and motion. */
+.twinklingStarIcon {
+  display: block;
+}
+
+/* The special link with collectable stars */
+.starLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  background: none;
+  color: var(--mixin-dClRLYoSitxl_color);
+  transition-property: var(--mixin-dClRLYoSitxl_transition-property);
+  transition-duration: var(--mixin-dClRLYoSitxl_transition-duration);
+  transition-timing-function: var(--mixin-dClRLYoSitxl_transition-timing-function);
+}
+
+.starLink:hover,
+.starLink:focus-visible {
+  color: var(--token-FNlGonEzr_jx);
+  text-decoration-color: var(--token-FNlGonEzr_jx);
+  outline: none;
+}
+
+.starLinkLabel {
+  position: relative;
+  z-index: 1;
+}
+
+.starLinkStars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.starLinkStar {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 0 7px rgba(0, 255, 157, 0.45));
+  transform-origin: center;
+}
+
+.starLinkStarTopLeft {
+  left: -1rem;
+  top: -0.7rem;
+}
+
+.starLinkStarTopRight {
+  right: -0.35rem;
+  top: -1.05rem;
+}
+
+.starLinkStarBottom {
+  left: 1.65rem;
+  bottom: -1.05rem;
+}
+
+.starLinkCollecting::before {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+.starLinkCollecting {
+  color: #a9ffe0;
+  text-decoration-color: rgba(169, 255, 224, 0.96);
+  text-shadow: 0 0 12px rgba(0, 255, 157, 0.26);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starLink,
+  .starLink::before {
+    transition: none;
+  }
+}
+
+@keyframes twinklingStarPulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(0.88);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes twinklingStarFade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+}
+
+/* Styling for the optional completion message container */
+.completionMessageContainer {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  background: rgba(0, 255, 157, 0.06);
+  border: 1px solid rgba(0, 255, 157, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 255, 157, 0.1), inset 0 0 12px rgba(0, 255, 157, 0.05);
+  backdrop-filter: blur(8px);
+  color: #a9ffe0;
+  font-size: 0.95rem;
+  text-shadow: 0 0 8px rgba(0, 255, 157, 0.3);
+  animation: completionFadeIn 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+  position: relative;
+}
+
+@keyframes completionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}

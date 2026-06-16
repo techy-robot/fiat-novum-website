@@ -66,7 +66,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicPages404.module.css"; // plasmic-import: f7_eeq1__cMs/css
 
 createPlasmicElementProxy;
@@ -140,10 +139,10 @@ function PlasmicPages404__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -157,7 +156,7 @@ function PlasmicPages404__RenderFunc(props: {
       <div
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
-        className={classNames(projectcss.all, projectcss.__wab_text, sty.text)}
+        className={classNames("all", "__wab_text", sty.text)}
       >
         {
           "404\nUh oh, looks like you ran into some wild unicyclers!\nWe couldn't find what you were looking for"
@@ -166,13 +165,7 @@ function PlasmicPages404__RenderFunc(props: {
       <PlasmicLink__
         data-plasmic-name={"back"}
         data-plasmic-override={overrides.back}
-        className={classNames(
-          projectcss.all,
-          projectcss.a,
-          projectcss.a__77YCn,
-          projectcss.__wab_text,
-          sty.back
-        )}
+        className={classNames("all", "a", "a__77YCn", "__wab_text", sty.back)}
         component={Link}
         href={`/`}
         legacyBehavior={false}
@@ -197,7 +190,6 @@ const PlasmicDescendants = {
     "back",
     "pageSupportCustomFooter"
   ],
-
   pageSupportCustomHeader: ["pageSupportCustomHeader"],
   text: ["text"],
   back: ["back"],
@@ -219,7 +211,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicPages404__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

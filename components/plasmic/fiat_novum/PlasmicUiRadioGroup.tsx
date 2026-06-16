@@ -68,7 +68,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectcss
 import sty from "./PlasmicUiRadioGroup.module.css"; // plasmic-import: oWRW-fsruwmt/css
 
 createPlasmicElementProxy;
@@ -214,9 +213,9 @@ function PlasmicUiRadioGroup__RenderFunc(props: {
       aria-label={args.ariaLabel}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_77YCnrwhevb2XmBSeMeRKC",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaRadioGroup
       )}
@@ -245,7 +244,7 @@ function PlasmicUiRadioGroup__RenderFunc(props: {
       ) : null}
       {renderPlasmicSlot({
         defaultContents: (
-          <div className={classNames(projectcss.all, sty.freeBox__fr6D0)}>
+          <div className={classNames("all", sty.freeBox__fr6D0)}>
             <UiRadio
               className={classNames("__wab_instance", sty.uiRadio__ztA8W)}
               label={"Option 1"}
