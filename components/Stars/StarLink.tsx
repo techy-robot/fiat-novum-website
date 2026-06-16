@@ -86,56 +86,54 @@ export default function StarLink({
 
       event.preventDefault();
 
-        const initialCompletedCount = getStarLinkCollectedCount(destination);
+      const initialCompletedCount = getStarLinkCollectedCount(destination);
       setIsCollecting(true);
-        setCompletedCount(initialCompletedCount);
+      setCompletedCount(initialCompletedCount);
       setCallbackTarget({ x: event.clientX || linkRect.left + clickX, y: event.clientY || linkRect.top + clickY });
       setCallbackSequence((value) => value + 1);
     },
-        [destination, global.active, isCollecting, onClick, target]
+    [destination, global.active, isCollecting, onClick, target]
   );
 
   return (
-    <StarGlowSurface className={styles.starLinkSurface}>
-      <Link
-        href={destination}
-        onClick={handleClick}
-        aria-label={ariaLabel}
-        aria-describedby={ariaDescribedby}
-        aria-hidden={ariaHidden}
-        aria-labelledby={ariaLabelledby}
-        className={[
-          "plasmic_default_styles",
-          "plasmic_tokens",
-          styles.starLink,
-          isCollecting ? styles.starLinkCollecting : "",
-          className ?? "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-        target={target}
-        {...rest}
-      >
-        <span className={styles.starLinkStars} aria-hidden="true">
-          {STAR_POSITIONS.map((star, index) => (
-            <TwinklingStar
-              key={star.className}
-              className={[styles.starLinkStar, star.className].join(" ")}
-              x={star.x}
-              y={star.y}
-              size={star.size}
-              twinkleDuration={2.1}
-              twinkleDelay={star.delay}
-              interactionMode="callback"
-              collectionId={getStarLinkCollectionId(destination, index)}
-              callbackTarget={callbackTarget}
-              callbackSequence={callbackSequence}
-              onCallbackComplete={() => setCompletedCount((value) => value + 1)}
-            />
-          ))}
-        </span>
-        <span className={styles.starLinkLabel}>{children}</span>
-      </Link>
-    </StarGlowSurface>
+    <Link
+      href={destination}
+      onClick={handleClick}
+      aria-label={ariaLabel}
+      aria-describedby={ariaDescribedby}
+      aria-hidden={ariaHidden}
+      aria-labelledby={ariaLabelledby}
+      className={[
+        "plasmic_default_styles",
+        "plasmic_tokens",
+        styles.starLink,
+        isCollecting ? styles.starLinkCollecting : "",
+        className ?? "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      target={target}
+      {...rest}
+    >
+      <span className={styles.starLinkStars} aria-hidden="true">
+        {STAR_POSITIONS.map((star, index) => (
+          <TwinklingStar
+            key={star.className}
+            className={[styles.starLinkStar, star.className].join(" ")}
+            x={star.x}
+            y={star.y}
+            size={star.size}
+            twinkleDuration={2.1}
+            twinkleDelay={star.delay}
+            interactionMode="callback"
+            collectionId={getStarLinkCollectionId(destination, index)}
+            callbackTarget={callbackTarget}
+            callbackSequence={callbackSequence}
+            onCallbackComplete={() => setCompletedCount((value) => value + 1)}
+          />
+        ))}
+      </span>
+      <span className={styles.starLinkLabel}>{children}</span>
+    </Link>
   );
 }
