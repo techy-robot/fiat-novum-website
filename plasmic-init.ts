@@ -36,6 +36,11 @@ PLASMIC.registerComponent(StarGlowSurface, {
   isDefaultExport: true,
   props: {
     children: { type: "slot", displayName: "Content" },
+    completionMessage: {
+      type: "slot",
+      displayName: "Completion Message",
+      description: "Message/Content to display once all seed stars are collected."
+    },
   },
   styleSections: true,
 });

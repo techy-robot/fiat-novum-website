@@ -26,7 +26,17 @@ export default function StarFieldPage() {
   return (
     <main className={styles.page}>
       <section>
-        <StarGlowSurface className={styles.demo}>
+        <StarGlowSurface
+          className={styles.demo}
+          completionMessage={
+            <div style={{ textAlign: "center" }}>
+              <strong style={{ fontSize: "1.1rem", display: "block", marginBottom: "0.25rem", color: "#00ff9d" }}>
+                ✨ Seed Collection Complete! ✨
+              </strong>
+              <span style={{ opacity: 0.9 }}>The space is fully active. You can now collect any star on the screen.</span>
+            </div>
+          }
+        >
           <div className={styles.content}>
             <p className={styles.eyebrow}>Prototype</p>
             <h1 className={styles.title}>Collect the seed stars</h1>

@@ -11,11 +11,11 @@ import Link from "next/link";
  * Any div can use this wrapper to get the cursor glow and active cursor styling.
  */
 export interface StarGlowSurfaceProps extends React.HTMLAttributes<HTMLDivElement> {
-
+  completionMessage?: React.ReactNode;
 }
 
 const StarGlowSurface = React.forwardRef<HTMLDivElement, StarGlowSurfaceProps>(function StarGlowSurface(
-  { children, className, style, ...rest },
+  { children, className, style, completionMessage, ...rest },
   ref
 ) {
   const { cursor, onPointerMove, onPointerLeave } = useContainerCursor();
@@ -58,6 +58,11 @@ const StarGlowSurface = React.forwardRef<HTMLDivElement, StarGlowSurfaceProps>(f
     >
       <span aria-hidden="true" className={styles.cursorGlow} />
       {children}
+      {global.active && completionMessage && (
+        <div className={styles.completionMessageContainer}>
+          {completionMessage}
+        </div>
+      )}
     </Component>
   );
 });
