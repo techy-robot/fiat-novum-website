@@ -62,8 +62,8 @@ import {
 import PageSupportCustomHeader from "../../PageSupport/PageSupportCustomHeader"; // plasmic-import: lVLsklxwqNh2/component
 import StarGlowSurface from "@/components/Stars/StarGlowSurface"; // plasmic-import: hQM1E7ocOG30/codeComponent
 import TwinklingStar from "@/components/Stars/TwinklingStar"; // plasmic-import: s3DLyi4vLIfb/codeComponent
-import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import ResetStarGameButton from "@/components/Stars/ResetStarGameButton"; // plasmic-import: l-ftsQOgs2u5/codeComponent
+import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -123,6 +123,7 @@ export type PlasmicHomepage__OverridesType = {
   root?: Flex__<"div">;
   pageSupportCustomHeader?: Flex__<typeof PageSupportCustomHeader>;
   starGlowSurface?: Flex__<typeof StarGlowSurface>;
+  resetStarGameButton?: Flex__<typeof ResetStarGameButton>;
   reveal?: Flex__<typeof Reveal>;
   type?: Flex__<"div">;
   type2?: Flex__<"div">;
@@ -131,7 +132,6 @@ export type PlasmicHomepage__OverridesType = {
   columns?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
   moreProjects?: Flex__<"a"> & Partial<LinkProps>;
-  resetStarGameButton?: Flex__<typeof ResetStarGameButton>;
 };
 
 export interface DefaultHomepageProps {}
@@ -221,6 +221,24 @@ function PlasmicHomepage__RenderFunc(props: {
               data-plasmic-name={"starGlowSurface"}
               data-plasmic-override={overrides.starGlowSurface}
               className={classNames("__wab_instance", sty.starGlowSurface)}
+              completionMessage={
+                <section className={classNames("all", sty.section__x8OOk)}>
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__sQugD)}
+                  >
+                    {"Collect all the stars!"}
+                  </div>
+                  <ResetStarGameButton
+                    data-plasmic-name={"resetStarGameButton"}
+                    data-plasmic-override={overrides.resetStarGameButton}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.resetStarGameButton
+                    )}
+                    text={"Reset Game"}
+                  />
+                </section>
+              }
             >
               <h1
                 className={classNames(
@@ -626,12 +644,6 @@ function PlasmicHomepage__RenderFunc(props: {
               </div>
             </div>
           </section>
-          <ResetStarGameButton
-            data-plasmic-name={"resetStarGameButton"}
-            data-plasmic-override={overrides.resetStarGameButton}
-            className={classNames("__wab_instance", sty.resetStarGameButton)}
-            text={"Reset Star Collection"}
-          />
         </div>
       </div>
     </React.Fragment>
@@ -643,6 +655,7 @@ const PlasmicDescendants = {
     "root",
     "pageSupportCustomHeader",
     "starGlowSurface",
+    "resetStarGameButton",
     "reveal",
     "type",
     "type2",
@@ -650,11 +663,11 @@ const PlasmicDescendants = {
     "type4",
     "columns",
     "img",
-    "moreProjects",
-    "resetStarGameButton"
+    "moreProjects"
   ],
   pageSupportCustomHeader: ["pageSupportCustomHeader"],
-  starGlowSurface: ["starGlowSurface"],
+  starGlowSurface: ["starGlowSurface", "resetStarGameButton"],
+  resetStarGameButton: ["resetStarGameButton"],
   reveal: ["reveal", "type", "type2", "type3", "type4"],
   type: ["type"],
   type2: ["type2"],
@@ -662,8 +675,7 @@ const PlasmicDescendants = {
   type4: ["type4"],
   columns: ["columns", "img"],
   img: ["img"],
-  moreProjects: ["moreProjects"],
-  resetStarGameButton: ["resetStarGameButton"]
+  moreProjects: ["moreProjects"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -672,6 +684,7 @@ type NodeDefaultElementType = {
   root: "div";
   pageSupportCustomHeader: typeof PageSupportCustomHeader;
   starGlowSurface: typeof StarGlowSurface;
+  resetStarGameButton: typeof ResetStarGameButton;
   reveal: typeof Reveal;
   type: "div";
   type2: "div";
@@ -680,7 +693,6 @@ type NodeDefaultElementType = {
   columns: "div";
   img: typeof PlasmicImg__;
   moreProjects: "a";
-  resetStarGameButton: typeof ResetStarGameButton;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -747,6 +759,7 @@ export const PlasmicHomepage = Object.assign(
     // Helper components rendering sub-elements
     pageSupportCustomHeader: makeNodeComponent("pageSupportCustomHeader"),
     starGlowSurface: makeNodeComponent("starGlowSurface"),
+    resetStarGameButton: makeNodeComponent("resetStarGameButton"),
     reveal: makeNodeComponent("reveal"),
     type: makeNodeComponent("type"),
     type2: makeNodeComponent("type2"),
@@ -755,7 +768,6 @@ export const PlasmicHomepage = Object.assign(
     columns: makeNodeComponent("columns"),
     img: makeNodeComponent("img"),
     moreProjects: makeNodeComponent("moreProjects"),
-    resetStarGameButton: makeNodeComponent("resetStarGameButton"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

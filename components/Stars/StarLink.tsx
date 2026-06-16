@@ -3,7 +3,6 @@
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/navigation";
-import StarGlowSurface from "./StarGlowSurface";
 import TwinklingStar from "./TwinklingStar";
 import { useGameState } from "@/hooks/useGameState";
 import styles from "./star-game.module.css";
