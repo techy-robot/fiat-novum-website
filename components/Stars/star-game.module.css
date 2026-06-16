@@ -202,10 +202,11 @@
   font-size: 0.95rem;
   text-shadow: 0 0 8px rgba(0, 255, 157, 0.3);
   animation: completionFadeIn 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  width: 100%;
+  width: fit-content;
   box-sizing: border-box;
   z-index: 10;
   position: relative;
+  place-self: center;
 }
 
 @keyframes completionFadeIn {

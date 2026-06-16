@@ -117,9 +117,7 @@
   display: grid;
   align-content: flex-start;
   justify-items: center;
-  width: 100%;
-  grid-column-start: 1 !important;
-  grid-column-end: -1 !important;
+  width: auto;
   grid-template-columns:
     var(--plsmc-viewport-gap) 1fr minmax(0, var(--plsmc-wide-chunk))
     min(
@@ -133,11 +131,11 @@
   grid-column: 4;
 }
 .text__sQugD {
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
   text-align: center;
-  min-width: 0;
+  justify-self: auto;
   padding: 8px;
 }
 .resetStarGameButton:global(.__wab_instance) {

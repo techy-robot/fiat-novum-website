@@ -57,12 +57,12 @@ const StarGlowSurface = React.forwardRef<HTMLDivElement, StarGlowSurfaceProps>(f
       {...rest}
     >
       <span aria-hidden="true" className={styles.cursorGlow} />
-      {children}
       {global.active && completionMessage && (
         <div className={styles.completionMessageContainer}>
           {completionMessage}
         </div>
       )}
+      {children}
     </Component>
   );
 });
