@@ -311,14 +311,8 @@
   min-width: 0;
   padding: 8px;
 }
-.text__fcdo0 {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
+.slotTargetAboutme {
   color: var(--token-GVsoIpJlGJFU);
-  padding-bottom: 0px;
-  min-width: 0;
 }
 .column__bicYz {
   display: flex;
@@ -332,14 +326,15 @@
   min-width: 0;
   padding: 8px;
 }
-.img {
+.img__rQ9Y5 {
+  animation: none;
   object-fit: cover;
   transform: rotate3d(0, 0, 0, 0deg);
   width: 50%;
   aspect-ratio: 1/1;
   border-radius: 50%;
 }
-.img > picture > img {
+.img__rQ9Y5 > picture > img {
   object-fit: cover;
 }
 .section__c0Fox {

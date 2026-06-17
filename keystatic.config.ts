@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 
 // keystatic.config.ts
-import { config, fields, collection } from '@keystatic/core';
+import { config, fields, collection, singleton } from '@keystatic/core';
 
 export default config({
 
@@ -92,5 +92,30 @@ export default config({
     }),
   },
 
-    
+  singletons: {
+    about: singleton({
+      label: 'About Me',
+      path: 'content/about',
+      format: { contentField: 'content' },
+      schema: {
+        title: fields.text({ label: 'Title', validation: { isRequired: true } }),
+        summary: fields.text({ label: 'Summary', validation: { isRequired: true } }),
+        avatar: fields.image({
+          label: 'Avatar / Profile Image',
+          directory: 'public/images/about',
+          publicPath: '/images/about/'
+        }),
+        content: fields.mdx({
+          label: 'Content',
+          options: {
+            image: {
+              directory: 'public/images/about/mdx',
+              publicPath: '/images/about/mdx/'
+            }
+          }
+        }),
+      },
+    }),
+  },
+
 });

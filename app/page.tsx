@@ -6,6 +6,7 @@ import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../keystatic.config';
 import { ProjectCardProps } from "@/types/projects";
 import { Skill } from "@/types/skills";
+import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import React from 'react';
 import * as Icons from '@tabler/icons-react'; // Import Tabler library
@@ -49,6 +50,18 @@ export default async function Page() {
     .sort((a, b) => b.coolnessFactor - a.coolnessFactor) 
     // Grab only the top 3
     .slice(0, 3); 
+
+  // 3. Fetch About Me Data
+  const about = await reader.singletons.about.read();
+  let aboutTitle = "";
+  let aboutAvatar = "";
+  let aboutContentStr = "";
+
+  if (about) {
+    aboutTitle = about.title;
+    aboutAvatar = about.avatar ?? "";
+    aboutContentStr = await about.content();
+  }
 
   const skillTrackSlot=(
     <div className={`${styles.skillTrackAnimation} flex`}>
@@ -112,7 +125,13 @@ export default async function Page() {
   return (
     <>
       {/* Pass the new featuredProjects array to your wrapper */}
-      <Homepage skills={skillTrackSlot} projects={featuredProjectsSlot} />
+      <Homepage 
+        skills={skillTrackSlot} 
+        projects={featuredProjectsSlot} 
+        aboutTitle={aboutTitle}
+        aboutAvatar={aboutAvatar}
+        aboutContent={aboutContentStr ? <MDXRemote source={aboutContentStr} /> : null}
+      />
       <Analytics />
     </>
   );
