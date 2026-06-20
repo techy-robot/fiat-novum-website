@@ -11,7 +11,7 @@ const reader = createReader(process.cwd(), keystaticConfig);
 
 // Define our URL parameters
 interface RouteParams {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 // Generate Static Routes for each skill
@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 
 // Generate SEO Metadata Dynamically
 export async function generateMetadata({ params }: RouteParams): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   
   // Use .read() for a direct lookup instead of filtering through .all()
   const skill = await reader.collections.skills.read(slug);
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
 
 // Render the Page
 export default async function SkillPage({ params }: RouteParams) {
-  const { slug } = params;
+  const { slug } = await params;
 
   // Fetch the specific skill entry directly via its slug
   const skill = await reader.collections.skills.read(slug);

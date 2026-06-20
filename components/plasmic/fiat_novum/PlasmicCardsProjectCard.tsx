@@ -177,13 +177,13 @@ function PlasmicCardsProjectCard__RenderFunc(props: {
         loading={"lazy"}
         src={(() => {
           try {
-            return $props.coverImage;
+            return $props.coverImage || null;
           } catch (e) {
             if (
               e instanceof TypeError ||
               e?.plasmicType === "PlasmicUndefinedDataError"
             ) {
-              return undefined;
+              return null;
             }
             throw e;
           }
@@ -204,8 +204,8 @@ function PlasmicCardsProjectCard__RenderFunc(props: {
         className={classNames("all", "__wab_text", sty.text)}
         style={{
           display: "-webkit-box",
-          "-webkit-box-orient": "vertical",
-          "-webkit-line-clamp": "3",
+          WebkitBoxOrient: "vertical",
+          WebkitLineClamp: "3",
           overflow: "hidden"
         }}
       >
