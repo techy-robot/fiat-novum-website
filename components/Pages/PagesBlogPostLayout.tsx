@@ -6,7 +6,7 @@ import {
   DefaultPagesBlogPostLayoutProps
 } from "../plasmic/fiat_novum/PlasmicPagesBlogPostLayout";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
-import Breadcrumbs from "../Breadcrumbs";
+import Breadcrumbs from "../UI/Breadcrumbs";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -21,7 +21,7 @@ import Breadcrumbs from "../Breadcrumbs";
 //
 // You can also stop extending from DefaultPagesBlogPostLayoutProps altogether and have
 // total control over the props for your component.
-export interface PagesBlogPostLayoutProps extends DefaultPagesBlogPostLayoutProps {}
+export interface PagesBlogPostLayoutProps extends DefaultPagesBlogPostLayoutProps { }
 
 function PagesBlogPostLayout_(
   props: PagesBlogPostLayoutProps,
