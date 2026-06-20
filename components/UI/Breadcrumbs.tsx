@@ -6,9 +6,18 @@ import { usePathname } from "next/navigation";
 
 export interface BreadcrumbsProps {
   pageTitle?: string;
+  customLabels?: Record<string, string>;
 }
 
-export default function Breadcrumbs({ pageTitle }: BreadcrumbsProps) {
+const staticLabels: Record<string, string> = {
+  "/": "Home",
+  "/blog": "Blog",
+  "/projects": "Projects",
+  "/skills": "Skills",
+  "/dev": "Development",
+};
+
+export default function Breadcrumbs({ pageTitle, customLabels }: BreadcrumbsProps) {
   const pathname = usePathname();
   if (!pathname) return null;
 
@@ -48,7 +57,7 @@ export default function Breadcrumbs({ pageTitle }: BreadcrumbsProps) {
     const pathSegments = segments.slice(0, originalIdx + 1);
     const href = "/" + pathSegments.join("/");
 
-    let label = formatLabel(segment);
+    let label = (customLabels && customLabels[href]) || staticLabels[href] || formatLabel(segment);
     if (isLast && pageTitle) {
       label = pageTitle;
     }
