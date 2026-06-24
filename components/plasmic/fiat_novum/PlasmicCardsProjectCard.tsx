@@ -204,8 +204,8 @@ function PlasmicCardsProjectCard__RenderFunc(props: {
         className={classNames("all", "__wab_text", sty.text)}
         style={{
           display: "-webkit-box",
-          "-webkit-box-orient": "vertical",
-          "-webkit-line-clamp": "3",
+          WebkitBoxOrient: "vertical",
+          WebkitLineClamp: "3",
           overflow: "hidden"
         }}
       >

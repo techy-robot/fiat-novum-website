@@ -22,7 +22,7 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 // You can also stop extending from DefaultPageSupportCustomFooterProps altogether and have
 // total control over the props for your component.
 export interface PageSupportCustomFooterProps
-  extends DefaultPageSupportCustomFooterProps {}
+  extends DefaultPageSupportCustomFooterProps { }
 
 function PageSupportCustomFooter_(
   props: PageSupportCustomFooterProps,

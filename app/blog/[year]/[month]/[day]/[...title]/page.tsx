@@ -10,7 +10,7 @@ const reader = createReader(process.cwd(), keystaticConfig);
 
 // Define our URL parameters
 interface RouteParams {
-  params: { year: string; month: string; day: string; title: string[] };
+  params: Promise<{ year: string; month: string; day: string; title: string[] }>;
 }
 
 // Generate static routes for each post
@@ -28,7 +28,7 @@ export async function generateStaticParams() {
 
 // Generate SEO Metadata Dynamically
 export async function generateMetadata({ params }: RouteParams): Promise<Metadata> {
-  const { year, month, day } = params;
+  const { year, month, day } = await params;
   const targetDate = `${year}-${month}-${day}`;
   
   // Filter through all posts to find the one for this specific date
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
 
 // Render the Page
 export default async function BlogPostPage({ params }: RouteParams) {
-  const { year, month, day, title } = params;
+  const { year, month, day, title } = await params;
   const requestedSlug = title[0];
   const targetDate = `${year}-${month}-${day}`;
 

@@ -1008,12 +1008,12 @@ a:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags):focus-visible {
 }
 
 :where(.root_reset_77YCnrwhevb2XmBSeMeRKC)
-  a:where(.a__77YCn):not(:focus-visible-within),
-a:where(.root_reset_77YCnrwhevb2XmBSeMeRKC.a__77YCn):not(:focus-visible-within),
+  a:where(.a__77YCn):not(:focus-within),
+a:where(.root_reset_77YCnrwhevb2XmBSeMeRKC.a__77YCn):not(:focus-within),
 :where(.root_reset_77YCnrwhevb2XmBSeMeRKC .__wab_expr_html_text)
-  a:not(:focus-visible-within),
-:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags) a:not(:focus-visible-within),
-a:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags):not(:focus-visible-within) {
+  a:not(:focus-within),
+:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags) a:not(:focus-within),
+a:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags):not(:focus-within) {
 }
 
 :where(.root_reset_77YCnrwhevb2XmBSeMeRKC) a:where(.a__77YCn):visited,

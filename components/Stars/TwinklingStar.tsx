@@ -209,6 +209,7 @@ function TwinklingStarGlyph({
   );
 }
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 function TwinklingStarShell({
   x,
   y,
@@ -224,8 +225,15 @@ function TwinklingStarShell({
   starRef,
   isCollected,
   isGone,
+  // Custom props destructured to prevent them from leaking into ...rest
+  interactionMode,
+  activationRadius,
+  callbackTarget,
+  callbackSequence,
+  onCallbackComplete,
   ...rest
 }: TwinklingStarShellProps) {
+/* eslint-enable @typescript-eslint/no-unused-vars */
   if (isGone) return null;
 
   const inlineStyle = getStarShellStyle(x, y, size, style);
