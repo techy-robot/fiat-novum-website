@@ -11,7 +11,7 @@ const reader = createReader(process.cwd(), keystaticConfig);
 
 // Define our URL parameters
 interface RouteParams {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }
 
 // Generate Static Routes for each project
@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 
 // Generate SEO Metadata Dynamically
 export async function generateMetadata({ params }: RouteParams): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug } = params;
   
   const project = await reader.collections.projects.read(slug);
 
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
 
 // Render the Page
 export default async function ProjectPostPage({ params }: RouteParams) {
-  const { slug } = await params;
+  const { slug } = params;
 
   // Fetch directly via slug
   const project = await reader.collections.projects.read(slug);

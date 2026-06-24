@@ -224,12 +224,6 @@ function TwinklingStarShell({
   starRef,
   isCollected,
   isGone,
-  // Omit custom props from being forwarded to the HTML element
-  interactionMode,
-  activationRadius,
-  callbackTarget,
-  callbackSequence,
-  onCallbackComplete,
   ...rest
 }: TwinklingStarShellProps) {
   if (isGone) return null;
