@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { usePathname } from "next/navigation";
 import {
   PlasmicPageSupportCustomFooter,
   DefaultPageSupportCustomFooterProps
@@ -27,6 +28,11 @@ function PageSupportCustomFooter_(
   props: PageSupportCustomFooterProps,
   ref: HTMLElementRefOf<"div">
 ) {
+  const pathname = usePathname();
+  if (pathname === "/plasmic-host") {
+    return null;
+  }
+
   // Use PlasmicPageSupportCustomFooter to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
