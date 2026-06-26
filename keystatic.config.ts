@@ -33,6 +33,18 @@ export default config({
           directory: 'public/images/blog', 
           publicPath: '/images/blog/' 
         }),
+        coverAlignment: fields.select({
+          label: 'Cover Focal Alignment',
+          description: 'Adjusts how the image is framed inside the card',
+          options: [
+            { label: 'Center', value: 'center' },
+            { label: 'Top / Start', value: 'top' },
+            { label: 'Bottom / End', value: 'bottom' },
+            { label: 'Left', value: 'left' },
+            { label: 'Right', value: 'right' },
+          ],
+          defaultValue: 'center',
+        }),
         summary: fields.text({ label: 'Summary', validation: { isRequired: true } }),
         content: fields.mdx({ 
           label: 'Content',
@@ -56,6 +68,18 @@ export default config({
           label: 'Cover Image',
           directory: 'public/images/projects', 
           publicPath: '/images/projects/' 
+        }),
+        coverAlignment: fields.select({
+          label: 'Cover Focal Alignment',
+          description: 'Adjusts how the image is framed inside the card',
+          options: [
+            { label: 'Center', value: 'center' },
+            { label: 'Top / Start', value: 'top' },
+            { label: 'Bottom / End', value: 'bottom' },
+            { label: 'Left', value: 'left' },
+            { label: 'Right', value: 'right' },
+          ],
+          defaultValue: 'center',
         }),
         coolnessFactor: fields.integer({ label: 'Coolness Factor', validation: {min: 0,max: 10}}),
         summary: fields.text({ label: 'Summary', validation: { isRequired: true } }),

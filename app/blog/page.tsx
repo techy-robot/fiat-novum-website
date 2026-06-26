@@ -26,7 +26,7 @@ export default async function BlogIndexPage() {
   const rawPosts = await reader.collections.posts.all();
 
   const posts: BlogCardProps[] = rawPosts.map((post) => {
-    const { title, publishDate, summary, cover } = post.entry;
+    const { title, publishDate, summary, cover, coverAlignment } = post.entry;
     const [year, month, day] = (publishDate || "2026-01-01").split('-');
     const safeSlug = slugify(title || post.slug);
     
@@ -35,6 +35,7 @@ export default async function BlogIndexPage() {
       summary: summary || "No Summary",
       date: publishDate || "No Date",
       cover: cover || undefined,
+      coverAlignment: coverAlignment || undefined,
       url: `/blog/${year}/${month}/${day}/${safeSlug}`
     };
   });
@@ -68,6 +69,7 @@ export default async function BlogIndexPage() {
                 summary={post.summary}
                 date={post.date}
                 coverImage={post.cover}
+                coverAlignment={post.coverAlignment}
               />
             </Link>
           ))}

@@ -23,7 +23,7 @@ export default async function ProjectsIndexPage() {
   const rawProjects = await reader.collections.projects.all();
 
   const projects: ProjectCardProps[] = rawProjects.map((project) => {
-    const { title, summary, coolnessFactor, cover } = project.entry;
+    const { title, summary, coolnessFactor, cover, coverAlignment } = project.entry;
     
     return {
       title: title || "Untitled Project",
@@ -31,6 +31,7 @@ export default async function ProjectsIndexPage() {
       coolnessFactor: coolnessFactor || 0,
       // Convert Keystatic's null to undefined so Plasmic accepts it as a simple string
       cover: cover ?? undefined, 
+      coverAlignment: coverAlignment || undefined,
       url: `/projects/${project.slug}` 
     };
   });
@@ -64,6 +65,7 @@ export default async function ProjectsIndexPage() {
                 summary={project.summary}
                 coolnessFactor={project.coolnessFactor}
                 coverImage={project.cover} 
+                coverAlignment={project.coverAlignment}
               />
             </Link>
           ))}

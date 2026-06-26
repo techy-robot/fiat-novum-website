@@ -118,6 +118,7 @@ export default async function BlogPostPage({ params }: RouteParams) {
         } 
         date={post.entry.publishDate}
         coverImage={post.entry.cover ?? undefined}
+        coverAlignment={post.entry.coverAlignment ?? undefined}
       />
     </section>
   );

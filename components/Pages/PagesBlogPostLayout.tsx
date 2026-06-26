@@ -21,7 +21,9 @@ import Breadcrumbs from "../UI/Breadcrumbs";
 //
 // You can also stop extending from DefaultPagesBlogPostLayoutProps altogether and have
 // total control over the props for your component.
-export interface PagesBlogPostLayoutProps extends DefaultPagesBlogPostLayoutProps { }
+export interface PagesBlogPostLayoutProps extends DefaultPagesBlogPostLayoutProps {
+  coverAlignment?: string;
+}
 
 function PagesBlogPostLayout_(
   props: PagesBlogPostLayoutProps,
@@ -34,7 +36,7 @@ function PagesBlogPostLayout_(
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
 
-  const { contentSlot, ...rest } = props;
+  const { contentSlot, coverAlignment, ...rest } = props;
 
   return (
     <PlasmicPagesBlogPostLayout
@@ -46,6 +48,12 @@ function PagesBlogPostLayout_(
           {contentSlot}
         </article>
       }
+      img={{
+        className: 'plasmic-cover-align-img',
+        style: coverAlignment ? {
+          '--cover-alignment': coverAlignment,
+        } as React.CSSProperties : undefined
+      }}
       {...rest}
     />
   );

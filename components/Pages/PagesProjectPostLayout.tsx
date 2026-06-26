@@ -22,7 +22,9 @@ import Breadcrumbs from "../UI/Breadcrumbs";
 // You can also stop extending from DefaultPagesProjectPostLayoutProps altogether and have
 // total control over the props for your component.
 export interface PagesProjectPostLayoutProps
-  extends DefaultPagesProjectPostLayoutProps { }
+  extends DefaultPagesProjectPostLayoutProps {
+  coverAlignment?: string;
+}
 
 function PagesProjectPostLayout_(
   props: PagesProjectPostLayoutProps,
@@ -43,7 +45,7 @@ function PagesProjectPostLayout_(
   // By default, we are just piping all PagesProjectPostLayoutProps here, but feel free
   // to do whatever works for you.
 
-  const { contentSlot, ...rest } = props;
+  const { contentSlot, coverAlignment, ...rest } = props;
 
   return (
     <PlasmicPagesProjectPostLayout
@@ -55,6 +57,12 @@ function PagesProjectPostLayout_(
           {contentSlot}
         </article>
       }
+      img={{
+        className: 'plasmic-cover-align-img',
+        style: coverAlignment ? {
+          '--cover-alignment': coverAlignment,
+        } as React.CSSProperties : undefined
+      }}
       {...rest}
     />
   );

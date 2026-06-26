@@ -47,3 +47,10 @@ body {
 .plasmic-grid-container {
   grid-auto-rows: max-content !important;
 }
+
+/* Helper rules to override object-position for Keystatic cover alignment */
+.plasmic-cover-align-img,
+.plasmic-cover-align-img img,
+.plasmic-cover-align-img picture > img {
+  object-position: var(--cover-alignment, 50% top) !important;
+}

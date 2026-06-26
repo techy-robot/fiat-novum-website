@@ -44,6 +44,7 @@ export default async function Page() {
       summary: item.entry.summary || "",
       coolnessFactor: item.entry.coolnessFactor || 0,
       cover: item.entry.cover ?? undefined, 
+      coverAlignment: item.entry.coverAlignment || undefined,
       url: `projects/${item.slug}`,
     }))
     // Sort highest coolness factor to lowest
@@ -115,6 +116,7 @@ export default async function Page() {
               summary={project.summary}
               coolnessFactor={project.coolnessFactor}
               coverImage={project.cover} 
+              coverAlignment={project.coverAlignment}
             />
           </Link>
         ))}

@@ -98,6 +98,7 @@ export default async function ProjectPostPage({ params }: RouteParams) {
         title={project.title}
         coolnessFactor={project.coolnessFactor ?? undefined}
         coverImage={project.cover ?? undefined}
+        coverAlignment={project.coverAlignment ?? undefined}
         contentSlot={
           <MDXRemote source={mdxContentStr} />
         } 
