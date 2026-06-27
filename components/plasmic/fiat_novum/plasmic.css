@@ -317,6 +317,7 @@
   --mixin-yYQyD7KKdBs2_white-space: pre-wrap;
   --mixin-PnxogivZnC3u_white-space: pre-wrap;
   --mixin-daYpu-Thv4Ul_white-space: pre-wrap;
+  --mixin-j_TU2kf3jvNa_white-space: pre-wrap;
 }
 
 .plasmic_mixins {
@@ -1063,4 +1064,13 @@ i:where(.root_reset_77YCnrwhevb2XmBSeMeRKC.i__77YCn),
 :where(.root_reset_77YCnrwhevb2XmBSeMeRKC .__wab_expr_html_text) i,
 :where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags) i,
 i:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags) {
+}
+
+:where(.root_reset_77YCnrwhevb2XmBSeMeRKC)
+  a:where(.a__77YCn):focus-visible-within,
+a:where(.root_reset_77YCnrwhevb2XmBSeMeRKC.a__77YCn):focus-visible-within,
+:where(.root_reset_77YCnrwhevb2XmBSeMeRKC .__wab_expr_html_text)
+  a:focus-visible-within,
+:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags) a:focus-visible-within,
+a:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags):focus-visible-within {
 }

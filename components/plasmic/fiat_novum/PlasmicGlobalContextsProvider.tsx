@@ -8,15 +8,10 @@
 import * as React from "react";
 
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
-import { CmsCredentialsProvider } from "@plasmicpkgs/plasmic-cms";
 import { EmbedCss } from "@plasmicpkgs/plasmic-embed-css";
 
 export interface GlobalContextsProviderProps {
   children?: React.ReactElement;
-  cmsCredentialsProviderProps?: Partial<
-    Omit<React.ComponentProps<typeof CmsCredentialsProvider>, "children">
-  >;
-
   embedCssProps?: Partial<
     Omit<React.ComponentProps<typeof EmbedCss>, "children">
   >;
@@ -25,44 +20,18 @@ export interface GlobalContextsProviderProps {
 export default function GlobalContextsProvider(
   props: GlobalContextsProviderProps
 ) {
-  const { children, cmsCredentialsProviderProps, embedCssProps } = props;
+  const { children, embedCssProps } = props;
 
   return (
-    <CmsCredentialsProvider
-      {...cmsCredentialsProviderProps}
-      databaseId={
-        cmsCredentialsProviderProps &&
-        "databaseId" in cmsCredentialsProviderProps
-          ? cmsCredentialsProviderProps.databaseId!
-          : "6fEFAuvEvUZHq2Szsz6MKd"
-      }
-      databaseToken={
-        cmsCredentialsProviderProps &&
-        "databaseToken" in cmsCredentialsProviderProps
-          ? cmsCredentialsProviderProps.databaseToken!
-          : "eYAJBQzzWKL3vOAU4j89p4EXtYAbmnhNgG3Mt4BV842blV4Qpsc9fQ7Wgojsdv6MK9Wx95Q7GBNqsulGodMU2A"
-      }
-      host={
-        cmsCredentialsProviderProps && "host" in cmsCredentialsProviderProps
-          ? cmsCredentialsProviderProps.host!
-          : "https://data.plasmic.app"
-      }
-      locale={
-        cmsCredentialsProviderProps && "locale" in cmsCredentialsProviderProps
-          ? cmsCredentialsProviderProps.locale!
-          : undefined
+    <EmbedCss
+      {...embedCssProps}
+      css={
+        embedCssProps && "css" in embedCssProps
+          ? embedCssProps.css!
+          : '/* 1. The Outer Frame */\n.marquee-container {\n  overflow: hidden;\n  width: 100%;\n  display: flex;\n}\n\n/* 2. The Moving Track */\n.skill-track-animation {\n  display: flex;\n  flex-direction: row;\n  width: max-content; /* CRITICAL: Allows the row to be wider than the screen */\n  flex-wrap: nowrap;\n  animation: scroll-marquee 5s linear infinite !important;\n}\n\n/* 3. The Animation Logic */\n@keyframes scroll-marquee {\n  0% {\n    transform: translateX(0);\n  }\n  100% {\n    /* Moves by half because you duplicated the items to create the loop */\n    transform: translateX(-50%);\n  }\n}\n\n/* 4. Pause on Hover (Optional but "Magical") */\n.marquee-container:hover .skill-track-animation {\n  animation-play-state: paused !important;\n}'
       }
     >
-      <EmbedCss
-        {...embedCssProps}
-        css={
-          embedCssProps && "css" in embedCssProps
-            ? embedCssProps.css!
-            : '/* 1. The Outer Frame */\n.marquee-container {\n  overflow: hidden;\n  width: 100%;\n  display: flex;\n}\n\n/* 2. The Moving Track */\n.skill-track-animation {\n  display: flex;\n  flex-direction: row;\n  width: max-content; /* CRITICAL: Allows the row to be wider than the screen */\n  flex-wrap: nowrap;\n  animation: scroll-marquee 5s linear infinite !important;\n}\n\n/* 3. The Animation Logic */\n@keyframes scroll-marquee {\n  0% {\n    transform: translateX(0);\n  }\n  100% {\n    /* Moves by half because you duplicated the items to create the loop */\n    transform: translateX(-50%);\n  }\n}\n\n/* 4. Pause on Hover (Optional but "Magical") */\n.marquee-container:hover .skill-track-animation {\n  animation-play-state: paused !important;\n}'
-        }
-      >
-        {children}
-      </EmbedCss>
-    </CmsCredentialsProvider>
+      {children}
+    </EmbedCss>
   );
 }
