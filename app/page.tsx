@@ -9,9 +9,7 @@ import { Skill } from "@/types/skills";
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import React from 'react';
-import * as Icons from '@tabler/icons-react'; // Import Tabler library
-import type { IconProps } from '@tabler/icons-react';
-import UiButton from "@/components/UI/UiButton";
+import SkillsMarquee from "@/components/UI/SkillsMarquee";
 import ProjectCard from '@/components/Cards/CardsProjectCard';
 import Link from 'next/link';
 import styles from './page.module.css';
@@ -64,38 +62,8 @@ export default async function Page() {
     aboutContentStr = await about.content();
   }
 
-  const skillTrackSlot=(
-    <div className={`${styles.skillTrackAnimation} flex`}>
-      {[...skills, ...skills, ...skills].map((skill, i) => {
-        
-        // 1. Format the name (e.g., "Cpu" -> "IconCpu")
-        const iconKey = `Icon${skill.iconName}`;
-        
-        // 2. Type-safe lookup: cast Icons to a record of Tabler components
-        const IconsRecord = Icons as unknown as Record<string, React.FC<IconProps>>;
-        
-        // 3. Select the icon or fall back to a default
-        const SelectedIcon = IconsRecord[iconKey] || Icons.IconCpu;
-        
-        return (
-          <div key={`${skill.name}-${i}`} style={{ padding: '0 8px', display: 'inline-flex' }}>
-            <UiButton
-              label={skill.name}
-              linkTo={skill.link}
-              iconStart={true}
-              iconSlot={
-                <SelectedIcon 
-                  size={20} 
-                  stroke={1.5} 
-                  color="#000000" 
-                  style={{ marginRight: '8px' }}
-                />
-              }
-            />
-          </div>
-        );
-      })}
-    </div>
+  const skillTrackSlot = (
+    <SkillsMarquee skills={skills} />
   );
 
   const featuredProjectsSlot=(
