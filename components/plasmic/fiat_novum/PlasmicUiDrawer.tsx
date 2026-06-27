@@ -338,7 +338,6 @@ function PlasmicUiDrawer__RenderFunc(props: {
                   defaultContents: (
                     <div className={classNames("all", sty.freeBox__lhFvw)}>
                       <UiButton
-                        color={"muted"}
                         label={"Close"}
                         onClick={async event => {
                           const $steps = {};
@@ -383,7 +382,6 @@ function PlasmicUiDrawer__RenderFunc(props: {
                               await $steps["updateAriaDialogTriggerIsOpen"];
                           }
                         }}
-                        type={"soft"}
                       />
                     </div>
                   ),
