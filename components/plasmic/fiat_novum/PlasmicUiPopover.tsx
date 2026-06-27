@@ -71,9 +71,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicUiPopover.module.css"; // plasmic-import: VDfXZ58PVEHt/css
 
-import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: mnMIqnlbNw36/icon
-import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: Y2onwRPGGLt5/icon
-
 createPlasmicElementProxy;
 
 export type PlasmicUiPopover__VariantMembers = {};

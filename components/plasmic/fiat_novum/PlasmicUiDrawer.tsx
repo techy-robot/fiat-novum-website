@@ -70,9 +70,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicUiDrawer.module.css"; // plasmic-import: YiR8ddyi_K2Z/css
 
-import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: mnMIqnlbNw36/icon
-import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: Y2onwRPGGLt5/icon
-
 createPlasmicElementProxy;
 
 export type PlasmicUiDrawer__VariantMembers = {

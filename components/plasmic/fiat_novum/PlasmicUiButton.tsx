@@ -67,9 +67,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicUiButton.module.css"; // plasmic-import: bCv3rmLWmiVO/css
 
-import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: mnMIqnlbNw36/icon
-import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: Y2onwRPGGLt5/icon
-
 createPlasmicElementProxy;
 
 export type PlasmicUiButton__VariantMembers = {
@@ -100,9 +97,9 @@ export type PlasmicUiButton__ArgsType = {
   onClick?: (event: any) => void;
   linkTo?: string;
   openLinkInNewTab?: boolean;
-  start?: React.ReactNode;
+  iconSlot?: React.ReactNode;
   label?: React.ReactNode;
-  end?: React.ReactNode;
+  iconSlotEnd?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicUiButton__ArgsType;
 export const PlasmicUiButton__ArgProps = new Array<ArgPropType>(
@@ -113,9 +110,9 @@ export const PlasmicUiButton__ArgProps = new Array<ArgPropType>(
   "onClick",
   "linkTo",
   "openLinkInNewTab",
-  "start",
+  "iconSlot",
   "label",
-  "end"
+  "iconSlotEnd"
 );
 
 export type PlasmicUiButton__OverridesType = {
@@ -123,6 +120,9 @@ export type PlasmicUiButton__OverridesType = {
   softBackground?: Flex__<"div">;
   border?: Flex__<"div">;
   interactionEffect?: Flex__<"div">;
+  freeBox?: Flex__<"div">;
+  iconContainer?: Flex__<"div">;
+  iconContainer2?: Flex__<"div">;
 };
 
 export interface DefaultUiButtonProps {
@@ -133,9 +133,9 @@ export interface DefaultUiButtonProps {
   onClick?: (event: any) => void;
   linkTo?: string;
   openLinkInNewTab?: boolean;
-  start?: React.ReactNode;
+  iconSlot?: React.ReactNode;
   label?: React.ReactNode;
-  end?: React.ReactNode;
+  iconSlotEnd?: React.ReactNode;
   size?: SingleChoiceArg<"small" | "large">;
   iconStart?: SingleBooleanChoiceArg<"iconStart">;
   iconEnd?: SingleBooleanChoiceArg<"iconEnd">;
@@ -325,76 +325,38 @@ function PlasmicUiButton__RenderFunc(props: {
       />
 
       <div
-        className={classNames("all", sty.freeBox__aDus, {
-          [sty.freeBoxiconEnd__aDusKbFqm]: hasVariant(
-            $state,
-            "iconEnd",
-            "iconEnd"
-          ),
-          [sty.freeBoxoutlineStyle__aDustE7L1]: hasVariant(
+        data-plasmic-name={"freeBox"}
+        data-plasmic-override={overrides.freeBox}
+        className={classNames("all", sty.freeBox, {
+          [sty.freeBoxiconEnd]: hasVariant($state, "iconEnd", "iconEnd"),
+          [sty.freeBoxiconStart]: hasVariant($state, "iconStart", "iconStart"),
+          [sty.freeBoxoutlineStyle]: hasVariant(
             $state,
             "outlineStyle",
             "outlineStyle"
           ),
-          [sty.freeBoxsize_large__aDusZbJi]: hasVariant(
-            $state,
-            "size",
-            "large"
-          ),
-          [sty.freeBoxsize_small__aDusthziF]: hasVariant(
-            $state,
-            "size",
-            "small"
-          )
+          [sty.freeBoxsize_large]: hasVariant($state, "size", "large"),
+          [sty.freeBoxsize_small]: hasVariant($state, "size", "small")
         })}
       >
-        <div
-          className={classNames("all", sty.freeBox__mZgL5, {
-            [sty.freeBoxiconStart__mZgL5DOxF0]: hasVariant(
-              $state,
-              "iconStart",
-              "iconStart"
-            ),
-            [sty.freeBoxsize_large__mZgL5ZbJi]: hasVariant(
-              $state,
-              "size",
-              "large"
-            ),
-            [sty.freeBoxsize_small__mZgL5ThziF]: hasVariant(
-              $state,
-              "size",
-              "small"
-            )
-          })}
-        >
-          {renderPlasmicSlot({
-            defaultContents: (
-              <CircleIcon
-                className={classNames("all", sty.svg__bz7EN)}
-                role={"img"}
-              />
-            ),
-
-            value: args.start,
-            className: classNames(sty.slotTargetStart, {
-              [sty.slotTargetStarticonStart]: hasVariant(
+        {(hasVariant($state, "iconStart", "iconStart") ? true : false) ? (
+          <div
+            data-plasmic-name={"iconContainer"}
+            data-plasmic-override={overrides.iconContainer}
+            className={classNames("all", sty.iconContainer, {
+              [sty.iconContainericonStart]: hasVariant(
                 $state,
                 "iconStart",
                 "iconStart"
-              ),
-              [sty.slotTargetStartsize_large]: hasVariant(
-                $state,
-                "size",
-                "large"
-              ),
-              [sty.slotTargetStartsize_small]: hasVariant(
-                $state,
-                "size",
-                "small"
               )
-            })
-          })}
-        </div>
+            })}
+          >
+            {renderPlasmicSlot({
+              defaultContents: null,
+              value: args.iconSlot
+            })}
+          </div>
+        ) : null}
         {renderPlasmicSlot({
           defaultContents: (
             <div className={classNames("all", "__wab_text", sty.text__dgrNs)}>
@@ -426,64 +388,56 @@ function PlasmicUiButton__RenderFunc(props: {
             [sty.slotTargetLabelsize_small]: hasVariant($state, "size", "small")
           })
         })}
-        <div
-          className={classNames("all", sty.freeBox___1TIyH, {
-            [sty.freeBoxiconEnd___1TIyHKbFqm]: hasVariant(
-              $state,
-              "iconEnd",
-              "iconEnd"
-            ),
-            [sty.freeBoxsize_large___1TIyHZbJi]: hasVariant(
-              $state,
-              "size",
-              "large"
-            ),
-            [sty.freeBoxsize_small___1TIyHthziF]: hasVariant(
-              $state,
-              "size",
-              "small"
-            )
-          })}
-        >
-          {renderPlasmicSlot({
-            defaultContents: (
-              <ChevronDownIcon
-                className={classNames("all", sty.svg__zsG3O)}
-                role={"img"}
-              />
-            ),
-
-            value: args.end,
-            className: classNames(sty.slotTargetEnd, {
-              [sty.slotTargetEndiconEnd]: hasVariant(
+        {(
+          hasVariant($state, "iconEnd", "iconEnd")
+            ? true
+            : hasVariant($state, "iconStart", "iconStart")
+              ? true
+              : false
+        ) ? (
+          <div
+            data-plasmic-name={"iconContainer2"}
+            data-plasmic-override={overrides.iconContainer2}
+            className={classNames("all", sty.iconContainer2, {
+              [sty.iconContainer2iconEnd]: hasVariant(
                 $state,
                 "iconEnd",
                 "iconEnd"
               ),
-              [sty.slotTargetEndiconStart]: hasVariant(
+              [sty.iconContainer2iconStart]: hasVariant(
                 $state,
                 "iconStart",
                 "iconStart"
-              ),
-              [sty.slotTargetEndsize_large]: hasVariant(
-                $state,
-                "size",
-                "large"
-              ),
-              [sty.slotTargetEndsize_small]: hasVariant($state, "size", "small")
-            })
-          })}
-        </div>
+              )
+            })}
+          >
+            {renderPlasmicSlot({
+              defaultContents: null,
+              value: args.iconSlotEnd
+            })}
+          </div>
+        ) : null}
       </div>
     </BaseButton>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "softBackground", "border", "interactionEffect"],
+  root: [
+    "root",
+    "softBackground",
+    "border",
+    "interactionEffect",
+    "freeBox",
+    "iconContainer",
+    "iconContainer2"
+  ],
   softBackground: ["softBackground"],
   border: ["border"],
-  interactionEffect: ["interactionEffect"]
+  interactionEffect: ["interactionEffect"],
+  freeBox: ["freeBox", "iconContainer", "iconContainer2"],
+  iconContainer: ["iconContainer"],
+  iconContainer2: ["iconContainer2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -493,6 +447,9 @@ type NodeDefaultElementType = {
   softBackground: "div";
   border: "div";
   interactionEffect: "div";
+  freeBox: "div";
+  iconContainer: "div";
+  iconContainer2: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -560,6 +517,9 @@ export const PlasmicUiButton = Object.assign(
     softBackground: makeNodeComponent("softBackground"),
     border: makeNodeComponent("border"),
     interactionEffect: makeNodeComponent("interactionEffect"),
+    freeBox: makeNodeComponent("freeBox"),
+    iconContainer: makeNodeComponent("iconContainer"),
+    iconContainer2: makeNodeComponent("iconContainer2"),
 
     // Metadata about props expected for PlasmicUiButton
     internalVariantProps: PlasmicUiButton__VariantProps,
