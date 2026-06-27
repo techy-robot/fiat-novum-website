@@ -578,6 +578,12 @@
           "name": "ResetStarGameButton",
           "displayName": "ResetStarGameButton",
           "componentImportPath": "@/components/Stars/ResetStarGameButton"
+        },
+        {
+          "id": "QM8Fl9mappeA",
+          "name": "Breadcrumbs",
+          "displayName": "Breadcrumbs",
+          "componentImportPath": "@/components/UI/Breadcrumbs"
         }
       ],
       "customFunctions": []

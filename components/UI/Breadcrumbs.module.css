@@ -1,0 +1,31 @@
+:where(.breadcrumbs) {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: 'Nunito', Arial, sans-serif;
+  color: black;
+  margin-bottom: 1.5rem;
+  border-radius: 9999px;
+  padding: 0.4rem 1.25rem;
+  background-color: #00ffa5;
+}
+
+.breadcrumbsLink {
+  color: black;
+  text-decoration: underline;
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+
+.breadcrumbsLink:hover {
+  color: white;
+}
+.breadcrumbsSeparator {
+  user-select: none;
+}
+
+.breadcrumbsLast {
+  opacity: 0.85;
+}

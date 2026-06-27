@@ -13,6 +13,11 @@
 .pageSupportCustomHeader:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
+.breadcrumbs:global(.__wab_instance) {
+  animation: none;
+  object-fit: cover;
+  background: var(--token-W1ScpvjFaWi_);
+}
 .freeBox {
   display: flex;
   flex-direction: column;

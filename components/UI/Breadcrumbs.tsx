@@ -3,10 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import styles from "./Breadcrumbs.module.css";
 
 export interface BreadcrumbsProps {
   pageTitle?: string;
   customLabels?: Record<string, string>;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 const staticLabels: Record<string, string> = {
@@ -17,7 +20,7 @@ const staticLabels: Record<string, string> = {
   "/dev": "Development",
 };
 
-export default function Breadcrumbs({ pageTitle, customLabels }: BreadcrumbsProps) {
+export default function Breadcrumbs({ pageTitle, customLabels, className, style }: BreadcrumbsProps) {
   const pathname = usePathname();
   if (!pathname) return null;
 
@@ -72,49 +75,33 @@ export default function Breadcrumbs({ pageTitle, customLabels }: BreadcrumbsProp
   return (
     <nav 
       aria-label="breadcrumb" 
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        flexWrap: "wrap",
-        gap: "0.5rem",
-        fontSize: "1.25rem",
-        fontFamily: "'Nunito', Arial, sans-serif",
-        color: "var(--foreground, #00ffa5)",
-        marginBottom: "1.5rem",
-        border: "2px solid var(--foreground, #00ffa5)",
-        borderRadius: "9999px",
-        padding: "0.4rem 1.25rem",
-        backgroundColor: "rgba(0, 0, 0, 0.4)",
-      }}
+      className={`${styles.breadcrumbs} ${className ?? ""}`}
+      style={style}
     >
       {items.map((item, idx) => {
         const showSeparator = idx < items.length - 1;
         return (
           <React.Fragment key={item.href + idx}>
             {item.isLast ? (
-              <span style={{ fontWeight: "normal", opacity: 0.85 }}>
+              <span className={styles.breadcrumbsLast}>
                 {item.label}
               </span>
             ) : (
               <Link 
                 href={item.href}
-                style={{
-                  color: "var(--foreground, #00ffa5)",
-                  textDecoration: "underline",
-                  transition: "color 0.3s ease, text-decoration-color 0.3s ease",
-                }}
+                className={styles.breadcrumbsLink}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = "#45abb7";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "var(--foreground, #00ffa5)";
+                  e.currentTarget.style.color = "";
                 }}
               >
                 {item.label}
               </Link>
             )}
             {showSeparator && (
-              <span style={{ opacity: 0.5, userSelect: "none" }}>/</span>
+              <span className={styles.breadcrumbsSeparator}>/</span>
             )}
           </React.Fragment>
         );

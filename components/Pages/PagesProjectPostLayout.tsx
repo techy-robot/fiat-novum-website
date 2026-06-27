@@ -6,7 +6,6 @@ import {
   DefaultPagesProjectPostLayoutProps
 } from "../plasmic/fiat_novum/PlasmicPagesProjectPostLayout";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
-import Breadcrumbs from "../UI/Breadcrumbs";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -53,7 +52,6 @@ function PagesProjectPostLayout_(
       // Inject the hashed classes into the content slot
       contentSlot={
         <article className={`${"plasmic_default_styles"} ${"root_reset_77YCnrwhevb2XmBSeMeRKC"} ${"root_reset_77YCnrwhevb2XmBSeMeRKC_tags"}`}>
-          <Breadcrumbs pageTitle={props.title} />
           {contentSlot}
         </article>
       }
