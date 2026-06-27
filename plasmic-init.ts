@@ -117,6 +117,10 @@ PLASMIC.registerComponent(ResetStarGameButton, {
   isDefaultExport: true,
   props: {
     text: { type: "string", displayName: "Text", defaultValue: "Reset Star Collection" },
+    onClick: {
+      type: "eventHandler",
+      argTypes: [],
+    },
   },
   styleSections: true,
 });
