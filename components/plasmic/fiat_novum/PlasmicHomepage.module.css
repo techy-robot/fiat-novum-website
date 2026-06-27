@@ -308,6 +308,7 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
+  row-gap: 1rem;
   min-width: 0;
   padding: 8px;
 }

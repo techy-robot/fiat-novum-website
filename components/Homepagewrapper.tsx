@@ -25,11 +25,7 @@ export default function Homepage({
     <PlasmicHomepage 
       skillTrackSlot={skills}
       featuredProjects={projects}
-      aboutme={
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          {aboutContent}
-        </div>
-      }
+      aboutme={aboutContent}
       headshot={
         aboutAvatar ? (
           <Image
