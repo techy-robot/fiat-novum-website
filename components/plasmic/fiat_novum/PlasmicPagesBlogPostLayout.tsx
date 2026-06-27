@@ -202,10 +202,10 @@ function PlasmicPagesBlogPostLayout__RenderFunc(props: {
           className={classNames(sty.img)}
           displayHeight={"auto"}
           displayMaxHeight={"none"}
-          displayMaxWidth={"100%"}
+          displayMaxWidth={"none"}
           displayMinHeight={"0"}
           displayMinWidth={"0"}
-          displayWidth={"50%"}
+          displayWidth={"100%"}
           loading={"lazy"}
           src={(() => {
             try {
@@ -220,6 +220,7 @@ function PlasmicPagesBlogPostLayout__RenderFunc(props: {
               throw e;
             }
           })()}
+          width={""}
         />
 
         <h1

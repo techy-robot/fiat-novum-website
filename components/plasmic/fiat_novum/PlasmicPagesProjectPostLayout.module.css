@@ -30,11 +30,15 @@
   padding: 8px;
 }
 .img {
+  animation: none;
   object-fit: cover;
-  max-width: 100%;
-  width: 50%;
+  width: 100%;
+  object-position: 50% 50%;
+  flex-shrink: 1;
+  aspect-ratio: 2/1;
   border-radius: 10px;
 }
 .img > picture > img {
   object-fit: cover;
+  object-position: 50% 50%;
 }

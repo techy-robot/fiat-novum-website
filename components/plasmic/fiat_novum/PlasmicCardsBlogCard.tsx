@@ -203,8 +203,8 @@ function PlasmicCardsBlogCard__RenderFunc(props: {
         className={classNames("all", "__wab_text", sty.text__xKznQ)}
         style={{
           display: "-webkit-box",
-          WebkitBoxOrient: "vertical",
-          WebkitLineClamp: "3",
+          "-webkit-box-orient": "vertical",
+          "-webkit-line-clamp": "3",
           overflow: "hidden"
         }}
       >
