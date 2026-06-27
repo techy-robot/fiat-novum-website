@@ -344,6 +344,11 @@ function PlasmicUiButton__RenderFunc(props: {
             data-plasmic-name={"iconContainer"}
             data-plasmic-override={overrides.iconContainer}
             className={classNames("all", sty.iconContainer, {
+              [sty.iconContainericonEnd]: hasVariant(
+                $state,
+                "iconEnd",
+                "iconEnd"
+              ),
               [sty.iconContainericonStart]: hasVariant(
                 $state,
                 "iconStart",

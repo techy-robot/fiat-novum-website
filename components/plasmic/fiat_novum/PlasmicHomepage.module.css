@@ -344,8 +344,6 @@
   align-content: center;
   justify-items: flex-start;
   width: 100vw;
-  padding-left: 0;
-  padding-right: 0;
   overflow: hidden;
   grid-template-columns:
     var(--plsmc-viewport-gap) 1fr minmax(0, var(--plsmc-wide-chunk))
@@ -354,6 +352,7 @@
       calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
     )
     minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
+  padding: 16px 0px;
 }
 .section__c0Fox > * {
   grid-column: 4;

@@ -11,7 +11,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import React from 'react';
 import * as Icons from '@tabler/icons-react'; // Import Tabler library
 import type { IconProps } from '@tabler/icons-react';
-import SkillCard from '@/components/Cards/CardsSkillCard'; 
+import UiButton from "@/components/UI/UiButton";
 import ProjectCard from '@/components/Cards/CardsProjectCard';
 import Link from 'next/link';
 import styles from './page.module.css';
@@ -78,21 +78,21 @@ export default async function Page() {
         const SelectedIcon = IconsRecord[iconKey] || Icons.IconCpu;
         
         return (
-          <SkillCard
-            key={`${skill.name}-${i}`}
-            text={skill.name}
-            link={skill.link}
-            // 4. Inject the React Component into the Slot
-            iconSlot={
-              <SelectedIcon 
-                size={24} 
-                stroke={1.5} 
-                color="#00FF9D" 
-                // Add a filter/shadow here if you want that extra "glow"
-                style={{ filter: 'drop-shadow(0 0 5px rgba(0, 255, 157, 0.4))' }}
-              />
-            }
-          />
+          <div key={`${skill.name}-${i}`} style={{ padding: '0 8px', display: 'inline-flex' }}>
+            <UiButton
+              label={skill.name}
+              linkTo={skill.link}
+              iconStart={true}
+              iconSlot={
+                <SelectedIcon 
+                  size={20} 
+                  stroke={1.5} 
+                  color="#000000" 
+                  style={{ marginRight: '8px' }}
+                />
+              }
+            />
+          </div>
         );
       })}
     </div>
