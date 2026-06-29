@@ -171,9 +171,10 @@ class StarGame {
     if (!persisted) return;
 
     let changed = false;
+    let nextActive = this.state.active;
 
     if (this.state.active !== persisted.active) {
-      this.state.active = persisted.active;
+      nextActive = persisted.active;
       changed = true;
     }
 
@@ -182,6 +183,7 @@ class StarGame {
     }
 
     if (changed) {
+      this.state = { ...this.state, active: nextActive };
       this.emit();
     }
   }
@@ -198,19 +200,8 @@ class StarGame {
     const total = this.collector.getSeedCount();
     const collected = this.collector.getCollectedCount();
 
-    let changed = false;
-
-    if (this.state.total !== total) {
-      this.state.total = total;
-      changed = true;
-    }
-
-    if (this.state.collected !== collected) {
-      this.state.collected = collected;
-      changed = true;
-    }
-
-    if (changed) {
+    if (this.state.total !== total || this.state.collected !== collected) {
+      this.state = { ...this.state, total, collected };
       this.emit();
     }
   }
@@ -264,7 +255,7 @@ class StarGame {
   /** Activate the field once the seed collection phase is complete. */
   start() {
     if (!this.state.active) {
-      this.state.active = true;
+      this.state = { ...this.state, active: true };
       this.persist();
       this.emit();
     }
@@ -273,7 +264,7 @@ class StarGame {
   /** Return the store to its inactive state without touching progress counters. */
   stop() {
     if (this.state.active) {
-      this.state.active = false;
+      this.state = { ...this.state, active: false };
       this.persist();
       this.emit();
     }
@@ -295,21 +286,15 @@ class StarGame {
    * This lets the rest of the UI react to stars mounting and unmounting dynamically.
    */
   setCounts(total: number, collected: number) {
-    let changed = false;
-    if (this.state.total !== total) {
-      this.state.total = total;
-      changed = true;
+    if (this.state.total !== total || this.state.collected !== collected) {
+      this.state = { ...this.state, total, collected };
+      this.emit();
     }
-    if (this.state.collected !== collected) {
-      this.state.collected = collected;
-      changed = true;
-    }
-    if (changed) this.emit();
   }
 
   /** Increment the collected counter directly for ad hoc consumers. */
   collect(n = 1) {
-    this.state.collected += n;
+    this.state = { ...this.state, collected: this.state.collected + n };
     this.emit();
   }
 
@@ -320,13 +305,12 @@ class StarGame {
 
   /** Read the current snapshot without subscribing. */
   getState() {
-    return { ...this.state };
+    return this.state;
   }
 
-  /** Subscribe to updates and receive the current snapshot immediately. */
-  subscribe(listener: GameListener) {
+  /** Subscribe to updates. Returns cleanup function. */
+  subscribe(listener: () => void) {
     this.listeners.add(listener);
-    listener(this.getState());
     return () => {
       this.listeners.delete(listener);
     };

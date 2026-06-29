@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { useSyncExternalStore } from "react";
 import type { CursorState } from "@/lib/starGame";
 
 let cursorState: CursorState = { x: 0, y: 0, inside: false };
@@ -73,19 +73,19 @@ function subscribe(listener: () => void) {
   };
 }
 
+function getSnapshot() {
+  return cursorState;
+}
+
+const SERVER_SNAPSHOT: CursorState = { x: 0, y: 0, inside: false };
+function getServerSnapshot() {
+  return SERVER_SNAPSHOT;
+}
+
 /**
- * Track the pointer across the viewport so things can react even when they are
- * not rendered inside the surface itself.
- *
- * This hook is generic enough to use anywhere we need the current cursor,
- * even though the star game is the first consumer.
+ * Track the pointer across the viewport using useSyncExternalStore.
+ * Provides concurrent-safe viewport cursor state.
  */
 export function useGlobalCursor() {
-  const [cursor, setCursor] = React.useState(() => cursorState);
-
-  React.useEffect(() => {
-    return subscribe(() => setCursor(cursorState));
-  }, []);
-
-  return cursor;
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }
