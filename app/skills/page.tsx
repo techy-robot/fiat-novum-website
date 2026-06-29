@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '@/keystatic.config'; 
-import * as Icons from '@tabler/icons-react';
-import type { IconProps } from '@tabler/icons-react';
+import DynamicIcon from '@/components/UI/DynamicIcon';
 
 // Import components
 import BlogIndexLayout from '@/components/Pages/PagesBlogIndexLayout';
@@ -41,32 +40,22 @@ export default async function SkillsIndexPage() {
     <BlogIndexLayout 
       postListSlot={
         <div className={styles.skillsContainer}>
-          {skills.map((skill) => {
-            // Format the name (e.g., "Cpu" -> "IconCpu")
-            const iconKey = `Icon${skill.iconName}`;
-            
-            // Type-safe lookup: cast Icons to a record of Tabler components
-            const IconsRecord = Icons as unknown as Record<string, React.FC<IconProps>>;
-            
-            // Select the icon or fall back to a default
-            const SelectedIcon = IconsRecord[iconKey] || Icons.IconCpu;
-
-            return (
-              <SkillCard
-                key={skill.url}
-                text={skill.name}
-                link={skill.url}
-                iconSlot={
-                  <SelectedIcon 
-                    size={24} 
-                    stroke={1.5} 
-                    color="#00FF9D" 
-                    className={styles.skillIconGlow}
-                  />
-                }
-              />
-            );
-          })}
+          {skills.map((skill) => (
+            <SkillCard
+              key={skill.url}
+              text={skill.name}
+              link={skill.url}
+              iconSlot={
+                <DynamicIcon 
+                  iconName={skill.iconName}
+                  size={24} 
+                  stroke={1.5} 
+                  color="#00FF9D" 
+                  className={styles.skillIconGlow}
+                />
+              }
+            />
+          ))}
         </div>
       }
     />

@@ -3,9 +3,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useAnimate, AnimationPlaybackControls } from 'framer-motion';
 import UiButton from "@/components/UI/UiButton";
-import * as Icons from '@tabler/icons-react';
-import type { IconProps } from '@tabler/icons-react';
+import DynamicIcon from "@/components/UI/DynamicIcon";
 import { Skill } from "@/types/skills";
+import styles from "./SkillsMarquee.module.css";
 
 interface SkillsMarqueeProps {
   skills: Skill[];
