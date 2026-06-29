@@ -1,6 +1,6 @@
 
 import { Metadata } from "next";
-import Homepage from "@/components/Homepagewrapper";
+import Homepage from "@/components/HomepageWrapper";
 import { Analytics } from '@vercel/analytics/next';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../keystatic.config';
