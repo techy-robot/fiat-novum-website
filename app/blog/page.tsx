@@ -9,6 +9,8 @@ import BlogCard from '@/components/Cards/CardsBlogCard';
 
 import { BlogCardProps } from '@/types/blog';
 
+import styles from '@/styles/grid-layout.module.css';
+
 // Basic metadata, no complex opengraph logic
 export const metadata: Metadata = {
   title: "Blog",
@@ -46,23 +48,12 @@ export default async function BlogIndexPage() {
   return (
     <BlogIndexLayout 
       postListSlot={
-        <div style={{ 
-          display: 'grid', 
-          /* This auto-fill logic automatically handles mobile/desktop breakpoints! */
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
-          gap: '2rem', 
-          width: '100%',
-          alignItems: 'stretch' /* Forces all cards in a row to be the same height */
-        }}>
+        <div className={styles.autoGrid}>
           {posts.map((post) => (
             <Link 
               href={post.url} 
               key={post.url} 
-              style={{ 
-                textDecoration: 'none', 
-                display: 'flex', 
-                flexDirection: 'column' 
-              }}
+              className={styles.cardLink}
             >
               <BlogCard 
                 title={post.title}

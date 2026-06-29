@@ -9,6 +9,8 @@ import ProjectCard from '@/components/Cards/CardsProjectCard';
 
 import { ProjectCardProps } from '@/types/projects';
 
+import styles from '@/styles/grid-layout.module.css';
+
 // Basic metadata, no complex opengraph logic
 export const metadata: Metadata = {
   title: "Projects",
@@ -42,23 +44,12 @@ export default async function ProjectsIndexPage() {
   return (
     <ProjectIndexLayout 
       projectListSlot={
-        <div style={{ 
-          display: 'grid', 
-          /* This auto-fill logic automatically handles mobile/desktop breakpoints! */
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
-          gap: '2rem', 
-          width: '100%',
-          alignItems: 'stretch' /* Forces all cards in a row to be the same height */
-        }}>
+        <div className={styles.autoGrid}>
           {projects.map((project) => (
             <Link 
               href={project.url} 
               key={project.url} 
-              style={{ 
-                textDecoration: 'none', 
-                display: 'flex', 
-                flexDirection: 'column' 
-              }}
+              className={styles.cardLink}
             >
               <ProjectCard 
                 title={project.title} 

@@ -90,12 +90,6 @@ export default function Breadcrumbs({ pageTitle, customLabels, className, style 
               <Link 
                 href={item.href}
                 className={styles.breadcrumbsLink}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#45abb7";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "";
-                }}
               >
                 {item.label}
               </Link>

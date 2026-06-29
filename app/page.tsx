@@ -73,11 +73,7 @@ export default async function Page() {
           <Link 
             href={project.url} 
             key={project.url} 
-            style={{ 
-              textDecoration: 'none', 
-              display: 'flex', 
-              flexDirection: 'column' 
-            }}
+            className={styles.cardLink}
           >
             <ProjectCard 
               title={project.title} 

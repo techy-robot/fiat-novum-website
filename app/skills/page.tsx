@@ -8,6 +8,8 @@ import type { IconProps } from '@tabler/icons-react';
 import BlogIndexLayout from '@/components/Pages/PagesBlogIndexLayout';
 import SkillCard from '@/components/Cards/CardsSkillCard';
 
+import styles from '@/styles/grid-layout.module.css';
+
 // Basic metadata, no complex opengraph logic
 export const metadata: Metadata = {
   title: "Skills",
@@ -38,15 +40,7 @@ export default async function SkillsIndexPage() {
   return (
     <BlogIndexLayout 
       postListSlot={
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '16px',
-          justifyContent: 'center',
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: '24px 16px'
-        }}>
+        <div className={styles.skillsContainer}>
           {skills.map((skill) => {
             // Format the name (e.g., "Cpu" -> "IconCpu")
             const iconKey = `Icon${skill.iconName}`;
@@ -67,8 +61,7 @@ export default async function SkillsIndexPage() {
                     size={24} 
                     stroke={1.5} 
                     color="#00FF9D" 
-                    // Add a filter/shadow for glow
-                    style={{ filter: 'drop-shadow(0 0 5px rgba(0, 255, 157, 0.4))' }}
+                    className={styles.skillIconGlow}
                   />
                 }
               />
