@@ -97,7 +97,7 @@ function useResolvedStarPosition(
 ) {
   const [position, setPosition] = React.useState<Position>({ x: 0, y: 0 });
 
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const updatePosition = () => {
       const starElement = starRef.current;
       const offsetParent = starElement?.offsetParent instanceof HTMLElement ? starElement.offsetParent : starElement?.parentElement;
