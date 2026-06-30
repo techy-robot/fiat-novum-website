@@ -102,7 +102,7 @@ export default config({
       schema: {
         name: fields.slug({ name: { label: 'Skill Name' } }),
         proficiency: fields.integer({ label: 'Proficiency Level', validation: {min: 0,max: 10}}),
-        iconName: fields.text({ label: 'Lucide Icon Name (e.g., Cpu, Zap, Code)' }),
+        iconName: fields.text({ label: 'Tabler Icon Name (e.g., Cpu, Zap, Code)' }),
         content: fields.mdx({ 
           label: 'Write Up',
           options: {
