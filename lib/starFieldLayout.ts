@@ -1,3 +1,5 @@
+import { hashString } from "./starGame";
+
 export type StarFieldRole = "seed" | "collectable" | "fixed";
 
 export type StarFieldDefinition = {
@@ -28,16 +30,6 @@ export const STAR_FIELD_STARS: StarFieldDefinition[] = [
 
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
-}
-
-function hashString(value: string) {
-  let hash = 0;
-
-  for (let index = 0; index < value.length; index += 1) {
-    hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
-  }
-
-  return hash;
 }
 
 function normalizeX(value: number) {
