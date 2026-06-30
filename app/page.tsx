@@ -30,7 +30,7 @@ export default async function Page() {
   const skills: Skill[] = skillsData.map(item => ({
     name: item.entry.name,
     iconName: item.entry.iconName,
-    link: `skills/${item.slug}`,
+    link: `/skills/${item.slug}`,
   }));
 
   // 2. Fetch and Process Projects Data
@@ -43,7 +43,7 @@ export default async function Page() {
       coolnessFactor: item.entry.coolnessFactor || 0,
       cover: item.entry.cover ?? undefined, 
       coverAlignment: item.entry.coverAlignment || undefined,
-      url: `projects/${item.slug}`,
+      url: `/projects/${item.slug}`,
     }))
     // Sort highest coolness factor to lowest
     .sort((a, b) => b.coolnessFactor - a.coolnessFactor) 
