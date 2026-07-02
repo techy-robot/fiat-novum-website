@@ -25,7 +25,7 @@ export default function DynamicIcon({ iconName, ...props }: DynamicIconProps) {
     const Component = lazy(async () => {
       try {
         const mod = await import("@tabler/icons-react");
-        const FoundIcon = (mod as Record<string, React.ComponentType<IconProps>>)[iconKey];
+        const FoundIcon = (mod as unknown as Record<string, React.ComponentType<IconProps>>)[iconKey];
         return { default: FoundIcon || mod.IconCpu };
       } catch {
         return { default: IconCpu };
