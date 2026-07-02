@@ -49,14 +49,14 @@ export default async function SkillPage({ params }: RouteParams) {
     notFound(); 
   }
 
-  // Extract the raw MDX content string from the skill entry
-  const mdxContentStr = await skill.content(); 
+  // Extract the raw description string from the skill entry
+  const descriptionStr = skill.description || "";
 
   return (
     <BlogPostLayout 
       title={skill.name}
       contentSlot={
-        <MDXRemote source={mdxContentStr} />
+        <MDXRemote source={descriptionStr} />
       } 
     />
   );

@@ -118,22 +118,15 @@ export default config({
       label: 'Skills',
       slugField: 'name',
       path: 'content/skills/*',
-      format: { contentField: 'content' },
+      format: { data: 'json' },
       schema: {
         name: fields.slug({ name: { label: 'Skill Name' } }),
         proficiency: fields.integer({ label: 'Proficiency Level', validation: {min: 0,max: 10}}),
         iconName: fields.text({ label: 'Tabler Icon Name (e.g., Cpu, Zap, Code)' }),
-        content: fields.mdx({ 
-          label: 'Write Up',
-          options: {
-            image: {
-              directory: 'public/images/skills/mdx', 
-              publicPath: '/images/skills/mdx/' 
-            }
-          }
-        }),
+        description: fields.text({ label: 'Write Up', multiline: true }),
       },
     }),
+
     tags: collection({
       label: 'Tags',
       slugField: 'name',
