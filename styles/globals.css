@@ -68,3 +68,14 @@ footer {
 .plasmic-cover-align-img picture > img {
   object-position: var(--cover-alignment, 50% top) !important;
 }
+
+/* Tags Styling */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px dashed rgba(0, 255, 165, 0.2);
+}

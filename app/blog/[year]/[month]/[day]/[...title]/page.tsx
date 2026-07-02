@@ -40,9 +40,16 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   // Construct the absolute path to the generated open graph image
   const ogImageUrl = `/api/og/blog/${year}/${month}/${day}/${post.slug}`;
 
+  const tagSlugs = post.entry.tags || [];
+  const allTags = await reader.collections.tags.all();
+  const resolvedTags = tagSlugs
+    .map((slug) => allTags.find((t) => t.slug === slug)?.entry.name || slug)
+    .filter((t): t is string => !!t);
+
   return {
     title: `${post.entry.title}`,
     description: post.entry.summary || `Read ${post.entry.title}`,
+    keywords: resolvedTags,
     openGraph: {
       title: post.entry.title,
       description: post.entry.summary,
@@ -88,6 +95,12 @@ export default async function BlogPostPage({ params }: RouteParams) {
   // Extract the raw MDX content string
   const mdxContentStr = await post.entry.content(); 
 
+  const tagSlugs = post.entry.tags || [];
+  const allTags = await reader.collections.tags.all();
+  const resolvedTags = tagSlugs
+    .map((slug) => allTags.find((t) => t.slug === slug)?.entry.name || slug)
+    .filter((t): t is string => !!t);
+
   // Generate JSON-LD SEO metadata
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -101,6 +114,7 @@ export default async function BlogPostPage({ params }: RouteParams) {
       url: 'https://www.fiatnovum.com',
     },
     description: post.entry.summary,
+    keywords: resolvedTags.join(', '),
   };
 
   return (
@@ -119,6 +133,7 @@ export default async function BlogPostPage({ params }: RouteParams) {
         date={post.entry.publishDate}
         coverImage={post.entry.cover ?? undefined}
         coverAlignment={post.entry.coverAlignment ?? undefined}
+        tags={resolvedTags}
       />
     </section>
   );

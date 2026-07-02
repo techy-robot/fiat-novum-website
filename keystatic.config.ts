@@ -55,6 +55,16 @@ export default config({
             }
           }
         }),
+        tags: fields.array(
+          fields.relationship({
+            label: 'Tag',
+            collection: 'tags',
+          }),
+          {
+            label: 'Tags',
+            itemLabel: (props) => props.value || 'Select a tag',
+          }
+        ),
       },
     }),
     projects: collection({
@@ -92,6 +102,16 @@ export default config({
             }
           }
         }),
+        tags: fields.array(
+          fields.relationship({
+            label: 'Tag',
+            collection: 'tags',
+          }),
+          {
+            label: 'Tags',
+            itemLabel: (props) => props.value || 'Select a tag',
+          }
+        ),
       },
     }),
     skills: collection({
@@ -112,6 +132,15 @@ export default config({
             }
           }
         }),
+      },
+    }),
+    tags: collection({
+      label: 'Tags',
+      slugField: 'name',
+      path: 'content/tags/*',
+      format: { data: 'json' },
+      schema: {
+        name: fields.slug({ name: { label: 'Name' } }),
       },
     }),
   },

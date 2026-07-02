@@ -34,9 +34,16 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   // Construct the absolute path to the generated open graph image
   const ogImageUrl = `/api/og/projects/${slug}`;
 
+  const tagSlugs = project.tags || [];
+  const allTags = await reader.collections.tags.all();
+  const resolvedTags = tagSlugs
+    .map((ts) => allTags.find((t) => t.slug === ts)?.entry.name || ts)
+    .filter((t): t is string => !!t);
+
   return {
     title: `${project.title}`,
     description: project.summary || `View project ${project.title}`,
+    keywords: resolvedTags,
     openGraph: {
       title: project.title,
       description: project.summary,
@@ -72,6 +79,12 @@ export default async function ProjectPostPage({ params }: RouteParams) {
   // Extract the raw MDX content string
   const mdxContentStr = await project.content(); 
 
+  const tagSlugs = project.tags || [];
+  const allTags = await reader.collections.tags.all();
+  const resolvedTags = tagSlugs
+    .map((ts) => allTags.find((t) => t.slug === ts)?.entry.name || ts)
+    .filter((t): t is string => !!t);
+
   // Generate JSON-LD SEO metadata
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -84,6 +97,7 @@ export default async function ProjectPostPage({ params }: RouteParams) {
       url: 'https://www.fiatnovum.com',
     },
     description: project.summary,
+    keywords: resolvedTags.join(', '),
   };
 
   return (
@@ -99,6 +113,7 @@ export default async function ProjectPostPage({ params }: RouteParams) {
         coolnessFactor={project.coolnessFactor ?? undefined}
         coverImage={project.cover ?? undefined}
         coverAlignment={project.coverAlignment ?? undefined}
+        tags={resolvedTags}
         contentSlot={
           <MDXRemote source={mdxContentStr} />
         } 

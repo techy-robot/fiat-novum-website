@@ -6,6 +6,7 @@ import {
   DefaultPagesProjectPostLayoutProps
 } from "../plasmic/fiat_novum/PlasmicPagesProjectPostLayout";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
+import UiButton from "@/components/UI/UiButton";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -23,6 +24,7 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 export interface PagesProjectPostLayoutProps
   extends DefaultPagesProjectPostLayoutProps {
   coverAlignment?: string;
+  tags?: string[];
 }
 
 function PagesProjectPostLayout_(
@@ -44,7 +46,7 @@ function PagesProjectPostLayout_(
   // By default, we are just piping all PagesProjectPostLayoutProps here, but feel free
   // to do whatever works for you.
 
-  const { contentSlot, coverAlignment, ...rest } = props;
+  const { contentSlot, coverAlignment, tags, ...rest } = props;
 
   return (
     <PlasmicPagesProjectPostLayout
@@ -52,6 +54,18 @@ function PagesProjectPostLayout_(
       // Inject the hashed classes into the content slot
       contentSlot={
         <article className={`${"plasmic_default_styles"} ${"root_reset_77YCnrwhevb2XmBSeMeRKC"} ${"root_reset_77YCnrwhevb2XmBSeMeRKC_tags"}`}>
+          {tags && tags.length > 0 && (
+            <div className="tags-container">
+              {tags.map((tag) => (
+                <UiButton
+                  key={tag}
+                  label={tag}
+                  size="small"
+                  outlineStyle={false}
+                />
+              ))}
+            </div>
+          )}
           {contentSlot}
         </article>
       }
