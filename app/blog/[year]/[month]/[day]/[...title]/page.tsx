@@ -46,10 +46,18 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
     .map((slug) => allTags.find((t) => t.slug === slug)?.entry.name || slug)
     .filter((t): t is string => !!t);
 
+  const skillSlugs = post.entry.skills || [];
+  const allSkills = await reader.collections.skills.all();
+  const resolvedSkillNames = skillSlugs
+    .map((slug) => allSkills.find((s) => s.slug === slug)?.entry.name || slug)
+    .filter((s): s is string => !!s);
+
+  const combinedKeywords = [...resolvedTags, ...resolvedSkillNames];
+
   return {
     title: `${post.entry.title}`,
     description: post.entry.summary || `Read ${post.entry.title}`,
-    keywords: resolvedTags,
+    keywords: combinedKeywords,
     openGraph: {
       title: post.entry.title,
       description: post.entry.summary,
@@ -101,6 +109,20 @@ export default async function BlogPostPage({ params }: RouteParams) {
     .map((slug) => allTags.find((t) => t.slug === slug)?.entry.name || slug)
     .filter((t): t is string => !!t);
 
+  const skillSlugs = post.entry.skills || [];
+  const allSkills = await reader.collections.skills.all();
+  const resolvedSkills = skillSlugs
+    .map((slug) => {
+      const match = allSkills.find((s) => s.slug === slug);
+      if (!match) return null;
+      return {
+        name: match.entry.name || slug,
+        iconName: match.entry.iconName || "Code",
+        link: `/skills/${slug}`,
+      };
+    })
+    .filter((s): s is { name: string; iconName: string; link: string; } => !!s);
+
   // Generate JSON-LD SEO metadata
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -114,7 +136,7 @@ export default async function BlogPostPage({ params }: RouteParams) {
       url: 'https://www.fiatnovum.com',
     },
     description: post.entry.summary,
-    keywords: resolvedTags.join(', '),
+    keywords: [...resolvedTags, ...resolvedSkills.map((s) => s.name)].join(', '),
   };
 
   return (
@@ -134,6 +156,7 @@ export default async function BlogPostPage({ params }: RouteParams) {
         coverImage={post.entry.cover ?? undefined}
         coverAlignment={post.entry.coverAlignment ?? undefined}
         tags={resolvedTags}
+        skills={resolvedSkills}
       />
     </section>
   );

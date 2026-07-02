@@ -65,6 +65,16 @@ export default config({
             itemLabel: (props) => props.value || 'Select a tag',
           }
         ),
+        skills: fields.array(
+          fields.relationship({
+            label: 'Skill',
+            collection: 'skills',
+          }),
+          {
+            label: 'Skills Used',
+            itemLabel: (props) => props.value || 'Select a skill',
+          }
+        ),
       },
     }),
     projects: collection({
@@ -110,6 +120,16 @@ export default config({
           {
             label: 'Tags',
             itemLabel: (props) => props.value || 'Select a tag',
+          }
+        ),
+        skills: fields.array(
+          fields.relationship({
+            label: 'Skill',
+            collection: 'skills',
+          }),
+          {
+            label: 'Skills Used',
+            itemLabel: (props) => props.value || 'Select a skill',
           }
         ),
       },

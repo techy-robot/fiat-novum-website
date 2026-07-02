@@ -40,10 +40,18 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
     .map((ts) => allTags.find((t) => t.slug === ts)?.entry.name || ts)
     .filter((t): t is string => !!t);
 
+  const skillSlugs = project.skills || [];
+  const allSkills = await reader.collections.skills.all();
+  const resolvedSkillNames = skillSlugs
+    .map((slug) => allSkills.find((s) => s.slug === slug)?.entry.name || slug)
+    .filter((s): s is string => !!s);
+
+  const combinedKeywords = [...resolvedTags, ...resolvedSkillNames];
+
   return {
     title: `${project.title}`,
     description: project.summary || `View project ${project.title}`,
-    keywords: resolvedTags,
+    keywords: combinedKeywords,
     openGraph: {
       title: project.title,
       description: project.summary,
@@ -85,6 +93,20 @@ export default async function ProjectPostPage({ params }: RouteParams) {
     .map((ts) => allTags.find((t) => t.slug === ts)?.entry.name || ts)
     .filter((t): t is string => !!t);
 
+  const skillSlugs = project.skills || [];
+  const allSkills = await reader.collections.skills.all();
+  const resolvedSkills = skillSlugs
+    .map((slug) => {
+      const match = allSkills.find((s) => s.slug === slug);
+      if (!match) return null;
+      return {
+        name: match.entry.name || slug,
+        iconName: match.entry.iconName || "Code",
+        link: `/skills/${slug}`,
+      };
+    })
+    .filter((s): s is { name: string; iconName: string; link: string; } => !!s);
+
   // Generate JSON-LD SEO metadata
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -97,7 +119,7 @@ export default async function ProjectPostPage({ params }: RouteParams) {
       url: 'https://www.fiatnovum.com',
     },
     description: project.summary,
-    keywords: resolvedTags.join(', '),
+    keywords: [...resolvedTags, ...resolvedSkills.map((s) => s.name)].join(', '),
   };
 
   return (
@@ -114,9 +136,10 @@ export default async function ProjectPostPage({ params }: RouteParams) {
         coverImage={project.cover ?? undefined}
         coverAlignment={project.coverAlignment ?? undefined}
         tags={resolvedTags}
+        skills={resolvedSkills}
         contentSlot={
           <MDXRemote source={mdxContentStr} />
-        } 
+        }
       />
     </section>
   );
