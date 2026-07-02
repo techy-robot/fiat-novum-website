@@ -10,11 +10,11 @@ import Link from "next/link";
  * Visual surface for the star-field glow.
  * Any div can use this wrapper to get the cursor glow and active cursor styling.
  */
-export interface StarGlowSurfaceProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface StarGlowSurfaceProps extends React.HTMLAttributes<HTMLElement> {
   completionMessage?: React.ReactNode;
 }
 
-const StarGlowSurface = React.forwardRef<HTMLDivElement, StarGlowSurfaceProps>(function StarGlowSurface(
+const StarGlowSurface = React.forwardRef<HTMLElement, StarGlowSurfaceProps>(function StarGlowSurface(
   { children, className, style, completionMessage, ...rest },
   ref
 ) {
@@ -49,7 +49,7 @@ const StarGlowSurface = React.forwardRef<HTMLDivElement, StarGlowSurfaceProps>(f
 
   return (
     <Component
-      ref={ref}
+      ref={ref as React.ForwardedRef<any>}
       className={[styles.starField, global.active ? styles.starFieldActive : "", className ?? ""].filter(Boolean).join(" ")}
       style={fieldStyle}
       onPointerMove={onPointerMove}
@@ -58,9 +58,9 @@ const StarGlowSurface = React.forwardRef<HTMLDivElement, StarGlowSurfaceProps>(f
     >
       <span aria-hidden="true" className={styles.cursorGlow} />
       {global.active && completionMessage && (
-        <div className={styles.completionMessageContainer}>
+        <Component className={styles.completionMessageContainer}>
           {completionMessage}
-        </div>
+        </Component>
       )}
       {children}
     </Component>

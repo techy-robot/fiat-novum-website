@@ -25,14 +25,14 @@
   animation: none;
   object-fit: cover;
   width: 100%;
-  object-position: 50% top;
+  object-position: 50% 50%;
   flex-shrink: 1;
-  aspect-ratio: 4/2;
+  aspect-ratio: 2/1;
   border-radius: 10px 10px 0px 0px;
 }
 .img > picture > img {
   object-fit: cover;
-  object-position: 50% top;
+  object-position: 50% 50%;
 }
 .h1 {
   position: relative;

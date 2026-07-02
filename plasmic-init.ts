@@ -4,6 +4,7 @@ import ResetStarGameButton from "@/components/Stars/ResetStarGameButton";
 import StarGlowSurface from "@/components/Stars/StarGlowSurface";
 import StarLink from "@/components/Stars/StarLink";
 import TwinklingStar from "@/components/Stars/TwinklingStar";
+import Breadcrumbs from "@/components/UI/Breadcrumbs";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -117,6 +118,28 @@ PLASMIC.registerComponent(ResetStarGameButton, {
   isDefaultExport: true,
   props: {
     text: { type: "string", displayName: "Text", defaultValue: "Reset Star Collection" },
+    onClick: {
+      type: "eventHandler",
+      argTypes: [],
+    },
+  },
+  styleSections: true,
+});
+
+PLASMIC.registerComponent(Breadcrumbs, {
+  name: "Breadcrumbs",
+  displayName: "Breadcrumbs",
+  description: "A dynamic breadcrumb navigation bar showing the current path hierarchy.",
+  section: "UI",
+  importPath: "@/components/UI/Breadcrumbs",
+  isDefaultExport: true,
+  props: {
+    pageTitle: {
+      type: "string",
+      displayName: "Page Title",
+      defaultValue: "",
+      description: "Custom label for the current page. If left blank, falls back to the formatted path segment."
+    },
   },
   styleSections: true,
 });

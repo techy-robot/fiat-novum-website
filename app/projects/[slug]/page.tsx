@@ -11,7 +11,7 @@ const reader = createReader(process.cwd(), keystaticConfig);
 
 // Define our URL parameters
 interface RouteParams {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 // Generate Static Routes for each project
@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 
 // Generate SEO Metadata Dynamically
 export async function generateMetadata({ params }: RouteParams): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   
   const project = await reader.collections.projects.read(slug);
 
@@ -34,9 +34,24 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   // Construct the absolute path to the generated open graph image
   const ogImageUrl = `/api/og/projects/${slug}`;
 
+  const tagSlugs = project.tags || [];
+  const allTags = await reader.collections.tags.all();
+  const resolvedTags = tagSlugs
+    .map((ts) => allTags.find((t) => t.slug === ts)?.entry.name || ts)
+    .filter((t): t is string => !!t);
+
+  const skillSlugs = project.skills || [];
+  const allSkills = await reader.collections.skills.all();
+  const resolvedSkillNames = skillSlugs
+    .map((slug) => allSkills.find((s) => s.slug === slug)?.entry.name || slug)
+    .filter((s): s is string => !!s);
+
+  const combinedKeywords = [...resolvedTags, ...resolvedSkillNames];
+
   return {
     title: `${project.title}`,
     description: project.summary || `View project ${project.title}`,
+    keywords: combinedKeywords,
     openGraph: {
       title: project.title,
       description: project.summary,
@@ -60,7 +75,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
 
 // Render the Page
 export default async function ProjectPostPage({ params }: RouteParams) {
-  const { slug } = params;
+  const { slug } = await params;
 
   // Fetch directly via slug
   const project = await reader.collections.projects.read(slug);
@@ -71,6 +86,26 @@ export default async function ProjectPostPage({ params }: RouteParams) {
 
   // Extract the raw MDX content string
   const mdxContentStr = await project.content(); 
+
+  const tagSlugs = project.tags || [];
+  const allTags = await reader.collections.tags.all();
+  const resolvedTags = tagSlugs
+    .map((ts) => allTags.find((t) => t.slug === ts)?.entry.name || ts)
+    .filter((t): t is string => !!t);
+
+  const skillSlugs = project.skills || [];
+  const allSkills = await reader.collections.skills.all();
+  const resolvedSkills = skillSlugs
+    .map((slug) => {
+      const match = allSkills.find((s) => s.slug === slug);
+      if (!match) return null;
+      return {
+        name: match.entry.name || slug,
+        iconName: match.entry.iconName || "Code",
+        link: `/skills/${slug}`,
+      };
+    })
+    .filter((s): s is { name: string; iconName: string; link: string; } => !!s);
 
   // Generate JSON-LD SEO metadata
   const jsonLd = {
@@ -84,6 +119,7 @@ export default async function ProjectPostPage({ params }: RouteParams) {
       url: 'https://www.fiatnovum.com',
     },
     description: project.summary,
+    keywords: [...resolvedTags, ...resolvedSkills.map((s) => s.name)].join(', '),
   };
 
   return (
@@ -98,9 +134,12 @@ export default async function ProjectPostPage({ params }: RouteParams) {
         title={project.title}
         coolnessFactor={project.coolnessFactor ?? undefined}
         coverImage={project.cover ?? undefined}
+        coverAlignment={project.coverAlignment ?? undefined}
+        tags={resolvedTags}
+        skills={resolvedSkills}
         contentSlot={
           <MDXRemote source={mdxContentStr} />
-        } 
+        }
       />
     </section>
   );

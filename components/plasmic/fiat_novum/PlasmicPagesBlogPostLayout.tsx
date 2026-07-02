@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import PageSupportCustomHeader from "../../PageSupport/PageSupportCustomHeader"; // plasmic-import: lVLsklxwqNh2/component
+import Breadcrumbs from "@/components/UI/Breadcrumbs"; // plasmic-import: QM8Fl9mappeA/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 77YCnrwhevb2XmBSeMeRKC/styleTokensProvider
 
@@ -92,6 +93,7 @@ export const PlasmicPagesBlogPostLayout__ArgProps = new Array<ArgPropType>(
 export type PlasmicPagesBlogPostLayout__OverridesType = {
   root?: Flex__<"div">;
   pageSupportCustomHeader?: Flex__<typeof PageSupportCustomHeader>;
+  breadcrumbs?: Flex__<typeof Breadcrumbs>;
   freeBox?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
   h1?: Flex__<"h1">;
@@ -169,6 +171,25 @@ function PlasmicPagesBlogPostLayout__RenderFunc(props: {
         className={classNames("__wab_instance", sty.pageSupportCustomHeader)}
       />
 
+      <Breadcrumbs
+        data-plasmic-name={"breadcrumbs"}
+        data-plasmic-override={overrides.breadcrumbs}
+        className={classNames("__wab_instance", sty.breadcrumbs)}
+        pageTitle={(() => {
+          try {
+            return $props.title;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+      />
+
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
@@ -181,10 +202,10 @@ function PlasmicPagesBlogPostLayout__RenderFunc(props: {
           className={classNames(sty.img)}
           displayHeight={"auto"}
           displayMaxHeight={"none"}
-          displayMaxWidth={"100%"}
+          displayMaxWidth={"none"}
           displayMinHeight={"0"}
           displayMinWidth={"0"}
-          displayWidth={"50%"}
+          displayWidth={"100%"}
           loading={"lazy"}
           src={(() => {
             try {
@@ -199,6 +220,7 @@ function PlasmicPagesBlogPostLayout__RenderFunc(props: {
               throw e;
             }
           })()}
+          width={""}
         />
 
         <h1
@@ -225,8 +247,16 @@ function PlasmicPagesBlogPostLayout__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "pageSupportCustomHeader", "freeBox", "img", "h1"],
+  root: [
+    "root",
+    "pageSupportCustomHeader",
+    "breadcrumbs",
+    "freeBox",
+    "img",
+    "h1"
+  ],
   pageSupportCustomHeader: ["pageSupportCustomHeader"],
+  breadcrumbs: ["breadcrumbs"],
   freeBox: ["freeBox", "img", "h1"],
   img: ["img"],
   h1: ["h1"]
@@ -237,6 +267,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   pageSupportCustomHeader: typeof PageSupportCustomHeader;
+  breadcrumbs: typeof Breadcrumbs;
   freeBox: "div";
   img: typeof PlasmicImg__;
   h1: "h1";
@@ -305,6 +336,7 @@ export const PlasmicPagesBlogPostLayout = Object.assign(
   {
     // Helper components rendering sub-elements
     pageSupportCustomHeader: makeNodeComponent("pageSupportCustomHeader"),
+    breadcrumbs: makeNodeComponent("breadcrumbs"),
     freeBox: makeNodeComponent("freeBox"),
     img: makeNodeComponent("img"),
     h1: makeNodeComponent("h1"),

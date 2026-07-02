@@ -1,11 +1,13 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '@/keystatic.config'; 
+import DynamicIcon from '@/components/UI/DynamicIcon';
 
 // Import components
 import BlogIndexLayout from '@/components/Pages/PagesBlogIndexLayout';
-import BlogCard from '@/components/Cards/CardsBlogCard';
+import UiButton from '@/components/UI/UiButton';
+
+import styles from '@/styles/grid-layout.module.css';
 
 // Basic metadata, no complex opengraph logic
 export const metadata: Metadata = {
@@ -18,7 +20,6 @@ const reader = createReader(process.cwd(), keystaticConfig);
 export default async function SkillsIndexPage() {
 
   // Fetch skills and sort by proficiency
-  
   const rawSkills = await reader.collections.skills.all();
 
   const skills = rawSkills.map((skill) => {
@@ -38,13 +39,25 @@ export default async function SkillsIndexPage() {
   return (
     <BlogIndexLayout 
       postListSlot={
-        <>
+        <div className={styles.skillsContainer}>
           {skills.map((skill) => (
-            <Link href={skill.url} key={skill.url} style={{ textDecoration: 'none' }}>
-              <BlogCard title={skill.name} date={skill.proficiency} />
-            </Link>
+            <UiButton
+              key={skill.url}
+              label={skill.name}
+              linkTo={skill.url}
+              iconStart={true}
+              iconSlot={
+                <DynamicIcon 
+                  iconName={skill.iconName}
+                  size={20} 
+                  stroke={1.5} 
+                  color="#000000" 
+                  style={{ marginRight: "8px" }}
+                />
+              }
+            />
           ))}
-        </>
+        </div>
       }
     />
   );

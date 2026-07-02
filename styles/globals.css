@@ -15,6 +15,20 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  width: 100%;
 }
 
 * {
@@ -46,4 +60,47 @@ body {
 [class*="plasmic_default__all"][style*="display: grid"],
 .plasmic-grid-container {
   grid-auto-rows: max-content !important;
+}
+
+/* Helper rules to override object-position for Keystatic cover alignment */
+.plasmic-cover-align-img,
+.plasmic-cover-align-img img,
+.plasmic-cover-align-img picture > img {
+  object-position: var(--cover-alignment, 50% top) !important;
+}
+
+/* Post Metadata Block Styling (Tags & Skills) */
+.post-metadata-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px dashed rgba(0, 255, 165, 0.25);
+}
+
+.tags-container,
+.skills-used-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.metadata-label {
+  font-family: 'tars-mono-rounded', 'tars-mono-smooth', monospace;
+  font-size: 0.8rem;
+  color: rgba(0, 255, 165, 0.6);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  user-select: none;
+  min-width: 120px;
+}
+
+.metadata-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }

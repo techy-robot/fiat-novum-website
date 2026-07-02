@@ -1,7 +1,6 @@
 @import "../react_aria/plasmic.css"; /* plasmic-import: gmeH6XgPaBtkt51HunAo4g/projectcss */
 @import "../library_tabler_3_2_icons/plasmic.css"; /* plasmic-import: d2Pfbr6bN5UwJ4ss7Fh3HB/projectcss */
 @import "../plasmic_nav/plasmic.css"; /* plasmic-import: 7nJ7UcFmq9UzB6eXfC5z4a/projectcss */
-@import "../plasmic_cms/plasmic.css"; /* plasmic-import: hjKYmYi6HMwK6TRyk7ew5R/projectcss */
 @import "../jquery/plasmic.css"; /* plasmic-import: mqxdhm5p6WHAt7hW1mdcCX/projectcss */
 @import "../react_awesome_reveal/plasmic.css"; /* plasmic-import: 58GpZjZCWTaJ8AUhpCwt2K/projectcss */
 @import "../react_slick/plasmic.css"; /* plasmic-import: r3ASNrnyvLLLAtDvzUioQ/projectcss */
@@ -235,10 +234,8 @@
   --mixin-UArKz6BZwWyB_padding-right: 4px;
   --mixin-UArKz6BZwWyB_padding-top: 1px;
   --mixin-UArKz6BZwWyB_white-space: pre-wrap;
-  --mixin-DGH7AoJj7cXB_border-left-color: #dddddd;
   --mixin-DGH7AoJj7cXB_border-left-style: solid;
   --mixin-DGH7AoJj7cXB_border-left-width: 3px;
-  --mixin-DGH7AoJj7cXB_color: #888888;
   --mixin-DGH7AoJj7cXB_padding-left: 10px;
   --mixin-DGH7AoJj7cXB_font-family: "Handlee";
   --mixin-DGH7AoJj7cXB_white-space: pre-wrap;
@@ -318,6 +315,7 @@
   --mixin-yYQyD7KKdBs2_white-space: pre-wrap;
   --mixin-PnxogivZnC3u_white-space: pre-wrap;
   --mixin-daYpu-Thv4Ul_white-space: pre-wrap;
+  --mixin-j_TU2kf3jvNa_white-space: pre-wrap;
 }
 
 .plasmic_mixins {
@@ -842,12 +840,10 @@ blockquote:where(.root_reset_77YCnrwhevb2XmBSeMeRKC.blockquote__77YCn),
 :where(.root_reset_77YCnrwhevb2XmBSeMeRKC .__wab_expr_html_text) blockquote,
 :where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags) blockquote,
 blockquote:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags) {
-  color: var(--mixin-DGH7AoJj7cXB_color);
+  border-left-style: var(--mixin-DGH7AoJj7cXB_border-left-style);
+  border-left-width: var(--mixin-DGH7AoJj7cXB_border-left-width);
   padding-left: var(--mixin-DGH7AoJj7cXB_padding-left);
   font-family: var(--mixin-DGH7AoJj7cXB_font-family);
-  border-left: var(--mixin-DGH7AoJj7cXB_border-left-width)
-    var(--mixin-DGH7AoJj7cXB_border-left-style)
-    var(--mixin-DGH7AoJj7cXB_border-left-color);
 }
 
 :where(.root_reset_77YCnrwhevb2XmBSeMeRKC) pre:where(.pre__77YCn),
@@ -1064,4 +1060,13 @@ i:where(.root_reset_77YCnrwhevb2XmBSeMeRKC.i__77YCn),
 :where(.root_reset_77YCnrwhevb2XmBSeMeRKC .__wab_expr_html_text) i,
 :where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags) i,
 i:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags) {
+}
+
+:where(.root_reset_77YCnrwhevb2XmBSeMeRKC)
+  a:where(.a__77YCn):focus-visible-within,
+a:where(.root_reset_77YCnrwhevb2XmBSeMeRKC.a__77YCn):focus-visible-within,
+:where(.root_reset_77YCnrwhevb2XmBSeMeRKC .__wab_expr_html_text)
+  a:focus-visible-within,
+:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags) a:focus-visible-within,
+a:where(.root_reset_77YCnrwhevb2XmBSeMeRKC_tags):focus-visible-within {
 }

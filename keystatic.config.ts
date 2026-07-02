@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 
 // keystatic.config.ts
-import { config, fields, collection } from '@keystatic/core';
+import { config, fields, collection, singleton } from '@keystatic/core';
 
 export default config({
 
@@ -33,6 +33,18 @@ export default config({
           directory: 'public/images/blog', 
           publicPath: '/images/blog/' 
         }),
+        coverAlignment: fields.select({
+          label: 'Cover Focal Alignment',
+          description: 'Adjusts how the image is framed inside the card',
+          options: [
+            { label: 'Center', value: 'center' },
+            { label: 'Top / Start', value: 'top' },
+            { label: 'Bottom / End', value: 'bottom' },
+            { label: 'Left', value: 'left' },
+            { label: 'Right', value: 'right' },
+          ],
+          defaultValue: 'center',
+        }),
         summary: fields.text({ label: 'Summary', validation: { isRequired: true } }),
         content: fields.mdx({ 
           label: 'Content',
@@ -43,6 +55,26 @@ export default config({
             }
           }
         }),
+        tags: fields.array(
+          fields.relationship({
+            label: 'Tag',
+            collection: 'tags',
+          }),
+          {
+            label: 'Tags',
+            itemLabel: (props) => props.value || 'Select a tag',
+          }
+        ),
+        skills: fields.array(
+          fields.relationship({
+            label: 'Skill',
+            collection: 'skills',
+          }),
+          {
+            label: 'Skills Used',
+            itemLabel: (props) => props.value || 'Select a skill',
+          }
+        ),
       },
     }),
     projects: collection({
@@ -57,6 +89,18 @@ export default config({
           directory: 'public/images/projects', 
           publicPath: '/images/projects/' 
         }),
+        coverAlignment: fields.select({
+          label: 'Cover Focal Alignment',
+          description: 'Adjusts how the image is framed inside the card',
+          options: [
+            { label: 'Center', value: 'center' },
+            { label: 'Top / Start', value: 'top' },
+            { label: 'Bottom / End', value: 'bottom' },
+            { label: 'Left', value: 'left' },
+            { label: 'Right', value: 'right' },
+          ],
+          defaultValue: 'center',
+        }),
         coolnessFactor: fields.integer({ label: 'Coolness Factor', validation: {min: 0,max: 10}}),
         summary: fields.text({ label: 'Summary', validation: { isRequired: true } }),
         content: fields.mdx({ 
@@ -68,23 +112,71 @@ export default config({
             }
           }
         }),
+        tags: fields.array(
+          fields.relationship({
+            label: 'Tag',
+            collection: 'tags',
+          }),
+          {
+            label: 'Tags',
+            itemLabel: (props) => props.value || 'Select a tag',
+          }
+        ),
+        skills: fields.array(
+          fields.relationship({
+            label: 'Skill',
+            collection: 'skills',
+          }),
+          {
+            label: 'Skills Used',
+            itemLabel: (props) => props.value || 'Select a skill',
+          }
+        ),
       },
     }),
     skills: collection({
       label: 'Skills',
       slugField: 'name',
       path: 'content/skills/*',
-      format: { contentField: 'content' },
+      format: { data: 'json' },
       schema: {
         name: fields.slug({ name: { label: 'Skill Name' } }),
         proficiency: fields.integer({ label: 'Proficiency Level', validation: {min: 0,max: 10}}),
-        iconName: fields.text({ label: 'Lucide Icon Name (e.g., Cpu, Zap, Code)' }),
-        content: fields.mdx({ 
-          label: 'Write Up',
+        iconName: fields.text({ label: 'Tabler Icon Name (e.g., Cpu, Zap, Code)' }),
+        description: fields.text({ label: 'Write Up', multiline: true }),
+      },
+    }),
+
+    tags: collection({
+      label: 'Tags',
+      slugField: 'name',
+      path: 'content/tags/*',
+      format: { data: 'json' },
+      schema: {
+        name: fields.slug({ name: { label: 'Name' } }),
+      },
+    }),
+  },
+
+  singletons: {
+    about: singleton({
+      label: 'About Me',
+      path: 'content/about',
+      format: { contentField: 'content' },
+      schema: {
+        title: fields.text({ label: 'Title', validation: { isRequired: true } }),
+        summary: fields.text({ label: 'Summary', validation: { isRequired: true } }),
+        avatar: fields.image({
+          label: 'Avatar / Profile Image',
+          directory: 'public/images/about',
+          publicPath: '/images/about/'
+        }),
+        content: fields.mdx({
+          label: 'Content',
           options: {
             image: {
-              directory: 'public/images/skills/mdx', 
-              publicPath: '/images/skills/mdx/' 
+              directory: 'public/images/about/mdx',
+              publicPath: '/images/about/mdx/'
             }
           }
         }),
@@ -92,5 +184,4 @@ export default config({
     }),
   },
 
-    
 });

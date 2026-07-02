@@ -20,7 +20,9 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 //
 // You can also stop extending from DefaultCardsProjectCardProps altogether and have
 // total control over the props for your component.
-export interface CardsProjectCardProps extends DefaultCardsProjectCardProps {}
+export interface CardsProjectCardProps extends DefaultCardsProjectCardProps {
+  coverAlignment?: string;
+}
 
 function CardsProjectCard_(
   props: CardsProjectCardProps,
@@ -41,7 +43,20 @@ function CardsProjectCard_(
   // By default, we are just piping all CardsProjectCardProps here, but feel free
   // to do whatever works for you.
 
-  return <PlasmicCardsProjectCard root={{ ref }} {...props} />;
+  const { coverAlignment, ...rest } = props;
+
+  return (
+    <PlasmicCardsProjectCard
+      root={{ ref }}
+      img={{
+        className: 'plasmic-cover-align-img',
+        style: coverAlignment ? {
+          '--cover-alignment': coverAlignment,
+        } as React.CSSProperties : undefined
+      }}
+      {...rest}
+    />
+  );
 }
 
 const CardsProjectCard = React.forwardRef(CardsProjectCard_);

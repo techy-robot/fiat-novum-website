@@ -2,18 +2,26 @@
 
 import React from "react";
 import { starGame } from "@/lib/starGame";
-import styles from "./ResetStarGameButton.module.css";
+import UiButton, { UiButtonProps } from "@/components/UI/UiButton";
 
-export interface ResetStarGameButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  text?: string
+export interface ResetStarGameButtonProps extends Omit<UiButtonProps, "onClick"> {
+  text?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClick?: (event: any) => void;
 }
 
-export default function ResetStarGameButton({ className, type = "button", onClick, text = "Reset Star Collection", ...rest }: ResetStarGameButtonProps) {
+export default function ResetStarGameButton({
+  onClick,
+  text = "Reset Star Collection",
+  label,
+  ...props
+}: ResetStarGameButtonProps) {
   const handleClick = React.useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (event: any) => {
       onClick?.(event);
 
-      if (event.defaultPrevented) return;
+      if (event && event.defaultPrevented) return;
 
       starGame.reset();
     },
@@ -21,8 +29,11 @@ export default function ResetStarGameButton({ className, type = "button", onClic
   );
 
   return (
-    <button type={type} className={[styles.resetButton, "plasmic_default_styles", "plasmic_tokens", className ?? ""].filter(Boolean).join(" ")} onClick={handleClick} {...rest}>
-      {text}
-    </button>
+    <UiButton
+      onClick={handleClick}
+      label={label ?? text}
+      {...props}
+    />
   );
 }
+

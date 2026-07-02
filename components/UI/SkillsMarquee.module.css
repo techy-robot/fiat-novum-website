@@ -1,0 +1,22 @@
+.marqueeContainer {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  grid-column: 1 / -1;
+  padding: 16px 0;
+  align-items: center;
+}
+
+.marqueeTrack {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  flex-wrap: nowrap;
+  will-change: transform;
+  align-items: center;
+}
+
+.marqueeItem {
+  padding: 0 8px;
+  display: inline-flex;
+}

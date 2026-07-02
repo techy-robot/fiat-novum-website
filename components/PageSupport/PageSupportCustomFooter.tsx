@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { usePathname } from "next/navigation";
 import {
   PlasmicPageSupportCustomFooter,
   DefaultPageSupportCustomFooterProps
@@ -21,12 +22,17 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 // You can also stop extending from DefaultPageSupportCustomFooterProps altogether and have
 // total control over the props for your component.
 export interface PageSupportCustomFooterProps
-  extends DefaultPageSupportCustomFooterProps {}
+  extends DefaultPageSupportCustomFooterProps { }
 
 function PageSupportCustomFooter_(
   props: PageSupportCustomFooterProps,
   ref: HTMLElementRefOf<"div">
 ) {
+  const pathname = usePathname();
+  if (pathname === "/plasmic-host") {
+    return null;
+  }
+
   // Use PlasmicPageSupportCustomFooter to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You

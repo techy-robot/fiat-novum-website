@@ -110,11 +110,15 @@ type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
 export const PlasmicHomepage__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicHomepage__ArgsType = {
+  aboutme?: React.ReactNode;
+  headshot?: React.ReactNode;
   skillTrackSlot?: React.ReactNode;
   featuredProjects?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicHomepage__ArgsType;
 export const PlasmicHomepage__ArgProps = new Array<ArgPropType>(
+  "aboutme",
+  "headshot",
   "skillTrackSlot",
   "featuredProjects"
 );
@@ -130,7 +134,6 @@ export type PlasmicHomepage__OverridesType = {
   type3?: Flex__<"div">;
   type4?: Flex__<"div">;
   columns?: Flex__<"div">;
-  img?: Flex__<typeof PlasmicImg__>;
   moreProjects?: Flex__<"a"> & Partial<LinkProps>;
 };
 
@@ -470,38 +473,37 @@ function PlasmicHomepage__RenderFunc(props: {
                   className={classNames("all", sty.columns)}
                 >
                   <div className={classNames("all", sty.column__jphpD)}>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text__fcdo0
-                      )}
-                    >
-                      {
-                        "I am a design engineer @ Colorado School of Mines, combining my intricate knowledge of mechanical, electrical, and computer engineering into products that focus on people and making the solution magical, not technical.\n\nI like creating fun project that don't always have an obvious purpose, but they entertain many and bring joy."
-                      }
-                    </div>
+                    {renderPlasmicSlot({
+                      defaultContents:
+                        "I am a design engineer @ Colorado School of Mines, combining my intricate knowledge of mechanical, electrical, and computer engineering into products that focus on people and making the solution magical, not technical.\n\nI like creating fun project that don't always have an obvious purpose, but they entertain many and bring joy.",
+                      value: args.aboutme,
+                      className: classNames(sty.slotTargetAboutme)
+                    })}
                   </div>
                   <div className={classNames("all", sty.column__bicYz)}>
-                    <PlasmicImg__
-                      data-plasmic-name={"img"}
-                      data-plasmic-override={overrides.img}
-                      alt={""}
-                      className={classNames(sty.img)}
-                      displayHeight={"auto"}
-                      displayMaxHeight={"none"}
-                      displayMaxWidth={"none"}
-                      displayMinHeight={"0"}
-                      displayMinWidth={"0"}
-                      displayWidth={"50%"}
-                      loading={"lazy"}
-                      src={{
-                        src: "/plasmic/fiat_novum/images/userImageLinkedInJpg.jpg",
-                        fullWidth: 1307,
-                        fullHeight: 1743,
-                        aspectRatio: undefined
-                      }}
-                    />
+                    {renderPlasmicSlot({
+                      defaultContents: (
+                        <PlasmicImg__
+                          alt={""}
+                          className={classNames(sty.img__rQ9Y5)}
+                          displayHeight={"auto"}
+                          displayMaxHeight={"none"}
+                          displayMaxWidth={"none"}
+                          displayMinHeight={"0"}
+                          displayMinWidth={"0"}
+                          displayWidth={"50%"}
+                          loading={"lazy"}
+                          src={{
+                            src: "/plasmic/fiat_novum/images/userImageLinkedInJpg.jpg",
+                            fullWidth: 1307,
+                            fullHeight: 1743,
+                            aspectRatio: undefined
+                          }}
+                        />
+                      ),
+
+                      value: args.headshot
+                    })}
                   </div>
                 </div>
               </div>
@@ -662,7 +664,6 @@ const PlasmicDescendants = {
     "type3",
     "type4",
     "columns",
-    "img",
     "moreProjects"
   ],
   pageSupportCustomHeader: ["pageSupportCustomHeader"],
@@ -673,8 +674,7 @@ const PlasmicDescendants = {
   type2: ["type2"],
   type3: ["type3"],
   type4: ["type4"],
-  columns: ["columns", "img"],
-  img: ["img"],
+  columns: ["columns"],
   moreProjects: ["moreProjects"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -691,7 +691,6 @@ type NodeDefaultElementType = {
   type3: "div";
   type4: "div";
   columns: "div";
-  img: typeof PlasmicImg__;
   moreProjects: "a";
 };
 
@@ -766,7 +765,6 @@ export const PlasmicHomepage = Object.assign(
     type3: makeNodeComponent("type3"),
     type4: makeNodeComponent("type4"),
     columns: makeNodeComponent("columns"),
-    img: makeNodeComponent("img"),
     moreProjects: makeNodeComponent("moreProjects"),
 
     // Metadata about props expected for PlasmicHomepage

@@ -66,15 +66,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', margin: 0 }}>
+      <body>
         
         <PlasmicClientProvider>
           
-          <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+          <main>
             {children} 
           </main>
 
-          <footer style={{ width: '100%' }}>
+          <footer>
              {/* Render it as a standard React component */}
              <PageSupportCustomFooter />
           </footer>

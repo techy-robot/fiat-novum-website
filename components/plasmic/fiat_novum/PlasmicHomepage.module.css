@@ -308,17 +308,12 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
+  row-gap: 1rem;
   min-width: 0;
   padding: 8px;
 }
-.text__fcdo0 {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
+.slotTargetAboutme {
   color: var(--token-GVsoIpJlGJFU);
-  padding-bottom: 0px;
-  min-width: 0;
 }
 .column__bicYz {
   display: flex;
@@ -332,14 +327,15 @@
   min-width: 0;
   padding: 8px;
 }
-.img {
+.img__rQ9Y5 {
+  animation: none;
   object-fit: cover;
   transform: rotate3d(0, 0, 0, 0deg);
   width: 50%;
   aspect-ratio: 1/1;
   border-radius: 50%;
 }
-.img > picture > img {
+.img__rQ9Y5 > picture > img {
   object-fit: cover;
 }
 .section__c0Fox {
@@ -348,8 +344,6 @@
   align-content: center;
   justify-items: flex-start;
   width: 100vw;
-  padding-left: 0;
-  padding-right: 0;
   overflow: hidden;
   grid-template-columns:
     var(--plsmc-viewport-gap) 1fr minmax(0, var(--plsmc-wide-chunk))
@@ -358,6 +352,7 @@
       calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
     )
     minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
+  padding: 16px 0px;
 }
 .section__c0Fox > * {
   grid-column: 4;

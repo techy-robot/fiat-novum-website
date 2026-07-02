@@ -1,14 +1,3 @@
-.skillTrackAnimation {
-  display: flex;
-  flex-direction: row;
-  width: max-content;
-  flex-wrap: nowrap;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
-  animation: scrollMarquee 20s linear infinite !important;
-  transition: none !important;
-}
-
 .strictGridLayout {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -24,18 +13,8 @@
   }
 }
 
-:global(.marquee-container):hover .skillTrackAnimation {
-  animation-play-state: paused !important;
-}
-
-
-
-@keyframes scrollMarquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    transform: translate3d(-33.333333%, 0, 0);
-  }
+.cardLink {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
 }

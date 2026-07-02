@@ -1,0 +1,27 @@
+.autoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+.cardLink {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.skillsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.skillIconGlow {
+  filter: drop-shadow(0 0 5px rgba(0, 255, 157, 0.4));
+}

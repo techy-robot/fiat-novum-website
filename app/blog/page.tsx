@@ -9,6 +9,8 @@ import BlogCard from '@/components/Cards/CardsBlogCard';
 
 import { BlogCardProps } from '@/types/blog';
 
+import styles from '@/styles/grid-layout.module.css';
+
 // Basic metadata, no complex opengraph logic
 export const metadata: Metadata = {
   title: "Blog",
@@ -26,7 +28,7 @@ export default async function BlogIndexPage() {
   const rawPosts = await reader.collections.posts.all();
 
   const posts: BlogCardProps[] = rawPosts.map((post) => {
-    const { title, publishDate, summary, cover } = post.entry;
+    const { title, publishDate, summary, cover, coverAlignment } = post.entry;
     const [year, month, day] = (publishDate || "2026-01-01").split('-');
     const safeSlug = slugify(title || post.slug);
     
@@ -35,6 +37,7 @@ export default async function BlogIndexPage() {
       summary: summary || "No Summary",
       date: publishDate || "No Date",
       cover: cover || undefined,
+      coverAlignment: coverAlignment || undefined,
       url: `/blog/${year}/${month}/${day}/${safeSlug}`
     };
   });
@@ -45,29 +48,19 @@ export default async function BlogIndexPage() {
   return (
     <BlogIndexLayout 
       postListSlot={
-        <div style={{ 
-          display: 'grid', 
-          /* This auto-fill logic automatically handles mobile/desktop breakpoints! */
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
-          gap: '2rem', 
-          width: '100%',
-          alignItems: 'stretch' /* Forces all cards in a row to be the same height */
-        }}>
+        <div className={styles.autoGrid}>
           {posts.map((post) => (
             <Link 
               href={post.url} 
               key={post.url} 
-              style={{ 
-                textDecoration: 'none', 
-                display: 'flex', 
-                flexDirection: 'column' 
-              }}
+              className={styles.cardLink}
             >
               <BlogCard 
                 title={post.title}
                 summary={post.summary}
                 date={post.date}
                 coverImage={post.cover}
+                coverAlignment={post.coverAlignment}
               />
             </Link>
           ))}

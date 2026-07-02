@@ -4,16 +4,8 @@
 .uiButton__dgNBw:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.svg__xjirj {
-  position: relative;
-  height: 1em;
-}
 .text__yhqYu {
   padding-right: 0px;
-}
-.svg__pfx3C {
-  position: relative;
-  height: 1em;
 }
 .ariaModal:global(.__wab_instance) {
   border-top-right-radius: var(--token-nxo6XX10p87f);
@@ -107,12 +99,4 @@
   justify-content: flex-end;
   width: 100%;
   min-width: 0;
-}
-.svg__ajs2 {
-  position: relative;
-  height: 1em;
-}
-.svg___4Ddq1 {
-  position: relative;
-  height: 1em;
 }

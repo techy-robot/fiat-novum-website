@@ -9,6 +9,8 @@ import ProjectCard from '@/components/Cards/CardsProjectCard';
 
 import { ProjectCardProps } from '@/types/projects';
 
+import styles from '@/styles/grid-layout.module.css';
+
 // Basic metadata, no complex opengraph logic
 export const metadata: Metadata = {
   title: "Projects",
@@ -23,7 +25,7 @@ export default async function ProjectsIndexPage() {
   const rawProjects = await reader.collections.projects.all();
 
   const projects: ProjectCardProps[] = rawProjects.map((project) => {
-    const { title, summary, coolnessFactor, cover } = project.entry;
+    const { title, summary, coolnessFactor, cover, coverAlignment } = project.entry;
     
     return {
       title: title || "Untitled Project",
@@ -31,6 +33,7 @@ export default async function ProjectsIndexPage() {
       coolnessFactor: coolnessFactor || 0,
       // Convert Keystatic's null to undefined so Plasmic accepts it as a simple string
       cover: cover ?? undefined, 
+      coverAlignment: coverAlignment || undefined,
       url: `/projects/${project.slug}` 
     };
   });
@@ -41,29 +44,19 @@ export default async function ProjectsIndexPage() {
   return (
     <ProjectIndexLayout 
       projectListSlot={
-        <div style={{ 
-          display: 'grid', 
-          /* This auto-fill logic automatically handles mobile/desktop breakpoints! */
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
-          gap: '2rem', 
-          width: '100%',
-          alignItems: 'stretch' /* Forces all cards in a row to be the same height */
-        }}>
+        <div className={styles.autoGrid}>
           {projects.map((project) => (
             <Link 
               href={project.url} 
               key={project.url} 
-              style={{ 
-                textDecoration: 'none', 
-                display: 'flex', 
-                flexDirection: 'column' 
-              }}
+              className={styles.cardLink}
             >
               <ProjectCard 
                 title={project.title} 
                 summary={project.summary}
                 coolnessFactor={project.coolnessFactor}
                 coverImage={project.cover} 
+                coverAlignment={project.coverAlignment}
               />
             </Link>
           ))}

@@ -13,6 +13,10 @@
 .pageSupportCustomHeader:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
+.breadcrumbs:global(.__wab_instance) {
+  object-fit: cover;
+  background: var(--token-W1ScpvjFaWi_);
+}
 .freeBox {
   display: flex;
   flex-direction: column;
@@ -27,10 +31,13 @@
 .img {
   animation: none;
   object-fit: cover;
-  max-width: 100%;
-  width: 50%;
+  width: 100%;
+  object-position: 50% 50%;
+  flex-shrink: 1;
+  aspect-ratio: 2/1;
   border-radius: 10px;
 }
 .img > picture > img {
   object-fit: cover;
+  object-position: 50% 50%;
 }

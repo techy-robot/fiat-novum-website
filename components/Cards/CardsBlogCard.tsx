@@ -20,7 +20,9 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 //
 // You can also stop extending from DefaultCardsBlogCardProps altogether and have
 // total control over the props for your component.
-export interface CardsBlogCardProps extends DefaultCardsBlogCardProps {}
+export interface CardsBlogCardProps extends DefaultCardsBlogCardProps {
+  coverAlignment?: string;
+}
 
 function CardsBlogCard_(
   props: CardsBlogCardProps,
@@ -41,7 +43,20 @@ function CardsBlogCard_(
   // By default, we are just piping all CardsBlogCardProps here, but feel free
   // to do whatever works for you.
 
-  return <PlasmicCardsBlogCard root={{ ref }} {...props} />;
+  const { coverAlignment, ...rest } = props;
+
+  return (
+    <PlasmicCardsBlogCard
+      root={{ ref }}
+      img={{
+        className: 'plasmic-cover-align-img',
+        style: coverAlignment ? {
+          '--cover-alignment': coverAlignment,
+        } as React.CSSProperties : undefined
+      }}
+      {...rest}
+    />
+  );
 }
 
 const CardsBlogCard = React.forwardRef(CardsBlogCard_);

@@ -10,7 +10,7 @@ const reader = createReader(process.cwd(), keystaticConfig);
 
 // Define our URL parameters
 interface RouteParams {
-  params: { year: string; month: string; day: string; title: string[] };
+  params: Promise<{ year: string; month: string; day: string; title: string[] }>;
 }
 
 // Generate static routes for each post
@@ -28,7 +28,7 @@ export async function generateStaticParams() {
 
 // Generate SEO Metadata Dynamically
 export async function generateMetadata({ params }: RouteParams): Promise<Metadata> {
-  const { year, month, day } = params;
+  const { year, month, day } = await params;
   const targetDate = `${year}-${month}-${day}`;
   
   // Filter through all posts to find the one for this specific date
@@ -40,9 +40,24 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   // Construct the absolute path to the generated open graph image
   const ogImageUrl = `/api/og/blog/${year}/${month}/${day}/${post.slug}`;
 
+  const tagSlugs = post.entry.tags || [];
+  const allTags = await reader.collections.tags.all();
+  const resolvedTags = tagSlugs
+    .map((slug) => allTags.find((t) => t.slug === slug)?.entry.name || slug)
+    .filter((t): t is string => !!t);
+
+  const skillSlugs = post.entry.skills || [];
+  const allSkills = await reader.collections.skills.all();
+  const resolvedSkillNames = skillSlugs
+    .map((slug) => allSkills.find((s) => s.slug === slug)?.entry.name || slug)
+    .filter((s): s is string => !!s);
+
+  const combinedKeywords = [...resolvedTags, ...resolvedSkillNames];
+
   return {
     title: `${post.entry.title}`,
     description: post.entry.summary || `Read ${post.entry.title}`,
+    keywords: combinedKeywords,
     openGraph: {
       title: post.entry.title,
       description: post.entry.summary,
@@ -67,7 +82,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
 
 // Render the Page
 export default async function BlogPostPage({ params }: RouteParams) {
-  const { year, month, day, title } = params;
+  const { year, month, day, title } = await params;
   const requestedSlug = title[0];
   const targetDate = `${year}-${month}-${day}`;
 
@@ -88,6 +103,26 @@ export default async function BlogPostPage({ params }: RouteParams) {
   // Extract the raw MDX content string
   const mdxContentStr = await post.entry.content(); 
 
+  const tagSlugs = post.entry.tags || [];
+  const allTags = await reader.collections.tags.all();
+  const resolvedTags = tagSlugs
+    .map((slug) => allTags.find((t) => t.slug === slug)?.entry.name || slug)
+    .filter((t): t is string => !!t);
+
+  const skillSlugs = post.entry.skills || [];
+  const allSkills = await reader.collections.skills.all();
+  const resolvedSkills = skillSlugs
+    .map((slug) => {
+      const match = allSkills.find((s) => s.slug === slug);
+      if (!match) return null;
+      return {
+        name: match.entry.name || slug,
+        iconName: match.entry.iconName || "Code",
+        link: `/skills/${slug}`,
+      };
+    })
+    .filter((s): s is { name: string; iconName: string; link: string; } => !!s);
+
   // Generate JSON-LD SEO metadata
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -101,6 +136,7 @@ export default async function BlogPostPage({ params }: RouteParams) {
       url: 'https://www.fiatnovum.com',
     },
     description: post.entry.summary,
+    keywords: [...resolvedTags, ...resolvedSkills.map((s) => s.name)].join(', '),
   };
 
   return (
@@ -118,6 +154,9 @@ export default async function BlogPostPage({ params }: RouteParams) {
         } 
         date={post.entry.publishDate}
         coverImage={post.entry.cover ?? undefined}
+        coverAlignment={post.entry.coverAlignment ?? undefined}
+        tags={resolvedTags}
+        skills={resolvedSkills}
       />
     </section>
   );
