@@ -393,19 +393,6 @@
           "componentType": "component"
         },
         {
-          "id": "_FSqgEpedOrt",
-          "name": "CardsSkillCard",
-          "type": "managed",
-          "projectId": "77YCnrwhevb2XmBSeMeRKC",
-          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicCardsSkillCard.tsx",
-          "importSpec": {
-            "modulePath": "Cards/CardsSkillCard.tsx"
-          },
-          "cssFilePath": "plasmic/fiat_novum/PlasmicCardsSkillCard.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "i4Mn9_jiO7iS",
           "name": "PagesProjectIndexLayout",
           "type": "managed",

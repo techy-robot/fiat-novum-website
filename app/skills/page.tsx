@@ -5,7 +5,7 @@ import DynamicIcon from '@/components/UI/DynamicIcon';
 
 // Import components
 import BlogIndexLayout from '@/components/Pages/PagesBlogIndexLayout';
-import SkillCard from '@/components/Cards/CardsSkillCard';
+import UiButton from '@/components/UI/UiButton';
 
 import styles from '@/styles/grid-layout.module.css';
 
@@ -41,17 +41,18 @@ export default async function SkillsIndexPage() {
       postListSlot={
         <div className={styles.skillsContainer}>
           {skills.map((skill) => (
-            <SkillCard
+            <UiButton
               key={skill.url}
-              text={skill.name}
-              link={skill.url}
+              label={skill.name}
+              linkTo={skill.url}
+              iconStart={true}
               iconSlot={
                 <DynamicIcon 
                   iconName={skill.iconName}
-                  size={24} 
+                  size={20} 
                   stroke={1.5} 
-                  color="#00FF9D" 
-                  className={styles.skillIconGlow}
+                  color="#000000" 
+                  style={{ marginRight: "8px" }}
                 />
               }
             />

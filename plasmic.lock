@@ -408,16 +408,6 @@
         },
         {
           "type": "renderModule",
-          "assetId": "_FSqgEpedOrt",
-          "checksum": "34b74cd5a48dc2d39fe5a19d44107210"
-        },
-        {
-          "type": "cssRules",
-          "assetId": "_FSqgEpedOrt",
-          "checksum": "34b74cd5a48dc2d39fe5a19d44107210"
-        },
-        {
-          "type": "renderModule",
           "assetId": "D5uhGTTE6uuN",
           "checksum": "b66acaaab69650f45d573bdb5096862b"
         },
