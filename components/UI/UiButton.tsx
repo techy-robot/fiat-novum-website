@@ -21,7 +21,7 @@ import {
 //
 // You can also stop extending from DefaultUiButtonProps altogether and have
 // total control over the props for your component.
-export interface UiButtonProps extends DefaultUiButtonProps {}
+export interface UiButtonProps extends DefaultUiButtonProps { }
 
 function UiButton(props: UiButtonProps) {
   // Use PlasmicUiButton to render this component as it was

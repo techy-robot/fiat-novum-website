@@ -12,6 +12,7 @@
   transition-property: all;
   transition-duration: 0.3s;
   color: var(--token-GVsoIpJlGJFU);
+  white-space: pre;
   -webkit-transition-property: all;
   -webkit-transition-duration: 0.3s;
   border-radius: 99px;
