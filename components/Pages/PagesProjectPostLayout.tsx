@@ -60,20 +60,23 @@ function PagesProjectPostLayout_(
             <div className="post-metadata-block">
               {tags && tags.length > 0 && (
                 <div className="tags-container">
-                  {tags.map((tag) => (
-                    <UiButton
-                      key={tag}
-                      label={tag}
-                      size="small"
-                      outlineStyle={false}
-                    />
-                  ))}
+                  <span className="metadata-label">Tags:</span>
+                  <div className="metadata-list">
+                    {tags.map((tag) => (
+                      <UiButton
+                        key={tag}
+                        label={tag}
+                        size="small"
+                        outlineStyle={false}
+                      />
+                    ))}
+                  </div>
                 </div>
               )}
               {skills && skills.length > 0 && (
                 <div className="skills-used-container">
-                  <span className="skills-used-label">Skills Used:</span>
-                  <div className="skills-list">
+                  <span className="metadata-label">Skills Used:</span>
+                  <div className="metadata-list">
                     {skills.map((skill) => (
                       <UiButton
                         key={skill.name}
@@ -83,12 +86,14 @@ function PagesProjectPostLayout_(
                         iconSlot={
                           <DynamicIcon
                             iconName={skill.iconName}
-                            size={18}
+                            size={16}
                             stroke={1.5}
                             color="#000000"
                             style={{ marginRight: "6px" }}
                           />
                         }
+                        size="small"
+                        outlineStyle={false}
                       />
                     ))}
                   </div>

@@ -80,12 +80,7 @@ footer {
   border-bottom: 1px dashed rgba(0, 255, 165, 0.25);
 }
 
-.tags-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
+.tags-container,
 .skills-used-container {
   display: flex;
   align-items: center;
@@ -93,7 +88,7 @@ footer {
   gap: 0.75rem;
 }
 
-.skills-used-label {
+.metadata-label {
   font-family: 'tars-mono-rounded', 'tars-mono-smooth', monospace;
   font-size: 0.8rem;
   color: rgba(0, 255, 165, 0.6);
@@ -101,9 +96,10 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   user-select: none;
+  min-width: 120px;
 }
 
-.skills-list {
+.metadata-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
