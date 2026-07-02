@@ -29,7 +29,7 @@ function PageSupportCustomFooter_(
   ref: HTMLElementRefOf<"div">
 ) {
   const pathname = usePathname();
-  if (pathname === "/plasmic-host") {
+  if (pathname === "/plasmic-host" || pathname.startsWith("/keystatic")) {
     return null;
   }
 
