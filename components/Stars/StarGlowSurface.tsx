@@ -49,7 +49,7 @@ const StarGlowSurface = React.forwardRef<HTMLElement, StarGlowSurfaceProps>(func
 
   return (
     <Component
-      ref={ref as React.ForwardedRef<any>}
+      ref={ref as React.Ref<HTMLSpanElement> & React.Ref<HTMLDivElement>}
       className={[styles.starField, global.active ? styles.starFieldActive : "", className ?? ""].filter(Boolean).join(" ")}
       style={fieldStyle}
       onPointerMove={onPointerMove}

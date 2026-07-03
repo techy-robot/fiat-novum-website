@@ -1,7 +1,23 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
   "rules": {
+    // Allow unused variables which commonly block Vercel production builds
     "@typescript-eslint/no-empty-object-type": "off",
-    "@typescript-eslint/no-empty-interface": "off"
-  }
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    // Prevent unescaped entities that crash Next.js compilation
+    "react/no-unescaped-entities": "error"
+  },
+  "ignorePatterns": [
+    ".next/**",
+    "next-env.d.ts",
+    "postcss-focus-visible-within-replace.js",
+    "postcss.config.js"
+  ]
 }
