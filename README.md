@@ -22,3 +22,8 @@ npm run dev
 Open your browser to see the result, it should be localhost:3000. 
 
 PS: This should work in an air-gapped setup with all the npm packages downloaded, if it doesn't, then I screwed up somewhere...
+
+## Troubleshooting
+
+- Do not use :where() in CSS files, as it has incorrect specificity from the dev server to production and doesn't render correctly!
+- Since Plasmic components are in an App Router setup, you must ensure that every page or component provided includes a `'use client'` wrapper component.
