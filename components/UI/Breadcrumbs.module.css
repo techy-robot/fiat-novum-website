@@ -1,7 +1,7 @@
 :where(.breadcrumbs) {
   display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.5rem;
   font-size: 1rem;
   font-weight: 800;
@@ -11,21 +11,34 @@
   border-radius: 9999px;
   padding: 0.4rem 1.25rem;
   background-color: #00ffa5;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .breadcrumbsLink {
   color: black;
   text-decoration: underline;
   transition: color 0.3s ease, text-decoration-color 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .breadcrumbsLink:hover {
   color: #45abb7;
 }
+
 .breadcrumbsSeparator {
   user-select: none;
+  flex-shrink: 0;
 }
 
 .breadcrumbsLast {
   opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex-shrink: 1;
 }
+

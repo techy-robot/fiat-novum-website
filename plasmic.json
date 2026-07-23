@@ -457,6 +457,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/"
+        },
+        {
+          "id": "krbHlVxjDAgo",
+          "name": "CardsMetadataDisplay",
+          "type": "managed",
+          "projectId": "77YCnrwhevb2XmBSeMeRKC",
+          "renderModuleFilePath": "plasmic/fiat_novum/PlasmicCardsMetadataDisplay.tsx",
+          "importSpec": {
+            "modulePath": "CardsMetadataDisplay.tsx"
+          },
+          "cssFilePath": "plasmic/fiat_novum/PlasmicCardsMetadataDisplay.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

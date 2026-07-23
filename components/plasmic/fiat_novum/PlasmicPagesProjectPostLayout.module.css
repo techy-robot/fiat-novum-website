@@ -27,7 +27,8 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
-  padding: 8px;
+  min-width: 0px;
+  padding: 5vh 8px 8px;
 }
 .img {
   animation: none;
@@ -36,9 +37,13 @@
   object-position: 50% 50%;
   flex-shrink: 1;
   aspect-ratio: 2/1;
+  margin-bottom: 5vh;
   border-radius: 10px;
 }
 .img > picture > img {
   object-fit: cover;
   object-position: 50% 50%;
+}
+.h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
 }

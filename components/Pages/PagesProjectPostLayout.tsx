@@ -55,7 +55,14 @@ function PagesProjectPostLayout_(
       root={{ ref }}
       // Inject the hashed classes into the content slot
       contentSlot={
-        <article className={`${"plasmic_default_styles"} ${"root_reset_77YCnrwhevb2XmBSeMeRKC"} ${"root_reset_77YCnrwhevb2XmBSeMeRKC_tags"}`}>
+        <article
+          className={`${"plasmic_default_styles"} ${"root_reset_77YCnrwhevb2XmBSeMeRKC"} ${"root_reset_77YCnrwhevb2XmBSeMeRKC_tags"}`}
+          style={{
+            overflowWrap: "break-word",
+            maxWidth: "100%",
+            minWidth: 0,
+          }}
+        >
           {((tags && tags.length > 0) || (skills && skills.length > 0)) && (
             <div className="post-metadata-block">
               {tags && tags.length > 0 && (
