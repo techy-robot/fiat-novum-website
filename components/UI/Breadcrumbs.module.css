@@ -1,4 +1,4 @@
-:where(.breadcrumbs) {
+.breadcrumbs {
   display: inline-flex;
   align-items: center;
   flex-wrap: nowrap;
